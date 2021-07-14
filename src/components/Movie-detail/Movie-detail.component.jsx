@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 // reduer action
 import { getMovieDetail_Action } from "../../store/actions/detail.actions";
 // action axios
-import { getListShowTimeDetailTabAction } from "../../store/actions/detailTabComponent.action";
+import { getLogoDetailTabAction } from "../../store/actions/detailTabComponent.action";
 // progressbar
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -38,7 +38,7 @@ function MovieDetail(props) {
   }, [dispatch, codeMaPhim]);
 
   useEffect(() => {
-    dispatch(getListShowTimeDetailTabAction()); // get data to Axios tabNavigation.action for component NavigationTabsOne
+    dispatch(getLogoDetailTabAction()); // get data to Axios tabNavigation.action for component NavigationTabsOne
   }, [dispatch]);
 
   // modal
@@ -61,7 +61,7 @@ function MovieDetail(props) {
   return (
     <>
       {loading === null ? (
-        <Loader/>
+        <Loader />
       ) : (
         <div className="movieDetail">
           <div className="movieDetail_bg">

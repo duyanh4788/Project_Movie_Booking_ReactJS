@@ -209,9 +209,7 @@ const DetailTabComponent = () => {
               </Grid>
               <Grid lg={2} item>
                 <ul>
-                  <li>
-                    {format("mm-dd-yyyy", new Date(ngayKhoiChieu))}
-                  </li>
+                  <li>{format("mm-dd-yyyy", new Date(ngayKhoiChieu))}</li>
                   <li>{maPhim}</li>
                   <li>{tenPhim}</li>
                   <li>{biDanh}</li>
@@ -225,10 +223,10 @@ const DetailTabComponent = () => {
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Grid container className="navigaToDetail">
-              <Grid container item xs={4} className="rowOne">
+              <Grid container item xs={12} md={4} lg={4} className="rowOne">
                 {renderLoGo()}
               </Grid>
-              <Grid container item xs={8} className="rowTwo">
+              <Grid container item xs={12} md={8} lg={8} className="rowTwo">
                 <AppBar position="static" color="default">
                   <Paper>
                     <Tabs

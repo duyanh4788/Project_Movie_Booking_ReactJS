@@ -6,6 +6,7 @@ import { Container, Grid } from "@material-ui/core";
 import "./css/Footer.style.css";
 
 const FooterIntfo = () => {
+ 
   const renderLogoSupply = () => {
     return supply.map((item, index) => {
       return (

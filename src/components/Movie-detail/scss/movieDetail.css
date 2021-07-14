@@ -16,8 +16,8 @@
   position: relative;
   position: absolute;
   width: 100%;
-  top: 27%;
-  left: 0;
+  top: 35%;
+  left: 6%;
   -webkit-transform: translateY(-27%);
           transform: translateY(-27%);
 }
@@ -32,20 +32,26 @@
 }
 
 .movieDetail .movieDetail_Intro .images .iconPlay {
-  opacity: 1;
-  font-size: 50px;
+  opacity: 0;
+  font-size: 30px;
   color: white;
   background-color: rgba(0, 0, 0, 0.255);
   text-align: center;
-  padding: 15px;
+  padding: 5px;
   border: 1px solid white;
   cursor: pointer;
   border-radius: 50%;
   position: absolute;
   top: 55%;
-  left: 21%;
-  -webkit-transform: translate(-22%, -55%);
-          transform: translate(-22%, -55%);
+  left: 25%;
+  -webkit-transform: translate(-25%, -55%);
+          transform: translate(-25%, -55%);
+}
+
+.movieDetail .movieDetail_Intro .images:hover .iconPlay {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .movieDetail .movieDetail_Intro .intro {
@@ -81,12 +87,6 @@
 .movieDetail .movieDetail_Intro .rating span {
   color: white;
   font-size: 15px;
-}
-
-.movieDetail_Intro:hover .iconPlay {
-  opacity: 1;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
 }
 
 .MuiTabs-flexContainer {

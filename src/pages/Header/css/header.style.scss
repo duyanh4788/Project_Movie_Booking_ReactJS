@@ -12,6 +12,10 @@
 }
 .header {
     background-color: #fafafa;
+    overflow: hidden;
+    position: fixed !important;
+    top: 0;
+    width: 100%;
     .headerGridOne {
         text-align: left;
     }

@@ -10,7 +10,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CardMedia from "@material-ui/core/CardMedia";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 //slick
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -25,6 +25,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import SimpleAccordion from "../SimpleAccordion/SimpleAccordion";
 
 /**
  *  8-05-02021 Vũ Duy Anh
@@ -123,7 +124,7 @@ const ListPhim = () => {
               color="secondary"
               className="buttonslide"
               onClick={() => {
-                hisTory.push(`/detail/${item.maPhim}`); // transmission to Movie-detail/Movie-detail.compnent
+                hisTory.push(`/phimDetail/${item.maPhim}`); // transmission to Movie-detail/Movie-detail.compnent
               }}
             >
               Mua Vé
@@ -142,21 +143,29 @@ const ListPhim = () => {
 
   return (
     <section className="sliderListPhim">
-      <FormControl className="maNhom">
-        <InputLabel>Mã Nhóm</InputLabel>
-        <Select value={maNhom} onChange={handleChange}>
-          <MenuItem value="GP01">GP01</MenuItem>
-          <MenuItem value="GP02">GP02</MenuItem>
-          <MenuItem value="GP03">GP03</MenuItem>
-          <MenuItem value="GP04">GP04</MenuItem>
-          <MenuItem value="GP05">GP05</MenuItem>
-          <MenuItem value="GP06">GP06</MenuItem>
-          <MenuItem value="GP07">GP07</MenuItem>
-          <MenuItem value="GP08">GP08</MenuItem>
-          <MenuItem value="GP09">GP09</MenuItem>
-          <MenuItem value="GP10">GP010</MenuItem>
-        </Select>
-      </FormControl>
+      <Grid container>
+        <Grid item lg={2}></Grid>
+        <Grid item lg={2}>
+          <FormControl className="maNhom">
+            <InputLabel>Mã Nhóm</InputLabel>
+            <Select value={maNhom} onChange={handleChange}>
+              <MenuItem value="GP01">GP01</MenuItem>
+              <MenuItem value="GP02">GP02</MenuItem>
+              <MenuItem value="GP03">GP03</MenuItem>
+              <MenuItem value="GP04">GP04</MenuItem>
+              <MenuItem value="GP05">GP05</MenuItem>
+              <MenuItem value="GP06">GP06</MenuItem>
+              <MenuItem value="GP07">GP07</MenuItem>
+              <MenuItem value="GP08">GP08</MenuItem>
+              <MenuItem value="GP09">GP09</MenuItem>
+              <MenuItem value="GP10">GP010</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item lg={8}>
+          <SimpleAccordion />
+        </Grid>
+      </Grid>
 
       <Slider ref={ref} {...settings}>
         {renderListPhim()}

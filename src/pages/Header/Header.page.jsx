@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 // function component SingOutPage
 import SingOutPage from "../Sign-Out/Sign-Out.page";
+import { imagesLogo } from "./imaGesLogo";
 // redux
 import { useSelector } from "react-redux";
 // react-router-dom
@@ -32,7 +34,7 @@ function Header(props) {
         <Grid item xs={2} className="headerGridOne">
           <Typography>
             <Link to="/" className="titleLink">
-              <img className="headerloGo" src="./web-logo.png" alt="logo" />
+              <img className="headerloGo" src={imagesLogo.img} alt="logo" />
             </Link>
           </Typography>
         </Grid>

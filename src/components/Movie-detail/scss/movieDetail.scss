@@ -11,8 +11,8 @@
         position: relative;
         position: absolute;
         width: 100%;
-        top: 27%;
-        left: 0;
+        top: 35%;
+        left: 6%;
         transform: translateY(-27%);
         .images {
             position: relative;
@@ -21,20 +21,24 @@
                 border-radius: 10px;
             }
             .iconPlay {
-                opacity: 1;
-                font-size: 50px;
+                opacity: 0;
+                font-size: 30px;
                 color: white;
                 background-color: rgba(0, 0, 0, 0.255);
                 text-align: center;
-                padding: 15px;
+                padding: 5px;
                 border: 1px solid white;
                 cursor: pointer;
                 border-radius: 50%;
                 position: absolute;
                 top: 55%;
-                left: 21%;
-                transform: translate(-22%, -55%);
+                left: 25%;
+                transform: translate(-25%, -55%);
             }
+        }
+        .images:hover .iconPlay {
+            opacity: 1;
+            transition: 0.5s;
         }
 
         .intro {
@@ -69,10 +73,7 @@
         }
     }
 }
-.movieDetail_Intro:hover .iconPlay {
-    opacity: 1;
-    transition: 0.5s;
-}
+
 
 .MuiTabs-flexContainer {
     display: flex;

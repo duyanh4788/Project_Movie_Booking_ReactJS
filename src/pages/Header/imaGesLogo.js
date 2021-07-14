@@ -1,3 +1,5 @@
+import logoS from "../../assets/images/web-logo.png"
+
 export const imagesLogo = {
-    img: '../../assets/images/web-logo.png'
+    img: logoS,
 }

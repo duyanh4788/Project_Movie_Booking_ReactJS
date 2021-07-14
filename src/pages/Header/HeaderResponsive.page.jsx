@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { imagesLogo } from "./imaGesLogo";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -85,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 //  drawer
 
 const HeaderResponsivePage = () => {
+  
   //  drawer
   const classes = useStyles();
   const theme = useTheme();
@@ -120,7 +122,7 @@ const HeaderResponsivePage = () => {
         <Toolbar className="headerResponsive">
           <Typography variant="h6" noWrap className={classes.title}>
             <Link to="/" className="titleLink">
-              <img className="headerloGo" src="./web-logo.png" alt="logo" />
+              <img className="headerloGo" src={imagesLogo.img} alt="logo" />
             </Link>
           </Typography>
           <IconButton

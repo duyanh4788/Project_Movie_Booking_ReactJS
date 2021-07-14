@@ -13,6 +13,7 @@ import Guard from "./HOC/guard.hoc";
 import BookingComponent from "./components/Booking/booking.component";
 import ProfileUser from "./pages/Profile/Profile";
 import HeaderResponsivePage from "./pages/Header/HeaderResponsive.page"
+import CinemaDetailComponent from "./components/Cinema-detail/CinemaDetail.component";
 
 /**
  * 28-05-02021 Vũ Duy Anh
@@ -24,32 +25,36 @@ import HeaderResponsivePage from "./pages/Header/HeaderResponsive.page"
  */
 
 function App() {
+
   return (
     <BrowserRouter>
       <HeaderResponsivePage />
       <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/detail/:maPhim" exact component={MovieDetailComponent} />
-        <Route path="/signUp" exact component={SignUpPage} />
-        <Route path="/signIn" exact component={SignInPage} />
-        <Route
-          path="/bookingComponent/:showTimeCode"
-          exact
-          component={BookingComponent}
-        />
-        <Route path="/admin">
-          <Guard>
-            <AdminPage />
-          </Guard>
-        </Route>
-        <Route path="/profile" exact={true}>
-          <ProfileUser />
-        </Route>
-        <Route path="">
-          <Redirect to="/" />
-        </Route>
-      </Switch>
+      <section style={{ marginTop: "64px" }}>
+        <Switch >
+          <Route path="/" exact component={Home} />
+          <Route path="/phimDetail/:maPhim" exact component={MovieDetailComponent} />
+          <Route path="/cinemaDetail/:maCumRap" exact component={CinemaDetailComponent} />
+          <Route path="/signUp" exact component={SignUpPage} />
+          <Route path="/signIn" exact component={SignInPage} />
+          <Route
+            path="/bookingComponent/:showTimeCode"
+            exact
+            component={BookingComponent}
+          />
+          <Route path="/admin">
+            <Guard>
+              <AdminPage />
+            </Guard>
+          </Route>
+          <Route path="/profile" exact component={ProfileUser} >
+          </Route>
+          <Route path="">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+      </section>
+
       <FooterIntfo />
     </BrowserRouter>
   );

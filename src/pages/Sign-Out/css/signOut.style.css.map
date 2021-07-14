@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,GAAG;EACZ,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,aAAa,EAAE,GAAG;EAClB,KAAK,EAAE,kBAAkB;CAC5B",
+    "sources": [
+        "signOut.style.scss"
+    ],
+    "names": [],
+    "file": "signOut.style.css"
+}

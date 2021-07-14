@@ -1,0 +1,125 @@
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.container:not(.is-fluid) {
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .container:not(.is-fluid) {
+    width: 100%;
+    max-width: 570px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .container:not(.is-fluid) {
+    width: 100%;
+    max-width: 860px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container:not(.is-fluid) {
+    width: 100%;
+    max-width: 1150px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .container:not(.is-fluid) {
+    width: 100%;
+    max-width: 1400px;
+  }
+}
+
+.container-sm {
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .container-sm {
+    max-width: 570px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .container-sm {
+    max-width: 860px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container-sm {
+    max-width: 1150px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .container-sm {
+    max-width: 1400px;
+  }
+}
+
+.container-md {
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 900px) {
+  .container-md {
+    max-width: 860px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container-md {
+    max-width: 1150px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .container-md {
+    max-width: 1400px;
+  }
+}
+
+.container-lg {
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container-lg {
+    max-width: 1150px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .container-lg {
+    max-width: 1400px;
+  }
+}
+
+.container-xl {
+  margin: 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 1800px) {
+  .container-xl {
+    max-width: 1400px;
+  }
+}
+/*# sourceMappingURL=container.css.map */

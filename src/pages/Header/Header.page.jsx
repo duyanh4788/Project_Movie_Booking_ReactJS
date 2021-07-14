@@ -1,0 +1,71 @@
+import React from "react";
+// function component SingOutPage
+import SingOutPage from "../Sign-Out/Sign-Out.page";
+// redux
+import { useSelector } from "react-redux";
+// react-router-dom
+import { Link } from "react-router-dom";
+// material
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Grid from "@material-ui/core/Grid";
+// css
+import "./css/header.style.css";
+
+function Header(props) {
+  // take data reducer/signIn.reducer
+  let signIn = useSelector((state) => {
+    return state.signInReducer.auth;
+  });
+  const userSigIn = JSON.parse(localStorage.getItem("userLogin"));
+  if (userSigIn) {
+    let signInUpdate = { ...signIn };
+    signInUpdate.hoTen = userSigIn.hoTen;
+    signIn = signInUpdate;
+  }
+  return (
+    <AppBar position="static" color="inherit" id="navbar" className="header">
+      <Toolbar>
+        <Grid item xs={2} className="headerGridOne">
+          <Typography>
+            <Link to="/" className="titleLink">
+              <img className="headerloGo" src="./web-logo.png" alt="logo" />
+            </Link>
+          </Typography>
+        </Grid>
+        <Grid item xs={6} className="headerGridTwo">
+          <label>Lịch Chiếu</label>
+
+          <label>Cụm Rạp</label>
+
+          <label>Tin Tức</label>
+
+          <label>Ứng Dụng</label>
+        </Grid>
+        <Grid item xs={4} className="headerGridThere">
+          {signIn.hoTen !== "" ? (
+            <>
+              <SingOutPage />
+              {/* acces to pages/Sign-Out/signout.page-rfc */}
+            </>
+          ) : (
+            <Typography className="headerTitleLinkThere">
+              <Link to="/signUp" className="headerTitleThere">
+                Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
+              </Link>
+              <AccountCircleIcon className="headerIconLogIn" />
+              <Link to="/signIn" className="headerTitleThere">
+                Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
+              </Link>
+              <LocationOnIcon className="headerIconLogIn" />
+            </Typography>
+          )}
+        </Grid>
+      </Toolbar>
+    </AppBar>
+  );
+}
+export default Header;

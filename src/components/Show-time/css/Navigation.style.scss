@@ -1,0 +1,155 @@
+$border: 1px solid #f5f5f5;
+// rowOneNavigation_Child
+@mixin btnImages {
+    button {
+        border: none;
+        cursor: pointer;
+        .rowOneNavigation_Child_Images {
+            width: 40px;
+            margin: 30px 0;
+        }
+    }
+}
+// scrollbar
+@mixin scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+}
+//scroll row
+@mixin scrollRow {
+    float: left;
+    height: 650px;
+    width: 100%;
+    overflow-y: scroll;
+    border-right: $border;
+    align-content: flex-start;
+}
+// color text Cinema
+@mixin Cinema {
+    .BHDStar {
+        color: #56bb52;
+    }
+    .CGV {
+        color: #ee2d24;
+    }
+    .CineStar {
+        color: #662d91;
+    }
+    .Galaxy {
+        color: #ff8121;
+    }
+    .LotteCinima {
+        color: #ed1b24;
+    }
+    .MegaGS {
+        color: #ebb427;
+    }
+}
+// maRap_`maHeThongRap`
+@mixin maRap {
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: white;
+    font-size: 13px;
+}
+// rowChild
+@mixin rowChild {
+    border-bottom: $border;
+    height: 100px;
+    padding-left: 10px;
+}
+
+// background 2 div
+.bgNaVigato {
+    background: linear-gradient(to right, white, rgba(128, 128, 128, 0.26), white);
+    height: 100px;
+}
+
+.naViGaTion {
+    border-radius: 5px;
+    border: $border;
+
+    // row one
+    .rowOneNavigation {
+        background-color: #f1f1f1;
+        text-align: center;
+        border-right: $border;
+        .rowOneNavigation_Child {
+            border-bottom: $border;
+            transition: 0.5s;
+            opacity: 0.7;
+            @include btnImages;
+        }
+        .rowOneNavigation_Child_Active {
+            border-bottom: $border;
+            transition: 0.5s;
+            opacity: 1.5;
+            @include btnImages;
+        }
+    }
+    // row one
+
+    // row two
+    .rowTwoNavigation {
+        @include scrollRow;
+        .rowTwoNavigation_Child {
+            @include rowChild;
+            .rowTwoNavigation_Child_Intro {
+                font-weight: 600;
+                @include Cinema;
+                span {
+                    color: red;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    // row two
+
+    // row there
+    .rowThereNavigation {
+        @include scrollRow;
+        .rowThereNavigation_Child {
+            @include rowChild;
+            .rowThereNavigation_Child_Intro {
+                font-weight: 600;
+                .maRap_BHDStar {
+                    @include maRap;
+                    background-color: #56bb52;
+                }
+                .maRap_CGV {
+                    @include maRap;
+                    background-color: #ee2d24;
+                }
+                .maRap_CineStar {
+                    @include maRap;
+                    background-color: #662d91;
+                }
+                .maRap_Galaxy {
+                    @include maRap;
+                    background-color: #ff8121;
+                }
+                .maRap_LotteCinima {
+                    @include maRap;
+                    background-color: #ed1b24;
+                }
+                .maRap_MegaGS {
+                    @include maRap;
+                    background-color: #ebb427;
+                }
+                @include Cinema;
+            }
+        }
+    }
+    // row there
+}
+
+.rowTwoNavigation::-webkit-scrollbar,
+.rowThereNavigation::-webkit-scrollbar {
+    @include scrollbar;
+}
+.rowTwoNavigation::-webkit-scrollbar-thumb,
+.rowThereNavigation::-webkit-scrollbar-thumb {
+    background: #e2dfdf;
+    border-radius: 6px;
+}

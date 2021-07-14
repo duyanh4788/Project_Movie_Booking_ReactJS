@@ -1,0 +1,18 @@
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100%);
+    z-index: 9;
+    opacity: 1;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    svg {
+        color: #fc7a67;
+    }
+}

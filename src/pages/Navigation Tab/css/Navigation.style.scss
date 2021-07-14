@@ -1,0 +1,215 @@
+$border: 1px solid #f5f5f5;
+// rowOneNavigation_ChildTab
+@mixin btnImages {
+    border-bottom: $border;
+    transition: 0.5s;
+    button {
+        border: none;
+        cursor: pointer;
+        .rowOneNavigation_ChildTab_Images {
+            width: 40px;
+            margin: 30px 0;
+        }
+    }
+}
+// scrollbar
+@mixin scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: #f5f5f5;
+}
+//scroll row
+@mixin scrollRow {
+    float: left;
+    height: 650px;
+    width: 100%;
+    overflow-y: scroll;
+    border-right: $border;
+    align-content: flex-start;
+}
+// color text Cinema
+@mixin Cinema {
+    .BHDStar {
+        color: #56bb52;
+    }
+    .CGV {
+        color: #ee2d24;
+    }
+    .CineStar {
+        color: #662d91;
+    }
+    .Galaxy {
+        color: #ff8121;
+    }
+    .LotteCinima {
+        color: #ed1b24;
+    }
+    .MegaGS {
+        color: #ebb427;
+    }
+}
+// maRap_`maHeThongRap`
+@mixin maRap {
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: #f5f5f5;
+    font-size: 13px;
+}
+// rowChild
+@mixin rowChild {
+    border-bottom: $border;
+    height: 100px;
+    padding-left: 10px;
+}
+
+@mixin cloneChildTab {
+    @include rowChild;
+    transition: 0.5s;
+    padding: 10px;
+    .rowTwoNavigation_ChildTab_Intro {
+        font-weight: 600;
+        font-size: 15px;
+        @include Cinema;
+        .Child_Image img {
+            width: 60px;
+            height: 60px;
+        }
+        .Child_Intro {
+            p {
+                margin-bottom: 0;
+            }
+            .address {
+                color: gray;
+                font-size: 12px;
+            }
+            span {
+                color: red;
+                font-weight: 100;
+                font-size: 12px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// background 2 div
+.bgNaVigation {
+    background: linear-gradient(to right, white, rgba(128, 128, 128, 0.26), white);
+    height: 100px;
+}
+
+.naViGaTionTab {
+    border-radius: 5px;
+    border: $border;
+
+    // row one
+    .rowOneNavigationTab {
+        background-color: #f1f1f1;
+        text-align: center;
+        border-right: $border;
+        .rowOneNavigation_ChildTab {
+            opacity: 0.7;
+            @include btnImages;
+        }
+        .rowOneNavigation_ChildTab_Active {
+            opacity: 1.5;
+            @include btnImages;
+        }
+    }
+    // row one
+
+    // row two
+    .rowTwoNavigationTab {
+        @include scrollRow;
+        .rowTwoNavigation_ChildTab {
+            opacity: 0.7;
+            @include cloneChildTab;
+        }
+        .rowTwoNavigation_ChildTab_Active {
+            opacity: 1.5;
+            @include cloneChildTab;
+        }
+    }
+    // row two
+
+    // row there
+    .rowThereNavigationTab {
+        @include scrollRow;
+        .rowThereNavigationTab_Child {
+            padding: 10px;
+            @include rowChild;
+            .rowThereNavigation_ChildTab_Intro {
+                font-weight: 600;
+                .ChildTab_Intro_Img img {
+                    width: 60px;
+                    height: 60px;
+                }
+                .maRap_BHDStar {
+                    @include maRap;
+                    background-color: #56bb52;
+                }
+                .maRap_CGV {
+                    @include maRap;
+                    background-color: #ee2d24;
+                }
+                .maRap_CineStar {
+                    @include maRap;
+                    background-color: #662d91;
+                }
+                .maRap_Galaxy {
+                    @include maRap;
+                    background-color: #ff8121;
+                }
+                .maRap_LotteCinima {
+                    @include maRap;
+                    background-color: #ed1b24;
+                }
+                .maRap_MegaGS {
+                    @include maRap;
+                    background-color: #ebb427;
+                }
+                @include Cinema;
+            }
+            .ChildTab_Intro {
+                font-size: 15px;
+                span{
+                    margin-left: 5px;
+                }
+            }
+            a {
+                text-decoration: none;
+            }
+            .ChildTab_Timer {
+                overflow-x: scroll;
+                width: 470px;
+                height: 46px;
+                .timeCode {
+                    border: $border;
+                    border-radius: 5px;
+                    padding: 10px;
+                    margin: 0 2px;
+                }
+            }
+        }
+    }
+    // row there
+}
+
+// scroll css
+.rowTwoNavigationTab::-webkit-scrollbar,
+.rowThereNavigationTab::-webkit-scrollbar,
+.ChildTab_Timer::-webkit-scrollbar {
+    @include scrollbar;
+}
+.rowTwoNavigationTab::-webkit-scrollbar-thumb,
+.rowThereNavigationTab::-webkit-scrollbar-thumb,
+.ChildTab_Timer::-webkit-scrollbar-thumb {
+    background: #e2dfdf;
+    border-radius: 6px;
+}
+
+@media (max-width: 1000px) {
+    .naViGaTionTab {
+        display: none !important;
+    }
+}

@@ -1,0 +1,40 @@
+1 movie.action
+getMovieList_Action
+method: "GET",
+url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+
+2 detail.actions
+getMovieDetail_Action
+method: "GET",
+url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+
+3 booking.action
+1 getTicketListAction
+method: 'GET',
+url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
+
+4 bookingTicketAction
+method: 'POST',
+url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+data: {
+    maLichChieu: showTimeCode,
+    danhSachVe: listChairChoice,
+    taiKhoanNguoiDung: taiKhoan,
+},
+
+5 signIn.action
+signIn_Action
+method: "POST",
+url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+data,
+
+6 signUp.action
+postSignUp_Action
+ method: "POST",
+url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+data,
+
+7 tabNavigation.action
+getInforSystem
+method: 'GET',
+url: "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap"

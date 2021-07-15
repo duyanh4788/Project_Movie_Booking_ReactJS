@@ -30,7 +30,7 @@ function Home() {
       {loading === null ? (
         <Loader />
       ) : (
-        <section style={{marginTop:"64px"}}>
+        <>
           <CarouselSlick />
           <DropDowns />
           <Container maxWidth="lg">
@@ -38,7 +38,7 @@ function Home() {
             <NavigationTabsOnePage />
           </Container>
           <FooterCarousel />
-        </section>
+        </>
       )}
     </>
   );

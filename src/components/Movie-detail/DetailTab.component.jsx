@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Container, Grid } from "@material-ui/core";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Container,
+  Grid,
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AppBar from "@material-ui/core/AppBar";
 import PropTypes from "prop-types";
 import Tabs from "@material-ui/core/Tabs";
@@ -86,7 +93,7 @@ const DetailTabComponent = () => {
       return (
         <Grid
           item
-          xs={12}
+          xs={4}
           key={index}
           className={
             item.maHeThongRap === stateMaRap.maRap ? "loGo_Active" : "loGo"
@@ -98,8 +105,8 @@ const DetailTabComponent = () => {
             }}
           >
             <img src={item.logo} alt="" className="images" />
-            <span>{item.maHeThongRap}</span>
           </button>
+          <p>{item.maHeThongRap}</p>
         </Grid>
       );
     });
@@ -204,7 +211,7 @@ const DetailTabComponent = () => {
                   <li>Mã Phim :</li>
                   <li>Tên Phim :</li>
                   <li>Bí Danh :</li>
-                  <li>Mã Nhóm :</li>
+                  <li>Mã Nhóm :</li>dạ 
                 </ul>
               </Grid>
               <Grid lg={2} item>
@@ -223,12 +230,29 @@ const DetailTabComponent = () => {
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Grid container className="navigaToDetail">
-              <Grid container item xs={12} md={4} lg={4} className="rowOne">
-                {renderLoGo()}
+              <Grid container item xs={12} sm={4} md={4} lg={4}>
+                <Accordion style={{ margin: "0 10px 10px" }}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <p>Chọn Rạp</p>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid container item className="rowOne">
+                      {renderLoGo()}
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
               </Grid>
-              <Grid container item xs={12} md={8} lg={8} className="rowTwo">
+              <Grid
+                container
+                item
+                xs={12}
+                sm={8}
+                md={8}
+                lg={8}
+                className="rowTwo"
+              >
                 <AppBar position="static" color="default">
-                  <Paper>
+                  <Paper style={{ padding: "5px 0" }}>
                     <Tabs
                       value={values}
                       onChange={handleChanges}

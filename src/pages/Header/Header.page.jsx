@@ -16,6 +16,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Grid from "@material-ui/core/Grid";
 // css
 import "./css/header.style.css";
+import CinemaDetailPage from "../CinemaDetailPage/CinemaDetail.page";
 
 function Header(props) {
   // take data reducer/signIn.reducer
@@ -28,6 +29,7 @@ function Header(props) {
     signInUpdate.hoTen = userSigIn.hoTen;
     signIn = signInUpdate;
   }
+
   return (
     <AppBar position="static" color="inherit" id="navbar" className="header">
       <Toolbar>
@@ -38,7 +40,10 @@ function Header(props) {
             </Link>
           </Typography>
         </Grid>
-        <Grid item xs={6} className="headerGridTwo">
+        <Grid item xs={3} className="headerGridTwo">
+          <CinemaDetailPage />
+        </Grid>
+        <Grid item xs={3} className="headerGridTwo">
           <label>Lịch Chiếu</label>
 
           <label>Cụm Rạp</label>

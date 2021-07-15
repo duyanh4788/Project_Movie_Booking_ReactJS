@@ -25,7 +25,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import SimpleAccordion from "../SimpleAccordion/SimpleAccordion";
 
 /**
  *  8-05-02021 Vũ Duy Anh
@@ -144,8 +143,7 @@ const ListPhim = () => {
   return (
     <section className="sliderListPhim">
       <Grid container>
-        <Grid item lg={2}></Grid>
-        <Grid item lg={2}>
+        <Grid item lg={12} style={{textAlign:"center"}} >
           <FormControl className="maNhom">
             <InputLabel>Mã Nhóm</InputLabel>
             <Select value={maNhom} onChange={handleChange}>
@@ -161,9 +159,6 @@ const ListPhim = () => {
               <MenuItem value="GP10">GP010</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
-        <Grid item lg={8}>
-          <SimpleAccordion />
         </Grid>
       </Grid>
 

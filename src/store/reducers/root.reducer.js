@@ -7,8 +7,9 @@ import { CommonReducer } from "./common.reducer";
 import { TabNavigationComponentReducer } from "./tabNavigationComponent.reducer";
 import { TabNavigationPageReducer } from "./tabNavigationPage.reducer";
 import infoUserReducer from "./infoUser.reducer";
-import {dropDownsReducer} from "./dropdowns.reducer"
-import {DetailTabReducer} from "./detailTab.reducer"
+import { dropDownsReducer } from "./dropdowns.reducer"
+import { DetailTabReducer } from "./detailTab.reducer"
+import { CinemaDetailReducer } from "./cinemaDetail.reducer"
 
 export const rootReducers = combineReducers({
   movieReducer,
@@ -21,4 +22,5 @@ export const rootReducers = combineReducers({
   infoUserReducer,
   dropDownsReducer,
   DetailTabReducer,
+  CinemaDetailReducer,
 });

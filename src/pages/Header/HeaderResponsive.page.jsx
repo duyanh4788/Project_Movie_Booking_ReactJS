@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import CinemaDetailPage from "../CinemaDetailPage/CinemaDetail.page";
 
 //  drawer
 const drawerWidth = 200;
@@ -86,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
 //  drawer
 
 const HeaderResponsivePage = () => {
-  
   //  drawer
   const classes = useStyles();
   const theme = useTheme();
@@ -171,6 +171,9 @@ const HeaderResponsivePage = () => {
         </List>
         <Divider />
         <List>
+          <ListItem>
+            <CinemaDetailPage />
+          </ListItem>
           <ListItem>
             {signIn.hoTen !== "" ? (
               <>

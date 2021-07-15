@@ -30,31 +30,28 @@ function App() {
     <BrowserRouter>
       <HeaderResponsivePage />
       <Header />
-      <section style={{ marginTop: "64px" }}>
-        <Switch >
-          <Route path="/" exact component={Home} />
-          <Route path="/phimDetail/:maPhim" exact component={MovieDetailComponent} />
-          <Route path="/cinemaDetail/:maCumRap" exact component={CinemaDetailComponent} />
-          <Route path="/signUp" exact component={SignUpPage} />
-          <Route path="/signIn" exact component={SignInPage} />
-          <Route
-            path="/bookingComponent/:showTimeCode"
-            exact
-            component={BookingComponent}
-          />
-          <Route path="/admin">
-            <Guard>
-              <AdminPage />
-            </Guard>
-          </Route>
-          <Route path="/profile" exact component={ProfileUser} >
-          </Route>
-          <Route path="">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </section>
-
+      <Switch >
+        <Route path="/" exact component={Home} />
+        <Route path="/phimDetail/:maPhim" exact component={MovieDetailComponent} />
+        <Route path="/cinemaDetail/:maCumRap" exact component={CinemaDetailComponent} />
+        <Route path="/signUp" exact component={SignUpPage} />
+        <Route path="/signIn" exact component={SignInPage} />
+        <Route
+          path="/bookingComponent/:showTimeCode"
+          exact
+          component={BookingComponent}
+        />
+        <Route path="/admin">
+          <Guard>
+            <AdminPage />
+          </Guard>
+        </Route>
+        <Route path="/profile" exact component={ProfileUser} >
+        </Route>
+        <Route path="">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
       <FooterIntfo />
     </BrowserRouter>
   );

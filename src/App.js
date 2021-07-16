@@ -10,11 +10,10 @@ import SignInPage from "./pages/Sign-In/Sign-In.page";
 import SignUpPage from "./pages/Sign-Up/Sign-Up.page";
 import AdminPage from "./pages/admin/admin.page";
 import Guard from "./HOC/guard.hoc";
-import BookingComponent from "./components/Booking/booking.component";
 import ProfileUser from "./pages/Profile/Profile";
 import HeaderResponsivePage from "./pages/Header/HeaderResponsive.page"
 import CinemaDetailComponent from "./components/Cinema-detail/CinemaDetail.component";
-
+import StepperComponent from "./components/Booking/Step.component"
 /**
  * 28-05-02021 Vũ Duy Anh
  * 1. Heder => notDone
@@ -40,7 +39,7 @@ function App() {
           <Route
             path="/bookingComponent/:showTimeCode"
             exact
-            component={BookingComponent}
+            component={StepperComponent}
           />
           <Route path="/admin">
             <Guard>

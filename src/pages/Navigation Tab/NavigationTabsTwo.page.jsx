@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // material ui
 import { Grid } from "@material-ui/core";
-import { getCodeGroupCinemaPage } from "../../store/actions/tabNavigationPage.action";
+import { getCodeGroupCinemaPage, getNameGroupCinemaPage } from "../../store/actions/tabNavigationPage.action";
 import { listCinema } from "./dataCinema";
 
 function NavigationTabsTwoPage() {
@@ -18,8 +18,9 @@ function NavigationTabsTwoPage() {
   const codeGroupCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.codeGroupCinema;
   });
-  const handleMaCumRap = (codeGroupCinema) => {
+  const handleMaCumRap = (codeGroupCinema, nameGroupCinema) => {
     dispatch(getCodeGroupCinemaPage(codeGroupCinema));
+    dispatch(getNameGroupCinemaPage(nameGroupCinema));
   };
   const renderImageCinema = () => {
     const item = listCinema.find((item) => item.name === codeCinema);
@@ -52,7 +53,7 @@ function NavigationTabsTwoPage() {
                 <p className="address">{item.diaChi.slice(0, 50)}</p>
                 <span
                   onClick={() => {
-                    handleMaCumRap(item.maCumRap);
+                    handleMaCumRap(item.maCumRap, item.tenCumRap);
                   }}
                 >
                   [Chi Tiết]

@@ -39,4 +39,9 @@ export const styled = (theme) => ({
     textAlign: "center",
     fontWeight: "600",
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

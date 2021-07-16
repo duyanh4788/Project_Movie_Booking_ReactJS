@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./scss/signIn.css";
 // redux hook
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // action redux thunk
 import { signIn_Action } from "../../store/actions/signIn.action";
 // react router dom
@@ -11,9 +12,6 @@ import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -21,7 +19,10 @@ import Typography from "@material-ui/core/Typography";
 // styled materiall
 import { withStyles } from "@material-ui/styles";
 import { styled } from "./Sign-In.style";
-
+// modal
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 /**
  * localStorage save signIn.action
  */
@@ -36,14 +37,28 @@ function SignInPage(props) {
   });
 
   const hanldeSubmit = (event) => {
-    event.preventDefault();// lock submit
-    dispatch(signIn_Action(user, history)); // post data ( user => client impot , history =>  use to navigate ) up axios action/signIn.action 
+    event.preventDefault(); // lock submit
+    setOpen(true); // open modal
+    dispatch(signIn_Action(user, history)); // post data ( user => client impot , history =>  use to navigate ) up axios action/signIn.action
   };
 
   const hanldeChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value }); // es6 object literal
   };
+
+  // modal
+  const errMesage = useSelector((state) => {
+    return state.signInReducer.errMesage;
+  });
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // modal
+
   return (
     <Container>
       <Grid container component="main" className={classes.root}>
@@ -84,10 +99,7 @@ function SignInPage(props) {
                 value={user.matKhau}
                 onChange={hanldeChange}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+
               <Button
                 type="submit"
                 fullWidth
@@ -97,22 +109,28 @@ function SignInPage(props) {
               >
                 Sign In
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </form>
           </div>
         </Grid>
       </Grid>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className="modalTitle">
+            <p>{errMesage}</p>
+          </div>
+        </Fade>
+      </Modal>
     </Container>
   );
 }

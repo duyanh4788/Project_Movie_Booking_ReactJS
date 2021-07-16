@@ -168,7 +168,9 @@ const DetailTabComponent = () => {
                 </p>
                 <p>
                   Giờ Chiếu :
-                  <Link to={`/bookingComponent/${item.maLichChieu}`}>
+                  <Link
+                    to={`/bookingComponent/${item.maLichChieu}-${maPhim}-${item.thongTinRap.tenCumRap}`}
+                  >
                     <span className={`showTime ${stateMaRap.maRap}`}>
                       {item.ngayChieuGioChieu.slice(11, 16)}
                       <label

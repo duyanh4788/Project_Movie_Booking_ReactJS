@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { SIGN_IN, SIGN_OUT } from "../constants/signIn.constant";
+import { ERROR_SIGN_IN, SIGN_IN, SIGN_OUT } from "../constants/signIn.constant";
 // signIn
 export const signIn_Action = (data, history) => {
   return async (dispatch) => {
@@ -19,9 +19,11 @@ export const signIn_Action = (data, history) => {
         type: SIGN_IN,
         payload: userLogin,
       });
-      console.log("Thông tin người dùng", res.data);
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: ERROR_SIGN_IN,
+        payload: error.response.data,
+      })
     }
   };
 };

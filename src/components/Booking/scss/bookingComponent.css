@@ -1,0 +1,83 @@
+.movie_bg {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 5px;
+}
+
+.movie_intro {
+  font-size: 13px;
+  height: 150px;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bolder;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 5px;
+  color: gray;
+}
+
+.tableS {
+  float: left;
+  overflow-y: scroll;
+  max-height: 340px;
+  margin-top: 10px;
+}
+
+.tableCheckout th,
+.tableCheckout td {
+  font-size: 13px;
+  color: gray;
+  font-weight: 300;
+}
+
+.movie_tabCheckout {
+  float: left;
+  overflow-y: scroll;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  height: 150px;
+  font-weight: bolder;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 5px;
+  color: gray;
+}
+
+.movie_tabCheckout span {
+  font-size: 13px;
+  font-weight: bolder;
+  line-height: 30px;
+}
+
+.movie_tabCheckout p {
+  font-size: 13px;
+}
+
+.primaryS {
+  color: red;
+}
+
+.secondaryS {
+  color: green;
+}
+
+.disableS {
+  color: gray;
+}
+
+.tableS::-webkit-scrollbar,
+.movie_tabCheckout::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #f5f5f5;
+}
+
+.tableS::-webkit-scrollbar-thumb,
+.movie_tabCheckout::-webkit-scrollbar-thumb {
+  background: #e2dfdf;
+  border-radius: 6px;
+}
+/*# sourceMappingURL=bookingComponent.css.map */

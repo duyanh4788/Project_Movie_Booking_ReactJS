@@ -28,7 +28,7 @@ function MovieDetail(props) {
   const [loading, setLoading] = useState(null);
 
   const codeMaPhim = props.match.params.maPhim; // recive data to listFlim/Listphim.page
-
+  
   const detail = useSelector((state) => {
     return state.detaiMovielReducer.detail || {};
   });
@@ -128,42 +128,3 @@ function MovieDetail(props) {
 }
 
 export default withRouter(MovieDetail);
-
-// material
-// import Card from "@material-ui/core/Card";
-// import CardMedia from "@material-ui/core/CardMedia";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardActions from "@material-ui/core/CardActions";
-// import Typography from "@material-ui/core/Typography";
-// import { CardActionArea, Container } from "@material-ui/core";
-
-// {/* <Typography className={classes.textIntro}>Thông Tin Phim</Typography>
-// <Card className={classes.root}>
-//   <CardActionArea>
-//     <CardMedia
-//       component="img"
-//       alt="Contemplative Reptile"
-//       height="140"
-//       image={detail.hinhAnh}
-//       title={detail.maNhom}
-//       style={{ height: "500px" }}
-//     />
-//     <CardContent>
-//       <Typography gutterBottom variant="h5" component="h2">
-//         Code : {detail.maPhim} Phim : {detail.tenPhim}
-//       </Typography>
-//       <Typography variant="body2" color="textSecondary" component="p">
-//         Chi Tiết : {detail.moTa}
-//       </Typography>
-//     </CardContent>
-//   </CardActionArea>
-//   <CardActions>
-//     <Typography gutterBottom variant="h5" component="h2">
-//       Ngày Chiếu : {detail.ngayKhoiChieu}
-//     </Typography>
-//   </CardActions>
-// </Card>
-// <section className="show-time">
-//   <NavigationTabsOnecomponent />
-//   <Showtimecomponent />
-// </section> */}

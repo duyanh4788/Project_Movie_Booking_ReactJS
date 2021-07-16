@@ -63,7 +63,7 @@ function CinemaDetailComponent(props) {
                 : "addresCinema"
             }
             onClick={() => {
-              handleMaCumRap(item.maCumRap, item);
+              handleMaCumRap(item.maCumRap, item.tenCumRap, item);
             }}
           >
             <Grid item xs={4} sm={3}>
@@ -80,19 +80,34 @@ function CinemaDetailComponent(props) {
       });
     }
   };
-
+  // link booking componet
   const [stateMaCumRap, setStateMaCumRap] = useState({
     maCumRap: "",
   });
-  const handleMaCumRap = (maCumRap, arrayListPhim) => {
+  // link booking componet
+  const [stateTenCumRap, setStateTenCumRap] = useState({
+    tenCumRap: "",
+  });
+  // call api
+  const [stateMaPhim, setStateMaPhim] = useState({
+    maPhim: "",
+  });
+  const handleMaCumRap = (maCumRap, tenCumRap, arrayListPhim) => {
     setStateMaCumRap({
       maCumRap: maCumRap,
+    });
+    setStateTenCumRap({
+      tenCumRap: tenCumRap,
     });
     dispatch(getListPhimCinema(arrayListPhim.danhSachPhim));
   };
 
   const handleInfoPhim = (infoPhim) => {
     dispatch(getInfoPhimCinema(infoPhim));
+    console.log(infoPhim);
+    setStateMaPhim({
+      maPhim: infoPhim.maPhim,
+    });
   };
 
   //Return Time-end with Time-start
@@ -119,7 +134,11 @@ function CinemaDetailComponent(props) {
             />
           </Grid>
           <Grid item xs={9} sm={8} md={9} lg={10}>
-            <Accordion>
+            <Accordion
+              onClick={() => {
+                handleInfoPhim(item);
+              }}
+            >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <div className="phim">
                   <label className="maPhim">{item.maPhim}</label>
@@ -133,7 +152,9 @@ function CinemaDetailComponent(props) {
                     {item.lstLichChieuTheoPhim.map((item, index) => {
                       return (
                         <Grid item lg={3} key={index}>
-                          <Link to={`/bookingComponent/${item.maLichChieu}`}>
+                          <Link
+                            to={`/bookingComponent/${item.maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}`}
+                          >
                             <span
                               key={index}
                               className={`timer ${codeMaCumRap}`}
@@ -158,7 +179,6 @@ function CinemaDetailComponent(props) {
       );
     });
   };
-  
 
   return (
     <section className="cinemaDetail">

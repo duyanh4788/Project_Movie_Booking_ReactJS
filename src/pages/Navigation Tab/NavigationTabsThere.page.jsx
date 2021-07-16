@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // redux hook
 import { useSelector } from "react-redux";
 // material ui
@@ -19,6 +19,9 @@ function NavigationTabsTherePage() {
   const codeCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.codeCinema; // get codeCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
+  const nameGroupCinema = useSelector((state) => {
+    return state.TabNavigationPageReducer.nameGroupCinema; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
+  });
 
   //Return Time-end with Time-start
   const getTimeEnd = (timeStart) => {
@@ -27,6 +30,15 @@ function NavigationTabsTherePage() {
     dateFormat.setHours(dateFormat.getHours() + 2);
     let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
     return timeEnd;
+  };
+  // get maPhim
+  const [stateMaphim, setStateMaPhim] = useState({
+    maPhim: "",
+  });
+  const handleMaPhim = (maPhim) => {
+    setStateMaPhim({
+      maPhim: maPhim,
+    });
   };
 
   const renderTenPhim = () => {
@@ -41,6 +53,9 @@ function NavigationTabsTherePage() {
             xs={12}
             key={index}
             className="rowThereNavigationTab_Child"
+            onClick={() => {
+              handleMaPhim(item.maPhim);
+            }}
           >
             <div className="rowThereNavigation_ChildTab_Intro">
               <Grid container>
@@ -65,9 +80,9 @@ function NavigationTabsTherePage() {
                         <Grid container>
                           {item.lstLichChieuTheoPhim.map((item, index) => {
                             return (
-                              <Grid item lg={4}>
+                              <Grid item lg={4} key={index}>
                                 <Link
-                                  to={`/bookingComponent/${item.maLichChieu}`}
+                                  to={`/bookingComponent/${item.maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}`}
                                 >
                                   <span
                                     key={index}

@@ -37,10 +37,17 @@ const DropDowns = (props) => {
   const [stateTenPhim] = useState({
     tenPhim: "",
   });
+  // get maPhim
+  const [stateMaPhim, setStateMaPhim] = useState({
+    maPhim: "",
+  });
   // show phim
   const getCinemaDropDowns_ = (maPhim, tenPhim) => {
     stateTenPhim.tenPhim = tenPhim;
     dispatch(getCinemaDropDownsWithCode(maPhim));
+    setStateMaPhim({
+      maPhim: maPhim,
+    });
     setTenRap({
       tenRap: "",
     });
@@ -93,6 +100,7 @@ const DropDowns = (props) => {
   });
   // show tenRap
   const getCodeCinema = (items, tenCumRap) => {
+    console.log(tenCumRap);
     setTenRap({
       tenRap: tenCumRap,
     });
@@ -134,7 +142,6 @@ const DropDowns = (props) => {
     timeCode: "",
   });
   const getDateCinema = (ngayChieuGioChieu, maLichChieu) => {
-    console.log(maLichChieu);
     stateTimeCode.timeCode = maLichChieu;
     let formatDate = format("mm-dd-yyyy", new Date(ngayChieuGioChieu));
     setDate({
@@ -196,7 +203,9 @@ const DropDowns = (props) => {
         </div>
         {/* link maLichChieu =>  bookingComponent */}
         <button className="btnMuaVe">
-          <Link to={`/bookingComponent/${stateTimeCode.timeCode}`}>
+          <Link
+            to={`/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`}
+          >
             Mua Vé Ngay
           </Link>
         </button>

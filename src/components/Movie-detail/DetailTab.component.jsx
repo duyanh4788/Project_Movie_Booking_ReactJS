@@ -131,6 +131,16 @@ const DetailTabComponent = () => {
   // render image rạp
 
   // render lichChieu
+
+  //Return Time-end with Time-start
+  const getTimeEnd = (timeStart) => {
+    let dateFormat = new Date();
+    dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
+    dateFormat.setHours(dateFormat.getHours() + 2);
+    let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
+    return timeEnd;
+  };
+
   const renderLichChieu = () => {
     let index = lichChieu.findIndex(
       (itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap
@@ -160,7 +170,12 @@ const DetailTabComponent = () => {
                   Giờ Chiếu :
                   <Link to={`/bookingComponent/${item.maLichChieu}`}>
                     <span className={`showTime ${stateMaRap.maRap}`}>
-                      {format("hh:mm", new Date(item.ngayChieuGioChieu))}
+                      {item.ngayChieuGioChieu.slice(11, 16)}
+                      <label
+                        style={{ color: "gray", marginLeft: "5px" }}
+                      >{`~ ${getTimeEnd(
+                        item.ngayChieuGioChieu.slice(11, 16)
+                      )}`}</label>
                     </span>
                   </Link>
                 </p>
@@ -233,7 +248,7 @@ const DetailTabComponent = () => {
               <Grid container item xs={12} sm={4} md={4} lg={4}>
                 <Accordion style={{ margin: "0 10px 10px" }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    <p>Chọn Rạp</p>
+                    <p className="titleLogo">Chọn Rạp : {stateMaRap.maRap}</p>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Grid container item className="rowOne">

@@ -40,6 +40,12 @@
           align-items: flex-start;
 }
 
+.detailTab .navigaToDetail .titleLogo {
+  font-size: 13px;
+  font-weight: bold;
+  color: gray;
+}
+
 .detailTab .navigaToDetail .rowOne .loGo {
   opacity: 0.7;
 }

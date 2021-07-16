@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.mainSection {
+  margin-top: 64px;
+}
+
+@media (max-width : 1000px){
+  .mainSection {
+    margin-top: 0px !important;
+  }
+}

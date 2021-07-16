@@ -145,7 +145,6 @@ const DropDowns = (props) => {
       timer: formatTimer,
     });
   };
-  console.log(listCinema);
   return (
     <div className="container dropDownsRelavite">
       <div className="dropDownsMain">

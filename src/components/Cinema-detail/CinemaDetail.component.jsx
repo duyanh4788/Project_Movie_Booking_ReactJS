@@ -17,16 +17,13 @@ import {
 import { listCinema, backgroundS } from "./dataCinema";
 import { useState } from "react";
 // date format
-import format from "date-format";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 function CinemaDetailComponent(props) {
   const dispatch = useDispatch();
 
   const codeMaCumRap = props.match.params.maCumRap; // recive data to CinemaDetailPage
-
-  const hisTory = useHistory();
 
   useEffect(() => {
     dispatch(getDetailCinema(codeMaCumRap));
@@ -98,54 +95,71 @@ function CinemaDetailComponent(props) {
     dispatch(getInfoPhimCinema(infoPhim));
   };
 
+  //Return Time-end with Time-start
+  const getTimeEnd = (timeStart) => {
+    let dateFormat = new Date();
+    dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
+    dateFormat.setHours(dateFormat.getHours() + 2);
+    let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
+    return timeEnd;
+  };
+
   const renderListPhim = () => {
     return listPhimCinema.map((item, index) => {
       return (
         <Grid container key={index} className="addresPhim">
-          <Grid
-            item
-            xs={3}
-            sm={4}
-            md={3}
-            lg={2}
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              handleInfoPhim(item);
-            }}
-          >
-            <img src={item.hinhAnh} alt={item.hinhAnh} className="imgPhim" />
+          <Grid item xs={3} sm={4} md={3} lg={2} style={{ cursor: "pointer" }}>
+            <img
+              src={item.hinhAnh}
+              alt={item.hinhAnh}
+              className="imgPhim"
+              onClick={() => {
+                handleInfoPhim(item);
+              }}
+            />
           </Grid>
-          <Grid container item xs={9} sm={8} md={9} lg={10}>
-            <Grid item xs={12} lg={12}>
-              <p style={{ marginBottom: "0" }}>
-                <span className="maPhim">{item.maPhim}</span>
-                {item.tenPhim}
-              </p>
-              <p style={{ marginBottom: "0", textAlign: "center" }}>
-                Chọn Xuất Chiếu
-              </p>
-            </Grid>
-            <Grid item xs={12} lg={12} className="tabTimer">
-              {item.lstLichChieuTheoPhim.map((item, index) => {
-                return (
-                  <span
-                    key={index}
-                    className={`timer ${codeMaCumRap}`}
-                    onClick={() => {
-                      hisTory.push(`/bookingComponent/${item.maLichChieu}`); // transmission to Movie-detail/Movie-detail.compnent
-                    }}
-                  >
-                    {format("hh:mm", new Date(item.ngayChieuGioChieu))}
-                  </span>
-                );
-              })}
-            </Grid>
+          <Grid item xs={9} sm={8} md={9} lg={10}>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <div className="phim">
+                  <label className="maPhim">{item.maPhim}</label>
+                  <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
+                  <p>Chọn Xuất Chiếu</p>
+                </div>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="tabTimer">
+                  <Grid container>
+                    {item.lstLichChieuTheoPhim.map((item, index) => {
+                      return (
+                        <Grid item lg={3} key={index}>
+                          <Link to={`/bookingComponent/${item.maLichChieu}`}>
+                            <span
+                              key={index}
+                              className={`timer ${codeMaCumRap}`}
+                            >
+                              {item.ngayChieuGioChieu.slice(11, 16)}
+                              <label
+                                style={{ color: "gray", marginLeft: "5px" }}
+                              >{`~ ${getTimeEnd(
+                                item.ngayChieuGioChieu.slice(11, 16)
+                              )}`}</label>
+                            </span>
+                          </Link>
+                        </Grid>
+                      );
+                    })}
+                  </Grid>
+                </div>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
         </Grid>
       );
     });
   };
-  console.log(infoPhimCinema);
+  
+
   return (
     <section className="cinemaDetail">
       {/* image phim */}
@@ -179,12 +193,12 @@ function CinemaDetailComponent(props) {
 
       {/* image phim */}
 
-      <Container maxWidth="lg" >
+      <Container maxWidth="lg">
         <Grid container className="infoCinema">
           <Grid container item xs={12} sm={6} md={4} lg={4}>
             <Accordion className="rowOne">
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <p>Chọn Rạp</p>
+                <p className="titleLogo">Chọn Cụm Rạp : {codeMaCumRap}</p>
               </AccordionSummary>
               <AccordionDetails>
                 <Grid container item lg={12}>

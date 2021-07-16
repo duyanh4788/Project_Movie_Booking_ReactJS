@@ -4,16 +4,16 @@
     background: linear-gradient(#09181f, #133241);
     .movieDetail_bg img {
         width: 100%;
-        height: 1000px;
+        height: 500px;
         filter: blur(15px);
     }
     .movieDetail_Intro {
         position: relative;
         position: absolute;
         width: 100%;
-        top: 35%;
+        top: 26%;
         left: 6%;
-        transform: translateY(-27%);
+        transform: translateY(-26%);
         .images {
             position: relative;
             img {

@@ -1,4 +1,4 @@
-.makeStyles-root-1 {
+.heaerResponsive {
     display: none !important;
     .headerResponsive {
         background-color: #fafafa;
@@ -11,7 +11,7 @@
 }
 
 @media (max-width: 1000px) {
-    .makeStyles-root-1 {
+    .heaerResponsive {
         display: block !important;
     }
 }

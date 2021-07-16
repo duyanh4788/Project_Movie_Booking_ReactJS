@@ -1,19 +1,19 @@
-.makeStyles-root-1 {
+.heaerResponsive {
   display: none !important;
 }
 
-.makeStyles-root-1 .headerResponsive {
+.heaerResponsive .headerResponsive {
   background-color: #fafafa;
 }
 
-.makeStyles-root-1 .headerResponsive .headerloGo {
+.heaerResponsive .headerResponsive .headerloGo {
   width: 50px;
   height: 50px;
   opacity: 0.7;
 }
 
 @media (max-width: 1000px) {
-  .makeStyles-root-1 {
+  .heaerResponsive {
     display: block !important;
   }
 }

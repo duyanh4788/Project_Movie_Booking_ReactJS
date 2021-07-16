@@ -111,7 +111,7 @@ const HeaderResponsivePage = () => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={`heaerResponsive ${classes.root}`}>
       <CssBaseline />
       <AppBar
         position="fixed"

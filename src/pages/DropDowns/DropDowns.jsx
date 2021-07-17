@@ -202,17 +202,16 @@ const DropDowns = (props) => {
           </button>
         </div>
         {/* link maLichChieu =>  bookingComponent */}
-        <button className="btnMuaVe">
-          <Link
-            to={
-              stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap
-                ? `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
-                : "/"
-            }
-          >
-            Mua Vé Ngay
-          </Link>
-        </button>
+
+        <Link
+          to={
+            stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap
+              ? `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
+              : "/"
+          }
+        >
+          <button className="btnMuaVe">Mua Vé Ngay</button>
+        </Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
 export const GET_TICKET_LIST = "GET_TICKET_LIST"
 export const CHOICE_CHAIR = "CHOICE_CHAIR"
 export const BOOKING_CHAIR = "BOOKING_CHAIR"
+export const ERROR_BOOKING = "ERROR_BOOKING"

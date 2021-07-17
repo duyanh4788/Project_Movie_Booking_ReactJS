@@ -28,7 +28,7 @@ function MovieDetail(props) {
   const [loading, setLoading] = useState(null);
 
   const codeMaPhim = props.match.params.maPhim; // recive data to listFlim/Listphim.page
-  
+  console.log(codeMaPhim);
   const detail = useSelector((state) => {
     return state.detaiMovielReducer.detail || {};
   });

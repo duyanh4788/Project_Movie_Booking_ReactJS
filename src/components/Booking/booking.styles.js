@@ -44,5 +44,20 @@ export const styled = (theme) => ({
     pading: {
         padding: theme.spacing(2),
     },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    paper: {
+        display: 'flex',
+        justifyContent: "center",
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+            width: theme.spacing(30),
+            height: theme.spacing(10),
+        },
+    },
 })
 

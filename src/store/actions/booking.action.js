@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant";
+import { BOOKING_CHAIR, CHOICE_CHAIR, ERROR_BOOKING, GET_TICKET_LIST } from "../constants/booking.constant";
 
 export const getTicketListAction = (maLichChieu) => {
     return async (dispatch) => {
@@ -49,7 +49,11 @@ export const bookingTicketAction = (showTimeCode, listChairChoice) => {
                 payload: res.data,
             })
         } catch (error) {
-            console.log(error);
+            console.log(error.response.status);
+            dispatch({
+                type: ERROR_BOOKING,
+                payload: error.response.status
+            })
         }
     }
 }

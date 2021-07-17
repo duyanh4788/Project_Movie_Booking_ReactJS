@@ -1,36 +1,83 @@
-.expiredCheckout {
-    display: none;
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.countDownTimerMain {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.85);
-    .modalMesage {
+    color: gray;
+    font-size: 15px;
+    font-weight: bold;
+    .expiredCheckout {
+        display: none;
+        z-index: 2;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         text-align: center;
-        border-radius: 4px;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        padding: 10px 20px;
-        font-size: 15px;
-        // class css
-        background-color: white;
-        border-radius: 5px;
-        color: gray;
-        font-weight: bolder;
-        p {
-            color: red;
+        background-color: rgba(0, 0, 0, 0.85);
+        .modalMesage {
+            text-align: center;
+            border-radius: 4px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 15px;
+            // class css
+            background-color: white;
+            border-radius: 5px;
+            color: gray;
             font-weight: bolder;
-            cursor: pointer;
-            margin-top: 10px;
+            p {
+                color: red;
+                font-weight: bolder;
+                cursor: pointer;
+                margin-top: 10px;
+            }
         }
     }
 }
+
+
+.subMit {
+    text-align: center;
+    .paper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            font-weight: bold;
+            color: gray;
+        }
+    }
+
+    button {
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.85);
+        color: white;
+        font-weight: 500;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+}
+
+.mesageBooking {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
 .screen {
     img {
         width: 100%;
@@ -105,6 +152,7 @@
         font-weight: bolder;
     }
 }
+
 // scroll css
 .tableS::-webkit-scrollbar,
 .movie_tabCheckout::-webkit-scrollbar {
@@ -117,10 +165,10 @@
     background: #e2dfdf;
     border-radius: 6px;
 }
-@media (max-width : 730px){
+@media (max-width: 730px) {
     .modalMesage {
         font-size: 13px !important;
-        p{
+        p {
             font-size: 13px !important;
         }
     }

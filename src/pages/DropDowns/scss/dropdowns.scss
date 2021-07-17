@@ -113,19 +113,20 @@
                 @include contentA;
             }
         }
-        .btnMuaVe {
-            background-color: gray;
-            padding: 10px;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-left: 10px;
-            a {
-                text-decoration: none;
+        a {
+            text-decoration: none;
+            .btnMuaVe {
+                background-color: gray;
                 color: white;
+                padding: 10px;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                margin-left: 10px;
             }
         }
+
         // hover
         .contentPhim a:hover,
         .contentRap a:hover,

@@ -32,6 +32,9 @@ import format from "date-format";
 function BookingComponent(props) {
   const { classes } = props;
 
+  // set loading
+  const [loading, setLoading] = useState(null);
+
   const dispatch = useDispatch();
   // recive to componet/Showtimecomponent
   const { showTimeCode } = useParams();
@@ -48,11 +51,6 @@ function BookingComponent(props) {
     return state.BookingCodePhimReducer.listPhimBooking;
   });
 
-  //set coundown timer
-  const [timeOut, setTimeOut] = React.useState(false);
-  const [timeS, setTime] = useState({
-    timer: "",
-  });
   let countdownTimer = 0;
   const countdownTimerS = () => {
     let seconds = 15;
@@ -65,24 +63,41 @@ function BookingComponent(props) {
       if (stateMinutes < 10) {
         stateMinutes = "0" + stateMinutes;
       }
-      setTime({
-        timer: stateMinutes + ":" + stateSecond,
-      });
-      if (seconds === 0) {
+      if (document.getElementById("countdown-timer") !== null) {
+        document.getElementById("countdown-timer").innerHTML =
+          stateMinutes + ":" + stateSecond;
+      }
+
+      if (
+        seconds === 0 &&
+        document.getElementById("expiredCheckout") !== null &&
+        document.getElementById("countdown-timer") !== null
+      ) {
         clearInterval(countdownTimer);
         document.getElementById("expiredCheckout").style.display = "block";
-        document.getElementById("countdownTimer").style.display = "none";
-        setTimeOut(true);
+        document.getElementById("countdown-timer").style.display = "none";
       } else seconds--;
     }
     countdownTimer = setInterval(secondPassed, 1000);
   };
+
   const comeBack = () => {
-    setTimeOut(false);
-    document.getElementById("expiredCheckout").style.display = "none";
-    document.getElementById("countdownTimer").style.display = "block";
-    countdownTimerS();
+    if (
+      document.getElementById("expiredCheckout") !== null &&
+      document.getElementById("countdown-timer") !== null
+    ) {
+      document.getElementById("expiredCheckout").style.display = "none";
+      document.getElementById("countdown-timer").style.display = "block";
+      setLoading(null);
+      countdownTimerS();
+      dispatch(getTicketListAction(maLichChieu));
+      setTimeout(() => {
+        setLoading("e");
+      }, 1000);
+    }
   };
+  console.log(loading);
+
   useEffect(() => {
     countdownTimerS();
     return () => {
@@ -91,11 +106,10 @@ function BookingComponent(props) {
   }, []);
   //set coundown timer
 
-  // set loading
-  const [loading, setLoading] = useState(null);
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
+  console.log(infoListChair);
   useEffect(() => {
     // post data (maLichChieu === maLichChieu) to Axios booking.action
     dispatch(getTicketListAction(maLichChieu)).then((loader) =>
@@ -108,30 +122,28 @@ function BookingComponent(props) {
   };
 
   const renderListChari = () => {
-    if (!timeOut) {
-      return infoListChair?.map((item, index) => {
-        return (
-          <button
-            className={
-              item.dangChon
-                ? classes.choiceChair
-                : classes.unChoiceChair && item.daDat
-                ? classes.bookingChair
-                : classes.unChoiceChair
-            }
-            disabled={item.daDat}
-            variant="contained"
-            color={item.daDat ? "secondary" : ""}
-            key={index}
-            onClick={() => {
-              hanldeChoice(item);
-            }}
-          >
-            {item.tenGhe}
-          </button>
-        );
-      });
-    }
+    return infoListChair?.map((item, index) => {
+      return (
+        <button
+          className={
+            item.dangChon
+              ? classes.choiceChair
+              : classes.unChoiceChair && item.daDat
+              ? classes.bookingChair
+              : classes.unChoiceChair
+          }
+          disabled={item.daDat}
+          variant="contained"
+          color={item.daDat ? "secondary" : ""}
+          key={index}
+          onClick={() => {
+            hanldeChoice(item);
+          }}
+        >
+          {item.tenGhe}
+        </button>
+      );
+    });
   };
   const renderListPrice = () => {
     return infoListChair.map((item, index) => {
@@ -156,12 +168,12 @@ function BookingComponent(props) {
         <Loader />
       ) : (
         <Grid container className={classes.gridBooking}>
-          <Grid item xs={12} lg={6} style={{ textAlign: "center" }}>
+          <Grid item xs={12} lg={6} className="countDownTimerMain">
             <p>Thời Gian Đặt Ghế</p>
-            <label id="countdownTimer">{timeS.timer}</label>
+            <span id="countdown-timer">00:00</span>
             <div id="expiredCheckout" className="expiredCheckout">
               <div className="modalMesage">
-                <span>Thời Gian Đặt Ghế Là 5s . Hãy Đặt Ghế Lại :D </span>
+                <span>Thời Gian Đặt Ghế Là 15s . Hãy Đặt Ghế Lại :D </span>
                 <p onClick={comeBack}>Booking Again !</p>
               </div>
             </div>

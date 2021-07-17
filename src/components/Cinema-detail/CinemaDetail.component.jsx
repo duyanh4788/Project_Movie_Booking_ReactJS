@@ -104,7 +104,6 @@ function CinemaDetailComponent(props) {
 
   const handleInfoPhim = (infoPhim) => {
     dispatch(getInfoPhimCinema(infoPhim));
-    console.log(infoPhim);
     setStateMaPhim({
       maPhim: infoPhim.maPhim,
     });

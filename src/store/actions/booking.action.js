@@ -46,9 +46,11 @@ export const bookingTicketAction = (showTimeCode, listChairChoice) => {
             console.log(res);
             dispatch({
                 type: BOOKING_CHAIR, // none save BookingReducer
+                payload: res.data,
             })
         } catch (error) {
             console.log(error);
         }
     }
 }
+

@@ -37,6 +37,7 @@
   }
 }
 .mainSection {
+  background: linear-gradient(to right, white, rgba(231, 63, 63, 0.26), white);
   margin-top: 64px;
 }
 

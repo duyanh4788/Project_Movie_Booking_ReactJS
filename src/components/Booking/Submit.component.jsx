@@ -14,15 +14,18 @@ function SubmitComponent() {
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
+  const mesageBooking = useSelector((state) => {
+    return state.BookingReducer.mesageBooking; // get data BookingReducer
+  });
 
   const hanldeBooking = () => {
     const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
     dispatch(bookingTicketAction(maLichChieu, listChairChoice)); // post to (arrShowTimeCode[0] === maLichChieu , listChairChoice ===  danhSachVe ) to Axios booking.action
-    history.push("/");
   };
 
   return (
     <div style={{ textAlign: "center" }}>
+      <div>{mesageBooking}</div>
       <Button
         variant="contained"
         color="primary"

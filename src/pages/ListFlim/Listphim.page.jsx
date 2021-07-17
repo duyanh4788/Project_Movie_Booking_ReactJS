@@ -6,8 +6,6 @@ import { getMovieList_Action } from "../../store/actions/movie.action";
 // react-router
 import { useHistory } from "react-router";
 // material
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CardMedia from "@material-ui/core/CardMedia";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { Button, Grid } from "@material-ui/core";
@@ -50,14 +48,6 @@ const ListPhim = () => {
     dispatch(getMovieList_Action(maNhom));
   }, [dispatch, maNhom]);
 
-  // carousel next
-  const next = () => {
-    ref.current.slickNext();
-  };
-  // carousel previous
-  const previous = () => {
-    ref.current.slickPrev();
-  };
   // setting carousel
   const settings = {
     // dots: false,
@@ -114,8 +104,8 @@ const ListPhim = () => {
               title={item.hinhAnh}
             />
             <div className="intro">
-              <span className="introOne"> P </span>
-              <span className="introTwo"> {item.tenPhim} </span>
+              <span className="introOne">{item.maPhim}</span>
+              <span className="introTwo"> {item.tenPhim.slice(0, 18)} </span>
               <p className="introThere">100 phút</p>
             </div>
             <Button
@@ -143,7 +133,7 @@ const ListPhim = () => {
   return (
     <section className="sliderListPhim">
       <Grid container>
-        <Grid item lg={12} style={{textAlign:"center"}} >
+        <Grid item lg={12} style={{ textAlign: "center" }}>
           <FormControl className="maNhom">
             <InputLabel>Mã Nhóm</InputLabel>
             <Select value={maNhom} onChange={handleChange}>
@@ -165,8 +155,6 @@ const ListPhim = () => {
       <Slider ref={ref} {...settings}>
         {renderListPhim()}
       </Slider>
-      <ArrowBackIosIcon className="left-arrow" onClick={previous} />
-      <ArrowForwardIosIcon className="right-arrow" onClick={next} />
       <ModalVideo
         channel="youtube"
         youtube={{ mute: 1, autoplay: 1 }}

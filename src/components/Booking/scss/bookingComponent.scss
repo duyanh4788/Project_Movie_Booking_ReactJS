@@ -1,3 +1,42 @@
+.expiredCheckout {
+    display: none;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    .modalMesage {
+        text-align: center;
+        border-radius: 4px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        font-size: 15px;
+        // class css
+        background-color: white;
+        border-radius: 5px;
+        color: gray;
+        font-weight: bolder;
+        p {
+            color: red;
+            font-weight: bolder;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    }
+}
+.screen {
+    img {
+        width: 100%;
+    }
+    margin-bottom: 5px;
+}
 .movie_bg {
     max-width: 150px;
     max-height: 150px;
@@ -51,14 +90,20 @@
         font-size: 13px;
     }
 }
-.primaryS {
-    color: red;
-}
-.secondaryS {
-    color: green;
-}
-.disableS {
-    color: gray;
+
+.stePper {
+    span {
+        border-radius: 50px;
+        font-weight: bolder;
+    }
+    .MuiStepIcon-root.MuiStepIcon-active {
+        color: red;
+        font-weight: bolder;
+    }
+    .MuiStepIcon-root.MuiStepIcon-completed {
+        color: red;
+        font-weight: bolder;
+    }
 }
 // scroll css
 .tableS::-webkit-scrollbar,
@@ -71,4 +116,12 @@
 .movie_tabCheckout::-webkit-scrollbar-thumb {
     background: #e2dfdf;
     border-radius: 6px;
+}
+@media (max-width : 730px){
+    .modalMesage {
+        font-size: 13px !important;
+        p{
+            font-size: 13px !important;
+        }
+    }
 }

@@ -2,6 +2,7 @@ import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booki
 
 const initalState = {
     listChair: [],
+    mesageBooking: "",
 }
 
 export const BookingReducer = (state = initalState, action) => {
@@ -23,6 +24,7 @@ export const BookingReducer = (state = initalState, action) => {
             return { ...state }
         }
         case BOOKING_CHAIR: {
+            state.mesageBooking = action.payload
             return { ...state } // none save booking.action
         }
         default: return { ...state }

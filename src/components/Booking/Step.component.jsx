@@ -3,18 +3,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import BookingComponent from "./booking.component";
-import CheckInfoMaTion from "./checkinfo.component";
+import CheckInfoMaTion from "./Checkinfo.component";
 import SubmitComponent from "./Submit.component";
+import BookingComponent from "./Booking.component";
+import { IconButton } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
-  backButton: {
-    marginRight: theme.spacing(1),
+  iconButton: {
+    fontSize: "15px",
+    fontWeight: "bolder",
   },
   instructions: {
     marginTop: theme.spacing(1),
@@ -35,7 +36,7 @@ function getStepContent(stepIndex) {
     case 2:
       return <SubmitComponent />;
     default:
-      return "Unknown stepIndex";
+      break;
   }
 }
 
@@ -43,6 +44,11 @@ export default function StepComponent() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+
+  const infoListChair = useSelector((state) => {
+    return state.BookingReducer.listChair; // get data BookingReducer
+  });
+  const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -52,44 +58,42 @@ export default function StepComponent() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper activeStep={activeStep} alternativeLabel className="stePper">
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed
-            </Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
-        ) : (
-          <div className={classes.instructions}>
-            {getStepContent(activeStep)}
-            <div style={{ textAlign: "center" }}>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
-              </Button>
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
+      <div className={classes.instructions}>
+        {getStepContent(activeStep)}
+        <div style={{ textAlign: "center" }}>
+          <IconButton
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            className={classes.iconButton}
+          >
+            <p>Trở Lại</p>
+          </IconButton>
+
+          {listChairChoice.length <= 0 ? (
+            <IconButton disabled className={classes.iconButton}>
+              <p>Tiếp Theo</p>
+            </IconButton>
+          ) : (
+            <>
+              {activeStep === steps.length - 1 ? (
+                <IconButton style={{ display: "none" }}></IconButton>
+              ) : (
+                <IconButton onClick={handleNext} className={classes.iconButton}>
+                  <p>Tiếp Theo</p>
+                </IconButton>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

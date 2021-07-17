@@ -204,7 +204,11 @@ const DropDowns = (props) => {
         {/* link maLichChieu =>  bookingComponent */}
         <button className="btnMuaVe">
           <Link
-            to={`/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`}
+            to={
+              stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap
+                ? `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
+                : "/"
+            }
           >
             Mua Vé Ngay
           </Link>

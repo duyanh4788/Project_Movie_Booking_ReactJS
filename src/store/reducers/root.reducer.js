@@ -10,11 +10,13 @@ import { dropDownsReducer } from "./dropdowns.reducer"
 import { DetailTabReducer } from "./detailTab.reducer"
 import { CinemaDetailReducer } from "./cinemaDetail.reducer"
 import BookingCodePhimReducer from "./bookingCodePhim.reducer"
+import {SignUpReducer} from "./signup.reducer"
 
 export const rootReducers = combineReducers({
   movieReducer,
   detaiMovielReducer,
   signInReducer,
+  SignUpReducer,
   BookingReducer,
   CommonReducer,
   TabNavigationPageReducer,

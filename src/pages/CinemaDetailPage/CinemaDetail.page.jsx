@@ -2,7 +2,6 @@ import React from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Grid } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +46,7 @@ export default function CinemaDetailPage() {
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography className="titleSimple">Chọn Rạp</Typography>
+        <p className="titleSimple">Chọn Rạp</p>
       </AccordionSummary>
       <AccordionDetails>
         <Grid container>{renderLoGo()}</Grid>

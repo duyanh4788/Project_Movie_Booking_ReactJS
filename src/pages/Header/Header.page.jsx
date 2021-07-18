@@ -60,14 +60,14 @@ function Header(props) {
             </>
           ) : (
             <Typography className="headerTitleLinkThere">
+              <AccountCircleIcon className="headerIconLogIn" />
               <Link to="/signUp" className="headerTitleThere">
                 Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
               </Link>
-              <AccountCircleIcon className="headerIconLogIn" />
+              <LocationOnIcon className="headerIconLogIn" />
               <Link to="/signIn" className="headerTitleThere">
                 Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
               </Link>
-              <LocationOnIcon className="headerIconLogIn" />
             </Typography>
           )}
         </Grid>

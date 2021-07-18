@@ -181,16 +181,20 @@ const HeaderResponsivePage = () => {
                 {/* acces to pages/Sign-Out/signout.page-rfc */}
               </>
             ) : (
-              <Typography className="headerTitleLinkThere">
-                <Link to="/signUp" className="headerTitleThere">
-                  Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
-                </Link>
-                <AccountCircleIcon className="headerIconLogIn" />
-                <Link to="/signIn" className="headerTitleThere">
-                  Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
-                </Link>
-                <LocationOnIcon className="headerIconLogIn" />
-              </Typography>
+              <div className="headerTitleLinkThere">
+                <p>
+                  <AccountCircleIcon className="headerIconLogIn" />
+                  <Link to="/signUp" className="headerTitleThere">
+                    Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
+                  </Link>
+                </p>
+                <p>
+                  <LocationOnIcon className="headerIconLogIn" />
+                  <Link to="/signIn" className="headerTitleThere">
+                    Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
+                  </Link>
+                </p>
+              </div>
             )}
           </ListItem>
         </List>

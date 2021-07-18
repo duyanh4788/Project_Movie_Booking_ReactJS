@@ -8,14 +8,6 @@ import { signIn_Action } from "../../store/actions/signIn.action";
 import { useHistory } from "react-router-dom";
 // material
 import { Container } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 // styled materiall
 import { withStyles } from "@material-ui/styles";
 import { styled } from "./Sign-In.style";
@@ -23,6 +15,7 @@ import { styled } from "./Sign-In.style";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Loader from "../../components/Loader/Loader";
 /**
  * localStorage save signIn.action
  */
@@ -35,7 +28,7 @@ function SignInPage(props) {
     taiKhoan: "",
     matKhau: "",
   });
-
+  // const apiUrl = props.location.state;
   const hanldeSubmit = (event) => {
     event.preventDefault(); // lock submit
     setOpen(true); // open modal
@@ -59,79 +52,63 @@ function SignInPage(props) {
   };
   // modal
 
-  return (
-    <Container>
-      <Grid container component="main" className={classes.root}>
-        <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate onSubmit={hanldeSubmit}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Tài Khoản"
-                name="taiKhoan"
-                value={user.taiKhoan}
-                autoComplete="email"
-                autoFocus
-                onChange={hanldeChange}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="matKhau"
-                label="Mật Khẩu"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={user.matKhau}
-                onChange={hanldeChange}
-              />
+  // loading
+  const loading = useSelector((state) => {
+    return state.CommonReducer.loading;
+  });
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-            </form>
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="backgroundSignIn">
+          <div className="wrapLogin">
+            <Container>
+              <h4>Sign in</h4>
+              <form noValidate onSubmit={hanldeSubmit}>
+                <input
+                  type="text"
+                  placeholder="Tài Khoản"
+                  name="taiKhoan"
+                  value={user.taiKhoan}
+                  onChange={hanldeChange}
+                />
+                <input
+                  type="password"
+                  placeholder="Mật Khẩu"
+                  name="matKhau"
+                  value={user.matKhau}
+                  onChange={hanldeChange}
+                />
+
+                <div style={{ textAlign: "center" }}>
+                  <button type="submit">Đăng Nhập</button>
+                </div>
+              </form>
+            </Container>
           </div>
-        </Grid>
-      </Grid>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className="modalTitle">
-            <p>{errMesage}</p>
-          </div>
-        </Fade>
-      </Modal>
-    </Container>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <div className="modalTitle">
+                <p>{errMesage}</p>
+              </div>
+            </Fade>
+          </Modal>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -7,10 +7,12 @@ const initialState = {
 export const CommonReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case SHOW_LOADER: {
-            return { ...state, loading: true };
+            state.loading = true
+            return { ...state };
         }
         case HIDEN_LOADER: {
-            return { ...state, loading: false };
+            state.loading = false
+            return { ...state };
         }
         default: return { ...state }
     }

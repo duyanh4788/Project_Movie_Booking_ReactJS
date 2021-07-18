@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 // action redux thunk
+import { connect } from "react-redux";
 import { postSignUp_Action } from "../../store/actions/signUp.action";
 // material
-import TextField from "@material-ui/core/TextField";
-import { Button, Container, Typography } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
-// styled materiall
-import { styled } from "./Sign-Up.style";
+import { Container } from "@material-ui/core";
+import "./scss/signup.css";
 
 class SignUpPage extends Component {
   state = {
     User: {
       taiKhoan: "",
       matKhau: "",
+      confirmMatKhau: "",
       email: "",
       soDt: "",
       maNhom: "GP01",
@@ -22,120 +21,185 @@ class SignUpPage extends Component {
     error: {
       taiKhoan: "",
       matKhau: "",
+      confirmMatKhau: "",
       email: "",
       soDt: "",
       hoTen: "",
     },
+    valid: false,
   };
+
   handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, pattern } = event.target;
     let valuesUpdate = { ...this.state.User, [name]: value };
     let errorUpdate = { ...this.state.error, [name]: value };
+    this.setState(
+      {
+        User: valuesUpdate,
+        error: errorUpdate,
+      },
+      () => {
+        this.validButtonSubmit();
+      }
+    );
+    // check pattern
+    let regex = new RegExp(pattern);
+    // check empty
     if (value.trim() === "") {
-      errorUpdate[name] = " Is required ! ";
+      errorUpdate[name] = " Do Not Empty ! ";
     } else {
       errorUpdate[name] = "";
     }
-    this.setState({
-      User: valuesUpdate,
-      error: errorUpdate,
-    });
+    // check empty
+
+    // check text
+    if (name === "hoTen") {
+      if (value.trim() === "") {
+        errorUpdate[name] = "Do Not Empty ! ";
+      } else if (!regex.test(value)) {
+        errorUpdate[name] = "Không Đúng Định Dạng !";
+      }
+    }
+    // check text
+
+    // check password
+    if (name === "confirmMatKhau") {
+      if (value === valuesUpdate["matKhau"]) {
+        errorUpdate[name] = "";
+      } else {
+        errorUpdate[name] = "Mật Khẩu Không Trùng Nhau !";
+      }
+    }
+    // check password
+
+    // check email
+    if (type === "email") {
+      if (!value) {
+        errorUpdate[name] = "Do Not Empty !";
+      } else if (!regex.test(value)) {
+        errorUpdate[name] = "Email Invaild !";
+      }
+    }
+    // check email
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
-    postSignUp_Action // post data up axios action/signUp.action
-      .signUp(this.state.User) // data client import
-      .then((result) => {
-        console.log(result.data);// check log data post up axios 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.dispatch(postSignUp_Action(this.state.User));
   };
+  refeshInput = () => {
+    let elementsInput = document.querySelectorAll("input");
+    for (let refesh of elementsInput) {
+      refesh.value = "";
+    }
+  };
+
+  componentDidUpdate() {
+    if (this.props.mesageSuccess) {
+      this.props.history.replace("/signIn");
+    }
+  }
+
+  validButtonSubmit() {
+    let validS = true;
+    for (let key in this.state.error) {
+      if (this.state.error[key] !== "" || this.state.User[key] === "") {
+        validS = false;
+      }
+    }
+    this.setState({
+      ...this.state,
+      valid: validS,
+    });
+  }
+
   render() {
-    const { classes } = this.props;
     const { User, error } = this.state;
     return (
-      <Container>
-        <Typography className={classes.textIntro}>Form Register</Typography>
-        <form
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-          onSubmit={this.handleSubmit}
-        >
-          <div>
-            <TextField
-              onChange={this.handleChange}
-              value={User.taiKhoan}
-              className={classes.textFiled}
-              id="standard-secondary"
-              label="Tài Khoản"
-              name="taiKhoan"
-              color="secondary"
-            />
-            <Typography className={classes.errMesage}>
-              {error.taiKhoan}
-            </Typography>
-          </div>
-          <div>
-            <TextField
-              onChange={this.handleChange}
-              value={User.matKhau}
-              className={classes.textFiled}
-              id="standard-secondary"
-              label="Mật Khẩu"
-              name="matKhau"
-              color="secondary"
-            />
-            <Typography className={classes.errMesage}>
-              {error.matKhau}
-            </Typography>
-          </div>
-          <div>
-            <TextField
-              onChange={this.handleChange}
-              value={User.email}
-              className={classes.textFiled}
-              id="standard-secondary"
-              label="Email"
-              name="email"
-              color="secondary"
-            />
-            <Typography className={classes.errMesage}>{error.email}</Typography>
-          </div>
-          <div>
-            <TextField
-              onChange={this.handleChange}
-              value={User.soDt}
-              className={classes.textFiled}
-              id="standard-secondary"
-              label="Số Điện Thoại"
-              name="soDt"
-              color="secondary"
-            />
-            <Typography className={classes.errMesage}>{error.soDt}</Typography>
-          </div>
-          <div>
-            <TextField
-              onChange={this.handleChange}
-              value={User.hoTen}
-              className={classes.textFiled}
-              id="standard-secondary"
-              label="User Name"
-              name="hoTen"
-              color="secondary"
-            />
-            <Typography className={classes.errMesage}>{error.hoTen}</Typography>
-          </div>
-          <div>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Container>
+      <div className="backgroundSignUp">
+        <div className="wrapSignUp">
+          <Container maxWidth="md">
+            <h4>Form Đăng Ký</h4>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                onChange={this.handleChange}
+                value={User.taiKhoan}
+                placeholder="Tài Khoản"
+                name="taiKhoan"
+                type="text"
+              />
+              <span>{error.taiKhoan}</span>
+              <input
+                onChange={this.handleChange}
+                value={User.matKhau}
+                placeholder="Mật Khẩu"
+                name="matKhau"
+                type="password"
+              />
+              <span>{error.matKhau}</span>
+              <input
+                onChange={this.handleChange}
+                value={User.confirmMatKhau}
+                placeholder="Xác Nhận Mật Khẩu Mật Khẩu"
+                name="confirmMatKhau"
+                type="password"
+              />
+              <span>{error.confirmMatKhau}</span>
+
+              <input
+                onChange={this.handleChange}
+                value={User.email}
+                placeholder="Email"
+                name="email"
+                type="email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              />
+              <span>{error.email}</span>
+
+              <input
+                onChange={this.handleChange}
+                value={User.soDt}
+                placeholder="Số Điện Thoại"
+                name="soDt"
+              />
+              <span>{error.soDt}</span>
+
+              <input placeholder="Khách Hàng" disabled />
+
+              <input
+                onChange={this.handleChange}
+                value={User.hoTen}
+                placeholder="User Name"
+                name="hoTen"
+                type="text"
+                pattern="^[A-Za-z]+$"
+              />
+              <span>{error.hoTen}</span>
+              <br />
+              <br />
+              <span>{this.props.messageSignUp}</span>
+              <div style={{ textAlign: "center" }}>
+                {this.state.valid ? (
+                  <button type="submit">Đăng Ký</button>
+                ) : (
+                  <button type="submit" disabled>
+                    Đăng Ký
+                  </button>
+                )}
+              </div>
+            </form>
+          </Container>
+        </div>
+      </div>
     );
   }
 }
-export default withStyles(styled)(SignUpPage);
+
+const mapStateToProps = (state) => {
+  return {
+    messageSignUp: state.SignUpReducer.messageSignUp,
+    mesageSuccess: state.SignUpReducer.mesageSuccess,
+  };
+};
+
+export default connect(mapStateToProps)(SignUpPage);

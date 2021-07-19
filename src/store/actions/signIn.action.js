@@ -3,7 +3,6 @@ import { ERROR_SIGN_IN, SIGN_IN, SIGN_OUT } from "../constants/signIn.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 // signIn
 export const signIn_Action = (data, history) => {
-  console.log(history);
   return async (dispatch) => {
     try {
       // show loading
@@ -18,7 +17,7 @@ export const signIn_Action = (data, history) => {
       localStorage.setItem("taiKhoan", JSON.stringify(taiKhoan)); // use booking.action
       localStorage.setItem("userLogin", JSON.stringify(userLogin)); // use Sign-Out.page
       localStorage.setItem("maLoaiNguoiDung", JSON.stringify(maLoaiNguoiDung)); // use guard.hoc
-      history.push("/");
+      history.goBack();
       dispatch({
         type: SIGN_IN,
         payload: userLogin,

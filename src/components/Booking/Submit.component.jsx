@@ -42,7 +42,10 @@ function SubmitComponent(props) {
   const handleClose = () => {
     setOpen(false);
     if (errorMesage === 401) {
-      history.push("/signIn", { showTimeCode });
+      history.push({
+        pathname: "/signIn",
+        search: "checkout",
+      });
     } else {
       history.push("/");
     }

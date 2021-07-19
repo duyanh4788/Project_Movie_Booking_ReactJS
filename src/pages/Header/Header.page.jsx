@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-// function component SingOutPage
-import SingOutPage from "../Sign-Out/Sign-Out.page";
+// function component InfoUser
+import InfoUser from "../Info-User/Info-User.page";
 import { imagesLogo } from "./imaGesLogo";
 // redux
 import { useSelector } from "react-redux";
@@ -55,7 +55,7 @@ function Header(props) {
         <Grid item xs={4} className="headerGridThere">
           {signIn.hoTen !== "" ? (
             <>
-              <SingOutPage />
+              <InfoUser />
               {/* acces to pages/Sign-Out/signout.page-rfc */}
             </>
           ) : (

@@ -1,1 +1,2 @@
 export const GET_INFO_USER = "GET_INFO_USER";
+export const UPDATE_INFO_USER = "UPDATE_INFO_USER";

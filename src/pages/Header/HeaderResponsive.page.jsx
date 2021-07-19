@@ -16,8 +16,8 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import "./css/headerResponsive.css";
-// function component SingOutPage
-import SingOutPage from "../Sign-Out/Sign-Out.page";
+// function component InfoUser
+import InfoUser from "../Info-User/Info-User.page";
 // redux
 import { useSelector } from "react-redux";
 // react-router-dom
@@ -177,7 +177,7 @@ const HeaderResponsivePage = () => {
           <ListItem>
             {signIn.hoTen !== "" ? (
               <>
-                <SingOutPage />
+                <InfoUser />
                 {/* acces to pages/Sign-Out/signout.page-rfc */}
               </>
             ) : (

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // action redux thunk
 import { signIn_Action } from "../../store/actions/signIn.action";
 // react router dom
-import { useHistory } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 // material
 import { Container } from "@material-ui/core";
 // styled materiall
@@ -28,14 +28,14 @@ function SignInPage(props) {
     taiKhoan: "",
     matKhau: "",
   });
-  // const apiUrl = props.location.state;
+
   const hanldeSubmit = (event) => {
     event.preventDefault(); // lock submit
     setOpen(true); // open modal
     dispatch(signIn_Action(user, history)); // post data ( user => client impot , history =>  use to navigate ) up axios action/signIn.action
   };
 
-  const hanldeChange = (event) => {
+  const handlChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value }); // es6 object literal
   };
@@ -72,14 +72,14 @@ function SignInPage(props) {
                   placeholder="Tài Khoản"
                   name="taiKhoan"
                   value={user.taiKhoan}
-                  onChange={hanldeChange}
+                  onChange={handlChange}
                 />
                 <input
                   type="password"
                   placeholder="Mật Khẩu"
                   name="matKhau"
                   value={user.matKhau}
-                  onChange={hanldeChange}
+                  onChange={handlChange}
                 />
 
                 <div style={{ textAlign: "center" }}>

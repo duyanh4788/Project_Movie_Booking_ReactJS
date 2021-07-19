@@ -1,0 +1,241 @@
+.profileUser {
+  padding: 50px;
+}
+
+.profileUser .infoUser {
+  margin: 5px;
+  padding: 5px;
+  min-height: 300px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+.profileUser .infoUser h5 {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: gray;
+}
+
+.profileUser .infoUser .table {
+  width: 100%;
+  table-layout: fixed;
+  color: gray;
+}
+
+.profileUser .infoUser .table td {
+  padding: 5px 0;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 15px;
+  border-bottom: solid 1px rgba(20, 20, 20, 0.1);
+}
+
+.profileUser .infoUser .table tr:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.profileUser .infoUser button {
+  border: none;
+  outline: none;
+  padding: 10px;
+  color: gray;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.profileUser .historyBooking {
+  overflow-y: scroll;
+  height: 300px;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+.profileUser .historyBooking h5 {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: gray;
+}
+
+.profileUser .historyBooking .inputSearch {
+  width: 100%;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 0;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.profileUser .historyBooking .tableBooking {
+  width: 100%;
+  table-layout: fixed;
+  color: gray;
+}
+
+.profileUser .historyBooking .tableBooking tr th {
+  text-align: left;
+  font-weight: bolder;
+  font-size: 15px;
+}
+
+.profileUser .historyBooking .tableBooking tr td {
+  padding: 5px 0;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 15px;
+  border-bottom: solid 1px rgba(20, 20, 20, 0.1);
+}
+
+.profileUser .historyBooking .tableBooking tr:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.profileUser .updateUser {
+  margin: 5px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
+.profileUser .updateUser h5 {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: gray;
+}
+
+.profileUser .updateUser span {
+  font-size: 13px;
+  color: gray;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.profileUser .updateUser input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.profileUser .updateUser input::-webkit-input-placeholder {
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.profileUser .updateUser input:-ms-input-placeholder {
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.profileUser .updateUser input::-ms-input-placeholder {
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.profileUser .updateUser input::placeholder {
+  color: gray;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.profileUser .updateUser button {
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 0 10px;
+  color: gray;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.historyBooking::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #f5f5f5;
+}
+
+.historyBooking::-webkit-scrollbar-thumb {
+  background: #e2dfdf;
+  border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+  h5 {
+    font-size: 15px !important;
+  }
+  .infoUser {
+    overflow-x: scroll !important;
+    width: 300px !important;
+  }
+  .infoUser .table {
+    width: 200px !important;
+  }
+  .historyBooking {
+    overflow-x: scroll !important;
+    max-width: 800px !important;
+  }
+  .historyBooking .tableBooking {
+    width: 800px !important;
+  }
+  .updateUser {
+    min-width: 250px !important;
+  }
+  .updateUser button {
+    padding: 50px;
+    margin-left: 0 !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+  }
+}
+/*# sourceMappingURL=profile.css.map */

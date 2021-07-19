@@ -96,7 +96,6 @@ function BookingComponent(props) {
       }, 1000);
     }
   };
-  console.log(loading);
 
   useEffect(() => {
     countdownTimerS();
@@ -109,7 +108,6 @@ function BookingComponent(props) {
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
-  console.log(infoListChair);
   useEffect(() => {
     // post data (maLichChieu === maLichChieu) to Axios booking.action
     dispatch(getTicketListAction(maLichChieu)).then((loader) =>

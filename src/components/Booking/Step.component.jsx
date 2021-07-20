@@ -41,6 +41,8 @@ function getStepContent(stepIndex) {
 }
 
 export default function StepComponent() {
+ 
+  
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -57,7 +59,7 @@ export default function StepComponent() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
+ 
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel className="stePper">

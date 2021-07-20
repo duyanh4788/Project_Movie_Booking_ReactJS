@@ -70,6 +70,14 @@ export default function ProfileUser() {
       maLoaiNguoiDung: "KhachHang",
       maNhom: "GP01",
     });
+    setStateError({
+      hoTen: "",
+      taiKhoan: "",
+      matKhau: "",
+      email: "",
+      soDT: "",
+    });
+    setStateValid(true);
   };
   // show hiden form update
   const [showUpdate, setShowUpdate] = useState(true);
@@ -83,6 +91,14 @@ export default function ProfileUser() {
     maLoaiNguoiDung: "KhachHang",
     maNhom: "GP01",
   });
+  const [stateError, setStateError] = useState({
+    hoTen: "",
+    taiKhoan: "",
+    matKhau: "",
+    email: "",
+    soDT: "",
+  });
+  const [stateValid, setStateValid] = useState(true);
   // submit form
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +109,18 @@ export default function ProfileUser() {
   const handlChange = (e) => {
     const { name, value } = e.target;
     setStateUser({ ...stateUser, [name]: value });
+    if (value.trim() === "") {
+      stateError[name] = "Do Not Empty !";
+    } else {
+      stateError[name] = "";
+    }
+    if (stateError[name] !== "") {
+      setStateValid(false);
+    } else {
+      setStateValid(true);
+    }
   };
+
   // render
   return loading ? (
     <Loader />
@@ -180,6 +207,7 @@ export default function ProfileUser() {
                   value={stateUser.hoTen}
                   onChange={handlChange}
                 />
+                <p>{stateError.hoTen}</p>
                 <span>Tài Khoản : </span>
                 <input
                   type="text"
@@ -189,6 +217,7 @@ export default function ProfileUser() {
                   value={stateUser.taiKhoan}
                   onChange={handlChange}
                 />
+                <p>{stateError.taiKhoan}</p>
                 <span>Mật Khẩu : </span>
                 <input
                   type="text"
@@ -197,6 +226,7 @@ export default function ProfileUser() {
                   value={stateUser.matKhau}
                   onChange={handlChange}
                 />
+                <p>{stateError.matKhau}</p>
                 <span>Email : </span>
                 <input
                   type="text"
@@ -205,6 +235,7 @@ export default function ProfileUser() {
                   value={stateUser.email}
                   onChange={handlChange}
                 />
+                <p>{stateError.email}</p>
                 <span>Phone : </span>
                 <input
                   type="text"
@@ -213,6 +244,7 @@ export default function ProfileUser() {
                   value={stateUser.soDT}
                   onChange={handlChange}
                 />
+                <p>{stateError.soDT}</p>
                 <span>Loại Khách Hàng : </span>
                 <input
                   type="text"
@@ -230,7 +262,17 @@ export default function ProfileUser() {
                   >
                     Cancel
                   </button>
-                  <button type="submit">Cập nhật thông tin</button>
+                  {!stateValid ? (
+                    <button
+                      type="submit"
+                      disabled
+                      style={{ cursor: "no-drop" }}
+                    >
+                      Cập nhật thông tin
+                    </button>
+                  ) : (
+                    <button type="submit">Cập nhật thông tin</button>
+                  )}
                 </div>
               </form>
             </Grid>

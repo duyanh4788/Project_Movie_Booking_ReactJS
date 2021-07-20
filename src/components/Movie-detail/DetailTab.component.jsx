@@ -16,7 +16,7 @@ import Box from "@material-ui/core/Box";
 // date format
 import format from "date-format";
 import { listCinema } from "./dataCinema";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./scss/detailTab.css";
 import Paper from "@material-ui/core/Paper";
 
@@ -60,6 +60,8 @@ function a11yPropsScroll(index) {
 }
 
 const DetailTabComponent = () => {
+  const history = useHistory();
+
   // tabpanel date
   const [values, setValues] = React.useState(0);
   const handleChanges = (event, newValue) => {
@@ -76,7 +78,7 @@ const DetailTabComponent = () => {
 
   // detail phim
   const detail = useSelector((state) => {
-    return state.detaiMovielReducer?.detail;
+    return state.detaiMovielReducer?.detail || {};
   });
 
   // contructor
@@ -150,11 +152,11 @@ const DetailTabComponent = () => {
         .filter((itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap)
         .map((item, index) => {
           return (
-            <Grid container className="rowTwoIntro" key={index}>
-              <Grid className="imageLogo" item xs={2}>
+            <Grid container className="rowScheduleMovie" key={index}>
+              <Grid className="imageLogo" item xs={4} sm={3} md={3} lg={2}>
                 {renderImageCinema()}
               </Grid>
-              <Grid item xs={10} key={index} className="inforCinema">
+              <Grid item xs={8} sm={9} md={9} lg={10} className="inforCinema">
                 <p>
                   Tên Rạp :{" "}
                   <span className={`${stateMaRap.maRap}`}>
@@ -168,18 +170,20 @@ const DetailTabComponent = () => {
                 </p>
                 <p>
                   Giờ Chiếu :
-                  <Link
-                    to={`/bookingComponent/${item.maLichChieu}-${maPhim}-${item.thongTinRap.tenCumRap}`}
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() =>
+                      bookingMovie(item.maLichChieu, item.thongTinRap.tenCumRap)
+                    }
+                    className={`showTime ${stateMaRap.maRap}`}
                   >
-                    <span className={`showTime ${stateMaRap.maRap}`}>
-                      {item.ngayChieuGioChieu.slice(11, 16)}
-                      <label
-                        style={{ color: "gray", marginLeft: "5px" }}
-                      >{`~ ${getTimeEnd(
-                        item.ngayChieuGioChieu.slice(11, 16)
-                      )}`}</label>
-                    </span>
-                  </Link>
+                    {item.ngayChieuGioChieu.slice(11, 16)}
+                    <label
+                      style={{ color: "gray", marginLeft: "5px" }}
+                    >{`~ ${getTimeEnd(
+                      item.ngayChieuGioChieu.slice(11, 16)
+                    )}`}</label>
+                  </span>
                 </p>
               </Grid>
             </Grid>
@@ -210,18 +214,30 @@ const DetailTabComponent = () => {
     });
   };
 
+  // booking
+  const bookingMovie = (maLichChieu, tenCumRap) => {
+    if (maLichChieu && maPhim && tenCumRap) {
+      history.push(`/bookingComponent/${maLichChieu}-${maPhim}-${tenCumRap}`);
+    }
+    const toKen = JSON.parse(localStorage.getItem("token"));
+    if (maLichChieu && maPhim && tenCumRap && !toKen) {
+      history.push("/signIn");
+    }
+  };
+
   return (
     <div className="detailTab">
       <Container maxWidth="md">
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs value={value} onChange={handleChange} className="tabs">
+            <Tabs value={value} onChange={handleChange} className="tabMovie">
               <Tab label="Thông Tin" {...a11yProps(0)} />
               <Tab label="Lịch Chiếu" {...a11yProps(1)} />
             </Tabs>
           </Box>
+
           <TabPanel value={value} index={0}>
-            <Grid container className="thongTin">
+            <Grid container className="infoMovie">
               <Grid lg={2} item>
                 <ul>
                   <li>Ngày Khởi Chiếu : </li>
@@ -245,15 +261,16 @@ const DetailTabComponent = () => {
               </Grid>
             </Grid>
           </TabPanel>
+
           <TabPanel value={value} index={1}>
-            <Grid container className="navigaToDetail">
+            <Grid container className="detailTabCinema">
               <Grid container item xs={12} sm={4} md={4} lg={4}>
                 <Accordion style={{ margin: "0 10px 10px" }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <p className="titleLogo">Chọn Rạp : {stateMaRap.maRap}</p>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Grid container item className="rowOne">
+                    <Grid container item className="logoCinema">
                       {renderLoGo()}
                     </Grid>
                   </AccordionDetails>
@@ -266,7 +283,7 @@ const DetailTabComponent = () => {
                 sm={8}
                 md={8}
                 lg={8}
-                className="rowTwo"
+                className="scheduleMovie"
               >
                 <AppBar position="static" color="default">
                   <Paper style={{ padding: "5px 0" }}>

@@ -31,13 +31,23 @@
         input::placeholder {
             color: gray;
             opacity: 0.5;
-            
         }
         span {
             color: red;
             font-size: 10px;
             font-weight: bold;
         }
+        select {
+            width: 10%;
+            margin: 10px 0;
+            padding: 10px 5px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.808);
+            color: gray;
+        }
+
         button {
             font-size: 15px;
             padding: 10px 15px;

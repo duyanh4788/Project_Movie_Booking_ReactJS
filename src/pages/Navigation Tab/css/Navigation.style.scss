@@ -21,7 +21,7 @@ $border: 1px solid #f5f5f5;
 //scroll row
 @mixin scrollRow {
     float: left;
-    height: 606px;
+    height: 636px;
     width: 100%;
     overflow-y: scroll;
     border-right: $border;
@@ -186,6 +186,7 @@ $border: 1px solid #f5f5f5;
                 .timeCode {
                     font-size: 17px;
                     margin: 10px;
+                    cursor: pointer;
                 }
             }
         }

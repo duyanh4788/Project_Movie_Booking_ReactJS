@@ -139,6 +139,13 @@
   margin-left: 10px;
 }
 
+.profileUser .updateUser p {
+  font-size: 10px;
+  color: red;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
 .profileUser .updateUser input {
   width: 100%;
   border: none;

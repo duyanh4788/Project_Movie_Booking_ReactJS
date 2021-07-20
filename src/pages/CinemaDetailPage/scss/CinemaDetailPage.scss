@@ -8,6 +8,7 @@
 .btnimgCinemaS {
     border: none;
     outline: none;
+    cursor: pointer;
     background-color: white;
     .imgCinemaS {
         width: 50px;
@@ -18,9 +19,9 @@
 
 @media (max-width: 1000px) {
     .imgCinemaS {
-        width: 30px!important;
-        height: 30px!important;
-        margin : 5px 0!important;
+        width: 30px !important;
+        height: 30px !important;
+        margin: 5px 0 !important;
     }
     .title {
         font-size: 14px !important;

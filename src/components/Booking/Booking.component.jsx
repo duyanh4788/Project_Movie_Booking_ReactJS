@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./scss/bookingComponent.css";
 import screenS from "./images/screen.png";
 // redux hook
@@ -53,7 +53,7 @@ function BookingComponent(props) {
 
   let countdownTimer = 0;
   const countdownTimerS = () => {
-    let seconds = 15;
+    let seconds = 1500;
     function secondPassed() {
       let stateMinutes = Math.round((seconds - 30) / 60);
       let stateSecond = seconds % 60;
@@ -108,6 +108,7 @@ function BookingComponent(props) {
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
+
   useEffect(() => {
     // post data (maLichChieu === maLichChieu) to Axios booking.action
     dispatch(getTicketListAction(maLichChieu)).then((loader) =>
@@ -160,6 +161,7 @@ function BookingComponent(props) {
       );
     });
   };
+
   return (
     <>
       {loading === null ? (
@@ -185,7 +187,7 @@ function BookingComponent(props) {
           </Grid>
           <Grid item xs={12} md={4} lg={6} container>
             <Grid item xs={12} md={12} lg={12} container>
-              <Grid item xs={12} md={5} lg={3}>
+              <Grid item xs={12} md={5} lg={3} style={{ textAlign: "center" }}>
                 <img
                   src={listPhimBooking.hinhAnh}
                   alt=""
@@ -249,4 +251,4 @@ function BookingComponent(props) {
   );
 }
 
-export default withStyles(styled)(withRouter(BookingComponent));
+export default memo(withStyles(styled)(withRouter(BookingComponent)));

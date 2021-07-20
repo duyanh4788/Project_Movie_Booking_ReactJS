@@ -1,18 +1,18 @@
-.infoPhim {
+.rowOneinfoPhim {
   position: relative;
   overflow: hidden;
   background: -webkit-gradient(linear, left top, left bottom, from(#09181f), to(#133241));
   background: linear-gradient(#09181f, #133241);
 }
 
-.infoPhim .background img {
+.rowOneinfoPhim .backgroundPhim img {
   width: 100%;
   height: 400px;
   -webkit-filter: blur(15px);
           filter: blur(15px);
 }
 
-.infoPhim .intro {
+.rowOneinfoPhim .rowOneintroPhim {
   position: absolute;
   width: 100%;
   top: 45%;
@@ -22,20 +22,21 @@
   font-size: 15px;
 }
 
-.infoPhim .intro img {
+.rowOneinfoPhim .rowOneintroPhim img {
   width: 150px;
   border-radius: 10px;
 }
 
-.infoPhim .intro span {
+.rowOneinfoPhim .rowOneintroPhim span {
   border-radius: 5px;
   background-color: red;
   padding: 5px;
 }
 
-.infoPhim .intro p {
+.rowOneinfoPhim .rowOneintroPhim p {
   color: white;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .MuiGrid-container {
@@ -44,7 +45,7 @@
           align-items: flex-start !important;
 }
 
-.infoCinema {
+.infoPhimCinemaDetail {
   width: 100%;
   border-radius: 5px;
   border: 1px solid #f1f1f1;
@@ -52,7 +53,7 @@
   margin: 50px 0;
 }
 
-.infoCinema .rowOne {
+.infoPhimCinemaDetail .rowCinemaDetail {
   overflow-y: scroll;
   max-height: 350px;
   width: 100%;
@@ -60,11 +61,11 @@
   color: gray;
 }
 
-.infoCinema .rowOne .titleLogo {
+.infoPhimCinemaDetail .rowCinemaDetail .titleLogo {
   font-weight: bold;
 }
 
-.infoCinema .rowOne .addresCinema {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema {
   opacity: 0.5;
   padding: 10px;
   border-bottom: 2px solid #f5f5f5;
@@ -73,36 +74,36 @@
   font-weight: bold;
 }
 
-.infoCinema .rowOne .addresCinema .imageCinema {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .imageCinema {
   width: 60px;
   height: 60px;
 }
 
-.infoCinema .rowOne .addresCinema .BHDStar {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .BHDStar {
   color: #56bb52;
 }
 
-.infoCinema .rowOne .addresCinema .CGV {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .CGV {
   color: #e71a0e;
 }
 
-.infoCinema .rowOne .addresCinema .CineStar {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .CineStar {
   color: #662d91;
 }
 
-.infoCinema .rowOne .addresCinema .Galaxy {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .Galaxy {
   color: #ff8121;
 }
 
-.infoCinema .rowOne .addresCinema .LotteCinima {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .LotteCinima {
   color: #ed1c24;
 }
 
-.infoCinema .rowOne .addresCinema .MegaGS {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema .MegaGS {
   color: #ebb427;
 }
 
-.infoCinema .rowOne .addresCinema_Active {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active {
   opacity: 1.5;
   padding: 10px;
   border-bottom: 2px solid #f5f5f5;
@@ -111,36 +112,36 @@
   font-weight: bold;
 }
 
-.infoCinema .rowOne .addresCinema_Active .imageCinema {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .imageCinema {
   width: 60px;
   height: 60px;
 }
 
-.infoCinema .rowOne .addresCinema_Active .BHDStar {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .BHDStar {
   color: #56bb52;
 }
 
-.infoCinema .rowOne .addresCinema_Active .CGV {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .CGV {
   color: #e71a0e;
 }
 
-.infoCinema .rowOne .addresCinema_Active .CineStar {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .CineStar {
   color: #662d91;
 }
 
-.infoCinema .rowOne .addresCinema_Active .Galaxy {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .Galaxy {
   color: #ff8121;
 }
 
-.infoCinema .rowOne .addresCinema_Active .LotteCinima {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .LotteCinima {
   color: #ed1c24;
 }
 
-.infoCinema .rowOne .addresCinema_Active .MegaGS {
+.infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .MegaGS {
   color: #ebb427;
 }
 
-.infoCinema .rowTwo {
+.infoPhimCinemaDetail .rowInfoPhim {
   overflow-y: scroll;
   max-height: 350px;
   width: 100%;
@@ -148,24 +149,23 @@
   font-weight: bold;
 }
 
-.infoCinema .rowTwo .addresPhim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim {
   padding: 10px;
   border-bottom: 2px solid #f5f5f5;
   color: gray;
-  max-height: auto;
 }
 
-.infoCinema .rowTwo .addresPhim .imgPhim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imgPhim {
   width: 80px;
   height: 80px;
 }
 
-.infoCinema .rowTwo .addresPhim .phim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .phim {
   color: gray;
   font-size: 13px;
 }
 
-.infoCinema .rowTwo .addresPhim .phim .maPhim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .phim .maPhim {
   background-color: #e71a0e;
   color: white;
   border-radius: 5px;
@@ -173,81 +173,92 @@
   margin-right: 5px;
 }
 
-.infoCinema .rowTwo .addresPhim .tabTimer {
-  overflow-x: scroll;
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer {
+  overflow-y: scroll;
   width: 100%;
-  max-height: 150px;
+  max-height: 200px;
 }
 
-.infoCinema .rowTwo .addresPhim .tabTimer a {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer a {
   text-decoration: none;
 }
 
-.infoCinema .rowTwo .addresPhim .tabTimer .timer {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .timer {
   border: 2px solid #f5f5f5;
   border-radius: 5px;
   padding: 5px;
+  margin: 10px 0;
+  line-height: 30px;
   color: #56bb52;
   font-size: 17px;
   cursor: pointer;
 }
 
-.rowOne::-webkit-scrollbar,
+.rowCinemaDetail::-webkit-scrollbar,
+.rowInfoPhim::-webkit-scrollbar,
 .tabTimer::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
-.rowOne::-webkit-scrollbar-thumb,
+.rowCinemaDetail::-webkit-scrollbar-thumb,
+.rowInfoPhim::-webkit-scrollbar-thumb,
 .tabTimer::-webkit-scrollbar-thumb {
   background: #e2dfdf;
   border-radius: 6px;
 }
 
 @media (max-width: 430px) {
-  .rowOne .addresCinema,
-  .rowOne .addresCinema_Active {
+  .rowCinemaDetail .addresCinema,
+  .rowCinemaDetail .addresCinema_Active {
     font-size: 10px;
   }
-  .rowTwo {
+  .rowInfoPhim {
     text-align: center;
   }
-  .rowTwo .addresPhim {
+  .rowInfoPhim .shedulePhim {
     font-size: 10px !important;
   }
-  .rowTwo .addresPhim p {
+  .rowInfoPhim .shedulePhim p {
     line-height: 20px;
   }
-  .rowTwo .addresPhim .imgPhim {
+  .rowInfoPhim .shedulePhim .imgPhim {
     width: 60px !important;
     height: 60px !important;
   }
-  .rowTwo .addresPhim .maPhim {
+  .rowInfoPhim .shedulePhim .maPhim {
     font-size: 10px !important;
     padding: 2px !important;
     margin-right: 1px !important;
   }
-  .rowTwo .addresPhim .tabTimer .timer {
+  .rowInfoPhim .shedulePhim .tabTimer .timer {
     font-size: 10px !important;
   }
 }
 
+@media (max-width: 350px) {
+  .imageCinema {
+    width: 40px !important;
+    height: 50px !important;
+  }
+}
+
 @media (max-width: 330px) {
-  .rowOne .addresCinema,
-  .rowOne .addresCinema_Active {
+  .rowCinemaDetail .addresCinema,
+  .rowCinemaDetail .addresCinema_Active {
     height: 100px !important;
   }
-  .rowOne p {
+  .rowCinemaDetail p {
     font-size: 10px !important;
   }
-  .rowTwo .addresPhim {
+  .rowInfoPhim .shedulePhim {
     padding: 0 !important;
   }
-  .rowTwo .addresPhim .phim {
+  .rowInfoPhim .shedulePhim .phim {
     font-size: 8px !important;
   }
-  .rowTwo .addresPhim .imgPhim {
+  .rowInfoPhim .shedulePhim .imgPhim {
     width: 60px !important;
     height: 80px !important;
   }

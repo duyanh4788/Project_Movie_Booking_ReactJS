@@ -14,7 +14,7 @@ class SignUpPage extends Component {
       confirmMatKhau: "",
       email: "",
       soDt: "",
-      maNhom: "GP01",
+      maNhom: "",
       maLoaiNguoiDung: "KhachHang",
       hoTen: "",
     },
@@ -24,6 +24,7 @@ class SignUpPage extends Component {
       confirmMatKhau: "",
       email: "",
       soDt: "",
+      maNhom: "",
       hoTen: "",
     },
     valid: false,
@@ -81,6 +82,14 @@ class SignUpPage extends Component {
       }
     }
     // check email
+
+    // check select
+    if (value === "Mã Nhóm") {
+      errorUpdate[name] = "Chọn Nhóm";
+    } else {
+      errorUpdate[name] = "";
+    }
+    // check select
   };
 
   handleSubmit = (event) => {
@@ -110,6 +119,27 @@ class SignUpPage extends Component {
     this.setState({
       ...this.state,
       valid: validS,
+    });
+  }
+  renderMaNhom() {
+    let arrMaNhom = [
+      "GP01",
+      "GP02 ",
+      "GP03",
+      "GP04 ",
+      "GP05",
+      "GP06 ",
+      "GP07",
+      "GP08 ",
+      "GP09",
+      "GP10 ",
+    ];
+    return arrMaNhom.map((item, index) => {
+      return (
+        <option key={index} value={item}>
+          {item}
+        </option>
+      );
     });
   }
 
@@ -148,6 +178,16 @@ class SignUpPage extends Component {
 
               <input
                 onChange={this.handleChange}
+                value={User.hoTen}
+                placeholder="User Name"
+                name="hoTen"
+                type="text"
+                pattern="^[A-Za-z]+$"
+              />
+              <span>{error.hoTen}</span>
+
+              <input
+                onChange={this.handleChange}
                 value={User.email}
                 placeholder="Email"
                 name="email"
@@ -166,23 +206,28 @@ class SignUpPage extends Component {
 
               <input placeholder="Khách Hàng" disabled />
 
-              <input
+              <select
+                name="maNhom"
+                value={User.maNhom}
                 onChange={this.handleChange}
-                value={User.hoTen}
-                placeholder="User Name"
-                name="hoTen"
-                type="text"
-                pattern="^[A-Za-z]+$"
-              />
-              <span>{error.hoTen}</span>
+              >
+                <option>Mã Nhóm</option>
+                {this.renderMaNhom()}
+              </select>
+              <br />
+              <span>{error.maNhom}</span>
+
               <br />
               <br />
+
               <span>{this.props.messageSignUp}</span>
               <div style={{ textAlign: "center" }}>
                 {this.state.valid ? (
-                  <button type="submit">Đăng Ký</button>
+                  <button type="submit" style={{ cursor: "pointer" }}>
+                    Đăng Ký
+                  </button>
                 ) : (
-                  <button type="submit" disabled>
+                  <button type="submit" disabled style={{ cursor: "no-drop" }}>
                     Đăng Ký
                   </button>
                 )}

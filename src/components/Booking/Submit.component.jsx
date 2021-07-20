@@ -42,10 +42,7 @@ function SubmitComponent(props) {
   const handleClose = () => {
     setOpen(false);
     if (errorMesage === 401) {
-      history.push({
-        pathname: "/signIn",
-        search: "checkout",
-      });
+      history.push("/signIn");
     } else {
       history.push("/");
     }

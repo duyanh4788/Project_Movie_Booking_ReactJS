@@ -7,9 +7,11 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function NavigationTabsTherePage() {
+  const history = useHistory();
+
   const lstCumRap = useSelector((state) => {
     return state.TabNavigationPageReducer.lstCumRap; // get lstCumRap to  TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
@@ -39,6 +41,18 @@ function NavigationTabsTherePage() {
     setStateMaPhim({
       maPhim: maPhim,
     });
+  };
+  // booking
+  const bookingMovie = (maLichChieu) => {
+    if (maLichChieu && stateMaphim.maPhim && nameGroupCinema) {
+      history.push(
+        `/bookingComponent/${maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}`
+      );
+    }
+    const toKen = JSON.parse(localStorage.getItem("token"));
+    if (maLichChieu && stateMaphim.maPhim && nameGroupCinema && !toKen) {
+      history.push("/signIn");
+    }
   };
 
   const renderTenPhim = () => {
@@ -81,24 +95,21 @@ function NavigationTabsTherePage() {
                           {item.lstLichChieuTheoPhim.map((item, index) => {
                             return (
                               <Grid item lg={4} key={index}>
-                                <Link
-                                  to={`/bookingComponent/${item.maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}`}
+                                <span
+                                  onClick={() => bookingMovie(item.maLichChieu)}
+                                  key={index}
+                                  className={`timeCode ${codeCinema}`}
                                 >
-                                  <span
-                                    key={index}
-                                    className={`timeCode ${codeCinema}`}
-                                  >
-                                    {item.ngayChieuGioChieu.slice(11, 16)}
-                                    <label
-                                      style={{
-                                        color: "gray",
-                                        marginLeft: "5px",
-                                      }}
-                                    >{`~ ${getTimeEnd(
-                                      item.ngayChieuGioChieu.slice(11, 16)
-                                    )}`}</label>
-                                  </span>
-                                </Link>
+                                  {item.ngayChieuGioChieu.slice(11, 16)}
+                                  <label
+                                    style={{
+                                      color: "gray",
+                                      marginLeft: "5px",
+                                    }}
+                                  >{`~ ${getTimeEnd(
+                                    item.ngayChieuGioChieu.slice(11, 16)
+                                  )}`}</label>
+                                </span>
                               </Grid>
                             );
                           })}

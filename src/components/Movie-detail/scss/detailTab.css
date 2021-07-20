@@ -3,33 +3,29 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#09181f), to(#133241));
   background: linear-gradient(#09181f, #133241);
   color: #e9e9e9;
-  font-size: 15px;
-  text-align: justify;
-  white-space: pre-wrap;
-  font-weight: 500;
   padding: 20px 0;
 }
 
-.detailTab .tabs .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.Mui-selected {
+.detailTab .tabMovie .MuiButtonBase-root.MuiTab-root.MuiTab-textColorInherit.Mui-selected {
   color: #e9e9e9 !important;
   font-weight: bold;
 }
 
-.detailTab .tabs .MuiTabs-indicator {
+.detailTab .tabMovie .MuiTabs-indicator {
   display: none !important;
 }
 
-.detailTab .thongTin {
+.detailTab .infoMovie {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
 
-.detailTab .thongTin ul li {
+.detailTab .infoMovie ul li {
   list-style: none;
 }
 
-.detailTab .navigaToDetail {
+.detailTab .detailTabCinema {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -40,56 +36,55 @@
           align-items: flex-start;
 }
 
-.detailTab .navigaToDetail .titleLogo {
+.detailTab .detailTabCinema .titleLogo {
   font-size: 13px;
   font-weight: bold;
   color: gray;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo {
+.detailTab .detailTabCinema .logoCinema .loGo {
   opacity: 0.7;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo button {
+.detailTab .detailTabCinema .logoCinema .loGo button {
   border: none;
   cursor: pointer;
   background-color: white;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo button .images {
+.detailTab .detailTabCinema .logoCinema .loGo button .images {
   width: 40px;
   margin: 10px 0;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo p {
+.detailTab .detailTabCinema .logoCinema .loGo p {
   color: gray;
   font-weight: bold;
   font-size: 13px;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo_Active {
+.detailTab .detailTabCinema .logoCinema .loGo_Active {
   opacity: 1.5;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo_Active button {
+.detailTab .detailTabCinema .logoCinema .loGo_Active button {
   border: none;
   cursor: pointer;
   background-color: white;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo_Active button .images {
+.detailTab .detailTabCinema .logoCinema .loGo_Active button .images {
   width: 40px;
   margin: 10px 0;
 }
 
-.detailTab .navigaToDetail .rowOne .loGo_Active p {
+.detailTab .detailTabCinema .logoCinema .loGo_Active p {
   color: gray;
   font-weight: bold;
   font-size: 13px;
 }
 
-.detailTab .navigaToDetail .rowTwo {
-  float: left;
+.detailTab .detailTabCinema .scheduleMovie {
   overflow-y: scroll;
   height: 350px;
   width: 100%;
@@ -98,65 +93,65 @@
   font-size: 13px;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie {
   padding: 10px;
   border-bottom: 2px solid #f5f5f5;
-  height: 90px;
+  height: 100px;
   color: gray;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .imageLogo img {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .imageLogo img {
   width: 80px;
   height: 80px;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema {
-  line-height: 5px;
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema {
+  line-height: 20px;
   font-weight: bold;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .BHDStar {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .BHDStar {
   color: #56bb52;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .CGV {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .CGV {
   color: #e71a0e;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .CineStar {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .CineStar {
   color: #662d91;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .Galaxy {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .Galaxy {
   color: #ff8121;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .LotteCinima {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .LotteCinima {
   color: #ed1c24;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .MegaGS {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .MegaGS {
   color: #ebb427;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema a {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema a {
   text-decoration: none;
 }
 
-.detailTab .navigaToDetail .rowTwo .rowTwoIntro .inforCinema .showTime {
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .inforCinema .showTime {
   border: 1px solid;
   border-radius: 5px;
   padding: 2px 4px;
   margin-left: 5px;
 }
 
-.rowTwo::-webkit-scrollbar {
+.scheduleMovie::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
-.rowTwo::-webkit-scrollbar-thumb {
+.scheduleMovie::-webkit-scrollbar-thumb {
   background: #e2dfdf;
   border-radius: 6px;
 }
@@ -169,11 +164,26 @@
   display: none !important;
 }
 
+@media (max-width: 420px) {
+  .inforCinema {
+    line-height: 15px !important;
+  }
+  .inforCinema p {
+    font-size: 12px !important;
+  }
+}
+
 @media (max-width: 320px) {
-  .rowTwo .imageLogo img {
-    width: 50px !important;
-    height: 50px !important;
+  .scheduleMovie .imageLogo img {
+    width: 60px !important;
+    height: 60px !important;
     margin-bottom: 30px;
+  }
+  .scheduleMovie .inforCinema {
+    line-height: 13px !important;
+  }
+  .scheduleMovie .inforCinema p {
+    font-size: 9px !important;
   }
 }
 /*# sourceMappingURL=detailTab.css.map */

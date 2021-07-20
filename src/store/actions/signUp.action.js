@@ -14,6 +14,7 @@ export const postSignUp_Action = (data) => {
         type: INFOR_SIGNIN,
         payload: res.data,
       })
+      console.log(res.data);
       dispatch({
         type: SUCCESS_NOTIFI_SIGNUP,
         payload: res.status

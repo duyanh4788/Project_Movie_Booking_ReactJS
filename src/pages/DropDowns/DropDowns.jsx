@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 // react router dom
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./scss/dropdowns.css";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import format from "date-format";
 
 const DropDowns = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   // call api
   useEffect(() => {
     dispatch(getListMovieDropDowns());
@@ -152,6 +153,23 @@ const DropDowns = (props) => {
       timer: formatTimer,
     });
   };
+
+  const bookingMovie = () => {
+    if (stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap) {
+      history.push(
+        `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
+      );
+    }
+    const toKen = JSON.parse(localStorage.getItem("token"));
+    if (
+      stateTimeCode.timeCode &&
+      stateMaPhim.maPhim &&
+      stateTenRap.tenRap &&
+      !toKen
+    ) {
+      history.push("/signIn");
+    }
+  };
   return (
     <div className="container dropDownsRelavite">
       <div className="dropDownsMain">
@@ -201,17 +219,11 @@ const DropDowns = (props) => {
             {stateTimer.timer === "" ? "Ngày Chiếu" : stateTimer.timer}
           </button>
         </div>
-        {/* link maLichChieu =>  bookingComponent */}
 
-        <Link
-          to={
-            stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap
-              ? `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
-              : "/"
-          }
-        >
-          <button className="btnMuaVe">Mua Vé Ngay</button>
-        </Link>
+        <button className="btnMuaVe" onClick={bookingMovie}>
+          Mua Vé Ngay
+        </button>
+        
       </div>
     </div>
   );

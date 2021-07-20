@@ -169,19 +169,16 @@
   font-size: 14px;
 }
 
-.dropDownsRelavite .dropDownsMain a {
-  text-decoration: none;
-}
-
-.dropDownsRelavite .dropDownsMain a .btnMuaVe {
+.dropDownsRelavite .dropDownsMain .btnMuaVe {
   background-color: gray;
   color: white;
   padding: 10px;
   outline: none;
   border: none;
+  cursor: pointer;
   border-radius: 5px;
-  font-size: 14px;
-  margin-left: 10px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .dropDownsRelavite .dropDownsMain .contentPhim a:hover,

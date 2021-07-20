@@ -17,10 +17,11 @@ import {
 import { listCinema, backgroundS } from "./dataCinema";
 import { useState } from "react";
 // date format
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 function CinemaDetailComponent(props) {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const codeMaCumRap = props.match.params.maCumRap; // recive data to CinemaDetailPage
@@ -66,10 +67,10 @@ function CinemaDetailComponent(props) {
               handleMaCumRap(item.maCumRap, item.tenCumRap, item);
             }}
           >
-            <Grid item xs={4} sm={3}>
+            <Grid item xs={3} sm={3}>
               {renderImageCinema()}
             </Grid>
-            <Grid item xs={8} sm={9}>
+            <Grid item xs={9} sm={9}>
               <p className={`${codeMaCumRap}`} style={{ marginBottom: "0" }}>
                 {item.tenCumRap}
               </p>
@@ -118,11 +119,29 @@ function CinemaDetailComponent(props) {
     return timeEnd;
   };
 
+  // booking
+  const bookingMovie = (maLichChieu) => {
+    if (maLichChieu && stateMaPhim.maPhim && stateTenCumRap.tenCumRap) {
+      history.push(
+        `/bookingComponent/${maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}`
+      );
+    }
+    const toKen = JSON.parse(localStorage.getItem("token"));
+    if (
+      maLichChieu &&
+      stateMaPhim.maPhim &&
+      stateTenCumRap.tenCumRap &&
+      !toKen
+    ) {
+      history.push("/signIn");
+    }
+  };
+
   const renderListPhim = () => {
     return listPhimCinema.map((item, index) => {
       return (
-        <Grid container key={index} className="addresPhim">
-          <Grid item xs={3} sm={4} md={3} lg={2} style={{ cursor: "pointer" }}>
+        <Grid container key={index} className="shedulePhim">
+          <Grid item xs={3} sm={3} md={3} lg={2} style={{ cursor: "pointer" }}>
             <img
               src={item.hinhAnh}
               alt={item.hinhAnh}
@@ -132,7 +151,7 @@ function CinemaDetailComponent(props) {
               }}
             />
           </Grid>
-          <Grid item xs={9} sm={8} md={9} lg={10}>
+          <Grid item xs={9} sm={9} md={9} lg={10}>
             <Accordion
               onClick={() => {
                 handleInfoPhim(item);
@@ -142,7 +161,7 @@ function CinemaDetailComponent(props) {
                 <div className="phim">
                   <label className="maPhim">{item.maPhim}</label>
                   <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
-                  <p>Chọn Xuất Chiếu</p>
+                  <p style={{ marginTop: "20px" }}>Chọn Xuất Chiếu</p>
                 </div>
               </AccordionSummary>
               <AccordionDetails>
@@ -151,21 +170,18 @@ function CinemaDetailComponent(props) {
                     {item.lstLichChieuTheoPhim.map((item, index) => {
                       return (
                         <Grid item lg={3} key={index}>
-                          <Link
-                            to={`/bookingComponent/${item.maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}`}
+                          <span
+                            onClick={() => bookingMovie(item.maLichChieu)}
+                            key={index}
+                            className={`timer ${codeMaCumRap}`}
                           >
-                            <span
-                              key={index}
-                              className={`timer ${codeMaCumRap}`}
-                            >
-                              {item.ngayChieuGioChieu.slice(11, 16)}
-                              <label
-                                style={{ color: "gray", marginLeft: "5px" }}
-                              >{`~ ${getTimeEnd(
-                                item.ngayChieuGioChieu.slice(11, 16)
-                              )}`}</label>
-                            </span>
-                          </Link>
+                            {item.ngayChieuGioChieu.slice(11, 16)}
+                            <label
+                              style={{ color: "gray", marginLeft: "5px" }}
+                            >{`~ ${getTimeEnd(
+                              item.ngayChieuGioChieu.slice(11, 16)
+                            )}`}</label>
+                          </span>
                         </Grid>
                       );
                     })}
@@ -183,23 +199,23 @@ function CinemaDetailComponent(props) {
     <section className="cinemaDetail">
       {/* image phim */}
       {infoPhimCinema == null ? (
-        <div className="infoPhim">
-          <div className="background">
+        <div className="rowOneinfoPhim">
+          <div className="backgroundPhim">
             <img src={backgroundS.img} alt="" />
           </div>
         </div>
       ) : (
-        <div className="infoPhim">
-          <div className="background">
+        <div className="rowOneinfoPhim">
+          <div className="backgroundPhim">
             <img src={infoPhimCinema.hinhAnh} alt="" />
           </div>
 
-          <div className="intro">
+          <div className="rowOneintroPhim">
             <Grid container>
-              <Grid item xs={8} sm={3} md={3} lg={2} className="images">
+              <Grid item xs={8} sm={3} md={3} lg={2}>
                 <img src={infoPhimCinema.hinhAnh} alt="" />
               </Grid>
-              <Grid item xs={8} sm={3} md={3} lg={2} className="images">
+              <Grid item xs={8} sm={3} md={3} lg={2}>
                 <p>
                   <span>{infoPhimCinema.maPhim}</span> Phim :{" "}
                   {infoPhimCinema.tenPhim}
@@ -213,9 +229,9 @@ function CinemaDetailComponent(props) {
       {/* image phim */}
 
       <Container maxWidth="lg">
-        <Grid container className="infoCinema">
-          <Grid container item xs={12} sm={6} md={4} lg={4}>
-            <Accordion className="rowOne">
+        <Grid container className="infoPhimCinemaDetail">
+          <Grid container item xs={12} sm={12} md={4} lg={4}>
+            <Accordion className="rowCinemaDetail">
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p className="titleLogo">Chọn Cụm Rạp : {codeMaCumRap}</p>
               </AccordionSummary>
@@ -226,7 +242,7 @@ function CinemaDetailComponent(props) {
               </AccordionDetails>
             </Accordion>
           </Grid>
-          <Grid item xs={12} sm={6} md={8} lg={8} className="rowTwo">
+          <Grid item xs={12} sm={12} md={8} lg={8} className="rowInfoPhim">
             {renderListPhim()}
           </Grid>
         </Grid>

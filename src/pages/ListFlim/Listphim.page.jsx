@@ -95,14 +95,12 @@ const ListPhim = () => {
   // arrow function render to row.113
   const renderListPhim = () => {
     return movieList.map((item, index) => {
+      let httpS = item.hinhAnh.split(":");
+      let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <div key={index} className="slide">
           <div className="sliderAfter">
-            <CardMedia
-              className="imageSlider"
-              image={item.hinhAnh}
-              title={item.hinhAnh}
-            />
+            <CardMedia className="imageSlider" image={urlImg} title={urlImg} />
             <div className="intro">
               <span className="introOne">{item.maPhim}</span>
               <span className="introTwo"> {item.tenPhim.slice(0, 18)} </span>

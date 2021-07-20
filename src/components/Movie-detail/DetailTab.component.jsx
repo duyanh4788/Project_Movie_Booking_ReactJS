@@ -92,6 +92,8 @@ const DetailTabComponent = () => {
   // render logo
   const renderLoGo = () => {
     return listLogo.map((item, index) => {
+      let httpS = item.logo.split(":");
+      let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <Grid
           item
@@ -106,7 +108,7 @@ const DetailTabComponent = () => {
               handleCodeCinema(item.maHeThongRap);
             }}
           >
-            <img src={item.logo} alt="" className="images" />
+            <img src={urlImg} alt={urlImg} className="images" />
           </button>
           <p>{item.maHeThongRap}</p>
         </Grid>

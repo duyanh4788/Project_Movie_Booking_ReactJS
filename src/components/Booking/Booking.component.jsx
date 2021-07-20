@@ -53,7 +53,7 @@ function BookingComponent(props) {
 
   let countdownTimer = 0;
   const countdownTimerS = () => {
-    let seconds = 1500;
+    let seconds = 15;
     function secondPassed() {
       let stateMinutes = Math.round((seconds - 30) / 60);
       let stateSecond = seconds % 60;
@@ -162,6 +162,13 @@ function BookingComponent(props) {
     });
   };
 
+  // https images
+  const getUrlHttpS = () => {
+    let httpS = listPhimBooking.hinhAnh.split(":");
+    let urlImg = httpS[0] + "s:" + httpS[1];
+    return <img src={urlImg} alt={urlImg} className="movie_bg" />;
+  };
+
   return (
     <>
       {loading === null ? (
@@ -188,11 +195,7 @@ function BookingComponent(props) {
           <Grid item xs={12} md={4} lg={6} container>
             <Grid item xs={12} md={12} lg={12} container>
               <Grid item xs={12} md={5} lg={3} style={{ textAlign: "center" }}>
-                <img
-                  src={listPhimBooking.hinhAnh}
-                  alt=""
-                  className="movie_bg"
-                />
+                {getUrlHttpS()}
               </Grid>
               <Grid item xs={12} md={7} lg={9} className="movie_intro">
                 <span>

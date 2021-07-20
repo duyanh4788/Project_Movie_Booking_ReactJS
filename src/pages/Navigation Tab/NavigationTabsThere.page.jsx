@@ -61,6 +61,8 @@ function NavigationTabsTherePage() {
     );
     if (index !== -1) {
       return lstCumRap[index].danhSachPhim.map((item, index) => {
+        let httpS = item.hinhAnh.split(":");
+        let urlImg = httpS[0] + "s:" + httpS[1];
         return (
           <Grid
             item
@@ -75,7 +77,7 @@ function NavigationTabsTherePage() {
               <Grid container>
                 <Grid item xs={2}>
                   <div className="ChildTab_Intro_Img">
-                    <img src={item.hinhAnh} alt={item.hinhAnh} />
+                    <img src={urlImg} alt={urlImg} />
                   </div>
                 </Grid>
                 <Grid item xs={10}>

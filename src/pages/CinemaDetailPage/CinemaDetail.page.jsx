@@ -28,6 +28,8 @@ export default function CinemaDetailPage() {
 
   const renderLoGo = () => {
     return listLogoCinema.map((item, index) => {
+      let httpS = item.logo.split(":");
+      let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <Grid item xs={4} lg={2} key={index}>
           <button
@@ -36,7 +38,7 @@ export default function CinemaDetailPage() {
               handleLogo(item.maHeThongRap);
             }}
           >
-            <img src={item.logo} alt="" className="imgCinemaS" />
+            <img src={urlImg} alt="" className="imgCinemaS" />
           </button>
         </Grid>
       );

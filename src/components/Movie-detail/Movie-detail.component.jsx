@@ -57,20 +57,24 @@ function MovieDetail(props) {
   };
   // popup video youtube
 
+  // https images
+  const getUrlHttpS = () => {
+    let httpS = detail.hinhAnh.split(":");
+    let urlImg = httpS[0] + "s:" + httpS[1];
+    return <img src={urlImg} alt={urlImg} />;
+  };
   return (
     <>
       {loading === null ? (
         <Loader />
       ) : (
         <div className="movieDetail">
-          <div className="movieDetail_bg">
-            <img src={detail.hinhAnh} alt="" />
-          </div>
+          <div className="movieDetail_bg">{getUrlHttpS()}</div>
 
           <div className="movieDetail_Intro">
             <Grid container>
               <Grid item xs={8} sm={3} md={3} lg={2} className="images">
-                <img src={detail.hinhAnh} alt="" />
+                {getUrlHttpS()}
                 <PlayArrowIcon
                   className="iconPlay"
                   onClick={() => handleOpen(detail.trailer)}

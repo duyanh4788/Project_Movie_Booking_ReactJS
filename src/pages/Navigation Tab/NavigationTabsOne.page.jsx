@@ -33,6 +33,8 @@ function NavigationTabsOnePage() {
 
   const renderLoGo = () => {
     return listShowTime.map((item, index) => {
+      let httpS = item.logo.split(":");
+      let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <Grid
           item
@@ -46,7 +48,7 @@ function NavigationTabsOnePage() {
         >
           <button>
             <img
-              src={item.logo}
+              src={urlImg}
               alt=""
               className="rowOneNavigation_ChildTab_Images"
               onClick={() => {

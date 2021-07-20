@@ -139,12 +139,14 @@ function CinemaDetailComponent(props) {
 
   const renderListPhim = () => {
     return listPhimCinema.map((item, index) => {
+      let httpS = item.hinhAnh.split(":");
+      let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <Grid container key={index} className="shedulePhim">
           <Grid item xs={3} sm={3} md={3} lg={2} style={{ cursor: "pointer" }}>
             <img
-              src={item.hinhAnh}
-              alt={item.hinhAnh}
+              src={urlImg}
+              alt={urlImg}
               className="imgPhim"
               onClick={() => {
                 handleInfoPhim(item);
@@ -195,6 +197,13 @@ function CinemaDetailComponent(props) {
     });
   };
 
+  // https images
+  const getUrlHttpS = () => {
+    let httpS = infoPhimCinema.hinhAnh.split(":");
+    let urlImg = httpS[0] + "s:" + httpS[1];
+    return <img src={urlImg} alt={urlImg} />;
+  };
+
   return (
     <section className="cinemaDetail">
       {/* image phim */}
@@ -206,14 +215,12 @@ function CinemaDetailComponent(props) {
         </div>
       ) : (
         <div className="rowOneinfoPhim">
-          <div className="backgroundPhim">
-            <img src={infoPhimCinema.hinhAnh} alt="" />
-          </div>
+          <div className="backgroundPhim">{getUrlHttpS()}</div>
 
           <div className="rowOneintroPhim">
             <Grid container>
               <Grid item xs={8} sm={3} md={3} lg={2}>
-                <img src={infoPhimCinema.hinhAnh} alt="" />
+                {getUrlHttpS()}
               </Grid>
               <Grid item xs={8} sm={3} md={3} lg={2}>
                 <p>

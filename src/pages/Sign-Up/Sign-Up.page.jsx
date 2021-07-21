@@ -28,6 +28,7 @@ class SignUpPage extends Component {
       hoTen: "",
     },
     valid: false,
+    showInforUser: false,
   };
 
   handleChange = (event) => {
@@ -82,19 +83,14 @@ class SignUpPage extends Component {
       }
     }
     // check email
-
-    // check select
-    if (value === "Mã Nhóm") {
-      errorUpdate[name] = "Chọn Nhóm";
-    } else {
-      errorUpdate[name] = "";
-    }
-    // check select
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch(postSignUp_Action(this.state.User));
+    this.setState({
+      showInforUser: true,
+    });
   };
   refeshInput = () => {
     let elementsInput = document.querySelectorAll("input");
@@ -102,12 +98,6 @@ class SignUpPage extends Component {
       refesh.value = "";
     }
   };
-
-  componentDidUpdate() {
-    if (this.props.mesageSuccess) {
-      this.props.history.replace("/signIn");
-    }
-  }
 
   validButtonSubmit() {
     let validS = true;
@@ -121,6 +111,7 @@ class SignUpPage extends Component {
       valid: validS,
     });
   }
+
   renderMaNhom() {
     let arrMaNhom = [
       "GP01",
@@ -143,99 +134,193 @@ class SignUpPage extends Component {
     });
   }
 
+  renderShowMessage() {
+    const { taiKhoan, matKhau, hoTen, email, maNhom, soDt, maLoaiNguoiDung } =
+      this.props.inforSignIn;
+    if (this.props.mesageSuccess === 200) {
+      return (
+        <div className="modalMesage">
+          <h5>Thông Tin Của Bạn</h5>
+          <table className="tableMesage">
+            <thead>
+              <tr>
+                <td>Họ tên : </td>
+                <td>{hoTen}</td>
+              </tr>
+              <tr>
+                <td>Tài khoản : </td>
+                <td>{taiKhoan}</td>
+              </tr>
+              <tr>
+                <td>Mật khẩu : </td>
+                <td>{matKhau}</td>
+              </tr>
+              <tr>
+                <td>Email : </td>
+                <td>{email}</td>
+              </tr>
+              <tr>
+                <td>Phone : </td>
+                <td>{soDt}</td>
+              </tr>
+              <tr>
+                <td>Vai trò: </td>
+                <td>
+                  {maLoaiNguoiDung === "QuanTri"
+                    ? "Quản trị viên"
+                    : "Khách hàng"}
+                </td>
+              </tr>
+              <tr>
+                <td>Nhóm : </td>
+                <td>{maNhom}</td>
+              </tr>
+            </thead>
+          </table>
+          <div style={{ textAlign: "center" }}>
+            <button
+              onClick={() => {
+                this.goSignIn();
+              }}
+            >
+              Go To Sign In
+            </button>
+          </div>
+        </div>
+      );
+    } else if (this.props.messageSignUp) {
+      return (
+        <div className="modalMesage">
+          <span>{this.props.messageSignUp}</span>
+          <div style={{ textAlign: "center" }}>
+            <button
+              onClick={() => {
+                this.goComback();
+              }}
+            >
+              Đăng Ký Lại
+            </button>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  goSignIn() {
+    this.props.history.replace("/signIn");
+    this.setState({
+      showInforUser: false,
+    });
+  }
+  goComback() {
+    this.setState({
+      showInforUser: false,
+    });
+  }
+
   render() {
     const { User, error } = this.state;
     return (
-      <div className="backgroundSignUp">
-        <div className="wrapSignUp">
-          <Container maxWidth="md">
-            <h4>Form Đăng Ký</h4>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                onChange={this.handleChange}
-                value={User.taiKhoan}
-                placeholder="Tài Khoản"
-                name="taiKhoan"
-                type="text"
-              />
-              <span>{error.taiKhoan}</span>
-              <input
-                onChange={this.handleChange}
-                value={User.matKhau}
-                placeholder="Mật Khẩu"
-                name="matKhau"
-                type="password"
-              />
-              <span>{error.matKhau}</span>
-              <input
-                onChange={this.handleChange}
-                value={User.confirmMatKhau}
-                placeholder="Xác Nhận Mật Khẩu Mật Khẩu"
-                name="confirmMatKhau"
-                type="password"
-              />
-              <span>{error.confirmMatKhau}</span>
+      <>
+        <div className="backgroundSignUp">
+          <div className="wrapSignUp">
+            <Container maxWidth="md">
+              <h4>Form Đăng Ký</h4>
+              <form onSubmit={this.handleSubmit}>
+                <input
+                  onChange={this.handleChange}
+                  value={User.taiKhoan}
+                  placeholder="Tài Khoản"
+                  name="taiKhoan"
+                  type="text"
+                />
+                <span>{error.taiKhoan}</span>
+                <input
+                  onChange={this.handleChange}
+                  value={User.matKhau}
+                  placeholder="Mật Khẩu"
+                  name="matKhau"
+                  type="password"
+                />
+                <span>{error.matKhau}</span>
+                <input
+                  onChange={this.handleChange}
+                  value={User.confirmMatKhau}
+                  placeholder="Xác Nhận Mật Khẩu Mật Khẩu"
+                  name="confirmMatKhau"
+                  type="password"
+                />
+                <span>{error.confirmMatKhau}</span>
 
-              <input
-                onChange={this.handleChange}
-                value={User.hoTen}
-                placeholder="User Name"
-                name="hoTen"
-                type="text"
-                pattern="^[A-Za-z]+$"
-              />
-              <span>{error.hoTen}</span>
+                <input
+                  onChange={this.handleChange}
+                  value={User.hoTen}
+                  placeholder="User Name"
+                  name="hoTen"
+                  type="text"
+                  pattern="^[A-Za-z]+$"
+                />
+                <span>{error.hoTen}</span>
 
-              <input
-                onChange={this.handleChange}
-                value={User.email}
-                placeholder="Email"
-                name="email"
-                type="email"
-                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-              />
-              <span>{error.email}</span>
+                <input
+                  onChange={this.handleChange}
+                  value={User.email}
+                  placeholder="Email"
+                  name="email"
+                  type="email"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                />
+                <span>{error.email}</span>
 
-              <input
-                onChange={this.handleChange}
-                value={User.soDt}
-                placeholder="Số Điện Thoại"
-                name="soDt"
-              />
-              <span>{error.soDt}</span>
+                <input
+                  onChange={this.handleChange}
+                  value={User.soDt}
+                  placeholder="Số Điện Thoại"
+                  name="soDt"
+                />
+                <span>{error.soDt}</span>
 
-              <input placeholder="Khách Hàng" disabled />
+                <input placeholder="Khách Hàng" disabled />
 
-              <select
-                name="maNhom"
-                value={User.maNhom}
-                onChange={this.handleChange}
-              >
-                <option>Mã Nhóm</option>
-                {this.renderMaNhom()}
-              </select>
-              <br />
-              <span>{error.maNhom}</span>
+                <select
+                  name="maNhom"
+                  value={User.maNhom}
+                  onChange={this.handleChange}
+                >
+                  <option value="">Mã Nhóm</option>
+                  {this.renderMaNhom()}
+                </select>
+                <br />
+                <span>{error.maNhom}</span>
 
-              <br />
-              <br />
+                <br />
+                <br />
 
-              <span>{this.props.messageSignUp}</span>
-              <div style={{ textAlign: "center" }}>
-                {this.state.valid ? (
-                  <button type="submit" style={{ cursor: "pointer" }}>
-                    Đăng Ký
-                  </button>
-                ) : (
-                  <button type="submit" disabled style={{ cursor: "no-drop" }}>
-                    Đăng Ký
-                  </button>
-                )}
-              </div>
-            </form>
-          </Container>
+                <div style={{ textAlign: "center" }}>
+                  {this.state.valid ? (
+                    <button type="submit" style={{ cursor: "pointer" }}>
+                      Đăng Ký
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled
+                      style={{ cursor: "no-drop" }}
+                    >
+                      Đăng Ký
+                    </button>
+                  )}
+                </div>
+              </form>
+            </Container>
+          </div>
         </div>
-      </div>
+        {this.state.showInforUser ? (
+          <div className="mesageInfoUser">{this.renderShowMessage()}</div>
+        ) : (
+          ""
+        )}
+      </>
     );
   }
 }
@@ -244,6 +329,7 @@ const mapStateToProps = (state) => {
   return {
     messageSignUp: state.SignUpReducer.messageSignUp,
     mesageSuccess: state.SignUpReducer.mesageSuccess,
+    inforSignIn: state.SignUpReducer.inforSignIn,
   };
 };
 

@@ -5,6 +5,7 @@ const initialState = {
 }
 
 export const CommonReducer = (state = initialState, { type, payload }) => {
+    console.log(state.loading);
     switch (type) {
         case SHOW_LOADER: {
             state.loading = true

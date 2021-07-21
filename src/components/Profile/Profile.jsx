@@ -99,11 +99,12 @@ export default function ProfileUser() {
     soDT: "",
   });
   const [stateValid, setStateValid] = useState(true);
+  const [stateMesage, setStateMesage] = useState(false);
   // submit form
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowUpdate(true);
     dispatch(putUpdateUser(stateUser));
+    setStateMesage(true);
   };
   // change value form
   const handlChange = (e) => {
@@ -149,7 +150,7 @@ export default function ProfileUser() {
                   <td>{infoUser.email}</td>
                 </tr>
                 <tr>
-                  <td>Số điện thoại: </td>
+                  <td>Phone: </td>
                   <td>{infoUser.soDT}</td>
                 </tr>
                 <tr>
@@ -277,6 +278,57 @@ export default function ProfileUser() {
               </form>
             </Grid>
           </Grid>
+          {stateMesage ? (
+            <div className="mesageInfoUser">
+              <div className="modalMesage">
+                <h5>Thông Tin Của Bạn</h5>
+                <table className="tableMesage">
+                  <thead>
+                    <tr>
+                      <td>Họ tên : </td>
+                      <td>{infoUser.hoTen}</td>
+                    </tr>
+                    <tr>
+                      <td>Tài khoản : </td>
+                      <td>{infoUser.taiKhoan}</td>
+                    </tr>
+                    <tr>
+                      <td>Mật khẩu : </td>
+                      <td>{infoUser.matKhau}</td>
+                    </tr>
+                    <tr>
+                      <td>Email : </td>
+                      <td>{infoUser.email}</td>
+                    </tr>
+                    <tr>
+                      <td>Phone : </td>
+                      <td>{infoUser.soDT}</td>
+                    </tr>
+                    <tr>
+                      <td>Vai trò: </td>
+                      <td>
+                        {maLoaiNguoiDung === "QuanTri"
+                          ? "Quản trị viên"
+                          : "Khách hàng"}
+                      </td>
+                    </tr>
+                  </thead>
+                </table>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    onClick={() => {
+                      setStateMesage(false);
+                      setShowUpdate(true);
+                    }}
+                  >
+                    Come Back
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </Container>
       )}
     </div>

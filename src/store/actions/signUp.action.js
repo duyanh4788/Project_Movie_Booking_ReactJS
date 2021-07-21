@@ -20,12 +20,10 @@ export const postSignUp_Action = (data) => {
         payload: res.status
       })
     } catch (error) {
-      if (error.response) {
-        dispatch({
-          type: ERR_NOTIFI_SIGNUP,
-          payload: error.response.data
-        })
-      }
+      dispatch({
+        type: ERR_NOTIFI_SIGNUP,
+        payload: error.response.data
+      })
     }
   }
 };

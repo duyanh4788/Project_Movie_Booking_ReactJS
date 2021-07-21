@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 // css
 import { withStyles } from "@material-ui/core/styles";
 import "./css/infoUser.style.css";
@@ -56,6 +57,7 @@ function InfoUser(props) {
   };
   const dispatch = useDispatch();
   // get data to localstorage have save form action/signIn_Action
+  const maLoaiNguoiDung = JSON.parse(localStorage.getItem("maLoaiNguoiDung"));
   const userLogin = JSON.parse(localStorage.getItem("userLogin"));
   const history = useHistory();
   const logOut = () => {
@@ -65,6 +67,9 @@ function InfoUser(props) {
   };
   const showProfile = () => {
     history.push("/profile");
+  };
+  const pageAdmin = () => {
+    history.push("/admin");
   };
   return (
     <>
@@ -82,13 +87,21 @@ function InfoUser(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        {maLoaiNguoiDung === "QuanTri" ? (
+          <StyledMenuItem onClick={pageAdmin}>
+            <SupervisorAccountIcon className="textignOut"/>
+            <p className="textignOut"> Admin</p>
+          </StyledMenuItem>
+        ) : (
+          ""
+        )}
         <StyledMenuItem onClick={showProfile}>
           <AccountCircleIcon className="textignOut" />
-          <p className="textignOut">Profile</p>
+          <p className="textignOut"> Profile</p>
         </StyledMenuItem>
         <StyledMenuItem onClick={logOut}>
           <ExitToAppIcon className="textignOut" />
-          <p className="textignOut">Log Out</p>
+          <p className="textignOut"> Log Out</p>
         </StyledMenuItem>
       </StyledMenu>
     </>

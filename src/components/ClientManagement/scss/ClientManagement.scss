@@ -1,0 +1,36 @@
+form {
+    h5 {
+        text-align: center;
+        font-size: 17px;
+        color: gray;
+    }
+    .inputSearch {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 5px;
+    }
+    select {
+        max-width: 200px;
+        margin: 10px 0;
+        padding: 10px 5px;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.808);
+        color: gray;
+    }
+}
+table {
+    .iconDelete {
+        color: #ee2d24;;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    .iconEdit {
+        color: #662d91;
+        cursor: pointer;
+    }
+}

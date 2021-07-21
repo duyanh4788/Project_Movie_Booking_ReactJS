@@ -23,6 +23,7 @@ function Header(props) {
   let signIn = useSelector((state) => {
     return state.signInReducer.auth;
   });
+
   const userSigIn = JSON.parse(localStorage.getItem("userLogin"));
   if (userSigIn) {
     let signInUpdate = { ...signIn };
@@ -33,7 +34,7 @@ function Header(props) {
   return (
     <AppBar position="static" color="inherit" id="navbar" className="header">
       <Toolbar>
-        <Grid item xs={2} className="headerGridOne">
+        <Grid item xs={1} className="headerGridOne">
           <Typography>
             <Link to="/" className="titleLink">
               <img className="headerloGo" src={imagesLogo.img} alt="logo" />
@@ -43,13 +44,9 @@ function Header(props) {
         <Grid item xs={3} className="headerGridTwo">
           <CinemaDetailPage />
         </Grid>
-        <Grid item xs={3} className="headerGridTwo">
+        <Grid item xs={4} className="headerGridTwo">
           <label>Lịch Chiếu</label>
-
           <label>Cụm Rạp</label>
-
-          <label>Tin Tức</label>
-
           <label>Ứng Dụng</label>
         </Grid>
         <Grid item xs={4} className="headerGridThere">

@@ -1,9 +1,11 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
-import { GET_LIST_CLIENT_MANAGEMENT, GET_LIST_SEARCH_CLIENT_MANAGEMENT, TAIKHOAN_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_SEARCH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getListClientManagement = (maNhom) => {
     return async (dispatch) => {
+        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "GET",
@@ -13,8 +15,10 @@ export const getListClientManagement = (maNhom) => {
                 type: GET_LIST_CLIENT_MANAGEMENT,
                 payload: res.data
             })
+            dispatch(hidenLoader_Action());
         } catch (error) {
             console.log(error);
+            dispatch(hidenLoader_Action());
         }
     }
 }
@@ -22,6 +26,7 @@ export const getListClientManagement = (maNhom) => {
 export const getListSearchClientManagement = (maNhom, tuKhoa) => {
     return async (dispatch) => {
         try {
+            dispatch(showLoader_Action());
             const res = await Axios({
                 method: "GET",
                 url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}&tuKhoa=${tuKhoa}`
@@ -30,8 +35,10 @@ export const getListSearchClientManagement = (maNhom, tuKhoa) => {
                 type: GET_LIST_SEARCH_CLIENT_MANAGEMENT,
                 payload: res.data
             })
+            dispatch(hidenLoader_Action());
         } catch (error) {
             console.log(error);
+            dispatch(hidenLoader_Action());
         }
     }
 }
@@ -40,6 +47,7 @@ export const deleteListClientManagement = (taiKhoan) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
         try {
+            dispatch(showLoader_Action());
             const res = await Axios({
                 method: "DELETE",
                 url: `${DOMAIN}QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
@@ -52,9 +60,93 @@ export const deleteListClientManagement = (taiKhoan) => {
                 payload: taiKhoan,
             })
             alert(res.data)
+            dispatch(hidenLoader_Action());
+        } catch (error) {
+            console.log(error.response);
+            alert(error.response.data)
+            dispatch(hidenLoader_Action());
+        }
+    }
+}
+
+export const updateListClientManagement = (infoClient) => {
+    const toKen = JSON.parse(localStorage.getItem("token"))
+    return async (dispatch) => {
+        try {
+            dispatch(showLoader_Action());
+            const res = await Axios({
+                method: "PUT",
+                url: `${DOMAIN}QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+                data: infoClient,
+                headers: {
+                    Authorization: `Bearer ${toKen}`
+                }
+            })
+            dispatch({
+                type: UPDATE_LIST_CLIENT_MANAGEMENT,
+                payload: res
+            })
+            dispatch(hidenLoader_Action());
+        } catch (error) {
+            console.log(error);
+            dispatch(hidenLoader_Action());
+        }
+    }
+}
+
+export const btnEditClient = (datas) => {
+    return {
+        type: UPDATE_LIST_CLIENT_MANAGEMENT,
+        payload: datas
+    }
+}
+export const addClientManagement = (dataClient) => {
+    const toKen = JSON.parse(localStorage.getItem("token"))
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "POST",
+                url: `${DOMAIN}QuanLyNguoiDung/ThemNguoiDung`,
+                data: dataClient,
+                headers: {
+                    Authorization: `Bearer ${toKen}`
+                }
+            })
+            dispatch({
+                type: ADD_CLIENT_MANAGEMENT,
+                payload: res,
+            })
+            console.log(res);
         } catch (error) {
             console.log(error.response);
             alert(error.response.data)
         }
+    }
+}
+
+export const btnThemNguoiDung = (data) => {
+    return {
+        type: ADD_CLIENT_MANAGEMENT,
+        payload: data
+    }
+}
+
+export const getInfoClient = (infoClient) => {
+    return {
+        type: GET_INFO_CLIENT,
+        payload: infoClient,
+    }
+}
+
+export const showFormClient = (dataBoolean) => {
+    return {
+        type: PAGE_EDIT_CLIENT,
+        payload: dataBoolean,
+    }
+}
+export const hidenFormClient = (dataBoolean) => {
+    return {
+        type: PAGE_EDIT_CLIENT,
+        payload: dataBoolean,
     }
 }

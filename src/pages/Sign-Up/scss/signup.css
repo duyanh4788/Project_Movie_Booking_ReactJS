@@ -140,6 +140,7 @@
 .mesageInfoUser .modalMesage button {
   padding: 5px 10px;
   margin: 10px 0;
+  margin: 0 5px;
   border: none;
   border-radius: 5px;
   color: gray;

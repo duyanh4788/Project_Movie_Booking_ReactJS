@@ -1,9 +1,4 @@
 form {
-    h5 {
-        text-align: center;
-        font-size: 17px;
-        color: gray;
-    }
     .inputSearch {
         width: 100%;
         padding: 10px;
@@ -12,6 +7,27 @@ form {
         border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 5px;
     }
+    h5 {
+        text-align: center;
+        font-size: 17px;
+        color: gray;
+    }
+    button {
+        border: none;
+        outline: none;
+        color: white;
+        background-color: rgb(112, 228, 89);
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bolder;
+        margin-left: 10px;
+    }
+    span {
+        font-size: 13px;
+        color: gray;
+        font-weight: bold;
+    }
     select {
         max-width: 200px;
         margin: 10px 0;
@@ -19,13 +35,14 @@ form {
         border-radius: 5px;
         outline: none;
         border: none;
+        cursor: pointer;
         background-color: rgba(255, 255, 255, 0.808);
         color: gray;
     }
 }
 table {
     .iconDelete {
-        color: #ee2d24;;
+        color: #ee2d24;
         margin-right: 20px;
         cursor: pointer;
     }

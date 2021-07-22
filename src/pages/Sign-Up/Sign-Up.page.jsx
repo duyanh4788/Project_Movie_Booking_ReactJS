@@ -91,6 +91,7 @@ class SignUpPage extends Component {
     this.setState({
       showInforUser: true,
     });
+    this.refeshInput();
   };
   refeshInput = () => {
     let elementsInput = document.querySelectorAll("input");

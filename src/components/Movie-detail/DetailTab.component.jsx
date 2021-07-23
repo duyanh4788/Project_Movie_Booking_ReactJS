@@ -14,7 +14,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 // date format
-import format from "date-format";
+import * as dayjs from "dayjs";
 import { listCinema } from "./dataCinema";
 import { useHistory } from "react-router-dom";
 import "./scss/detailTab.css";
@@ -86,7 +86,7 @@ const DetailTabComponent = () => {
     detail;
 
   const listLogo = useSelector((state) => {
-    return state.DetailTabReducer.listShowTimeDetail; // get data to DetailTabReducer
+    return state.DetailTabReducer?.listShowTimeDetail; // get data to DetailTabReducer
   });
 
   // render logo
@@ -168,7 +168,7 @@ const DetailTabComponent = () => {
                 <p>Phim : {item.tenPhim}</p>
                 <p>
                   Thời Lượng : {item.thoiLuong} Phút - Ngày Chiếu :{" "}
-                  {format("mm-dd-yyyy", new Date(item.ngayChieuGioChieu))}
+                  {dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
                 </p>
                 <p>
                   Giờ Chiếu :
@@ -208,7 +208,7 @@ const DetailTabComponent = () => {
     return lichChieu.map((item, index) => {
       return (
         <Tab
-          label={format("mm-dd-yyyy", new Date(item.ngayChieuGioChieu))}
+          label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
           key={index}
         />
@@ -246,12 +246,12 @@ const DetailTabComponent = () => {
                   <li>Mã Phim :</li>
                   <li>Tên Phim :</li>
                   <li>Bí Danh :</li>
-                  <li>Mã Nhóm :</li>dạ 
+                  <li>Mã Nhóm :</li>
                 </ul>
               </Grid>
               <Grid lg={2} item>
                 <ul>
-                  <li>{format("mm-dd-yyyy", new Date(ngayKhoiChieu))}</li>
+                  <li>{dayjs(ngayKhoiChieu).format("DD-MM-YYYY")}</li>
                   <li>{maPhim}</li>
                   <li>{tenPhim}</li>
                   <li>{biDanh}</li>

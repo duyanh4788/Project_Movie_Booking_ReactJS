@@ -21,7 +21,7 @@ import "react-circular-progressbar/dist/styles.css";
 import "../../../node_modules/react-modal-video/scss/modal-video.scss";
 import ModalVideo from "react-modal-video";
 // date format
-import format from "date-format";
+import * as dayjs from "dayjs";
 
 function MovieDetail(props) {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ function MovieDetail(props) {
 
   // https images
   const getUrlHttpS = () => {
-    let httpS = detail.hinhAnh.split(":");
+    let httpS = detail?.hinhAnh.split(":");
     let urlImg = httpS[0] + "s:" + httpS[1];
     return <img src={urlImg} alt={urlImg} />;
   };
@@ -81,10 +81,7 @@ function MovieDetail(props) {
                 />
               </Grid>
               <Grid item xs={8} sm={3} md={3} lg={2} className="intro">
-                <label>
-                  Ngày Chiếu :{" "}
-                  {format("mm-dd-yyyy", new Date(detail.ngayKhoiChieu))}
-                </label>
+                <label>Ngày Chiếu : {dayjs(detail.ngayChieuGioChieu).format("DD-MM-YYYY")}</label>
                 <p>
                   <span>{detail.maPhim}</span> Phim : {detail.tenPhim}
                 </p>

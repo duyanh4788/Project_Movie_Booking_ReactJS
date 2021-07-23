@@ -20,6 +20,10 @@ function FromEditClient(props) {
   });
 
   useEffect(() => {
+    validButtonSubmit();
+  });
+
+  useEffect(() => {
     if (updateSuccess === 200) {
       dispatch(getListClientManagement(props.maNhom));
       dispatch(hidenFormClient("listUser"));
@@ -62,6 +66,16 @@ function FromEditClient(props) {
       setValidSubmit(true);
     }
     // valid
+  };
+
+  const validButtonSubmit = () => {
+    let valid = true;
+    for (let key in validClient) {
+      if (validClient[key] !== "" || editClient[key] === "") {
+        valid = false;
+      }
+    }
+    setValidSubmit(valid);
   };
 
   const handleSubmit = (e) => {

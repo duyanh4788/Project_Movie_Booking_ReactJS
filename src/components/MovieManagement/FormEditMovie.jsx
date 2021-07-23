@@ -1,5 +1,5 @@
 import { Container } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   hiddenFormMovie,
@@ -39,9 +39,21 @@ const FormEditMovie = (props) => {
     trailer: "",
   });
 
+  const [validSubmit, setValidSubmit] = useState(true);
+
+  useEffect(() => {
+    validButtonSubmit();
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditMovie({ ...editMovie, [name]: value });
+    // check empty
+    if (value.trim() === "") {
+      validMovie[name] = "Do Not Empty";
+    } else {
+      validMovie[name] = "";
+    }
   };
 
   const handleChangeImage = (e) => {
@@ -49,7 +61,17 @@ const FormEditMovie = (props) => {
       setEditMovie({ ...editMovie, hinhAnh: e.target.files[0] });
     }
   };
-  console.log(editMovie);
+
+  const validButtonSubmit = () => {
+    let valid = true;
+    for (let key in validMovie) {
+      if (validMovie[key] !== "" || editMovie[key] === "") {
+        valid = false;
+      }
+    }
+    setValidSubmit(valid);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -57,6 +79,7 @@ const FormEditMovie = (props) => {
       formData.append(key, editMovie[key]);
     }
     dispatch(updateListMovieManagement(formData));
+    dispatch(hiddenFormMovie("listUser"));
   };
 
   const hidenFormMovie = () => {
@@ -64,8 +87,8 @@ const FormEditMovie = (props) => {
   };
 
   return (
-    <div className="backgroundFormAdd">
-      <div className="wrapFromAdd">
+    <div className="backgroundFormEdit">
+      <div className="wrapFromEdit">
         <Container maxWidth="md">
           <h4>Edit Movie</h4>
           <form onSubmit={handleSubmit}>
@@ -84,14 +107,13 @@ const FormEditMovie = (props) => {
               name="tenPhim"
               type="text"
             />
-            <span>{validMovie.tenPhim}</span>
+            <span>{validMovie.tenPhim}</span><br />
 
             <TextField
               id="datetime-local"
               type="datetime-local"
               defaultValue={infoMovie.ngayKhoiChieu}
-              name="ngayKhoiChieu"
-              onChange={handleChange}
+              disabled
               InputLabelProps={{
                 shrink: true,
               }}
@@ -101,10 +123,9 @@ const FormEditMovie = (props) => {
             <input value={editMovie.maNhom} disabled type="text" />
 
             <input
-              onChange={handleChange}
               value={editMovie.danhGia}
               placeholder="Đánh Giá"
-              name="danhGia"
+              disabled
               type="danhGia"
             />
             <span>{validMovie.danhGia}</span>
@@ -115,7 +136,7 @@ const FormEditMovie = (props) => {
               placeholder="Bí Danh"
               name="biDanh"
             />
-            <span>{validMovie.biDanh}</span>
+            <span>{validMovie.biDanh}</span><br />
 
             <img
               src={infoMovie.hinhAnh}
@@ -149,9 +170,15 @@ const FormEditMovie = (props) => {
               >
                 Cancel
               </button>
-              <button type="submit" style={{ cursor: "pointer" }}>
-                Update
-              </button>
+              {validSubmit ? (
+                <button type="submit" style={{ cursor: "pointer" }}>
+                  Update
+                </button>
+              ) : (
+                <button disabled style={{ cursor: "no-drop" }}>
+                  Update
+                </button>
+              )}
             </div>
           </form>
         </Container>

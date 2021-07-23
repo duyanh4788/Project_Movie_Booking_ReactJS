@@ -3,7 +3,6 @@ import "./scss/ClientManagement.css";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -26,14 +25,8 @@ import FromEditClient from "./FromEditClient";
 import Loader from "../Loader/Loader";
 import FromAddClient from "./FromAddClient";
 
-const useStyles = makeStyles({
-  table: {
-    maxWidth: "100%",
-  },
-});
-
 const ClientMaragement = () => {
-  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   let loading = useSelector((state) => state.CommonReducer.loading);
@@ -152,7 +145,7 @@ const ClientMaragement = () => {
             />
           </form>
           <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table className="tableClient" aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>

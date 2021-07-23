@@ -7,7 +7,8 @@ import {
 } from "../../store/actions/getInfoUser.action";
 import "./css/profile.css";
 import Loader from "../../components/Loader/Loader";
-import format from "date-format";
+// date format
+import * as dayjs from "dayjs";
 import { Container, Grid } from "@material-ui/core";
 
 export default function ProfileUser() {
@@ -48,8 +49,8 @@ export default function ProfileUser() {
             <td>{index + 1}</td>
             <td>{donHang.tenPhim}</td>
             <td>{donHang.danhSachGhe[0].tenHeThongRap}</td>
-            <td>{format("dd-mm-yyyy", new Date(donHang.ngayDat))}</td>
-            <td>{format("hh:mm", new Date(donHang.ngayDat))}</td>
+            <td>{dayjs(donHang.ngayDat).format("DD-MM-YYYY")}</td>
+            <td>{dayjs(donHang.ngayDat).format("HH:MM")}</td>
             <td>{soLuong}</td>
 
             <td>{(donHang.giaVe * soLuong).toLocaleString()}</td>

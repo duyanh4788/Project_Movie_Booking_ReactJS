@@ -9,17 +9,21 @@ import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import "./scss/MovieManagement.css";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import TheatersIcon from "@material-ui/icons/Theaters";
 import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteListMovieManagement,
   getInfoMovie,
   getListMovieManagement,
+  getMaPhimMovieManagement,
   showFormMovie,
 } from "../../store/actions/movieManagement.action";
-import * as dayjs from "dayjs";
 import FormEditMovie from "./FormEditMovie";
 import FormAddMovie from "./FormAddMovie";
+// date format
+import * as dayjs from "dayjs";
+import FormCreatSchedule from "./FormCreatSchedule";
 
 export default function MovieManagement() {
   const dispatch = useDispatch();
@@ -82,6 +86,10 @@ export default function MovieManagement() {
     dispatch(getInfoMovie(infoPhim));
     dispatch(showFormMovie("editMovie"));
   };
+  const creatSchedule = (maPhim) => {
+    dispatch(getMaPhimMovieManagement(maPhim));
+    dispatch(showFormMovie("creatSchedule"));
+  };
   const themPhim = () => {
     dispatch(showFormMovie("addMovie"));
   };
@@ -92,6 +100,8 @@ export default function MovieManagement() {
         <FormEditMovie />
       ) : pageFormAdd === "addMovie" ? (
         <FormAddMovie />
+      ) : pageFormAdd === "creatSchedule" ? (
+        <FormCreatSchedule />
       ) : (
         <>
           <div className="formMovie">
@@ -117,12 +127,13 @@ export default function MovieManagement() {
             />
           </div>
           <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+            <Table aria-label="simple table" className="tableMove">
               <TableHead>
                 <TableRow>
                   <TableCell>Mã Phim</TableCell>
                   <TableCell>Tên Phim</TableCell>
                   <TableCell>Ngày Chiếu</TableCell>
+                  <TableCell>Giờ Chiếu</TableCell>
                   <TableCell>Nhóm</TableCell>
                   <TableCell>Đánh Giá</TableCell>
                   <TableCell>Bí Danh</TableCell>
@@ -152,7 +163,10 @@ export default function MovieManagement() {
                       <TableCell>{item.maPhim}</TableCell>
                       <TableCell>{item.tenPhim}</TableCell>
                       <TableCell>
-                        {dayjs(item.ngayKhoiChieu).format("MM-DD-YYYY HH:MM")}
+                        {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
+                      </TableCell>
+                      <TableCell>
+                        {dayjs(item.ngayKhoiChieu).format("HH:MM")}
                       </TableCell>
                       <TableCell>{item.maNhom}</TableCell>
                       <TableCell>{item.danhGia}</TableCell>
@@ -177,6 +191,12 @@ export default function MovieManagement() {
                           className="iconEdit"
                           onClick={() => {
                             editPhim(item);
+                          }}
+                        />
+                        <TheatersIcon
+                          className="iconCreat"
+                          onClick={() => {
+                            creatSchedule(item.maPhim);
                           }}
                         />
                       </TableCell>

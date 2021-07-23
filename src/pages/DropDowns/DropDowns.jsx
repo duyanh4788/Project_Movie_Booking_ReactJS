@@ -10,8 +10,8 @@ import {
   getCinemaDropDownsWithCode,
   getDateDropDowns,
 } from "../../store/actions/dropdowns.action";
-// format dd-mm-yy
-import format from "date-format";
+// date format
+import * as dayjs from "dayjs";
 
 const DropDowns = (props) => {
   const dispatch = useDispatch();
@@ -101,7 +101,6 @@ const DropDowns = (props) => {
   });
   // show tenRap
   const getCodeCinema = (items, tenCumRap) => {
-    console.log(tenCumRap);
     setTenRap({
       tenRap: tenCumRap,
     });
@@ -132,8 +131,7 @@ const DropDowns = (props) => {
             getDateCinema(item.ngayChieuGioChieu, item.maLichChieu);
           }}
         >
-          {" "}
-          {format("mm-dd-yyyy", new Date(item.ngayChieuGioChieu))}
+          {dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
         </a>
       );
     });
@@ -144,11 +142,11 @@ const DropDowns = (props) => {
   });
   const getDateCinema = (ngayChieuGioChieu, maLichChieu) => {
     stateTimeCode.timeCode = maLichChieu;
-    let formatDate = format("mm-dd-yyyy", new Date(ngayChieuGioChieu));
+    let formatDate = ngayChieuGioChieu.slice(0, 10);
     setDate({
       date: formatDate,
     });
-    let formatTimer = format("hh:mm", new Date(ngayChieuGioChieu));
+    let formatTimer = ngayChieuGioChieu.slice(11, 16);
     setTimer({
       timer: formatTimer,
     });
@@ -223,7 +221,6 @@ const DropDowns = (props) => {
         <button className="btnMuaVe" onClick={bookingMovie}>
           Mua Vé Ngay
         </button>
-        
       </div>
     </div>
   );

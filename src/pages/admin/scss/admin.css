@@ -1,1 +1,25 @@
-/* No CSS *//*# sourceMappingURL=admin.css.map */
+.adminPage h5 {
+  text-align: center;
+  font-size: 20px;
+  color: gray;
+  font-weight: 500;
+}
+
+.adminPage span {
+  font-size: 15px;
+  color: gray;
+  font-weight: bold;
+}
+
+.adminPage select {
+  max-width: 200px;
+  margin: 10px 0;
+  padding: 10px 5px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.808);
+  color: gray;
+}
+/*# sourceMappingURL=admin.css.map */

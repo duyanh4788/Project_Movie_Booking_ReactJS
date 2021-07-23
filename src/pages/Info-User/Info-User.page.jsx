@@ -64,11 +64,14 @@ function InfoUser(props) {
     localStorage.clear();
     history.push("/signIn");
     dispatch(signOut_Action()); // post action to action/signIn.action
+    setAnchorEl(null);
   };
   const showProfile = () => {
+    setAnchorEl(null);
     history.push("/profile");
   };
   const pageAdmin = () => {
+    setAnchorEl(null);
     history.push("/admin");
   };
   return (

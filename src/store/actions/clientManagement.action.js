@@ -138,15 +138,15 @@ export const getInfoClient = (infoClient) => {
     }
 }
 
-export const showFormClient = (dataBoolean) => {
+export const showFormClient = (data) => {
     return {
         type: PAGE_EDIT_CLIENT,
-        payload: dataBoolean,
+        payload: data,
     }
 }
-export const hidenFormClient = (dataBoolean) => {
+export const hidenFormClient = (data) => {
     return {
         type: PAGE_EDIT_CLIENT,
-        payload: dataBoolean,
+        payload: data,
     }
 }

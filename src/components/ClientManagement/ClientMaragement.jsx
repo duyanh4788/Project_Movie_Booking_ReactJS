@@ -129,8 +129,7 @@ const ClientMaragement = () => {
         <FromAddClient />
       ) : (
         <>
-          <div className="titleClient"></div>
-          <form onSubmit={submitSearchList}>
+          <form onSubmit={submitSearchList} className="formClient">
             <h5>Danh Sách Người Dùng</h5>
             <span>Mã Nhóm : </span>
             <select

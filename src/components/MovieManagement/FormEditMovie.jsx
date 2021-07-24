@@ -7,8 +7,43 @@ import {
 } from "../../store/actions/movieManagement.action";
 import "./scss/FormEditMovie.css";
 import TextField from "@material-ui/core/TextField";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const FormEditMovie = (props) => {
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // snackbar
+
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClick();
+    }
+  }, [statusCode]);
+
   const dispatch = useDispatch();
 
   const infoMovie = useSelector((state) => {
@@ -79,7 +114,7 @@ const FormEditMovie = (props) => {
       formData.append(key, editMovie[key]);
     }
     dispatch(updateListMovieManagement(formData));
-    dispatch(hiddenFormMovie("listUser"));
+    // dispatch(hiddenFormMovie("listUser"));
   };
 
   const hidenFormMovie = () => {
@@ -107,7 +142,8 @@ const FormEditMovie = (props) => {
               name="tenPhim"
               type="text"
             />
-            <span>{validMovie.tenPhim}</span><br />
+            <span>{validMovie.tenPhim}</span>
+            <br />
 
             <TextField
               id="datetime-local"
@@ -136,7 +172,8 @@ const FormEditMovie = (props) => {
               placeholder="Bí Danh"
               name="biDanh"
             />
-            <span>{validMovie.biDanh}</span><br />
+            <span>{validMovie.biDanh}</span>
+            <br />
 
             <img
               src={infoMovie.hinhAnh}
@@ -168,7 +205,7 @@ const FormEditMovie = (props) => {
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormMovie}
               >
-                Cancel
+                Trở Lại
               </button>
               {validSubmit ? (
                 <button type="submit" style={{ cursor: "pointer" }}>
@@ -183,6 +220,17 @@ const FormEditMovie = (props) => {
           </form>
         </Container>
       </div>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        {statusCode === 200 ? (
+          <Alert onClose={handleClose} severity="success">
+            UpDate Thành Công 
+          </Alert>
+        ) : (
+          <Alert onClose={handleClose} severity="error">
+            {errorMessage}
+          </Alert>
+        )}
+      </Snackbar>
     </div>
   );
 };

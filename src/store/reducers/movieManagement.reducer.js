@@ -1,20 +1,19 @@
-import { ADD_LIST_MOVIE_MANAGEMENT, CREAT_SCHEDULE_MOVIE_MANAGEMENT, DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_LIST_MOVIE_SEARCH_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant"
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_LIST_MOVIE_SEARCH_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant"
 
 const initialState = {
-    movieList: [],
-    pageFormAdd: "listMovie",
-    infoMovie: {},
-    maPhim: "",
-    codeCinema: {},
-    codeCumRap: [],
-    maCumRap: "",
-    updateSuccess: 0,
+    movieList: [],// render table  moviemanagement
+    pageFormAdd: "listMovie",// link page moviemanagement
+    updateSuccess: 0,// moviemanagement render html sau khi update thành công
+    infoMovie: {},// form edit
+    maPhim: "",// FormCreatSchedule
+    codeCinema: {},// FormCreatSchedule
+    codeCumRap: [], // FormCreatSchedule
+
 }
 
 export const MovieManagementReducer = (state = initialState, { type, payload }) => {
     let movieListUpdate = [...state.movieList]
     switch (type) {
-
         case GET_LIST_MOVIE_MANAGEMENT: {
             state.movieList = payload
             return { ...state, ...payload }
@@ -56,17 +55,10 @@ export const MovieManagementReducer = (state = initialState, { type, payload }) 
             state.updateSuccess = payload
             return { ...state }
         }
-        case ADD_LIST_MOVIE_MANAGEMENT: {
-            return { ...state }
-        }
         case GET_MAPHIM_MOVIE_MANAGEMENT: {
             state.maPhim = payload
             return { ...state }
         }
-        case CREAT_SCHEDULE_MOVIE_MANAGEMENT: {
-            return { ...state }
-        }
-
         default:
             return state
     }

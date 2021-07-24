@@ -14,6 +14,7 @@ import { SignUpReducer } from "./signup.reducer"
 import { ClientManagementReducer } from "./clientManagement.reducer"
 import { AdminPageReducer } from "./adminPage.reducer"
 import { MovieManagementReducer } from "./movieManagement.reducer"
+import { MessageSnackbarReducer } from "./messageSnackbar.reducer"
 
 export const rootReducers = combineReducers({
   movieReducer,
@@ -31,4 +32,5 @@ export const rootReducers = combineReducers({
   ClientManagementReducer,
   AdminPageReducer,
   MovieManagementReducer,
+  MessageSnackbarReducer,
 });

@@ -28,9 +28,38 @@ import * as dayjs from "dayjs";
 import FormCreatSchedule from "./FormCreatSchedule";
 import { setUpdateSuccess } from "../../store/actions/clientManagement.action";
 import Loader from "../Loader/Loader";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
+// snackbar
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function MovieManagement() {
   const dispatch = useDispatch();
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // snackbar
+
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
 
   const loading = useSelector((state) => state.CommonReducer.loading);
 
@@ -93,22 +122,26 @@ export default function MovieManagement() {
   };
   // delete
   const deletePhim = (maPhim) => {
+    handleClick();
     dispatch(deleteListMovieManagement(maPhim));
   };
   // edit
   const editPhim = (infoPhim) => {
     dispatch(getInfoMovie(infoPhim));
     dispatch(setUpdateSuccess(0));
+    dispatch(setDataErrorToZero(0));
     dispatch(showFormMovie("editMovie"));
   };
   // add
   const themPhim = () => {
     dispatch(showFormMovie("addMovie"));
+    dispatch(setDataErrorToZero(0));
   };
   // tạo lịch chiếu
   const creatSchedule = (maPhim) => {
     dispatch(getMaPhimMovieManagement(maPhim));
     dispatch(showFormMovie("creatSchedule"));
+    dispatch(setDataErrorToZero(0));
   };
   // maNhom
   const renderMaNhom = () => {
@@ -248,6 +281,17 @@ export default function MovieManagement() {
               onChangeRowsPerPage={handleChangeRowsPerPage}
             />
           </TableContainer>
+          <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            {statusCode === 200 ? (
+              <Alert onClose={handleClose} severity="success">
+                Xoá Phim Thành Công
+              </Alert>
+            ) : (
+              <Alert onClose={handleClose} severity="error">
+                {errorMessage}
+              </Alert>
+            )}
+          </Snackbar>
         </>
       )}
     </>

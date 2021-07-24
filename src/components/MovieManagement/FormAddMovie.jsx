@@ -1,6 +1,6 @@
 import { Container, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addListMovieManagement,
   hiddenFormMovie,
@@ -8,10 +8,40 @@ import {
 import "./scss/FormAddMovie.css";
 // date format
 import * as dayjs from "dayjs";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const FormAddMovie = () => {
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // snackbar
   const dispatch = useDispatch();
-
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClick();
+    }
+  }, [statusCode]);
   const [addMove, setAddMove] = useState({
     biDanh: "",
     danhGia: "",
@@ -79,7 +109,6 @@ const FormAddMovie = () => {
       formData.append(key, addMove[key]);
     }
     dispatch(addListMovieManagement(formData));
-    dispatch(hiddenFormMovie("listUser"));
   };
 
   const hidenFormMovie = () => {
@@ -201,7 +230,7 @@ const FormAddMovie = () => {
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormMovie}
               >
-                Cancel
+                Trở Lại
               </button>
               {validSubmit ? (
                 <button type="submit" style={{ cursor: "pointer" }}>
@@ -216,6 +245,17 @@ const FormAddMovie = () => {
           </form>
         </Container>
       </div>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        {statusCode === 200 ? (
+          <Alert onClose={handleClose} severity="success">
+            Thêm Phim Thành Công
+          </Alert>
+        ) : (
+          <Alert onClose={handleClose} severity="error">
+            {errorMessage}
+          </Alert>
+        )}
+      </Snackbar>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
-import { ADD_LIST_MOVIE_MANAGEMENT, CREAT_SCHEDULE_MOVIE_MANAGEMENT, DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_LIST_MOVIE_SEARCH_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
+import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_LIST_MOVIE_SEARCH_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 
@@ -43,7 +44,7 @@ export const getListMovieSearchManagement = (maNhom, tenPhim) => {
         }
     }
 }
-
+// delete
 export const deleteListMovieManagement = (maPhim) => {
     return async (dispatch) => {
         const toKen = JSON.parse(localStorage.getItem("token"))
@@ -57,19 +58,28 @@ export const deleteListMovieManagement = (maPhim) => {
                 }
             })
             dispatch({
-                type: DELETE_LIST_MOVIE_MANAGEMENT,
+                type: DELETE_LIST_MOVIE_MANAGEMENT,// render html
                 payload: maPhim
             })
-            alert(res.data)
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
+            })
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error.response);
-            alert(error.response.data)
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
 }
-// edit
+// show page moviemnanagement
 export const getInfoMovie = (infoMovie) => {
     return {
         type: INFO_MOVIE_MANAGEMENT,
@@ -102,16 +112,24 @@ export const updateListMovieManagement = (formData) => {
                     Authorization: `Bearer ${toKen}`
                 }
             })
-            if (res.status === 200) {
-                alert("Update Thành Công")
-            }
             dispatch({
-                type: UPDATE_LIST_MOVIE_MANAGEMENT,
+                type: UPDATE_LIST_MOVIE_MANAGEMENT, // render html sau khi update thành công
                 payload: res
+            })
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
             })
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error.response.data);
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
@@ -131,16 +149,24 @@ export const addListMovieManagement = (formData) => {
                 }
             })
             dispatch({
-                type: ADD_LIST_MOVIE_MANAGEMENT,
-                payload: res.data
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
             })
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error.response);
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
 }
+
 // creat schedule
 export const getMaPhimMovieManagement = (maPhim) => {
     return {
@@ -162,14 +188,19 @@ export const creatScheduleMovie = (dataMovie) => {
                 }
             })
             dispatch({
-                type: CREAT_SCHEDULE_MOVIE_MANAGEMENT,
-                payload: res.data
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
             })
-            alert(res.data)
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error.response);
-            alert(error.response.data)
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
@@ -177,7 +208,7 @@ export const creatScheduleMovie = (dataMovie) => {
 // lấy thông tin rạp => mã cụm rạp => tạo lịch chiếu
 export const getCodeCinemaMovieManagement = () => {
     return async (dispatch) => {
-       
+
         try {
             const res = await Axios({
                 method: "GET",
@@ -187,16 +218,16 @@ export const getCodeCinemaMovieManagement = () => {
                 type: GET_CODE_CINEMA_MOVIE_MANAGEMENT,
                 payload: res.data,
             })
-            
+
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 }
 export const getCumRapCinemaManagement = (maCumRap) => {
     return async (dispatch) => {
-      
+
         try {
             const res = await Axios({
                 method: "GET",
@@ -206,10 +237,10 @@ export const getCumRapCinemaManagement = (maCumRap) => {
                 type: GET_CUM_RAP_MOVIE_MANAGEMENT,
                 payload: res.data
             })
-           
+
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 }

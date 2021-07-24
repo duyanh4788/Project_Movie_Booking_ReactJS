@@ -16,6 +16,13 @@ import FormLabel from "@material-ui/core/FormLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
+// snackbar
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles({
   select: {
@@ -29,6 +36,33 @@ const useStyles = makeStyles({
 function FormCreatSchedule() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // snackbar
+
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClick();
+    }
+  }, [statusCode]);
 
   // select
   // maHeThongRap
@@ -294,7 +328,7 @@ function FormCreatSchedule() {
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormMovie}
               >
-                Come Back
+                Trở Lại
               </button>
               {validSubmit ? (
                 <button type="submit" style={{ cursor: "pointer" }}>
@@ -309,6 +343,17 @@ function FormCreatSchedule() {
           </form>
         </Container>
       </div>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        {statusCode === 200 ? (
+          <Alert onClose={handleClose} severity="success">
+            Tạo Lịch Chiếu Thành Công
+          </Alert>
+        ) : (
+          <Alert onClose={handleClose} severity="error">
+            {errorMessage}
+          </Alert>
+        )}
+      </Snackbar>
     </div>
   );
 }

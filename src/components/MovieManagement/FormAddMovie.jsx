@@ -62,7 +62,6 @@ const FormAddMovie = () => {
     let dateFormat = dayjs(e.target.value).format("DD-MM-YYYY");
     setAddMove({ ...addMove, ngayKhoiChieu: dateFormat });
   };
-  console.log(addMove);
   const validButtonSubmit = () => {
     let valid = true;
     for (let key in validMovie) {

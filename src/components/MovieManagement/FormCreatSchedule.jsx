@@ -3,18 +3,72 @@ import "./scss/FormCreatSchedule.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   creatScheduleMovie,
+  getCumRapCinemaManagement,
   hiddenFormMovie,
 } from "../../store/actions/movieManagement.action";
-// date format
-// import * as dayjs from "dayjs";
+import { makeStyles } from "@material-ui/core/styles";
 import format from "date-format";
-import { Container, TextField } from "@material-ui/core";
+import { Container, Grid, TextField } from "@material-ui/core";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+
+const useStyles = makeStyles({
+  select: {
+    padding: "0 5px",
+  },
+  label: {
+    fontSize: "8px",
+  },
+});
 
 function FormCreatSchedule() {
+  const classes = useStyles();
   const dispatch = useDispatch();
+
+  // select
+  // maHeThongRap
+  const [openCinema, setOpenCinema] = React.useState(false);
+  const handleCloseCinema = () => {
+    setOpenCinema(false);
+  };
+  const handleOpenCinema = () => {
+    setOpenCinema(true);
+  };
+  // cumRap
+  const [openCumRap, setOpenCumRap] = React.useState(false);
+  const handleCloseCumRap = () => {
+    setOpenCumRap(false);
+  };
+  const handleOpenCumRap = () => {
+    setOpenCumRap(true);
+  };
+  // maRap
+  const [openMaRap, setOpenMaRap] = React.useState(false);
+  const handleCloseMaRap = () => {
+    setOpenMaRap(false);
+  };
+  const handleOpenMaRap = () => {
+    setOpenMaRap(true);
+  };
+  // select
 
   const maPhim = useSelector((state) => {
     return state.MovieManagementReducer.maPhim;
+  });
+  const codeCinema = useSelector((state) => {
+    return state.MovieManagementReducer.codeCinema;
+  });
+  const codeCumRap = useSelector((state) => {
+    return state.MovieManagementReducer.codeCumRap;
+  });
+  const [cinema, setCinema] = useState({
+    codeCinema: "",
+    codeCumRap: "",
   });
 
   const [creatMovie, setCreatMovie] = useState({
@@ -37,19 +91,18 @@ function FormCreatSchedule() {
     validButtonSubmit();
   });
 
+  const handleChangeCodeCineMa = (e) => {
+    const { value } = e.target;
+    setCinema({ ...cinema, codeCinema: value });
+    dispatch(getCumRapCinemaManagement(value));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCreatMovie({ ...creatMovie, [name]: value });
-    // check empty
-    if (value.trim() === "") {
-      validMovie[name] = "Do Not Empty";
-    } else {
-      validMovie[name] = "";
-    }
   };
 
   const handleChangeDateTime = (e) => {
-    // let dateFormat = dayjs(e.target.value).format("DD-MM-YYYY hh:mm:ss");
     let dateFormat = format("dd/MM/yyyy hh:mm:ss", new Date(e.target.value));
     setCreatMovie({ ...creatMovie, ngayChieuGioChieu: dateFormat });
   };
@@ -66,7 +119,6 @@ function FormCreatSchedule() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(creatMovie);
     dispatch(creatScheduleMovie(creatMovie));
   };
 
@@ -74,60 +126,175 @@ function FormCreatSchedule() {
     dispatch(hiddenFormMovie("listUser"));
   };
 
+  const renderCodeCinema = () => {
+    return codeCinema.map((item, index) => {
+      return (
+        <MenuItem key={index} value={item.maHeThongRap}>
+          {item.maHeThongRap}
+        </MenuItem>
+      );
+    });
+  };
+
+  const renderCodeCumRap = () => {
+    return codeCumRap.map((item, index) => {
+      return (
+        <MenuItem key={index} value={item.maCumRap}>
+          {item.tenCumRap}
+        </MenuItem>
+      );
+    });
+  };
+
+  const renderMaRap = () => {
+    let index = codeCumRap.findIndex(
+      (item) => item.maCumRap === cinema.codeCumRap
+    );
+    if (index !== -1) {
+      return codeCumRap[index].danhSachRap.map((item, index) => {
+        return (
+          <MenuItem key={index} value={item.maRap}>
+            {item.tenRap} - Mã : {item.maRap}
+          </MenuItem>
+        );
+      });
+    }
+  };
+  
   return (
     <div className="backgroundCreatSchedule">
       <div className="wrapCreatSchedule">
         <Container maxWidth="md">
           <h4>Tạo Lịch Chiếu</h4>
           <form onSubmit={handleSubmit}>
-            <label>Mã Phim</label>
-            <input
-              onChange={handleChange}
-              value={creatMovie.maPhim}
-              disabled
-              type="text"
-            />
-            <span>{validMovie.maPhim}</span>
-            <label>Ngày Khỏi Chiếu</label><br />
-            <TextField
-              id="datetime-local"
-              type="datetime-local"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChangeDateTime}
-              defaultValue={creatMovie.ngayChieuGioChieu}
-              name="ngayChieuGioChieu"
-            />
-            <span>{validMovie.ngayChieuGioChieu}</span><br />
+            <div className="formCreat">
+              <label>Mã Phim</label>
+              <input
+                onChange={handleChange}
+                value={creatMovie.maPhim}
+                disabled
+                type="text"
+              />
+              <span className="spanValid">{validMovie.maPhim}</span>
+            </div>
 
-            <label>Mã Rạp</label>
-            <input
-              onChange={handleChange}
-              value={creatMovie.maRap}
-              name="maRap"
-              placeholder="Mã Rạp"
-              type="number"
-            />
-            <span>{validMovie.danhGia}</span>
+            <div className="formCreat">
+              <label>Ngày Khởi Chiếu</label>
+              <br />
+              <TextField
+                id="datetime-local"
+                type="datetime-local"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleChangeDateTime}
+                defaultValue={creatMovie.ngayChieuGioChieu}
+                name="ngayChieuGioChieu"
+                className="dateTimer"
+              />
+              <span className="spanValid">{validMovie.ngayChieuGioChieu}</span>
+            </div>
 
-            <label>Giá Phim</label>
-            <input
-              onChange={handleChange}
-              value={creatMovie.giaVe}
-              name="giaVe"
-              placeholder="Giá Vé"
-              type="number"
-            />
-            <span>{validMovie.biDanh}</span>
-            <br />
+            <div className="formCreat">
+              <label>Mã Rạp Phim</label>
+              <input
+                value={creatMovie.maRap}
+                onChange={handleChange}
+                disabled
+                type="number"
+              />
+              <Grid container>
+                <Grid item lg={4} className={classes.select}>
+                  <InputLabel style={{ fontSize: "10px" }}>Rạp</InputLabel>
+                  <Select
+                    open={openCinema}
+                    onClose={handleCloseCinema}
+                    onOpen={handleOpenCinema}
+                    onChange={handleChangeCodeCineMa}
+                    value={cinema.codeCinema}
+                    name="codeCinema"
+                    className="selectCodeCinema"
+                  >
+                    {renderCodeCinema()}
+                  </Select>
+                </Grid>
+                <Grid item lg={4} className={classes.select}>
+                  <InputLabel style={{ fontSize: "10px" }}>Cụm Rạp</InputLabel>
+                  <Select
+                    open={openCumRap}
+                    onClose={handleCloseCumRap}
+                    onOpen={handleOpenCumRap}
+                    onChange={(e) => {
+                      setCinema({ ...cinema, codeCumRap: e.target.value });
+                    }}
+                    value={cinema.codeCumRap}
+                    className="selectCodeCinema"
+                  >
+                    {renderCodeCumRap()}
+                  </Select>
+                </Grid>
+                <Grid item lg={4} className={classes.select}>
+                  <InputLabel style={{ fontSize: "10px" }}>Mã Rạp</InputLabel>
+                  <Select
+                    open={openMaRap}
+                    onClose={handleCloseMaRap}
+                    onOpen={handleOpenMaRap}
+                    onChange={handleChange}
+                    value={creatMovie.maRap}
+                    name="maRap"
+                    className="selectCodeCinema"
+                  >
+                    {renderMaRap()}
+                  </Select>
+                </Grid>
+              </Grid>
+              <span className="spanValid">{validMovie.maRap}</span>
+            </div>
+
+            <div className="formCreat">
+              <label>Giá Vé</label>
+              <input value={creatMovie.giaVe} disabled type="number" />
+
+              <FormLabel>Chọn Giá Vé : </FormLabel>
+              <RadioGroup
+                name="giaVe"
+                value={creatMovie.giaVe}
+                onChange={handleChange}
+                row
+                aria-label="position"
+                defaultValue="top"
+              >
+                <FormControlLabel
+                  value="75000"
+                  control={<Radio color="default" />}
+                  label="75.000"
+                />
+                <FormControlLabel
+                  value="120000"
+                  control={<Radio color="default" />}
+                  label="120.000"
+                />
+                <FormControlLabel
+                  value="150000"
+                  control={<Radio color="default" />}
+                  label="150.000"
+                />
+                <FormControlLabel
+                  value="180000"
+                  control={<Radio color="default" />}
+                  label="180.000"
+                />
+              </RadioGroup>
+              <span className="spanValid">{validMovie.giaVe}</span>
+            </div>
+
             <div style={{ textAlign: "center" }}>
               <button
                 type="button"
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormMovie}
               >
-                Cancel
+                Come Back
               </button>
               {validSubmit ? (
                 <button type="submit" style={{ cursor: "pointer" }}>

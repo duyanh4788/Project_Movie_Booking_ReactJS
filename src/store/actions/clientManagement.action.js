@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
 import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_SEARCH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getListClientManagement = (maNhom) => {
@@ -94,6 +95,13 @@ export const updateListClientManagement = (infoClient) => {
     }
 }
 
+export const setUpdateSuccess = (data) => {
+    return {
+        type: SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT,
+        payload: data
+    }
+}
+
 export const btnEditClient = (datas) => {
     return {
         type: UPDATE_LIST_CLIENT_MANAGEMENT,
@@ -104,6 +112,7 @@ export const addClientManagement = (dataClient) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
         try {
+            dispatch(showLoader_Action());
             const res = await Axios({
                 method: "POST",
                 url: `${DOMAIN}QuanLyNguoiDung/ThemNguoiDung`,
@@ -117,9 +126,11 @@ export const addClientManagement = (dataClient) => {
                 payload: res,
             })
             console.log(res);
+            dispatch(hidenLoader_Action());
         } catch (error) {
             console.log(error.response);
             alert(error.response.data)
+            dispatch(hidenLoader_Action());
         }
     }
 }

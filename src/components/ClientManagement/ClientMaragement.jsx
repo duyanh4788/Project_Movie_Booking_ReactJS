@@ -29,25 +29,24 @@ const ClientMaragement = () => {
 
   const dispatch = useDispatch();
 
-  let loading = useSelector((state) => state.CommonReducer.loading);
+  const loading = useSelector((state) => state.CommonReducer.loading);
   const listClient = useSelector((state) => {
     return state.ClientManagementReducer.listClient;
   });
   const pageFormClient = useSelector((state) => {
     return state.ClientManagementReducer.pageFormClient;
   });
-
   const [stateSearch, setStateSearch] = useState({
     search: "",
     maNhom: "GP01",
   });
-
+  // call api
   useEffect(() => {
     if (stateSearch.search === "") {
       dispatch(getListClientManagement(stateSearch.maNhom));
     }
   }, [dispatch, stateSearch.maNhom, stateSearch.search]);
-
+  // set data form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setStateSearch({ ...stateSearch, [name]: value });
@@ -61,20 +60,21 @@ const ClientMaragement = () => {
       dispatch(getListClientManagement(stateSearch.maNhom));
     }
   };
-
+  // delete
   const deleteClient = (taiKhoan) => {
     dispatch(deleteListClientManagement(taiKhoan));
   };
+  // edit
   const editClient = (infoClient) => {
     dispatch(btnEditClient(0));
     dispatch(getInfoClient(infoClient));
     dispatch(showFormClient("updateList"));
   };
+  // update
   const themNguoiDung = () => {
     dispatch(showFormClient("addClient"));
     dispatch(btnThemNguoiDung(null));
   };
-
   // table material
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -88,7 +88,6 @@ const ClientMaragement = () => {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, listClient.length - page * rowsPerPage);
   // table material
-
   // maNhom
   const renderMaNhom = () => {
     let arrMaNhom = [
@@ -111,7 +110,8 @@ const ClientMaragement = () => {
       );
     });
   };
-
+  // maNhom
+  // render
   return loading ? (
     <Loader />
   ) : (
@@ -138,7 +138,7 @@ const ClientMaragement = () => {
             <input
               className="inputSearch"
               type="text"
-              placeholder="Tìm Người Dùng"
+              placeholder="Tìm Người Dùng API"
               name="search"
               onChange={handleChange}
               value={stateSearch.search}

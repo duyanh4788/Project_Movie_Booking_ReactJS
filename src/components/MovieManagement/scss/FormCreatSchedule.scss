@@ -19,6 +19,9 @@
             color: black;
             font-weight: bolder;
         }
+        .formCreat {
+            margin-bottom: 20px;
+        }
         input {
             width: 100%;
             margin: 10px 0;
@@ -33,18 +36,29 @@
             opacity: 0.5;
             text-align: right;
         }
+        label {
+            color: gray;
+            font-size: 13px;
+            font-weight: bold;
+        }
         span {
+            font-size: 10px;
+        }
+        .spanValid {
             color: red;
             font-size: 10px;
             font-weight: bold;
         }
-        label {
-            font-size: 12px;
-            color: gray;
+        .dateTimer {
+            width: 100%;
+        }
+        .selectCodeCinema {
+            width: 100%;
+            padding: 0 5px;
         }
         button {
             font-size: 15px;
-            margin: 0 5px;
+            margin: 10px 5px;
             padding: 10px 15px;
             color: gray;
             background-color: rgba(255, 255, 255, 0.25);

@@ -14,8 +14,10 @@ import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteListMovieManagement,
+  getCodeCinemaMovieManagement,
   getInfoMovie,
   getListMovieManagement,
+  getListMovieSearchManagement,
   getMaPhimMovieManagement,
   showFormMovie,
 } from "../../store/actions/movieManagement.action";
@@ -24,23 +26,43 @@ import FormAddMovie from "./FormAddMovie";
 // date format
 import * as dayjs from "dayjs";
 import FormCreatSchedule from "./FormCreatSchedule";
+import { setUpdateSuccess } from "../../store/actions/clientManagement.action";
+import Loader from "../Loader/Loader";
 
 export default function MovieManagement() {
   const dispatch = useDispatch();
 
-  const [maNhom, setStateMaNhom] = useState("GP01");
-  const [search, setStateSearch] = useState("");
+  const loading = useSelector((state) => state.CommonReducer.loading);
 
+  const [stateMovie, setStateMovie] = useState({
+    search: "",
+    maNhom: "GP01",
+  });
   const movieList = useSelector((state) => {
     return state.MovieManagementReducer.movieList;
   });
   const pageFormAdd = useSelector((state) => {
     return state.MovieManagementReducer.pageFormAdd;
   });
+  const updateSuccess = useSelector((state) => {
+    return state.MovieManagementReducer.updateSuccess;
+  });
+  // cal api code cinema use FormCreatSchedule
+  useEffect(() => {
+    dispatch(getCodeCinemaMovieManagement());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getListMovieManagement(maNhom));
-  }, [maNhom, dispatch]);
+    if (updateSuccess === 200) {
+      dispatch(getListMovieManagement(stateMovie.maNhom));
+    }
+  }, [dispatch, updateSuccess, stateMovie.maNhom]);
+  // call api list movie
+  useEffect(() => {
+    if (stateMovie.search === "") {
+      dispatch(getListMovieManagement(stateMovie.maNhom));
+    }
+  }, [dispatch, stateMovie.maNhom, stateMovie.search]);
 
   // table
   const [page, setPage] = React.useState(0);
@@ -55,7 +77,39 @@ export default function MovieManagement() {
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, movieList.length - page * rowsPerPage);
   // table
-
+  // set data form
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setStateMovie({ ...stateMovie, [name]: value });
+  };
+  const submitSearchMovie = (e) => {
+    e.preventDefault();
+    dispatch(
+      getListMovieSearchManagement(stateMovie.maNhom, stateMovie.search)
+    );
+    if (stateMovie.search === "") {
+      dispatch(getListMovieManagement(stateMovie.maNhom));
+    }
+  };
+  // delete
+  const deletePhim = (maPhim) => {
+    dispatch(deleteListMovieManagement(maPhim));
+  };
+  // edit
+  const editPhim = (infoPhim) => {
+    dispatch(getInfoMovie(infoPhim));
+    dispatch(setUpdateSuccess(0));
+    dispatch(showFormMovie("editMovie"));
+  };
+  // add
+  const themPhim = () => {
+    dispatch(showFormMovie("addMovie"));
+  };
+  // tạo lịch chiếu
+  const creatSchedule = (maPhim) => {
+    dispatch(getMaPhimMovieManagement(maPhim));
+    dispatch(showFormMovie("creatSchedule"));
+  };
   // maNhom
   const renderMaNhom = () => {
     let arrMaNhom = [
@@ -78,23 +132,10 @@ export default function MovieManagement() {
       );
     });
   };
-
-  const deletePhim = (maPhim) => {
-    dispatch(deleteListMovieManagement(maPhim));
-  };
-  const editPhim = (infoPhim) => {
-    dispatch(getInfoMovie(infoPhim));
-    dispatch(showFormMovie("editMovie"));
-  };
-  const creatSchedule = (maPhim) => {
-    dispatch(getMaPhimMovieManagement(maPhim));
-    dispatch(showFormMovie("creatSchedule"));
-  };
-  const themPhim = () => {
-    dispatch(showFormMovie("addMovie"));
-  };
-
-  return (
+  // render
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       {pageFormAdd === "editMovie" ? (
         <FormEditMovie />
@@ -104,13 +145,13 @@ export default function MovieManagement() {
         <FormCreatSchedule />
       ) : (
         <>
-          <div className="formMovie">
+          <form onSubmit={submitSearchMovie} className="formMovie">
             <h5>Danh Sách Phim</h5>
             <span>Mã Nhóm : </span>
             <select
-              onChange={(e) => {
-                setStateMaNhom(e.target.value);
-              }}
+              name="maNhom"
+              value={stateMovie.maNhom}
+              onChange={handleChange}
             >
               {renderMaNhom()}
             </select>
@@ -120,12 +161,12 @@ export default function MovieManagement() {
             <input
               className="inputSearch"
               type="text"
-              placeholder="Tìm Tên Phim"
-              onChange={(e) => {
-                setStateSearch(e.target.value);
-              }}
+              placeholder="Tìm Người Dùng API"
+              name="search"
+              value={stateMovie.search}
+              onChange={handleChange}
             />
-          </div>
+          </form>
           <TableContainer component={Paper}>
             <Table aria-label="simple table" className="tableMove">
               <TableHead>
@@ -145,18 +186,6 @@ export default function MovieManagement() {
               </TableHead>
               <TableBody>
                 {movieList
-                  ?.filter((itemF) => {
-                    if (search === "") {
-                      return itemF;
-                    } else if (
-                      itemF.tenPhim
-                        .toLocaleLowerCase()
-                        .match(search.toLocaleLowerCase())
-                    ) {
-                      return itemF;
-                    }
-                    return false;
-                  })
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((item, index) => (
                     <TableRow key={index}>

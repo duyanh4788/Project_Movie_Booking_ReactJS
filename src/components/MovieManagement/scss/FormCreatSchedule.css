@@ -30,6 +30,10 @@
   font-weight: bolder;
 }
 
+.backgroundCreatSchedule .wrapCreatSchedule .formCreat {
+  margin-bottom: 20px;
+}
+
 .backgroundCreatSchedule .wrapCreatSchedule input {
   width: 100%;
   margin: 10px 0;
@@ -64,20 +68,34 @@
   text-align: right;
 }
 
+.backgroundCreatSchedule .wrapCreatSchedule label {
+  color: gray;
+  font-size: 13px;
+  font-weight: bold;
+}
+
 .backgroundCreatSchedule .wrapCreatSchedule span {
+  font-size: 10px;
+}
+
+.backgroundCreatSchedule .wrapCreatSchedule .spanValid {
   color: red;
   font-size: 10px;
   font-weight: bold;
 }
 
-.backgroundCreatSchedule .wrapCreatSchedule label {
-  font-size: 12px;
-  color: gray;
+.backgroundCreatSchedule .wrapCreatSchedule .dateTimer {
+  width: 100%;
+}
+
+.backgroundCreatSchedule .wrapCreatSchedule .selectCodeCinema {
+  width: 100%;
+  padding: 0 5px;
 }
 
 .backgroundCreatSchedule .wrapCreatSchedule button {
   font-size: 15px;
-  margin: 0 5px;
+  margin: 10px 5px;
   padding: 10px 15px;
   color: gray;
   background-color: rgba(255, 255, 255, 0.25);

@@ -9,6 +9,7 @@ import "./scss/FormEditMovie.css";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -114,11 +115,12 @@ const FormEditMovie = (props) => {
       formData.append(key, editMovie[key]);
     }
     dispatch(updateListMovieManagement(formData));
-    // dispatch(hiddenFormMovie("listUser"));
+    dispatch(hiddenFormMovie("listUser"));
   };
 
   const hidenFormMovie = () => {
     dispatch(hiddenFormMovie("listUser"));
+    dispatch(setDataErrorToZero(0));
   };
 
   return (

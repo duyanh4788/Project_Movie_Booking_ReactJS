@@ -68,18 +68,4 @@
   border-radius: 5px;
   outline: none;
 }
-
-.modalTitle {
-  font-size: 15px;
-  font-weight: bolder;
-  color: red;
-  border-radius: 5px;
-  padding: 50px;
-  background-color: white;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
 /*# sourceMappingURL=signIn.css.map */

@@ -1,16 +1,34 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
-import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_SEARCH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_LENGTH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
 import { SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
-export const getListClientManagement = (maNhom) => {
+export const getListLengthClientManagement = (maNhom) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "GET",
+                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`
+            })
+            dispatch({
+                type: GET_LIST_LENGTH_CLIENT_MANAGEMENT,
+                payload: res.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const getListClientManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
         dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "GET",
-                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`
+                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=${maNhom}&soTrang=${soTrang}&soPhanTuTrenTrang=${soPhanTuTrenTrang}`
             })
             dispatch({
                 type: GET_LIST_CLIENT_MANAGEMENT,
@@ -23,27 +41,23 @@ export const getListClientManagement = (maNhom) => {
         }
     }
 }
-
-export const getListSearchClientManagement = (maNhom, tuKhoa) => {
+export const getListSearchClientManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
         try {
-            dispatch(showLoader_Action());
             const res = await Axios({
                 method: "GET",
-                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}&tuKhoa=${tuKhoa}`
+                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=${maNhom}&tuKhoa=${tuKhoa}&soTrang=${soTrang}&soPhanTuTrenTrang=${soPhanTuTrenTrang}`
             })
             dispatch({
-                type: GET_LIST_SEARCH_CLIENT_MANAGEMENT,
+                type: GET_LIST_CLIENT_MANAGEMENT,
                 payload: res.data
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             console.log(error);
-            dispatch(hidenLoader_Action());
         }
     }
 }
-
+// delete
 export const deleteListClientManagement = (taiKhoan) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
@@ -60,16 +74,25 @@ export const deleteListClientManagement = (taiKhoan) => {
                 type: TAIKHOAN_CLIENT_MANAGEMENT,
                 payload: taiKhoan,
             })
-            alert(res.data)
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
+            })
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error.response);
-            alert(error.response.data)
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
 }
-
+// edit update
 export const updateListClientManagement = (infoClient) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
@@ -87,32 +110,41 @@ export const updateListClientManagement = (infoClient) => {
                 type: UPDATE_LIST_CLIENT_MANAGEMENT,
                 payload: res
             })
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message success
+                payload: res.status
+            })
             dispatch(hidenLoader_Action());
         } catch (error) {
-            console.log(error);
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
             dispatch(hidenLoader_Action());
         }
     }
 }
-
 export const setUpdateSuccess = (data) => {
     return {
         type: SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT,
         payload: data
     }
 }
-
 export const btnEditClient = (datas) => {
     return {
         type: UPDATE_LIST_CLIENT_MANAGEMENT,
         payload: datas
     }
 }
+// add
 export const addClientManagement = (dataClient) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
         try {
-            dispatch(showLoader_Action());
             const res = await Axios({
                 method: "POST",
                 url: `${DOMAIN}QuanLyNguoiDung/ThemNguoiDung`,
@@ -125,30 +157,37 @@ export const addClientManagement = (dataClient) => {
                 type: ADD_CLIENT_MANAGEMENT,
                 payload: res,
             })
-            console.log(res);
-            dispatch(hidenLoader_Action());
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: res.status
+            })
         } catch (error) {
             console.log(error.response);
-            alert(error.response.data)
-            dispatch(hidenLoader_Action());
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
         }
     }
 }
-
-export const btnThemNguoiDung = (data) => {
+// setState ClientMaragement
+export const btnThemNguoiDung = (dataNull) => {
     return {
         type: ADD_CLIENT_MANAGEMENT,
-        payload: data
+        payload: dataNull
     }
 }
-
+// show page ClientMaragement
 export const getInfoClient = (infoClient) => {
     return {
         type: GET_INFO_CLIENT,
         payload: infoClient,
     }
 }
-
 export const showFormClient = (data) => {
     return {
         type: PAGE_EDIT_CLIENT,

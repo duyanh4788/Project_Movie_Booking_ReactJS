@@ -4,7 +4,7 @@ import React from "react";
 import InfoUser from "../Info-User/Info-User.page";
 import { imagesLogo } from "./imaGesLogo";
 // redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // react-router-dom
 import { Link } from "react-router-dom";
 // material
@@ -17,8 +17,11 @@ import Grid from "@material-ui/core/Grid";
 // css
 import "./css/header.style.css";
 import CinemaDetailPage from "../CinemaDetailPage/CinemaDetail.page";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 function Header(props) {
+
+   const dispatch = useDispatch();
   // take data reducer/signIn.reducer
   let signIn = useSelector((state) => {
     return state.signInReducer.auth;
@@ -62,7 +65,13 @@ function Header(props) {
                 Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
               </Link>
               <LocationOnIcon className="headerIconLogIn" />
-              <Link to="/signIn" className="headerTitleThere">
+              <Link
+                to="/signIn"
+                className="headerTitleThere"
+                onClick={() => {
+                  dispatch(setDataErrorToZero(0));
+                }}
+              >
                 Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
               </Link>
             </Typography>

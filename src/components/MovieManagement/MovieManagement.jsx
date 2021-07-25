@@ -5,7 +5,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import "./scss/MovieManagement.css";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
@@ -16,8 +15,9 @@ import {
   deleteListMovieManagement,
   getCodeCinemaMovieManagement,
   getInfoMovie,
+  getListLengthMovieManagement,
+  getListMovieDateManagement,
   getListMovieManagement,
-  getListMovieSearchManagement,
   getMaPhimMovieManagement,
   showFormMovie,
 } from "../../store/actions/movieManagement.action";
@@ -32,6 +32,8 @@ import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 // snackbar
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Container, Grid, TextField } from "@material-ui/core";
+import Pagination from "@material-ui/lab/Pagination";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -50,8 +52,6 @@ export default function MovieManagement() {
     }
     setOpen(false);
   };
-  // snackbar
-
   // show status
   const statusCode = useSelector(
     (state) => state.MessageSnackbarReducer.statusCode
@@ -59,76 +59,144 @@ export default function MovieManagement() {
   const errorMessage = useSelector(
     (state) => state.MessageSnackbarReducer.errorMessage
   );
-  // show status
-
-  const loading = useSelector((state) => state.CommonReducer.loading);
-
-  const [stateMovie, setStateMovie] = useState({
-    search: "",
-    maNhom: "GP01",
-  });
-  const movieList = useSelector((state) => {
-    return state.MovieManagementReducer.movieList;
-  });
+  // snackbar
   const pageFormAdd = useSelector((state) => {
     return state.MovieManagementReducer.pageFormAdd;
   });
   const updateSuccess = useSelector((state) => {
     return state.MovieManagementReducer.updateSuccess;
   });
+  // page
+  const [page, setPage] = React.useState(1);
+  // row page
+  const [stateRowsPage, setRowsPage] = useState({
+    page: "5",
+  });
+  //search
+  const [stateSearch, setSearch] = useState({
+    search: "",
+  });
+  // get maNhom
+  const [stateMaNhom, setMaNhom] = useState({
+    maNhom: "GP01",
+  });
+  // get date
+  const [stateSince, setSince] = useState({
+    dateSince: "",
+  });
+  // get date
+  const [stateToThatDay, setToThatDay] = useState({
+    dateDay: "",
+  });
+  // set snackbar
+  useEffect(() => {
+    if (statusCode === 200 || statusCode === 500) {
+      handleClick();
+      dispatch(setDataErrorToZero(0));
+    }
+  }, [dispatch, statusCode]);
   // cal api code cinema use FormCreatSchedule
   useEffect(() => {
     dispatch(getCodeCinemaMovieManagement());
   }, [dispatch]);
-
+  // get lenght movielist
   useEffect(() => {
-    if (updateSuccess === 200) {
-      dispatch(getListMovieManagement(stateMovie.maNhom));
-    }
-  }, [dispatch, updateSuccess, stateMovie.maNhom]);
-  // call api list movie
+    dispatch(getListLengthMovieManagement(stateMaNhom.maNhom));
+  }, [dispatch, stateMaNhom.maNhom]);
+  // call api get list movie pagination
   useEffect(() => {
-    if (stateMovie.search === "") {
-      dispatch(getListMovieManagement(stateMovie.maNhom));
+    if (stateSearch.search === "") {
+      dispatch(
+        getListMovieManagement(stateMaNhom.maNhom, page, stateRowsPage.page)
+      );
     }
-  }, [dispatch, stateMovie.maNhom, stateMovie.search]);
-
-  // table
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  }, [
+    dispatch,
+    updateSuccess,
+    stateMaNhom.maNhom,
+    page,
+    stateRowsPage.page,
+    stateSearch.search,
+  ]);
+  // call api search movie
+  // useEffect(() => {
+  //   if (stateSearch.search !== "") {
+  //     dispatch(
+  //       getListMovieSearchManagement(
+  //         stateMaNhom.maNhom,
+  //         stateSearch.search,
+  //         page,
+  //         stateRowsPage.page
+  //       )
+  //     );
+  //   }
+  // }, [
+  //   dispatch,
+  //   stateMaNhom.maNhom,
+  //   stateSearch.search,
+  //   page,
+  //   stateRowsPage.page,
+  // ]);
+  // show loading
+  const loading = useSelector((state) => state.CommonReducer.loading);
+  // get data reducer
+  const movieListLength = useSelector((state) => {
+    return state.MovieManagementReducer.movieListLength;
+  });
+  // set maNhom
+  const handleMaNhom = (e) => {
+    const { value } = e.target;
+    setMaNhom({ ...stateMaNhom, maNhom: value });
     setPage(0);
   };
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, movieList.length - page * rowsPerPage);
-  // table
-  // set data form
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStateMovie({ ...stateMovie, [name]: value });
+  // set search
+  const handleSearch = (e) => {
+    setSearch({ ...stateSearch, search: e.target.value });
   };
-  const submitSearchMovie = (e) => {
-    e.preventDefault();
+  // set date
+  const handleSince = (e) => {
+    setSince({ ...stateSince, dateSince: e.target.value });
+  };
+  const handleToDay = (e) => {
+    setToThatDay({ ...stateToThatDay, dateDay: e.target.value });
+  };
+  // setpage
+  const handleChangePage = (event, value) => {
+    setPage(value);
+    dispatch(setDataErrorToZero(0));
+  };
+  const handleRowPage = (e) => {
+    setRowsPage({ ...stateRowsPage, page: e.target.value });
+  };
+  //  btn tim phim
+  const timPhimTheoNgay = () => {
+    let dateSince = dayjs(stateSince.dateSince).format("DD/MM/YYYY");
+    let dateDay = dayjs(stateToThatDay.dateDay).format("DD/MM/YYYY");
     dispatch(
-      getListMovieSearchManagement(stateMovie.maNhom, stateMovie.search)
+      getListMovieDateManagement(
+        stateMaNhom.maNhom,
+        stateSearch.search,
+        page,
+        stateRowsPage.page,
+        dateSince,
+        dateDay
+      )
     );
-    if (stateMovie.search === "") {
-      dispatch(getListMovieManagement(stateMovie.maNhom));
-    }
   };
+  const movieList = useSelector((state) => {
+    return state.MovieManagementReducer.movieList;
+  });
+  const movieListDate = useSelector((state) => {
+    return state.MovieManagementReducer.movieListDate;
+  });
   // delete
   const deletePhim = (maPhim) => {
-    handleClick();
     dispatch(deleteListMovieManagement(maPhim));
   };
   // edit
   const editPhim = (infoPhim) => {
-    dispatch(getInfoMovie(infoPhim));
     dispatch(setUpdateSuccess(0));
+    dispatch(getInfoMovie(infoPhim));
     dispatch(setDataErrorToZero(0));
     dispatch(showFormMovie("editMovie"));
   };
@@ -165,7 +233,7 @@ export default function MovieManagement() {
       );
     });
   };
-  // render
+  // render {? }
   return loading ? (
     <Loader />
   ) : (
@@ -178,28 +246,82 @@ export default function MovieManagement() {
         <FormCreatSchedule />
       ) : (
         <>
-          <form onSubmit={submitSearchMovie} className="formMovie">
+          <TableContainer component={Paper}>
+            <Table aria-label="simple table" className="formMovie">
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    <span>Chọn Nhóm : </span>
+                    <select
+                      name="maNhom"
+                      value={stateMaNhom.maNhom}
+                      onChange={handleMaNhom}
+                    >
+                      {renderMaNhom()}
+                    </select>
+                  </TableCell>
+                  <TableCell>
+                    <input
+                      className="inputSearch"
+                      type="text"
+                      placeholder="Tìm Phim API"
+                      name="search"
+                      value={stateSearch.search}
+                      onChange={handleSearch}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <span>
+                      Từ{" "}
+                      <TextField
+                        id="date"
+                        type="date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        className="dateTimer"
+                        value={stateSince.dateSince}
+                        onChange={handleSince}
+                      />{" "}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <span>
+                      Đến{" "}
+                      <TextField
+                        id="date"
+                        type="date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        className="dateTimer"
+                        value={stateToThatDay.dateDay}
+                        onChange={handleToDay}
+                      />
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <button type="button" onClick={timPhimTheoNgay}>
+                      Tìm Phim
+                    </button>
+                  </TableCell>
+                  <TableCell>
+                    {movieListDate.length > 0 ? (
+                      <span>Đã Tìm Thấy {movieListDate.length} Phim</span>
+                    ) : (
+                      ""
+                    )}
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+            </Table>
+          </TableContainer>
+          <div className="titleMovieManagement">
             <h5>Danh Sách Phim</h5>
-            <span>Mã Nhóm : </span>
-            <select
-              name="maNhom"
-              value={stateMovie.maNhom}
-              onChange={handleChange}
-            >
-              {renderMaNhom()}
-            </select>
-            <button type="button" onClick={themPhim}>
+            <button className="btnThemPhim" onClick={themPhim}>
               Thêm Phim
             </button>
-            <input
-              className="inputSearch"
-              type="text"
-              placeholder="Tìm Người Dùng API"
-              name="search"
-              value={stateMovie.search}
-              onChange={handleChange}
-            />
-          </form>
+          </div>
           <TableContainer component={Paper}>
             <Table aria-label="simple table" className="tableMove">
               <TableHead>
@@ -218,68 +340,77 @@ export default function MovieManagement() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {movieList
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{item.maPhim}</TableCell>
-                      <TableCell>{item.tenPhim}</TableCell>
-                      <TableCell>
-                        {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(item.ngayKhoiChieu).format("HH:MM")}
-                      </TableCell>
-                      <TableCell>{item.maNhom}</TableCell>
-                      <TableCell>{item.danhGia}</TableCell>
-                      <TableCell>{item.biDanh}</TableCell>
-                      <TableCell>
-                        <img
-                          src={item.hinhAnh}
-                          alt={item.hinhAnh}
-                          style={{ width: "50px", height: "50px" }}
-                        />
-                      </TableCell>
-                      <TableCell>{item.trailer.slice(0, 20)}</TableCell>
-                      <TableCell>{item.moTa.slice(0, 20)}</TableCell>
-                      <TableCell>
-                        <DeleteOutlineRoundedIcon
-                          className="iconDelete"
-                          onClick={() => {
-                            deletePhim(item.maPhim);
-                          }}
-                        />
-                        <EditRoundedIcon
-                          className="iconEdit"
-                          onClick={() => {
-                            editPhim(item);
-                          }}
-                        />
-                        <TheatersIcon
-                          className="iconCreat"
-                          onClick={() => {
-                            creatSchedule(item.maPhim);
-                          }}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
+                {movieList?.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{item.maPhim}</TableCell>
+                    <TableCell>{item.tenPhim}</TableCell>
+                    <TableCell>
+                      {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
+                    </TableCell>
+                    <TableCell>
+                      {dayjs(item.ngayKhoiChieu).format("HH:MM")}
+                    </TableCell>
+                    <TableCell>{item.maNhom}</TableCell>
+                    <TableCell>{item.danhGia}</TableCell>
+                    <TableCell>{item.biDanh}</TableCell>
+                    <TableCell>
+                      <img
+                        src={item.hinhAnh}
+                        alt={item.hinhAnh}
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                    </TableCell>
+                    <TableCell>{item.trailer.slice(0, 20)}</TableCell>
+                    <TableCell>{item.moTa.slice(0, 20)}</TableCell>
+                    <TableCell>
+                      <DeleteOutlineRoundedIcon
+                        className="iconDelete"
+                        onClick={() => {
+                          deletePhim(item.maPhim);
+                        }}
+                      />
+                      <EditRoundedIcon
+                        className="iconEdit"
+                        onClick={() => {
+                          editPhim(item);
+                        }}
+                      />
+                      <TheatersIcon
+                        className="iconCreat"
+                        onClick={() => {
+                          creatSchedule(item.maPhim);
+                        }}
+                      />
+                    </TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={movieList.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
+            <Container maxWidth="md" className="pagination">
+              <Grid container>
+                <Grid item lg={4}>
+                  <span> Rows per page : </span>
+                  <select
+                    name="stateRowsPage"
+                    onChange={handleRowPage}
+                    value={stateRowsPage.page}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                </Grid>
+                <Grid item lg={8}>
+                  <Pagination
+                    count={movieListLength.length}
+                    showFirstButton
+                    showLastButton
+                    page={page}
+                    onChange={handleChangePage}
+                  />
+                </Grid>
+              </Grid>
+            </Container>
           </TableContainer>
           <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
             {statusCode === 200 ? (

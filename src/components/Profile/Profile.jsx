@@ -10,8 +10,44 @@ import Loader from "../../components/Loader/Loader";
 // date format
 import * as dayjs from "dayjs";
 import { Container, Grid } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function ProfileUser() {
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClick();
+    }
+  }, [statusCode]);
+  // snackbar
+
+  useEffect(() => {
+    validSubmit();
+  });
+
   let loading = useSelector((state) => state.CommonReducer.loading);
   const dispatch = useDispatch();
 
@@ -82,6 +118,7 @@ export default function ProfileUser() {
   };
   // show hiden form update
   const [showUpdate, setShowUpdate] = useState(true);
+  const [stateValid, setStateValid] = useState(true);
   // setSate value form update input
   const [stateUser, setStateUser] = useState({
     hoTen: infoUser.hoTen,
@@ -99,13 +136,10 @@ export default function ProfileUser() {
     email: "",
     soDT: "",
   });
-  const [stateValid, setStateValid] = useState(true);
-  const [stateMesage, setStateMesage] = useState(false);
   // submit form
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(putUpdateUser(stateUser));
-    setStateMesage(true);
   };
   // change value form
   const handlChange = (e) => {
@@ -116,11 +150,15 @@ export default function ProfileUser() {
     } else {
       stateError[name] = "";
     }
-    if (stateError[name] !== "") {
-      setStateValid(false);
-    } else {
-      setStateValid(true);
+  };
+  const validSubmit = () => {
+    let valid = true;
+    for (let key in stateError) {
+      if (stateError[key] !== "" || stateUser[key] === "") {
+        valid = false;
+      }
     }
+    setStateValid(valid);
   };
 
   // render
@@ -135,28 +173,29 @@ export default function ProfileUser() {
             <table className="table">
               <thead>
                 <tr>
-                  <td>Họ tên: </td>
-                  <td>{infoUser.hoTen}</td>
+                  <td>Họ tên</td>
+                  <td>: {infoUser.hoTen}</td>
                 </tr>
                 <tr>
-                  <td>Tài khoản: </td>
-                  <td>{infoUser.taiKhoan}</td>
+                  <td>Tài khoản</td>
+                  <td>: {infoUser.taiKhoan}</td>
                 </tr>
                 <tr>
-                  <td>Mật khẩu: </td>
-                  <td>{infoUser.matKhau}</td>
+                  <td>Mật khẩu</td>
+                  <td>: {infoUser.matKhau}</td>
                 </tr>
                 <tr>
-                  <td>Email: </td>
-                  <td>{infoUser.email}</td>
+                  <td>Email</td>
+                  <td>: {infoUser.email}</td>
                 </tr>
                 <tr>
-                  <td>Phone: </td>
-                  <td>{infoUser.soDT}</td>
+                  <td>Phone</td>
+                  <td>: {infoUser.soDT}</td>
                 </tr>
                 <tr>
-                  <td>Vai trò: </td>
+                  <td>Vai trò</td>
                   <td>
+                    :
                     {maLoaiNguoiDung === "QuanTri"
                       ? "Quản trị viên"
                       : "Khách hàng"}
@@ -257,79 +296,38 @@ export default function ProfileUser() {
                 />
                 <div style={{ textAlign: "center", marginTop: "20px" }}>
                   <button
+                    style={{ color: "red" }}
                     type="button"
                     onClick={() => {
                       setShowUpdate(true);
                     }}
                   >
-                    Cancel
+                    Trở Lại
                   </button>
-                  {!stateValid ? (
-                    <button
-                      type="submit"
-                      disabled
-                      style={{ cursor: "no-drop" }}
-                    >
+                  {stateValid ? (
+                    <button type="submit" onClick={handleClick}>
                       Cập nhật thông tin
                     </button>
                   ) : (
-                    <button type="submit">Cập nhật thông tin</button>
+                    <button disabled style={{ cursor: "no-drop" }}>
+                      Cập nhật thông tin
+                    </button>
                   )}
                 </div>
               </form>
             </Grid>
           </Grid>
-          {stateMesage ? (
-            <div className="mesageInfoUser">
-              <div className="modalMesage">
-                <h5>Thông Tin Của Bạn</h5>
-                <table className="tableMesage">
-                  <thead>
-                    <tr>
-                      <td>Họ tên : </td>
-                      <td>{infoUser.hoTen}</td>
-                    </tr>
-                    <tr>
-                      <td>Tài khoản : </td>
-                      <td>{infoUser.taiKhoan}</td>
-                    </tr>
-                    <tr>
-                      <td>Mật khẩu : </td>
-                      <td>{infoUser.matKhau}</td>
-                    </tr>
-                    <tr>
-                      <td>Email : </td>
-                      <td>{infoUser.email}</td>
-                    </tr>
-                    <tr>
-                      <td>Phone : </td>
-                      <td>{infoUser.soDT}</td>
-                    </tr>
-                    <tr>
-                      <td>Vai trò: </td>
-                      <td>
-                        {maLoaiNguoiDung === "QuanTri"
-                          ? "Quản trị viên"
-                          : "Khách hàng"}
-                      </td>
-                    </tr>
-                  </thead>
-                </table>
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    onClick={() => {
-                      setStateMesage(false);
-                      setShowUpdate(true);
-                    }}
-                  >
-                    Come Back
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
+          <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            {statusCode === 200 ? (
+              <Alert onClose={handleClose} severity="success">
+                Update Thành Công
+              </Alert>
+            ) : (
+              <Alert onClose={handleClose} severity="error">
+                {errorMessage}
+              </Alert>
+            )}
+          </Snackbar>
         </Container>
       )}
     </div>

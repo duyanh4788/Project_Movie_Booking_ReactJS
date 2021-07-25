@@ -1,94 +1,197 @@
 import React, { useState } from "react";
-import "./scss/ClientManagement.css";
-import EditRoundedIcon from "@material-ui/icons/EditRounded";
-import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
-import { useDispatch, useSelector } from "react-redux";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
+import Pagination from "@material-ui/lab/Pagination";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteOutlineRoundedIcon from "@material-ui/icons/DeleteOutlineRounded";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import "./scss/ClientManagement.css";
+import FromEditClient from "./FromEditClient";
+import FromAddClient from "./FromAddClient";
+import { Container, Grid } from "@material-ui/core";
 import {
   btnEditClient,
   btnThemNguoiDung,
   deleteListClientManagement,
   getInfoClient,
   getListClientManagement,
+  getListLengthClientManagement,
   getListSearchClientManagement,
   showFormClient,
 } from "../../store/actions/clientManagement.action";
-import FromEditClient from "./FromEditClient";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import Loader from "../Loader/Loader";
-import FromAddClient from "./FromAddClient";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const ClientMaragement = () => {
-
   const dispatch = useDispatch();
+  // snackbar
+  const [stateSnackbar, setOpen] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, open } = stateSnackbar;
+  const handleClick = (newState) => {
+    setOpen({ open: true, ...newState });
+  };
+  const handleClose = () => {
+    setOpen({ ...stateSnackbar, open: false });
+  };
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // snackbar
 
+  // show loading
   const loading = useSelector((state) => state.CommonReducer.loading);
-  const listClient = useSelector((state) => {
-    return state.ClientManagementReducer.listClient;
+  // get data reducer
+  const listClientPagination = useSelector(
+    (state) => state.ClientManagementReducer.listClient
+  );
+  const listClientLength = useSelector(
+    (state) => state.ClientManagementReducer.listClientLength
+  );
+  const updateSuccess = useSelector((state) => {
+    return state.ClientManagementReducer?.updateSuccess;
   });
   const pageFormClient = useSelector((state) => {
     return state.ClientManagementReducer.pageFormClient;
   });
-  const [stateSearch, setStateSearch] = useState({
+  // page
+  const [page, setPage] = React.useState(1);
+  // row page
+  const [stateRowsPage, setRowsPage] = useState({
+    page: "5",
+  });
+  //search
+  const [stateSearch, setSearch] = useState({
     search: "",
+  });
+  // get maNhom
+  const [stateMaNhom, setMaNhom] = useState({
     maNhom: "GP01",
   });
   // call api
   useEffect(() => {
+    dispatch(getListLengthClientManagement(stateMaNhom.maNhom));
+  }, [dispatch, stateMaNhom.maNhom]);
+  // call api
+  useEffect(() => {
     if (stateSearch.search === "") {
-      dispatch(getListClientManagement(stateSearch.maNhom));
+      dispatch(
+        getListClientManagement(stateMaNhom.maNhom, page, stateRowsPage.page)
+      );
     }
-  }, [dispatch, stateSearch.maNhom, stateSearch.search]);
-  // set data form
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStateSearch({ ...stateSearch, [name]: value });
+  }, [
+    dispatch,
+    stateMaNhom.maNhom,
+    page,
+    stateRowsPage.page,
+    stateSearch.search,
+    updateSuccess,
+  ]);
+  // call api
+  useEffect(() => {
+    if (stateSearch.search !== "") {
+      dispatch(
+        getListSearchClientManagement(
+          stateMaNhom.maNhom,
+          stateSearch.search,
+          page,
+          stateRowsPage.page
+        )
+      );
+    }
+  }, [
+    dispatch,
+    stateMaNhom.maNhom,
+    page,
+    stateSearch.search,
+    stateRowsPage.page,
+  ]);
+  // setpage
+  const handleChangePage = (event, value) => {
+    setPage(value);
+    dispatch(setDataErrorToZero(0));
   };
-  const submitSearchList = (e) => {
-    e.preventDefault();
-    dispatch(
-      getListSearchClientManagement(stateSearch.maNhom, stateSearch.search)
-    );
-    if (stateSearch.search === "") {
-      dispatch(getListClientManagement(stateSearch.maNhom));
-    }
+  // set maNhom
+  const handleMaNhom = (e) => {
+    setMaNhom({ ...stateMaNhom, maNhom: e.target.value });
+    setPage(1);
+  };
+  // set search
+  const handleSearch = (e) => {
+    setSearch({ ...stateSearch, search: e.target.value });
+  };
+  const handleRowPage = (e) => {
+    setRowsPage({ ...stateRowsPage, page: e.target.value });
   };
   // delete
   const deleteClient = (taiKhoan) => {
     dispatch(deleteListClientManagement(taiKhoan));
+    handleClick({ vertical: "top", horizontal: "right" });
   };
   // edit
   const editClient = (infoClient) => {
     dispatch(btnEditClient(0));
     dispatch(getInfoClient(infoClient));
+    dispatch(setDataErrorToZero(0));
     dispatch(showFormClient("updateList"));
   };
-  // update
+  // add
   const themNguoiDung = () => {
-    dispatch(showFormClient("addClient"));
     dispatch(btnThemNguoiDung(null));
+    dispatch(setDataErrorToZero(0));
+    dispatch(showFormClient("addClient"));
   };
-  // table material
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  // render
+  const renderListClient = () => {
+    return listClientPagination.map((item, index) => {
+      return (
+        <TableRow key={index}>
+          <TableCell>{item.taiKhoan}</TableCell>
+          <TableCell>{item.matKhau}</TableCell>
+          <TableCell>{item.hoTen}</TableCell>
+          <TableCell>{item.soDt}</TableCell>
+          <TableCell>{item.email}</TableCell>
+          <TableCell>
+            {item.maLoaiNguoiDung === "QuanTri" ? "Quản Trị" : "Khách Hàng"}
+          </TableCell>
+          <TableCell>
+            <DeleteOutlineRoundedIcon
+              className="iconDelete"
+              onClick={() => {
+                deleteClient(item.taiKhoan);
+              }}
+            />
+            <EditRoundedIcon
+              className="iconEdit"
+              onClick={() => {
+                editClient(item);
+              }}
+            />
+          </TableCell>
+        </TableRow>
+      );
+    });
   };
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, listClient.length - page * rowsPerPage);
-  // table material
-  // maNhom
+  // render maNhom
   const renderMaNhom = () => {
     let arrMaNhom = [
       "GP01",
@@ -110,25 +213,23 @@ const ClientMaragement = () => {
       );
     });
   };
-  // maNhom
-  // render
+  // render html
   return loading ? (
     <Loader />
   ) : (
     <>
       {pageFormClient === "updateList" ? (
-        <FromEditClient maNhom={stateSearch.maNhom} />
+        <FromEditClient maNhom={stateMaNhom.maNhom} />
       ) : pageFormClient === "addClient" ? (
         <FromAddClient />
       ) : (
         <>
-          <form onSubmit={submitSearchList} className="formClient">
-            <h5>Danh Sách Người Dùng</h5>
+          <div className="formClient">
             <span>Mã Nhóm : </span>
             <select
               name="maNhom"
-              value={stateSearch.maNhom}
-              onChange={handleChange}
+              value={stateMaNhom.maNhom}
+              onChange={handleMaNhom}
             >
               {renderMaNhom()}
             </select>
@@ -140,10 +241,10 @@ const ClientMaragement = () => {
               type="text"
               placeholder="Tìm Người Dùng API"
               name="search"
-              onChange={handleChange}
+              onChange={handleSearch}
               value={stateSearch.search}
             />
-          </form>
+          </div>
           <TableContainer component={Paper}>
             <Table className="tableClient" aria-label="simple table">
               <TableHead>
@@ -153,63 +254,55 @@ const ClientMaragement = () => {
                   </TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>Mật Khẩu</TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>Họ Tên</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>Phone</TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>Email</TableCell>
-                  <TableCell style={{ fontWeight: "bold" }}>
-                    Số Điện Thoại
-                  </TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>Chức Vụ</TableCell>
-                  <TableCell style={{ fontWeight: "bold" }}>
-                    Chức Năng
-                  </TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>Thao Tác</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {listClient
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{item.taiKhoan}</TableCell>
-                      <TableCell>{item.matKhau}</TableCell>
-                      <TableCell>{item.hoTen}</TableCell>
-                      <TableCell>{item.email}</TableCell>
-                      <TableCell>{item.soDt}</TableCell>
-                      <TableCell>
-                        {item.maLoaiNguoiDung === "QuanTri"
-                          ? "Quản Trị"
-                          : "Khách Hàng"}
-                      </TableCell>
-                      <TableCell>
-                        <DeleteOutlineRoundedIcon
-                          className="iconDelete"
-                          onClick={() => {
-                            deleteClient(item.taiKhoan);
-                          }}
-                        />
-                        <EditRoundedIcon
-                          className="iconEdit"
-                          onClick={() => {
-                            editClient(item);
-                          }}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 53 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
+              <TableBody>{renderListClient()}</TableBody>
             </Table>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={listClient.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
+            <Container maxWidth="md" className="pagination">
+              <Grid container>
+                <Grid item lg={4}>
+                  <span> Rows per page : </span>
+                  <select
+                    name="stateRowsPage"
+                    onChange={handleRowPage}
+                    value={stateRowsPage.page}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                </Grid>
+                <Grid item lg={8}>
+                  <Pagination
+                    count={listClientLength.length}
+                    showFirstButton
+                    showLastButton
+                    page={page}
+                    onChange={handleChangePage}
+                  />
+                </Grid>
+              </Grid>
+            </Container>
+            <Snackbar
+              anchorOrigin={{ vertical, horizontal }}
+              open={open}
+              autoHideDuration={2000}
+              onClose={handleClose}
+            >
+              {statusCode === 200 ? (
+                <Alert onClose={handleClose} severity="success">
+                  Xoá Thành Công
+                </Alert>
+              ) : (
+                <Alert onClose={handleClose} severity="error">
+                  {errorMessage}
+                </Alert>
+              )}
+            </Snackbar>
           </TableContainer>
         </>
       )}

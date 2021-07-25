@@ -145,36 +145,36 @@ class SignUpPage extends Component {
           <table className="tableMesage">
             <thead>
               <tr>
-                <td>Họ tên : </td>
-                <td>{hoTen}</td>
+                <td>Họ tên</td>
+                <td>: {hoTen}</td>
               </tr>
               <tr>
-                <td>Tài khoản : </td>
-                <td>{taiKhoan}</td>
+                <td>Tài khoản</td>
+                <td>: {taiKhoan}</td>
               </tr>
               <tr>
-                <td>Mật khẩu : </td>
-                <td>{matKhau}</td>
+                <td>Mật khẩu</td>
+                <td>: {matKhau}</td>
               </tr>
               <tr>
-                <td>Email : </td>
-                <td>{email}</td>
+                <td>Email</td>
+                <td>: {email}</td>
               </tr>
               <tr>
-                <td>Phone : </td>
-                <td>{soDt}</td>
+                <td>Phone</td>
+                <td>: {soDt}</td>
               </tr>
               <tr>
-                <td>Vai trò: </td>
-                <td>
+                <td>Vai trò</td>
+                <td>: 
                   {maLoaiNguoiDung === "QuanTri"
                     ? "Quản trị viên"
                     : "Khách hàng"}
                 </td>
               </tr>
               <tr>
-                <td>Nhóm : </td>
-                <td>{maNhom}</td>
+                <td>Nhóm</td>
+                <td>: {maNhom}</td>
               </tr>
             </thead>
           </table>

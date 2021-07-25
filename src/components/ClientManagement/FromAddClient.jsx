@@ -13,18 +13,52 @@ import {
   hidenFormClient,
 } from "../../store/actions/clientManagement.action";
 import "./scss/FromAddClient.css";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    outline: "none",
   },
 }));
 
 function FromAddClient() {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  // snackbar
+  const [openSnackBar, setOpenSnackBar] = React.useState(false);
+  const handleClickSnackBar = () => {
+    setOpenSnackBar(true);
+  };
+  const handleCloseSnackBar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackBar(false);
+  };
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClickSnackBar();
+    }
+  }, [statusCode]);
+  // snackbar
 
   // modal
   let statusAdd = useSelector((state) => {
@@ -38,7 +72,7 @@ function FromAddClient() {
 
   const handleClose = () => {
     setOpen(false);
-    dispatch(hidenFormClient("listUser"));
+    dispatch(setDataErrorToZero(0));
   };
   // modal
 
@@ -136,6 +170,7 @@ function FromAddClient() {
   };
   const hidenFormEdit = () => {
     dispatch(hidenFormClient("listUser"));
+    dispatch(setDataErrorToZero(0));
   };
 
   const renderMaNhom = () => {
@@ -212,13 +247,6 @@ function FromAddClient() {
             />
             <span>{validClient.email}</span>
 
-            <input
-              onChange={handleChange}
-              value={addClient.soDt}
-              placeholder="Số Điện Thoại"
-              name="soDt"
-            />
-            <span>{validClient.soDt}</span>
             <br />
 
             <select
@@ -244,6 +272,15 @@ function FromAddClient() {
               {validClient.maLoaiNguoiDung}
             </span>
             <span>{validClient.maNhom}</span>
+            <br />
+
+            <input
+              onChange={handleChange}
+              value={addClient.soDt}
+              placeholder="Số Điện Thoại"
+              name="soDt"
+            />
+            <span>{validClient.soDt}</span>
 
             <div style={{ textAlign: "center" }}>
               <button
@@ -251,14 +288,18 @@ function FromAddClient() {
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormEdit}
               >
-                Cancel
+                Trở Lại
               </button>
               {validSubmit ? (
-                <button type="submit" style={{ cursor: "pointer" }}>
+                <button
+                  type="submit"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClickSnackBar}
+                >
                   Add
                 </button>
               ) : (
-                <button disabled style={{ cursor: "no-drop" }}>
+                <button type="submit" disabled style={{ cursor: "no-drop" }}>
                   Add
                 </button>
               )}
@@ -266,6 +307,21 @@ function FromAddClient() {
           </form>
         </Container>
       </div>
+      <Snackbar
+        open={openSnackBar}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackBar}
+      >
+        {statusCode === 200 ? (
+          <Alert onClose={handleCloseSnackBar} severity="success">
+            Thêm Thành Công Thành Công
+          </Alert>
+        ) : (
+          <Alert onClose={handleCloseSnackBar} severity="error">
+            {errorMessage}
+          </Alert>
+        )}
+      </Snackbar>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -313,7 +369,6 @@ function FromAddClient() {
                 </tr>
               </tbody>
             </table>
-            <span onClick={hidenFormEdit}>Back</span>
           </div>
         </Fade>
       </Modal>

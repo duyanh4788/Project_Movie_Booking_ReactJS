@@ -136,7 +136,7 @@ function CinemaDetailComponent(props) {
       history.push("/signIn");
     }
   };
-
+  console.log(listPhimCinema);
   const renderListPhim = () => {
     return listPhimCinema.map((item, index) => {
       let httpS = item.hinhAnh.split(":");

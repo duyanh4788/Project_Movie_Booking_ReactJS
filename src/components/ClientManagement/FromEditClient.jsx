@@ -2,33 +2,56 @@ import { Container } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getListClientManagement,
   hidenFormClient,
   updateListClientManagement,
 } from "../../store/actions/clientManagement.action";
 import "./scss/FromEditClient.css";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function FromEditClient(props) {
   const dispatch = useDispatch();
+  // snackbar
+  const [stateSnackbar, setOpen] = React.useState({
+    open: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+
+  const { vertical, horizontal, open } = stateSnackbar;
+  const handleClick = (newState) => {
+    setOpen({ open: true, ...newState });
+  };
+  const handleClose = () => {
+    setOpen({ ...stateSnackbar, open: false });
+  };
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500 || statusCode === 200) {
+      handleClick({ vertical: "top", horizontal: "right" });
+    }
+  }, [statusCode]);
+  // snackbar
 
   const infoClient = useSelector((state) => {
     return state.ClientManagementReducer.infoClient;
   });
 
-  const updateSuccess = useSelector((state) => {
-    return state.ClientManagementReducer?.updateSuccess;
-  });
-
   useEffect(() => {
     validButtonSubmit();
   });
-
-  useEffect(() => {
-    if (updateSuccess === 200) {
-      dispatch(getListClientManagement(props.maNhom));
-      dispatch(hidenFormClient("listUser"));
-    }
-  }, [dispatch, updateSuccess, props.maNhom]);
 
   const [editClient, setEditClient] = useState({
     taiKhoan: infoClient.taiKhoan,
@@ -83,6 +106,7 @@ function FromEditClient(props) {
     dispatch(updateListClientManagement(editClient));
   };
   const hidenFormEdit = () => {
+    dispatch(setDataErrorToZero(0));
     dispatch(hidenFormClient("listUser"));
   };
 
@@ -159,7 +183,7 @@ function FromEditClient(props) {
                 style={{ cursor: "pointer", color: "red" }}
                 onClick={hidenFormEdit}
               >
-                Cancel
+                Trở Lại
               </button>
               {validSubmit ? (
                 <button type="submit" style={{ cursor: "pointer" }}>
@@ -172,6 +196,22 @@ function FromEditClient(props) {
               )}
             </div>
           </form>
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={open}
+            autoHideDuration={2000}
+            onClose={handleClose}
+          >
+            {statusCode === 200 ? (
+              <Alert onClose={handleClose} severity="success">
+                Cập Nhật Thành Công
+              </Alert>
+            ) : (
+              <Alert onClose={handleClose} severity="error">
+                {errorMessage}
+              </Alert>
+            )}
+          </Snackbar>
         </Container>
       </div>
     </div>

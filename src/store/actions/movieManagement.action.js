@@ -1,17 +1,33 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
 import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
-import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_LIST_MOVIE_SEARCH_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_LENGTH_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
+export const getListLengthMovieManagement = (maNhom) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "GET",
+                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`
+            })
+            dispatch({
+                type: GET_LIST_LENGTH_MOVIE_MANAGEMENT,
+                payload: res.data
+            })
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+}
 
-export const getListMovieManagement = (maNhom) => {
+export const getListMovieManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
         dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "GET",
-                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`
+                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${maNhom}&soTrang=${soTrang}&soPhanTuTrenTrang=${soPhanTuTrenTrang}`
             })
             dispatch({
                 type: GET_LIST_MOVIE_MANAGEMENT,
@@ -25,22 +41,44 @@ export const getListMovieManagement = (maNhom) => {
     }
 }
 
-export const getListMovieSearchManagement = (maNhom, tenPhim) => {
+export const getListMovieSearchManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
-        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "GET",
-                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}&tenPhim=${tenPhim}`
+                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${maNhom}&tenPhim=${tuKhoa}&soTrang=${soTrang}&soPhanTuTrenTrang=${soPhanTuTrenTrang}`
             })
             dispatch({
-                type: GET_LIST_MOVIE_SEARCH_MANAGEMENT,
+                type: GET_LIST_MOVIE_MANAGEMENT,
                 payload: res.data
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             console.log(error.response);
-            dispatch(hidenLoader_Action());
+        }
+    }
+}
+
+export const getListMovieDateManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang, tuNgay, denNgay) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "GET",
+                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhimTheoNgay?maNhom=${maNhom}&tenPhim=${tuKhoa}&soTrang=${soTrang}&soPhanTuTrenTrang=${soPhanTuTrenTrang}&tuNgay=${tuNgay}&denNgay=${denNgay}`
+            })
+            dispatch({
+                type: GET_MOVIE_DATE_MANAGEMENT,
+                payload: res.data
+            })
+        } catch (error) {
+            console.log(error.response);
+            dispatch({
+                type: MESSAGE_STATUS_CODE,// show message error
+                payload: error.response.status
+            })
+            dispatch({
+                type: MESSAGE_DATA_ERROR,// show message error
+                payload: error.response.data
+            })
         }
     }
 }
@@ -48,7 +86,6 @@ export const getListMovieSearchManagement = (maNhom, tenPhim) => {
 export const deleteListMovieManagement = (maPhim) => {
     return async (dispatch) => {
         const toKen = JSON.parse(localStorage.getItem("token"))
-        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "DELETE",
@@ -65,7 +102,6 @@ export const deleteListMovieManagement = (maPhim) => {
                 type: MESSAGE_STATUS_CODE,// show message success
                 payload: res.status
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
@@ -75,7 +111,6 @@ export const deleteListMovieManagement = (maPhim) => {
                 type: MESSAGE_DATA_ERROR,// show message error
                 payload: error.response.data
             })
-            dispatch(hidenLoader_Action());
         }
     }
 }
@@ -102,7 +137,6 @@ export const hiddenFormMovie = (data) => {
 export const updateListMovieManagement = (formData) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
-        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "POST",
@@ -112,6 +146,7 @@ export const updateListMovieManagement = (formData) => {
                     Authorization: `Bearer ${toKen}`
                 }
             })
+            console.log(res);
             dispatch({
                 type: UPDATE_LIST_MOVIE_MANAGEMENT, // render html sau khi update thành công
                 payload: res
@@ -120,7 +155,6 @@ export const updateListMovieManagement = (formData) => {
                 type: MESSAGE_STATUS_CODE,// show message success
                 payload: res.status
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
@@ -130,7 +164,6 @@ export const updateListMovieManagement = (formData) => {
                 type: MESSAGE_DATA_ERROR,// show message error
                 payload: error.response.data
             })
-            dispatch(hidenLoader_Action());
         }
     }
 }
@@ -138,7 +171,6 @@ export const updateListMovieManagement = (formData) => {
 export const addListMovieManagement = (formData) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
-        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "POST",
@@ -152,7 +184,6 @@ export const addListMovieManagement = (formData) => {
                 type: MESSAGE_STATUS_CODE,// show message success
                 payload: res.status
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
@@ -162,7 +193,6 @@ export const addListMovieManagement = (formData) => {
                 type: MESSAGE_DATA_ERROR,// show message error
                 payload: error.response.data
             })
-            dispatch(hidenLoader_Action());
         }
     }
 }
@@ -177,7 +207,6 @@ export const getMaPhimMovieManagement = (maPhim) => {
 export const creatScheduleMovie = (dataMovie) => {
     const toKen = JSON.parse(localStorage.getItem("token"))
     return async (dispatch) => {
-        dispatch(showLoader_Action());
         try {
             const res = await Axios({
                 method: "POST",
@@ -191,7 +220,6 @@ export const creatScheduleMovie = (dataMovie) => {
                 type: MESSAGE_STATUS_CODE,// show message success
                 payload: res.status
             })
-            dispatch(hidenLoader_Action());
         } catch (error) {
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
@@ -201,14 +229,12 @@ export const creatScheduleMovie = (dataMovie) => {
                 type: MESSAGE_DATA_ERROR,// show message error
                 payload: error.response.data
             })
-            dispatch(hidenLoader_Action());
         }
     }
 }
 // lấy thông tin rạp => mã cụm rạp => tạo lịch chiếu
 export const getCodeCinemaMovieManagement = () => {
     return async (dispatch) => {
-
         try {
             const res = await Axios({
                 method: "GET",
@@ -218,16 +244,13 @@ export const getCodeCinemaMovieManagement = () => {
                 type: GET_CODE_CINEMA_MOVIE_MANAGEMENT,
                 payload: res.data,
             })
-
         } catch (error) {
             console.log(error);
-
         }
     }
 }
 export const getCumRapCinemaManagement = (maCumRap) => {
     return async (dispatch) => {
-
         try {
             const res = await Axios({
                 method: "GET",
@@ -237,7 +260,6 @@ export const getCumRapCinemaManagement = (maCumRap) => {
                 type: GET_CUM_RAP_MOVIE_MANAGEMENT,
                 payload: res.data
             })
-
         } catch (error) {
             console.log(error);
 

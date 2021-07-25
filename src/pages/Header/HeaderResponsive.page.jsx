@@ -19,12 +19,13 @@ import "./css/headerResponsive.css";
 // function component InfoUser
 import InfoUser from "../Info-User/Info-User.page";
 // redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // react-router-dom
 import { Link } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import CinemaDetailPage from "../CinemaDetailPage/CinemaDetail.page";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 //  drawer
 const drawerWidth = 200;
@@ -87,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
 //  drawer
 
 const HeaderResponsivePage = () => {
+  const dispatch = useDispatch();
   //  drawer
   const classes = useStyles();
   const theme = useTheme();
@@ -190,7 +192,13 @@ const HeaderResponsivePage = () => {
                 </p>
                 <p>
                   <LocationOnIcon className="headerIconLogIn" />
-                  <Link to="/signIn" className="headerTitleThere">
+                  <Link
+                    to="/signIn"
+                    className="headerTitleThere"
+                    onClick={() => {
+                      dispatch(setDataErrorToZero(0));
+                    }}
+                  >
                     Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
                   </Link>
                 </p>

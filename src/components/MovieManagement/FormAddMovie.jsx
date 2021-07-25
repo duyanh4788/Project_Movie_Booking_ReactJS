@@ -10,6 +10,7 @@ import "./scss/FormAddMovie.css";
 import * as dayjs from "dayjs";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -113,6 +114,7 @@ const FormAddMovie = () => {
 
   const hidenFormMovie = () => {
     dispatch(hiddenFormMovie("listUser"));
+    dispatch(setDataErrorToZero(0));
   };
 
   const renderMaNhom = () => {
@@ -233,12 +235,16 @@ const FormAddMovie = () => {
                 Trở Lại
               </button>
               {validSubmit ? (
-                <button type="submit" style={{ cursor: "pointer" }}>
-                  Update
+                <button
+                  type="submit"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClick}
+                >
+                  Thêm
                 </button>
               ) : (
                 <button disabled style={{ cursor: "no-drop" }}>
-                  Update
+                  Thêm
                 </button>
               )}
             </div>

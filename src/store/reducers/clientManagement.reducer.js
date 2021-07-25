@@ -1,24 +1,23 @@
-import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_SEARCH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant"
+import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_LENGTH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant"
 
 const initialState = {
-    listClient: [],
-    pageFormClient: "listUser",
-    infoClient: {},
-    addSuccess: {},
-    updateSuccess: 0,
+    listClient: [],// render html
+    listClientLength: [],// render html
+    pageFormClient: "listUser",// link page
+    infoClient: {},// show info sau khi update
+    addSuccess: {},// show info sau khi add
+    updateSuccess: 0,// set status thay đổi sau khi update
 }
 
 export const ClientManagementReducer = (state = initialState, { type, payload }) => {
     let listClientUpdate = [...state.listClient]
     switch (type) {
         case GET_LIST_CLIENT_MANAGEMENT:
-            state.listClient = payload
+            state.listClient = payload.items
             return { ...state, ...payload }
-        case GET_LIST_SEARCH_CLIENT_MANAGEMENT: {
-            listClientUpdate = payload
-            state.listClient = listClientUpdate
-            return { ...state }
-        }
+        case GET_LIST_LENGTH_CLIENT_MANAGEMENT:
+            state.listClientLength = payload
+            return { ...state, ...payload }
         case TAIKHOAN_CLIENT_MANAGEMENT: {
             let index = listClientUpdate.findIndex(item => item.taiKhoan === payload)
             if (index !== -1) {

@@ -1,5 +1,6 @@
 import Axios from "axios";
-import { ERROR_SIGN_IN, SIGN_IN, SIGN_OUT } from "../constants/signIn.constant";
+import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
+import { SIGN_IN, SIGN_OUT } from "../constants/signIn.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 // signIn
 export const signIn_Action = (data, history) => {
@@ -22,13 +23,16 @@ export const signIn_Action = (data, history) => {
         type: SIGN_IN,
         payload: userLogin,
       });
-
       // hidden loading
       dispatch(hidenLoader_Action())
     } catch (error) {
       dispatch({
-        type: ERROR_SIGN_IN,
-        payload: error.response.data,
+        type: MESSAGE_STATUS_CODE,// show message error
+        payload: error.response.status
+      })
+      dispatch({
+        type: MESSAGE_DATA_ERROR,// show message error
+        payload: error.response.data
       })
       // hidden loading
       dispatch(hidenLoader_Action())

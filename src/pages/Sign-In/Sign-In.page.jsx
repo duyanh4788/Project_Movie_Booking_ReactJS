@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./scss/signIn.css";
 // redux hook
 import { useDispatch, useSelector } from "react-redux";
 // action redux thunk
 import { signIn_Action } from "../../store/actions/signIn.action";
 // react router dom
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // material
 import { Container } from "@material-ui/core";
 // styled materiall
-import { withStyles } from "@material-ui/styles";
-import { styled } from "./Sign-In.style";
 // modal
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import Loader from "../../components/Loader/Loader";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 /**
  * localStorage save signIn.action
  */
 
 function SignInPage(props) {
-  const { classes } = props;
   const history = useHistory();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -29,28 +29,42 @@ function SignInPage(props) {
     matKhau: "",
   });
 
+  // snackbar
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  // show status
+  const statusCode = useSelector(
+    (state) => state.MessageSnackbarReducer.statusCode
+  );
+  const errorMessage = useSelector(
+    (state) => state.MessageSnackbarReducer.errorMessage
+  );
+  // show status
+  useEffect(() => {
+    if (statusCode === 500) {
+      handleClick();
+    }
+  }, [statusCode]);
+  // snackbar
+
   const hanldeSubmit = (event) => {
     event.preventDefault(); // lock submit
-    setOpen(true); // open modal
     dispatch(signIn_Action(user, history)); // post data ( user => client impot , history =>  use to navigate ) up axios action/signIn.action
+    handleClick();
   };
 
   const handlChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value }); // es6 object literal
   };
-
-  // modal
-  const errMesage = useSelector((state) => {
-    return state.signInReducer.errMesage;
-  });
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  // modal
 
   // loading
   const loading = useSelector((state) => {
@@ -88,28 +102,15 @@ function SignInPage(props) {
               </form>
             </Container>
           </div>
-          <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={open}>
-              <div className="modalTitle">
-                <p>{errMesage}</p>
-              </div>
-            </Fade>
-          </Modal>
         </div>
       )}
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          {errorMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
 
-export default withStyles(styled)(SignInPage);
+export default SignInPage;

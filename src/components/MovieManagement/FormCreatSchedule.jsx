@@ -19,6 +19,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 // snackbar
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -158,6 +159,7 @@ function FormCreatSchedule() {
 
   const hidenFormMovie = () => {
     dispatch(hiddenFormMovie("listUser"));
+    dispatch(setDataErrorToZero(0));
   };
 
   const renderCodeCinema = () => {
@@ -331,7 +333,7 @@ function FormCreatSchedule() {
                 Trở Lại
               </button>
               {validSubmit ? (
-                <button type="submit" style={{ cursor: "pointer" }}>
+                <button type="submit" style={{ cursor: "pointer" }} onClick={handleClick}>
                   Tạo Lịch Chiếu
                 </button>
               ) : (

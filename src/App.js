@@ -14,6 +14,7 @@ import HeaderResponsivePage from "./pages/Header/HeaderResponsive.page"
 import CinemaDetailComponent from "./components/Cinema-detail/CinemaDetail.component";
 import StepperComponent from "./components/Booking/Step.component"
 import ProfileUser from "./components/Profile/Profile";
+import DemoPaination from "./components/tablePagination/DemoPaination";
 /**
  * 28-05-02021 Vũ Duy Anh
  * 1. Heder => notDone
@@ -36,6 +37,7 @@ function App() {
           <Route path="/cinemaDetail/:maCumRap" exact component={CinemaDetailComponent} />
           <Route path="/signUp" exact component={SignUpPage} />
           <Route path="/signIn" exact component={SignInPage} />
+          <Route path="/table" exact component={DemoPaination} />
           <Route
             path="/bookingComponent/:showTimeCode"
             exact

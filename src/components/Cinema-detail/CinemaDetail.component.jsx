@@ -6,9 +6,15 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  AppBar,
+  Box,
   Container,
   Grid,
+  Paper,
+  Tab,
+  Tabs,
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 import {
   getDetailCinema,
   getInfoPhimCinema,
@@ -17,17 +23,61 @@ import {
 import { listCinema, backgroundS } from "./dataCinema";
 import { useState } from "react";
 // date format
+import * as dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-function CinemaDetailComponent(props) {
+// function tabpanel
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 2 }}>
+          <div>{children}</div>
+        </Box>
+      )}
+    </div>
+  );
+}
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+// function tabpanel scoll
+function a11yPropsScroll(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    "aria-controls": `scrollable-auto-tabpanel-${index}`,
+  };
+}
+// function tabpanel
+
+const CinemaDetailComponent = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  // tabpanel date
+  const [values, setValues] = React.useState(0);
+  const handleChanges = (event, newValue) => {
+    setValues(newValue);
+  };
+  // tabpanel date
+
   const codeMaCumRap = props.match.params.maCumRap; // recive data to CinemaDetailPage
+  // set date
+  const [stateDate, setDate] = useState("");
 
   useEffect(() => {
     dispatch(getDetailCinema(codeMaCumRap));
+    dispatch(getInfoPhimCinema(null));
   }, [codeMaCumRap, dispatch]);
 
   const groupCinema = useSelector((state) => {
@@ -94,6 +144,7 @@ function CinemaDetailComponent(props) {
     maPhim: "",
   });
   const handleMaCumRap = (maCumRap, tenCumRap, arrayListPhim) => {
+    setDate("");
     setStateMaCumRap({
       maCumRap: maCumRap,
     });
@@ -102,12 +153,12 @@ function CinemaDetailComponent(props) {
     });
     dispatch(getListPhimCinema(arrayListPhim.danhSachPhim));
   };
-
   const handleInfoPhim = (infoPhim) => {
     dispatch(getInfoPhimCinema(infoPhim));
     setStateMaPhim({
       maPhim: infoPhim.maPhim,
     });
+    setValues(0);
   };
 
   //Return Time-end with Time-start
@@ -118,12 +169,11 @@ function CinemaDetailComponent(props) {
     let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
     return timeEnd;
   };
-
   // booking
   const bookingMovie = (maLichChieu) => {
     if (maLichChieu && stateMaPhim.maPhim && stateTenCumRap.tenCumRap) {
       history.push(
-        `/bookingComponent/${maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}`
+        `/bookingComponent/${maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}-${stateDate}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
@@ -136,13 +186,34 @@ function CinemaDetailComponent(props) {
       history.push("/signIn");
     }
   };
-  console.log(listPhimCinema);
+  // render date
+  const renderDateTime = () => {
+    return infoPhimCinema?.lstLichChieuTheoPhim.map((item, index) => {
+      return (
+        <Tab
+          onClick={() => {
+            setDate(item.ngayChieuGioChieu);
+          }}
+          label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
+          {...a11yPropsScroll(index)}
+          key={index}
+        />
+      );
+    });
+  };
+  // render list phim
   const renderListPhim = () => {
     return listPhimCinema.map((item, index) => {
       let httpS = item.hinhAnh.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
       return (
-        <Grid container key={index} className="shedulePhim">
+        <Grid
+          container
+          key={index}
+          className="shedulePhim"
+          direction="row"
+          alignItems="center"
+        >
           <Grid item xs={3} sm={3} md={3} lg={2} style={{ cursor: "pointer" }}>
             <img
               src={urlImg}
@@ -153,44 +224,50 @@ function CinemaDetailComponent(props) {
               }}
             />
           </Grid>
-          <Grid item xs={9} sm={9} md={9} lg={10}>
-            <Accordion
-              onClick={() => {
-                handleInfoPhim(item);
-              }}
-            >
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <div className="phim">
-                  <label className="maPhim">{item.maPhim}</label>
-                  <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
-                  <p style={{ marginTop: "20px" }}>Chọn Xuất Chiếu</p>
-                </div>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div className="tabTimer">
-                  <Grid container>
-                    {item.lstLichChieuTheoPhim.map((item, index) => {
-                      return (
-                        <Grid item lg={3} key={index}>
-                          <span
-                            onClick={() => bookingMovie(item.maLichChieu)}
-                            key={index}
-                            className={`timer ${codeMaCumRap}`}
-                          >
-                            {item.ngayChieuGioChieu.slice(11, 16)}
-                            <label
-                              style={{ color: "gray", marginLeft: "5px" }}
-                            >{`~ ${getTimeEnd(
-                              item.ngayChieuGioChieu.slice(11, 16)
-                            )}`}</label>
-                          </span>
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
-                </div>
-              </AccordionDetails>
-            </Accordion>
+
+          <Grid
+            item
+            xs={9}
+            sm={4}
+            md={4}
+            lg={5}
+            className="phim"
+            onClick={() => {
+              handleInfoPhim(item);
+            }}
+          >
+            <span>
+              <label className="maPhim">{item.maPhim} </label> -
+              {item.tenPhim.slice(0, 30)}
+            </span>
+          </Grid>
+
+          <Grid item xs={12} sm={5} md={5} lg={5}>
+            {item.lstLichChieuTheoPhim
+              .filter((itemF) => itemF.ngayChieuGioChieu === stateDate)
+              .map((item, index) => {
+                return (
+                  <div className="tabTimer" key={index}>
+                    <p>Mã Rạp : {item.maRap}</p>
+                    <p>Mã Lịch Chiếu : {item.maLichChieu}</p>
+                    <p>Giá Vé : {item.giaVe.toLocaleString()}</p>
+                    <p>
+                      Đặt Vé :{" "}
+                      <span
+                        onClick={() => bookingMovie(item.maLichChieu)}
+                        className={`timer ${codeMaCumRap}`}
+                      >
+                        {item.ngayChieuGioChieu.slice(11, 16)}
+                        <label
+                          style={{ color: "gray", marginLeft: "5px" }}
+                        >{`~ ${getTimeEnd(
+                          item.ngayChieuGioChieu.slice(11, 16)
+                        )}`}</label>
+                      </span>
+                    </p>
+                  </div>
+                );
+              })}
           </Grid>
         </Grid>
       );
@@ -237,6 +314,21 @@ function CinemaDetailComponent(props) {
 
       <Container maxWidth="lg">
         <Grid container className="infoPhimCinemaDetail">
+          <Grid container item xs={12} sm={12} md={12} lg={12}>
+            <AppBar position="static" color="default" className="rowDate">
+              <span className="titleDate">Chọn Giờ Chiếu</span>
+              <Paper>
+                <Tabs
+                  value={values}
+                  onChange={handleChanges}
+                  variant="scrollable"
+                  scrollButtons="auto"
+                >
+                  {renderDateTime()}
+                </Tabs>
+              </Paper>
+            </AppBar>
+          </Grid>
           <Grid container item xs={12} sm={12} md={4} lg={4}>
             <Accordion className="rowCinemaDetail">
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -256,6 +348,6 @@ function CinemaDetailComponent(props) {
       </Container>
     </section>
   );
-}
+};
 
 export default CinemaDetailComponent;

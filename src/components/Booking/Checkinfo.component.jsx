@@ -6,7 +6,7 @@ import { Container, Grid } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // date format
-import format from "date-format";
+import * as dayjs from "dayjs";
 
 const CheckInfoMaTion = (props) => {
   const { classes } = props;
@@ -40,6 +40,7 @@ const CheckInfoMaTion = (props) => {
   let arrShowTimeCode = showTimeCode.split("-");
   let maCumRap = arrShowTimeCode[2];
   let tenCumRap = arrShowTimeCode[3];
+  let dateTime = `${arrShowTimeCode[4]}-${arrShowTimeCode[5]}-${arrShowTimeCode[6]}`;
 
   return (
     <Container>
@@ -53,14 +54,8 @@ const CheckInfoMaTion = (props) => {
               Tên Cụm Rạp : {maCumRap}-{tenCumRap}
             </p>
             <p>Tên Phim : {listPhimBooking.tenPhim}</p>
-            <p>
-              Ngày Chiếu :{" "}
-              {format("dd-mm-yyyy", new Date(listPhimBooking.ngayKhoiChieu))}
-            </p>
-            <p>
-              Giờ Chiếu :{" "}
-              {format("hh:mm", new Date(listPhimBooking.ngayKhoiChieu))}
-            </p>
+            <p>Ngày Chiếu : {dayjs(dateTime).format("DD-MM-YYYY")}</p>
+            <p>Giờ Chiếu : {dayjs(dateTime).format("HH:MM")}</p>
           </span>
         </Grid>
         <Grid

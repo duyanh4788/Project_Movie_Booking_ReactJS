@@ -32,7 +32,7 @@
             filter: blur(15px);
         }
     }
-    .rowOneintroPhim{
+    .rowOneintroPhim {
         position: absolute;
         width: 100%;
         top: 45%;
@@ -58,12 +58,23 @@
 .MuiGrid-container {
     align-items: flex-start !important;
 }
+
 .infoPhimCinemaDetail {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #f1f1f1;
     background-color: #f1f1f1;
     margin: 50px 0;
+
+    .rowDate {
+        z-index: 1;
+        .titleDate {
+            text-align: center;
+            color: gray;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
 
     .rowCinemaDetail {
         overflow-y: scroll;
@@ -122,23 +133,19 @@
                     border-radius: 5px;
                     padding: 5px;
                     margin-right: 5px;
+                    cursor: pointer;
                 }
             }
             .tabTimer {
-                overflow-y: scroll;
-                width: 100%;
-                max-height: 200px;
-                a {
-                    text-decoration: none;
+                p {
+                    line-height: 25px;
                 }
+                @include Cinema;
                 .timer {
-                    border: 2px solid #f5f5f5;
+                    border: 2px solid;
                     border-radius: 5px;
-                    padding: 5px;
-                    margin: 10px 0;
-                    line-height: 30px;
-                    color: #56bb52;
-                    font-size: 17px;
+                    padding: 2px;
+                    font-size: 13px;
                     cursor: pointer;
                 }
             }
@@ -147,15 +154,13 @@
 }
 // scroll css
 .rowCinemaDetail::-webkit-scrollbar,
-.rowInfoPhim::-webkit-scrollbar ,
-.tabTimer::-webkit-scrollbar{
+.rowInfoPhim::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     background-color: #f5f5f5;
 }
 .rowCinemaDetail::-webkit-scrollbar-thumb,
-.rowInfoPhim::-webkit-scrollbar-thumb,
-.tabTimer::-webkit-scrollbar-thumb {
+.rowInfoPhim::-webkit-scrollbar-thumb {
     background: #e2dfdf;
     border-radius: 6px;
 }
@@ -168,11 +173,11 @@
         }
     }
     .rowInfoPhim {
-        text-align: center;
         .shedulePhim {
+            margin: 5px !important;
             font-size: 10px !important;
             p {
-                line-height: 20px;
+                line-height: 17px !important;
             }
             .imgPhim {
                 width: 60px !important;
@@ -191,8 +196,8 @@
         }
     }
 }
-@media (max-width: 350px){
-    .imageCinema{
+@media (max-width: 350px) {
+    .imageCinema {
         width: 40px !important;
         height: 50px !important;
     }
@@ -209,9 +214,11 @@
     }
     .rowInfoPhim {
         .shedulePhim {
-            padding: 0 !important;
+            .maPhim{
+                margin: 20px;
+            }
             .phim {
-                font-size: 8px !important;
+                font-size: 10px !important;
             }
             .imgPhim {
                 width: 60px !important;

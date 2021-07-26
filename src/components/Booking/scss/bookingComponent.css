@@ -69,20 +69,36 @@
   border: none;
   outline: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .mesageBooking {
-  font-size: 20px;
-  font-weight: bold;
   border-radius: 5px;
   padding: 50px;
   background-color: white;
+  outline: none;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
   -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+          box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.mesageBooking p {
+  color: gray;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.mesageBooking button {
+  color: red;
+  background-color: white;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .screen {

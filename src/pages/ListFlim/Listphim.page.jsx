@@ -6,7 +6,6 @@ import { getMovieList_Action } from "../../store/actions/movie.action";
 // react-router
 import { useHistory } from "react-router";
 // material
-import CardMedia from "@material-ui/core/CardMedia";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { Button, Grid } from "@material-ui/core";
 //slick
@@ -18,11 +17,10 @@ import "./css/listPhim.css";
 // modal
 import "../../../node_modules/react-modal-video/scss/modal-video.scss";
 import ModalVideo from "react-modal-video";
-
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import Loader from "../../components/Loader/Loader";
 
 /**
  *  8-05-02021 Vũ Duy Anh
@@ -34,15 +32,14 @@ const ListPhim = () => {
   const ref = useRef({});
   const hisTory = useHistory();
   const dispatch = useDispatch();
+  // show loading
+  const loading = useSelector((state) => state.CommonReducer.loading);
   // get data reducer
   const movieList = useSelector((state) => {
-    return state.movieReducer.movieList;
+    return state.movieReducer?.movieList || {};
   });
   // maNhom
   const [maNhom, setMaNhom] = React.useState("GP01");
-  const handleChange = (event) => {
-    setMaNhom(event.target.value);
-  };
   // call api
   useEffect(() => {
     dispatch(getMovieList_Action(maNhom));
@@ -94,13 +91,13 @@ const ListPhim = () => {
 
   // arrow function render to row.113
   const renderListPhim = () => {
-    return movieList.map((item, index) => {
-      let httpS = item.hinhAnh.split(":");
-      let urlImg = httpS[0] + "s:" + httpS[1];
+    return movieList?.map((item, index) => {
+      let setLink = item.hinhAnh.split(":");
+      let urlImg = setLink[0] + "s:" + setLink[1];
       return (
         <div key={index} className="slide">
           <div className="sliderAfter">
-            <CardMedia className="imageSlider" image={urlImg} title={urlImg} />
+            <img className="imageSlider" src={urlImg} alt={item.hinhAnh} />
             <div className="intro">
               <span className="introOne">{item.maPhim}</span>
               <span className="introTwo"> {item.tenPhim.slice(0, 18)} </span>
@@ -127,24 +124,42 @@ const ListPhim = () => {
       );
     });
   };
+  const renderMaNhom = () => {
+    let arrMaNhom = [
+      "GP01",
+      "GP02 ",
+      "GP03",
+      "GP04 ",
+      "GP05",
+      "GP06 ",
+      "GP07",
+      "GP08 ",
+      "GP09",
+      "GP10 ",
+    ];
+    return arrMaNhom.map((item, index) => {
+      return (
+        <MenuItem key={index} value={item}>
+          Nhóm : {item}
+        </MenuItem>
+      );
+    });
+  };
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <section className="sliderListPhim">
       <Grid container>
         <Grid item lg={12} style={{ textAlign: "center" }}>
           <FormControl className="maNhom">
-            <InputLabel>Mã Nhóm</InputLabel>
-            <Select value={maNhom} onChange={handleChange}>
-              <MenuItem value="GP01">GP01</MenuItem>
-              <MenuItem value="GP02">GP02</MenuItem>
-              <MenuItem value="GP03">GP03</MenuItem>
-              <MenuItem value="GP04">GP04</MenuItem>
-              <MenuItem value="GP05">GP05</MenuItem>
-              <MenuItem value="GP06">GP06</MenuItem>
-              <MenuItem value="GP07">GP07</MenuItem>
-              <MenuItem value="GP08">GP08</MenuItem>
-              <MenuItem value="GP09">GP09</MenuItem>
-              <MenuItem value="GP10">GP010</MenuItem>
+            <Select
+              value={maNhom}
+              onChange={(e) => {
+                setMaNhom(e.target.value);
+              }}
+            >
+              {renderMaNhom()}
             </Select>
           </FormControl>
         </Grid>

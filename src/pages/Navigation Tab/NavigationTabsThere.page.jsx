@@ -42,11 +42,12 @@ function NavigationTabsTherePage() {
       maPhim: maPhim,
     });
   };
+
   // booking
-  const bookingMovie = (maLichChieu) => {
+  const bookingMovie = (maLichChieu, ngayChieuGioChieu) => {
     if (maLichChieu && stateMaphim.maPhim && nameGroupCinema) {
       history.push(
-        `/bookingComponent/${maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}`
+        `/bookingComponent/${maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}-${ngayChieuGioChieu}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
@@ -98,7 +99,12 @@ function NavigationTabsTherePage() {
                             return (
                               <Grid item lg={4} key={index}>
                                 <span
-                                  onClick={() => bookingMovie(item.maLichChieu)}
+                                  onClick={() =>
+                                    bookingMovie(
+                                      item.maLichChieu,
+                                      item.ngayChieuGioChieu
+                                    )
+                                  }
                                   key={index}
                                   className={`timeCode ${codeCinema}`}
                                 >

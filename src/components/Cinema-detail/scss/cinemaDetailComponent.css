@@ -53,6 +53,17 @@
   margin: 50px 0;
 }
 
+.infoPhimCinemaDetail .rowDate {
+  z-index: 1;
+}
+
+.infoPhimCinemaDetail .rowDate .titleDate {
+  text-align: center;
+  color: gray;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .infoPhimCinemaDetail .rowCinemaDetail {
   overflow-y: scroll;
   max-height: 350px;
@@ -171,40 +182,58 @@
   border-radius: 5px;
   padding: 5px;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer {
-  overflow-y: scroll;
-  width: 100%;
-  max-height: 200px;
+  font-weight: bold;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer a {
-  text-decoration: none;
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer p {
+  line-height: 25px;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .BHDStar {
+  color: #56bb52;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CGV {
+  color: #e71a0e;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CineStar {
+  color: #662d91;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .Galaxy {
+  color: #ff8121;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .LotteCinima {
+  color: #ed1c24;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .MegaGS {
+  color: #ebb427;
 }
 
 .infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .timer {
-  border: 2px solid #f5f5f5;
+  border: 2px solid;
   border-radius: 5px;
-  padding: 5px;
-  margin: 10px 0;
-  line-height: 30px;
-  color: #56bb52;
-  font-size: 17px;
+  padding: 2px;
+  font-size: 13px;
   cursor: pointer;
 }
 
 .rowCinemaDetail::-webkit-scrollbar,
-.rowInfoPhim::-webkit-scrollbar,
-.tabTimer::-webkit-scrollbar {
+.rowInfoPhim::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
 .rowCinemaDetail::-webkit-scrollbar-thumb,
-.rowInfoPhim::-webkit-scrollbar-thumb,
-.tabTimer::-webkit-scrollbar-thumb {
+.rowInfoPhim::-webkit-scrollbar-thumb {
   background: #e2dfdf;
   border-radius: 6px;
 }
@@ -214,14 +243,12 @@
   .rowCinemaDetail .addresCinema_Active {
     font-size: 10px;
   }
-  .rowInfoPhim {
-    text-align: center;
-  }
   .rowInfoPhim .shedulePhim {
+    margin: 5px !important;
     font-size: 10px !important;
   }
   .rowInfoPhim .shedulePhim p {
-    line-height: 20px;
+    line-height: 17px !important;
   }
   .rowInfoPhim .shedulePhim .imgPhim {
     width: 60px !important;
@@ -252,11 +279,11 @@
   .rowCinemaDetail p {
     font-size: 10px !important;
   }
-  .rowInfoPhim .shedulePhim {
-    padding: 0 !important;
+  .rowInfoPhim .shedulePhim .maPhim {
+    margin: 20px;
   }
   .rowInfoPhim .shedulePhim .phim {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   .rowInfoPhim .shedulePhim .imgPhim {
     width: 60px !important;

@@ -196,7 +196,7 @@ function FormCreatSchedule() {
       });
     }
   };
-  
+
   return (
     <div className="backgroundCreatSchedule">
       <div className="wrapCreatSchedule">
@@ -333,7 +333,11 @@ function FormCreatSchedule() {
                 Trở Lại
               </button>
               {validSubmit ? (
-                <button type="submit" style={{ cursor: "pointer" }} onClick={handleClick}>
+                <button
+                  type="submit"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClick}
+                >
                   Tạo Lịch Chiếu
                 </button>
               ) : (

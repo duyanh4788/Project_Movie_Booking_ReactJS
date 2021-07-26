@@ -1,9 +1,8 @@
-import { BOOKING_CHAIR, CHOICE_CHAIR, ERROR_BOOKING, GET_TICKET_LIST } from "../constants/booking.constant"
+import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant"
 
 const initalState = {
     listChair: [],
     mesageBooking: "",
-    errorMesage: ""
 }
 
 export const BookingReducer = (state = initalState, action) => {
@@ -26,10 +25,6 @@ export const BookingReducer = (state = initalState, action) => {
         }
         case BOOKING_CHAIR: {
             state.mesageBooking = action.payload
-            return { ...state } // none save booking.action
-        }
-        case ERROR_BOOKING: {
-            state.errorMesage = action.payload
             return { ...state } // none save booking.action
         }
         default: return { ...state }

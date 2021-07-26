@@ -11,9 +11,8 @@ import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // reduer action
-import { getMovieDetail_Action } from "../../store/actions/detail.actions";
 // action axios
-import { getLogoDetailTabAction } from "../../store/actions/detailTabComponent.action";
+import { getLogoDetailTabAction, getMovieDetail_Action } from "../../store/actions/detailTabComponent.action";
 // progressbar
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -28,8 +27,8 @@ function MovieDetail(props) {
   const [loading, setLoading] = useState(null);
 
   const codeMaPhim = props.match.params.maPhim; // recive data to listFlim/Listphim.page
-  const detail = useSelector((state) => {
-    return state.detaiMovielReducer?.detail || {};
+  const detailMovie = useSelector((state) => {
+    return state.DetailTabReducer?.detailMovie || {};
   });
 
   useEffect(() => {
@@ -59,7 +58,7 @@ function MovieDetail(props) {
 
   // https images
   const getUrlHttpS = () => {
-    let httpS = detail?.hinhAnh.split(":");
+    let httpS = detailMovie?.hinhAnh.split(":");
     let urlImg = httpS[0] + "s:" + httpS[1];
     return <img src={urlImg} alt={urlImg} />;
   };
@@ -77,20 +76,20 @@ function MovieDetail(props) {
                 {getUrlHttpS()}
                 <PlayArrowIcon
                   className="iconPlay"
-                  onClick={() => handleOpen(detail.trailer)}
+                  onClick={() => handleOpen(detailMovie.trailer)}
                 />
               </Grid>
               <Grid item xs={8} sm={3} md={3} lg={2} className="intro">
-                <label>Ngày Chiếu : {dayjs(detail.ngayChieuGioChieu).format("DD-MM-YYYY")}</label>
+                <label>Ngày Chiếu : {dayjs(detailMovie.ngayChieuGioChieu).format("DD-MM-YYYY")}</label>
                 <p>
-                  <span>{detail.maPhim}</span> Phim : {detail.tenPhim}
+                  <span>{detailMovie.maPhim}</span> Phim : {detailMovie.tenPhim}
                 </p>
               </Grid>
               <Grid item xs={8} sm={3} md={3} lg={2} className="rating">
                 <CircularProgressbar
                   background={true}
-                  value={detail.danhGia}
-                  text={detail.danhGia}
+                  value={detailMovie.danhGia}
+                  text={detailMovie.danhGia}
                   maxValue={10}
                   strokeWidth={6}
                   styles={buildStyles({
@@ -109,7 +108,7 @@ function MovieDetail(props) {
                   <StarIcon />
                   <StarIcon />
                 </p>
-                <span>{detail.danhGia} Người Đánh Giá</span>
+                <span>{detailMovie.danhGia} Người Đánh Giá</span>
               </Grid>
             </Grid>
           </div>

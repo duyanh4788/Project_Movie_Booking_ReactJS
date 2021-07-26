@@ -9,6 +9,7 @@ import {
   getListMovieDropDowns,
   getCinemaDropDownsWithCode,
   getDateDropDowns,
+  setDataDropDownsWithCode,
 } from "../../store/actions/dropdowns.action";
 // date format
 import * as dayjs from "dayjs";
@@ -19,7 +20,10 @@ const DropDowns = (props) => {
   // call api
   useEffect(() => {
     dispatch(getListMovieDropDowns());
+    dispatch(setDataDropDownsWithCode({}));
+    dispatch(getDateDropDowns(""));
   }, [dispatch]);
+
   // get data reducer
   const listMovie = useSelector((state) => {
     return state.dropDownsReducer.listPhim;
@@ -33,7 +37,6 @@ const DropDowns = (props) => {
   const listLichChieu = useSelector((state) => {
     return state.dropDownsReducer.listLichChieu;
   });
-
   // show phim
   const [stateTenPhim] = useState({
     tenPhim: "",
@@ -112,7 +115,7 @@ const DropDowns = (props) => {
       timer: "",
     });
   };
-
+  const [dateTime, setDateTime] = useState("");
   // show date
   const [stateDate, setDate] = useState({
     date: "",
@@ -150,12 +153,13 @@ const DropDowns = (props) => {
     setTimer({
       timer: formatTimer,
     });
+    setDateTime(ngayChieuGioChieu);
   };
 
   const bookingMovie = () => {
     if (stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap) {
       history.push(
-        `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}`
+        `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}-${dateTime}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));

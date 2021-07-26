@@ -92,7 +92,6 @@ export default function MovieManagement() {
   useEffect(() => {
     if (statusCode === 200 || statusCode === 500) {
       handleClick();
-      dispatch(setDataErrorToZero(0));
     }
   }, [dispatch, statusCode]);
   // cal api code cinema use FormCreatSchedule
@@ -147,11 +146,17 @@ export default function MovieManagement() {
   const handleMaNhom = (e) => {
     const { value } = e.target;
     setMaNhom({ ...stateMaNhom, maNhom: value });
+    setSearch({ ...stateSearch, search: "" });
+    setSince({ ...stateSince, dateSince: "" });
+    setToThatDay({ ...stateToThatDay, dateDay: "" });
+    dispatch(setDataErrorToZero(0));
+    movieListDate.length = 0;
     setPage(0);
   };
   // set search
   const handleSearch = (e) => {
     setSearch({ ...stateSearch, search: e.target.value });
+    movieListDate.length = 0;
   };
   // set date
   const handleSince = (e) => {
@@ -169,6 +174,9 @@ export default function MovieManagement() {
     setRowsPage({ ...stateRowsPage, page: e.target.value });
   };
   //  btn tim phim
+  const movieListDate = useSelector((state) => {
+    return state.MovieManagementReducer.movieListDate;
+  });
   const timPhimTheoNgay = () => {
     let dateSince = dayjs(stateSince.dateSince).format("DD/MM/YYYY");
     let dateDay = dayjs(stateToThatDay.dateDay).format("DD/MM/YYYY");
@@ -182,16 +190,19 @@ export default function MovieManagement() {
         dateDay
       )
     );
+    handleClick();
+    if (movieListDate.length > 0) {
+      dispatch(setDataErrorToZero(0));
+    }
   };
   const movieList = useSelector((state) => {
     return state.MovieManagementReducer.movieList;
   });
-  const movieListDate = useSelector((state) => {
-    return state.MovieManagementReducer.movieListDate;
-  });
+
   // delete
   const deletePhim = (maPhim) => {
     dispatch(deleteListMovieManagement(maPhim));
+    handleClick();
   };
   // edit
   const editPhim = (infoPhim) => {
@@ -301,9 +312,19 @@ export default function MovieManagement() {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <button type="button" onClick={timPhimTheoNgay}>
-                      Tìm Phim
-                    </button>
+                    {stateSearch.search === "" ? (
+                      <button
+                        type="button"
+                        disabled
+                        style={{ cursor: "no-drop" }}
+                      >
+                        Tìm Phim
+                      </button>
+                    ) : (
+                      <button type="button" onClick={timPhimTheoNgay}>
+                        Tìm Phim
+                      </button>
+                    )}
                   </TableCell>
                   <TableCell>
                     {movieListDate.length > 0 ? (
@@ -386,43 +407,53 @@ export default function MovieManagement() {
                 ))}
               </TableBody>
             </Table>
-            <Container maxWidth="md" className="pagination">
-              <Grid container>
-                <Grid item lg={4}>
-                  <span> Rows per page : </span>
-                  <select
-                    name="stateRowsPage"
-                    onChange={handleRowPage}
-                    value={stateRowsPage.page}
-                  >
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                  </select>
-                </Grid>
-                <Grid item lg={8}>
-                  <Pagination
-                    count={movieListLength.length}
-                    showFirstButton
-                    showLastButton
-                    page={page}
-                    onChange={handleChangePage}
-                  />
-                </Grid>
-              </Grid>
-            </Container>
-          </TableContainer>
-          <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-            {statusCode === 200 ? (
-              <Alert onClose={handleClose} severity="success">
-                Xoá Phim Thành Công
-              </Alert>
+            {movieListDate.length > 0 ? (
+              ""
             ) : (
+              <Container maxWidth="md" className="pagination">
+                <Grid container>
+                  <Grid item lg={4}>
+                    <span> Rows per page : </span>
+                    <select
+                      name="stateRowsPage"
+                      onChange={handleRowPage}
+                      value={stateRowsPage.page}
+                    >
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="20">20</option>
+                    </select>
+                  </Grid>
+                  <Grid item lg={8}>
+                    <Pagination
+                      count={parseInt(
+                        movieListLength.length / stateRowsPage.page
+                      )}
+                      showFirstButton
+                      showLastButton
+                      page={page}
+                      onChange={handleChangePage}
+                    />
+                  </Grid>
+                </Grid>
+              </Container>
+            )}
+          </TableContainer>
+          {statusCode === 200 ? (
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                Thành Công
+              </Alert>
+            </Snackbar>
+          ) : statusCode === 500 ? (
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="error">
                 {errorMessage}
               </Alert>
-            )}
-          </Snackbar>
+            </Snackbar>
+          ) : (
+            ""
+          )}
         </>
       )}
     </>

@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import { movieReducer } from "./movie.reduder";
-import { detaiMovielReducer } from "./detail.reducer";
 import { signInReducer } from "./signIn.reducer";
 import { BookingReducer } from "./booking.reducer";
 import { CommonReducer } from "./common.reducer";
@@ -18,7 +17,6 @@ import { MessageSnackbarReducer } from "./messageSnackbar.reducer"
 import { ListClientPaginationReducer } from "./ListClientPagination.reducer"
 export const rootReducers = combineReducers({
   movieReducer,
-  detaiMovielReducer,
   signInReducer,
   SignUpReducer,
   BookingReducer,

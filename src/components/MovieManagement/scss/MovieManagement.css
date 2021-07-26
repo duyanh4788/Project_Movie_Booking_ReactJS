@@ -76,6 +76,10 @@
   font-weight: bolder;
 }
 
+.tableMove {
+  min-width: 1300px;
+}
+
 .tableMove .iconDelete {
   color: #ee2d24;
   cursor: pointer;

@@ -40,7 +40,7 @@ const FormEditMovie = (props) => {
 
   // show status
   useEffect(() => {
-    if (statusCode === 500 || statusCode === 200) {
+    if (statusCode === 500) {
       handleClick();
     }
   }, [statusCode]);
@@ -223,15 +223,9 @@ const FormEditMovie = (props) => {
         </Container>
       </div>
       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        {statusCode === 200 ? (
-          <Alert onClose={handleClose} severity="success">
-            UpDate Thành Công 
-          </Alert>
-        ) : (
-          <Alert onClose={handleClose} severity="error">
-            {errorMessage}
-          </Alert>
-        )}
+        <Alert onClose={handleClose} severity="error">
+          {errorMessage}
+        </Alert>
       </Snackbar>
     </div>
   );

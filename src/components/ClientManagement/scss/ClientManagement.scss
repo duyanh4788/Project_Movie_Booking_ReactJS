@@ -41,6 +41,7 @@
     }
 }
 .tableClient {
+    min-width: 1300px;
     .iconDelete {
         color: #ee2d24;
         margin-right: 20px;
@@ -53,6 +54,7 @@
 }
 .pagination {
     margin: 20px 0;
+    min-width: 1300px;
     select {
         padding: 10px 5px;
         border-radius: 5px;

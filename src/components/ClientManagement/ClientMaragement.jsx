@@ -278,7 +278,9 @@ const ClientMaragement = () => {
                 </Grid>
                 <Grid item lg={8}>
                   <Pagination
-                    count={listClientLength.length}
+                    count={parseInt(
+                      listClientLength.length / stateRowsPage.page
+                    )}
                     showFirstButton
                     showLastButton
                     page={page}

@@ -50,7 +50,6 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-// function tabpanel
 // function tabpanel scoll
 function a11yPropsScroll(index) {
   return {
@@ -58,10 +57,10 @@ function a11yPropsScroll(index) {
     "aria-controls": `scrollable-auto-tabpanel-${index}`,
   };
 }
+// function tabpanel
 
 const DetailTabComponent = () => {
   const history = useHistory();
-
   // tabpanel date
   const [values, setValues] = React.useState(0);
   const handleChanges = (event, newValue) => {
@@ -77,13 +76,14 @@ const DetailTabComponent = () => {
   // tabpanel
 
   // detail phim
-  const detail = useSelector((state) => {
-    return state.detaiMovielReducer?.detail || {};
+  const detailMovie = useSelector((state) => {
+    return state.DetailTabReducer?.detailMovie || {};
   });
-
+  const lichChieuMovie = useSelector((state) => {
+    return state.DetailTabReducer?.lichChieuMovie;
+  });
   // contructor
-  const { ngayKhoiChieu, maPhim, moTa, tenPhim, biDanh, maNhom, lichChieu } =
-    detail;
+  const { ngayKhoiChieu, maPhim, moTa, tenPhim, biDanh, maNhom } = detailMovie;
 
   const listLogo = useSelector((state) => {
     return state.DetailTabReducer?.listShowTimeDetail; // get data to DetailTabReducer
@@ -91,8 +91,8 @@ const DetailTabComponent = () => {
 
   // render logo
   const renderLoGo = () => {
-    return listLogo.map((item, index) => {
-      let httpS = item.logo.split(":");
+    return listLogo?.map((item, index) => {
+      let httpS = item?.logo.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
       return (
         <Grid
@@ -115,6 +115,8 @@ const DetailTabComponent = () => {
       );
     });
   };
+  // set date
+  const [stateDate, setDate] = useState("");
   /// set maRap
   const [stateMaRap, setStateMarap] = useState({
     maRap: "",
@@ -124,6 +126,7 @@ const DetailTabComponent = () => {
     setStateMarap({
       maRap: codeCinema,
     });
+    setValues(0);
   };
   // render logo
 
@@ -144,14 +147,18 @@ const DetailTabComponent = () => {
     let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
     return timeEnd;
   };
-
   const renderLichChieu = () => {
-    let index = lichChieu.findIndex(
-      (itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap
+    let index = lichChieuMovie.findIndex(
+      (item) => item.thongTinRap.maHeThongRap === stateMaRap.maRap
     );
     if (index !== -1) {
-      return lichChieu
+      return lichChieuMovie
         .filter((itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap)
+        .filter(
+          (itemF) =>
+            dayjs(itemF.ngayChieuGioChieu).format("DD-MM-YYYY") ===
+            dayjs(stateDate).format("DD-MM-YYYY")
+        )
         .map((item, index) => {
           return (
             <Grid container className="rowScheduleMovie" key={index}>
@@ -205,21 +212,36 @@ const DetailTabComponent = () => {
 
   // render date
   const renderDate = () => {
-    return lichChieu.map((item, index) => {
-      return (
-        <Tab
-          label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
-          {...a11yPropsScroll(index)}
-          key={index}
-        />
-      );
-    });
+    // const arrayFilter = new Set();
+    // const fillterDate = lichChieuMovie.filter((obj) => {
+    //   const checkFilter = arrayFilter.has(
+    //     dayjs(obj.ngayChieuGioChieu).format("mm-dd-yyyy")
+    //   );
+    //   arrayFilter.add(dayjs(obj.ngayChieuGioChieu).format("mm-dd-yyyy"));
+    //   return !checkFilter;
+    // });
+    return lichChieuMovie
+      .filter((itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap)
+      .map((item, index) => {
+        return (
+          <Tab
+            onClick={() => {
+              setDate(item.ngayChieuGioChieu);
+            }}
+            label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
+            {...a11yPropsScroll(index)}
+            key={index}
+          />
+        );
+      });
   };
 
   // booking
   const bookingMovie = (maLichChieu, tenCumRap) => {
     if (maLichChieu && maPhim && tenCumRap) {
-      history.push(`/bookingComponent/${maLichChieu}-${maPhim}-${tenCumRap}`);
+      history.push(
+        `/bookingComponent/${maLichChieu}-${maPhim}-${tenCumRap}-${stateDate}`
+      );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
     if (maLichChieu && maPhim && tenCumRap && !toKen) {

@@ -40,6 +40,13 @@ export const getCinemaDropDownsWithCode = (maPhim) => {
   };
 };
 
+export const setDataDropDownsWithCode = (dataNull) => {
+  return {
+    type: GET_CINEMA_DROPDOWNS,
+    payload: dataNull,
+  }
+}
+
 export const getDateDropDowns = (lichChieuPhim) => {
   return {
     type: GET_DATE_DROPDOWNS,

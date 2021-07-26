@@ -40,7 +40,7 @@ export const getListMovieManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
         }
     }
 }
-
+// chưa sử dụng ( dùng cho search )
 export const getListMovieSearchManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
         try {
@@ -70,7 +70,6 @@ export const getListMovieDateManagement = (maNhom, tuKhoa, soTrang, soPhanTuTren
                 payload: res.data
             })
         } catch (error) {
-            console.log(error.response);
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
                 payload: error.response.status
@@ -221,6 +220,7 @@ export const creatScheduleMovie = (dataMovie) => {
                 payload: res.status
             })
         } catch (error) {
+            console.log(error.response);
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
                 payload: error.response.status

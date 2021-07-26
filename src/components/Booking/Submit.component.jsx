@@ -21,19 +21,10 @@ function SubmitComponent(props) {
   const mesageBooking = useSelector((state) => {
     return state.BookingReducer.mesageBooking; // get data BookingReducer
   });
-  const errorMesage = useSelector((state) => {
-    return state.BookingReducer.errorMesage; // get data BookingReducer
-  });
-
   const hanldeBooking = () => {
-    console.log(errorMesage);
-    if (errorMesage === 401) {
-      setOpen(true);
-    } else {
-      const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
-      dispatch(bookingTicketAction(maLichChieu, listChairChoice)); // post to (arrShowTimeCode[0] === maLichChieu , listChairChoice ===  danhSachVe ) to Axios booking.action
-      setOpen(true);
-    }
+    const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
+    dispatch(bookingTicketAction(maLichChieu, listChairChoice)); // post to (arrShowTimeCode[0] === maLichChieu , listChairChoice ===  danhSachVe ) to Axios booking.action
+    setOpen(true);
   };
 
   // modal
@@ -41,11 +32,7 @@ function SubmitComponent(props) {
 
   const handleClose = () => {
     setOpen(false);
-    if (errorMesage === 401) {
-      history.push("/signIn");
-    } else {
-      history.push("/");
-    }
+    history.push("/");
   };
   // modal
   // loading
@@ -87,17 +74,8 @@ function SubmitComponent(props) {
           >
             <Fade in={open}>
               <div className="mesageBooking">
-                {errorMesage === 401 ? (
-                  <>
-                    <p>Bạn Phải Đăng Nhập Để Đặt Vé </p>
-                    <p style={{ textAlign: "center" }}> Go Page Sign in </p>
-                  </>
-                ) : (
-                  <>
-                    <p>{mesageBooking}</p>
-                    <p>Come Back Home</p>
-                  </>
-                )}
+                <p>{mesageBooking}</p>
+                <button onClick={handleClose}>Come Back Home</button>
               </div>
             </Fade>
           </Modal>

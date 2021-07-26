@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { BOOKING_CHAIR, CHOICE_CHAIR, ERROR_BOOKING, GET_TICKET_LIST } from "../constants/booking.constant";
+import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getTicketListAction = (maLichChieu) => {
@@ -54,10 +54,6 @@ export const bookingTicketAction = (showTimeCode, listChairChoice) => {
             dispatch(hidenLoader_Action())
         } catch (error) {
             console.log(error.response.status);
-            dispatch({
-                type: ERROR_BOOKING,
-                payload: error.response.status
-            })
             // hidden loading
             dispatch(hidenLoader_Action())
         }

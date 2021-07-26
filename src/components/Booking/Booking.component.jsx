@@ -27,7 +27,7 @@ import { withStyles } from "@material-ui/styles";
 import { styled } from "./booking.styles";
 import { getMaPhimBooking } from "../../store/actions/bookingCodePhim.action";
 // date format
-import format from "date-format";
+import * as dayjs from "dayjs";
 
 function BookingComponent(props) {
   const { classes } = props;
@@ -43,6 +43,8 @@ function BookingComponent(props) {
   let maPhim = arrShowTimeCode[1];
   let maCumRap = arrShowTimeCode[2];
   let tenCumRap = arrShowTimeCode[3];
+  let dateTime = `${arrShowTimeCode[4]}-${arrShowTimeCode[5]}-${arrShowTimeCode[6]}`;
+
   // call api
   useEffect(() => {
     dispatch(getMaPhimBooking(maPhim));
@@ -161,7 +163,6 @@ function BookingComponent(props) {
       );
     });
   };
-
   // https images
   const getUrlHttpS = () => {
     let httpS = listPhimBooking.hinhAnh.split(":");
@@ -204,15 +205,12 @@ function BookingComponent(props) {
                   </p>
                   <p>Tên Phim : {listPhimBooking.tenPhim}</p>
                   <p>
-                    Ngày Chiếu :{" "}
-                    {format(
-                      "dd-mm-yyyy",
-                      new Date(listPhimBooking.ngayKhoiChieu)
-                    )}
+                    Ngày Chiếu :
+                    {dayjs(dateTime).format("DD-MM-YYYY")}
                   </p>
                   <p>
                     Giờ Chiếu :{" "}
-                    {format("hh:mm", new Date(listPhimBooking.ngayKhoiChieu))}
+                    {dayjs(dateTime).format("HH:MM")}
                   </p>
                 </span>
               </Grid>

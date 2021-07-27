@@ -7,7 +7,7 @@
 
 .rowOneinfoPhim .backgroundPhim img {
   width: 100%;
-  height: 400px;
+  height: 300px;
   -webkit-filter: blur(15px);
           filter: blur(15px);
 }
@@ -166,17 +166,38 @@
   color: gray;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imgPhim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim {
+  height: 120px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim img {
   width: 80px;
   height: 80px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .phim {
-  color: gray;
-  font-size: 13px;
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span {
+  margin-left: 5px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .phim .maPhim {
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span .maPhim {
   background-color: #e71a0e;
   color: white;
   border-radius: 5px;
@@ -186,6 +207,11 @@
 }
 
 .infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer {
+  height: 120px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
   font-weight: bold;
 }
 
@@ -225,6 +251,11 @@
   cursor: pointer;
 }
 
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim:hover,
+.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer:hover {
+  background-color: white;
+}
+
 .rowCinemaDetail::-webkit-scrollbar,
 .rowInfoPhim::-webkit-scrollbar {
   width: 6px;
@@ -250,9 +281,9 @@
   .rowInfoPhim .shedulePhim p {
     line-height: 17px !important;
   }
-  .rowInfoPhim .shedulePhim .imgPhim {
+  .rowInfoPhim .shedulePhim .imgPhim img {
     width: 60px !important;
-    height: 60px !important;
+    height: 80px !important;
   }
   .rowInfoPhim .shedulePhim .maPhim {
     font-size: 10px !important;
@@ -285,7 +316,7 @@
   .rowInfoPhim .shedulePhim .phim {
     font-size: 10px !important;
   }
-  .rowInfoPhim .shedulePhim .imgPhim {
+  .rowInfoPhim .shedulePhim .imgPhim img {
     width: 60px !important;
     height: 80px !important;
   }

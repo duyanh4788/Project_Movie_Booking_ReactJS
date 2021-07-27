@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // material ui
 import { Grid } from "@material-ui/core";
-import { getCodeGroupCinemaPage, getNameGroupCinemaPage } from "../../store/actions/tabNavigationPage.action";
+import { getCodeGroupCinemaPage, getMovieSchedulePage, getNameGroupCinemaPage } from "../../store/actions/tabNavigationPage.action";
 import { listCinema } from "./dataCinema";
 
 function NavigationTabsTwoPage() {
@@ -21,6 +21,7 @@ function NavigationTabsTwoPage() {
   const handleMaCumRap = (codeGroupCinema, nameGroupCinema) => {
     dispatch(getCodeGroupCinemaPage(codeGroupCinema));
     dispatch(getNameGroupCinemaPage(nameGroupCinema));
+    dispatch(getMovieSchedulePage([]));
   };
   const renderImageCinema = () => {
     const item = listCinema.find((item) => item.name === codeCinema);

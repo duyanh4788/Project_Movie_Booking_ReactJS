@@ -161,7 +161,7 @@ const DetailTabComponent = () => {
         )
         .map((item, index) => {
           return (
-            <Grid container className="rowScheduleMovie" key={index}>
+            <Grid container className="pageScheduleMovie" key={index}>
               <Grid className="imageLogo" item xs={4} sm={3} md={3} lg={2}>
                 {renderImageCinema()}
               </Grid>
@@ -287,9 +287,9 @@ const DetailTabComponent = () => {
           </TabPanel>
 
           <TabPanel value={value} index={1}>
-            <Grid container className="detailTabCinema">
+            <Grid container className="detailTabCinema" spacing={1}>
               <Grid container item xs={12} sm={4} md={4} lg={4}>
-                <Accordion style={{ margin: "0 10px 10px" }}>
+                <Accordion className="accordionLogo">
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <p className="titleLogo">Chọn Rạp : {stateMaRap.maRap}</p>
                   </AccordionSummary>
@@ -309,19 +309,24 @@ const DetailTabComponent = () => {
                 lg={8}
                 className="scheduleMovie"
               >
-                <AppBar position="static" color="default">
-                  <Paper style={{ padding: "5px 0" }}>
-                    <Tabs
-                      value={values}
-                      onChange={handleChanges}
-                      variant="scrollable"
-                      scrollButtons="auto"
-                    >
-                      {renderDate()}
-                    </Tabs>
-                  </Paper>
-                </AppBar>
-                {renderLichChieu()}
+                <Grid item xs={12} lg={12}>
+                  <AppBar position="static" color="default">
+                    <Paper>
+                      <Tabs
+                        value={values}
+                        onChange={handleChanges}
+                        variant="scrollable"
+                        scrollButtons="auto"
+                      >
+                        {renderDate()}
+                      </Tabs>
+                    </Paper>
+                  </AppBar>
+                  <h5 className="titleDate">Chọn Ngày Chiếu</h5>
+                </Grid>
+                <Grid item xs={12} lg={12} className="rowScheduleMovie">
+                  {renderLichChieu()}
+                </Grid>
               </Grid>
             </Grid>
           </TabPanel>

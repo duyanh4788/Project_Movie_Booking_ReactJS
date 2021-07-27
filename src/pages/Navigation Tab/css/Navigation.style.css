@@ -4,25 +4,28 @@
 
 .naViGaTionTab {
   border-radius: 5px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid white;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .naViGaTionTab .rowOneNavigationTab {
-  background-color: #f1f1f1;
   text-align: center;
-  border-right: 1px solid #f5f5f5;
+  border-right: 1px solid white;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab {
   opacity: 0.7;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid white;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab button {
   border: none;
+  outline: none;
   cursor: pointer;
+  background-color: #fdfbfb;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab button .rowOneNavigation_ChildTab_Images {
@@ -32,14 +35,16 @@
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active {
   opacity: 1.5;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid white;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active button {
   border: none;
+  outline: none;
   cursor: pointer;
+  background-color: #fdfbfb;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active button .rowOneNavigation_ChildTab_Images {
@@ -52,15 +57,14 @@
   height: 636px;
   width: 100%;
   overflow-y: scroll;
-  border-right: 1px solid #f5f5f5;
+  border-right: 1px solid white;
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab {
   opacity: 0.7;
-  border-bottom: 1px solid #f5f5f5;
-  height: auto;
+  border-bottom: 1px solid white;
   padding-left: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -119,8 +123,7 @@
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active {
   opacity: 1.5;
-  border-bottom: 1px solid #f5f5f5;
-  height: auto;
+  border-bottom: 1px solid white;
   padding-left: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -178,139 +181,176 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab {
-  float: left;
   height: 636px;
-  width: 100%;
+  overflow: hidden;
+}
+
+.naViGaTionTab .rowThereNavigationTab .paperBar {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.naViGaTionTab .rowThereNavigationTab .titleDate {
+  text-align: center;
+  color: gray;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab {
+  height: 100%;
   overflow-y: scroll;
-  border-right: 1px solid #f5f5f5;
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
 
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child {
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab {
   padding: 10px;
-  border-bottom: 1px solid #f5f5f5;
-  height: auto;
-  padding-left: 10px;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro {
   font-weight: 600;
+  border-bottom: 1px solid white;
 }
 
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .ChildTab_Intro_Img img {
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img {
+  text-align: center;
+  height: 100px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img img {
   width: 60px;
-  height: 60px;
+  height: 90px;
 }
 
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_BHDStar {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro {
   font-size: 13px;
-  background-color: #56bb52;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_CGV {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 13px;
-  background-color: #ee2d24;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_CineStar {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 13px;
-  background-color: #662d91;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_Galaxy {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 13px;
-  background-color: #ff8121;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_LotteCinima {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 13px;
-  background-color: #ed1b24;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .maRap_MegaGS {
-  padding: 3px 6px;
-  border-radius: 5px;
-  color: #f5f5f5;
-  font-size: 13px;
-  background-color: #ebb427;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .BHDStar {
-  color: #56bb52;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .CGV {
-  color: #ee2d24;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .CineStar {
-  color: #662d91;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .Galaxy {
-  color: #ff8121;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .LotteCinima {
-  color: #ed1b24;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .rowThereNavigation_ChildTab_Intro .MegaGS {
-  color: #ebb427;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .ChildTab_Intro {
-  font-size: 13px;
+  height: 100px;
   color: gray;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .ChildTab_Intro span {
-  margin-left: 5px;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child a {
-  text-decoration: none;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .ChildTab_Timer {
-  overflow-y: scroll;
-  width: 100%;
-  max-height: 100px;
-}
-
-.naViGaTionTab .rowThereNavigationTab .rowThereNavigationTab_Child .ChildTab_Timer .timeCode {
-  font-size: 17px;
-  margin: 10px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
   cursor: pointer;
 }
 
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .BHDStar {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #56bb52;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .CGV {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ee2d24;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .CineStar {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #662d91;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .Galaxy {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ff8121;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .LotteCinima {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ed1b24;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .MegaGS {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ebb427;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro span {
+  margin-left: 5px;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer {
+  height: 100px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer p {
+  font-size: 13px;
+  color: gray;
+  line-height: 20px;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .BHDStar {
+  color: #56bb52;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CGV {
+  color: #ee2d24;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CineStar {
+  color: #662d91;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .Galaxy {
+  color: #ff8121;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .LotteCinima {
+  color: #ed1b24;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .MegaGS {
+  color: #ebb427;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .timeCode {
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro:hover,
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer:hover,
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img:hover {
+  background-color: white;
+}
+
 .rowTwoNavigationTab::-webkit-scrollbar,
-.rowThereNavigationTab::-webkit-scrollbar,
-.ChildTab_Timer::-webkit-scrollbar {
+.rowThereNavigation_ChildTab::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
 .rowTwoNavigationTab::-webkit-scrollbar-thumb,
-.rowThereNavigationTab::-webkit-scrollbar-thumb,
-.ChildTab_Timer::-webkit-scrollbar-thumb {
+.rowThereNavigation_ChildTab::-webkit-scrollbar-thumb {
   background: #e2dfdf;
   border-radius: 6px;
 }

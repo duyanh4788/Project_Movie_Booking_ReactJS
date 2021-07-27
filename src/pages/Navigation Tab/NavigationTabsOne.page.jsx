@@ -11,6 +11,7 @@ import "./css/Navigation.style.css";
 import {
   getCodeCinemaPage,
   getListShowTimePageAction,
+  getMovieSchedulePage,
 } from "../../store/actions/tabNavigationPage.action";
 
 function NavigationTabsOnePage() {
@@ -29,6 +30,7 @@ function NavigationTabsOnePage() {
 
   const handleCodeCinema = (codeCinema) => {
     dispatch(getCodeCinemaPage(codeCinema));
+    dispatch(getMovieSchedulePage([]));
   };
 
   const renderLoGo = () => {

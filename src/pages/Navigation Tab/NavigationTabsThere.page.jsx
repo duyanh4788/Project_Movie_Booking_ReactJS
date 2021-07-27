@@ -1,19 +1,65 @@
 import React, { useState } from "react";
 // redux hook
-import { useSelector } from "react-redux";
-// material ui
-import { Grid } from "@material-ui/core";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+// material ui
+import { AppBar, Grid, Paper, Tab, Tabs } from "@material-ui/core";
+import PropTypes from "prop-types";
+import Box from "@material-ui/core/Box";
+import { getMovieSchedulePage } from "../../store/actions/tabNavigationPage.action";
+// date format
+import * as dayjs from "dayjs";
+
+// function tabpanel
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 2 }}>
+          <div>{children}</div>
+        </Box>
+      )}
+    </div>
+  );
+}
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+// function tabpanel scoll
+function a11yPropsScroll(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    "aria-controls": `scrollable-auto-tabpanel-${index}`,
+  };
+}
+// function tabpanel
 
 function NavigationTabsTherePage() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  // tabpanel date
+  const [values, setValues] = React.useState(0);
+  const handleChanges = (event, newValue) => {
+    setValues(newValue);
+  };
+  // tabpanel date
+
+  const [date, setDate] = useState("");
 
   const lstCumRap = useSelector((state) => {
     return state.TabNavigationPageReducer.lstCumRap; // get lstCumRap to  TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
+  });
+  const lichChieuPhim = useSelector((state) => {
+    return state.TabNavigationPageReducer.lichChieuPhim; // get lstCumRap to  TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
   const codeGroupCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.codeGroupCinema;
@@ -24,7 +70,6 @@ function NavigationTabsTherePage() {
   const nameGroupCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.nameGroupCinema; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
-
   //Return Time-end with Time-start
   const getTimeEnd = (timeStart) => {
     let dateFormat = new Date();
@@ -42,7 +87,11 @@ function NavigationTabsTherePage() {
       maPhim: maPhim,
     });
   };
-
+  // get lịch chiếu phim
+  const getlstLichChieu = (lstLichChieuTheoPhim) => {
+    dispatch(getMovieSchedulePage(lstLichChieuTheoPhim));
+    setValues(0);
+  };
   // booking
   const bookingMovie = (maLichChieu, ngayChieuGioChieu) => {
     if (maLichChieu && stateMaphim.maPhim && nameGroupCinema) {
@@ -54,6 +103,22 @@ function NavigationTabsTherePage() {
     if (maLichChieu && stateMaphim.maPhim && nameGroupCinema && !toKen) {
       history.push("/signIn");
     }
+  };
+
+  // render date
+  const renderDateTime = () => {
+    return lichChieuPhim.map((item, index) => {
+      return (
+        <Tab
+          onClick={() => {
+            setDate(item.ngayChieuGioChieu);
+          }}
+          label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
+          {...a11yPropsScroll(index)}
+          key={index}
+        />
+      );
+    });
   };
 
   const renderTenPhim = () => {
@@ -68,74 +133,87 @@ function NavigationTabsTherePage() {
           <Grid
             item
             xs={12}
+            container
+            className="ChildTab"
             key={index}
-            className="rowThereNavigationTab_Child"
             onClick={() => {
               handleMaPhim(item.maPhim);
             }}
           >
-            <div className="rowThereNavigation_ChildTab_Intro">
-              <Grid container>
-                <Grid item xs={2}>
-                  <div className="ChildTab_Intro_Img">
-                    <img src={urlImg} alt={urlImg} />
-                  </div>
-                </Grid>
-                <Grid item xs={10}>
-                  <Accordion>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                      <div className="ChildTab_Intro">
-                        <label className={`maRap_${codeCinema}`}>
-                          {item.maPhim}
-                        </label>
-                        <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
-                        <p>Chọn Xuất Chiếu</p>
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div className="ChildTab_Timer">
-                        <Grid container>
-                          {item.lstLichChieuTheoPhim.map((item, index) => {
-                            return (
-                              <Grid item lg={4} key={index}>
-                                <span
-                                  onClick={() =>
-                                    bookingMovie(
-                                      item.maLichChieu,
-                                      item.ngayChieuGioChieu
-                                    )
-                                  }
-                                  key={index}
-                                  className={`timeCode ${codeCinema}`}
-                                >
-                                  {item.ngayChieuGioChieu.slice(11, 16)}
-                                  <label
-                                    style={{
-                                      color: "gray",
-                                      marginLeft: "5px",
-                                    }}
-                                  >{`~ ${getTimeEnd(
-                                    item.ngayChieuGioChieu.slice(11, 16)
-                                  )}`}</label>
-                                </span>
-                              </Grid>
-                            );
-                          })}
-                        </Grid>
-                      </div>
-                    </AccordionDetails>
-                  </Accordion>
-                </Grid>
-              </Grid>
-            </div>
+            <Grid item xs={2} className="ChildTab_Img">
+              <img src={urlImg} alt={urlImg} />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              className="ChildTab_Intro"
+              onClick={() => {
+                getlstLichChieu(item.lstLichChieuTheoPhim);
+              }}
+            >
+              <label className={codeCinema}>{item.maPhim}</label>
+              <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
+            </Grid>
+            <Grid item xs={5} className="ChildTab_Timer">
+              {item.lstLichChieuTheoPhim
+                .filter((itemF) => itemF.ngayChieuGioChieu === date)
+                .map((item, index) => {
+                  return (
+                    <div key={index} className="dateTimer">
+                      <p>Mã Rạp : {item.maRap}</p>
+                      <p>Mã Lc : {item.maLichChieu}</p>
+                      <p>Giá Vé : {item.giaVe.toLocaleString()}</p>
+                      <p>
+                        Đặt Vé :{" "}
+                        <span
+                          onClick={() =>
+                            bookingMovie(
+                              item.maLichChieu,
+                              item.ngayChieuGioChieu
+                            )
+                          }
+                          className={`timeCode ${codeCinema}`}
+                        >
+                          {item.ngayChieuGioChieu.slice(11, 16)}
+                          <label
+                            style={{
+                              color: "gray",
+                              marginLeft: "5px",
+                            }}
+                          >{`~ ${getTimeEnd(
+                            item.ngayChieuGioChieu.slice(11, 16)
+                          )}`}</label>
+                        </span>
+                      </p>
+                    </div>
+                  );
+                })}
+            </Grid>
           </Grid>
         );
       });
     }
   };
   return (
-    <Grid container item xs={6} className="rowThereNavigationTab">
-      {renderTenPhim()}
+    <Grid container item xs={6} className="rowThereNavigationTab" spacing={2}>
+      <Grid item xs={12} lg={12}>
+        <AppBar position="static" color="default" >
+          <Paper className="paperBar">
+            <Tabs
+              value={values}
+              onChange={handleChanges}
+              variant="scrollable"
+              scrollButtons="auto"
+            >
+              {renderDateTime()}
+            </Tabs>
+          </Paper>
+        </AppBar>
+        <h5 className="titleDate">Chọn Ngày Chiếu</h5>
+      </Grid>
+      <Grid item xs={12} lg={12} className="rowThereNavigation_ChildTab">
+        {renderTenPhim()}
+      </Grid>
     </Grid>
   );
 }

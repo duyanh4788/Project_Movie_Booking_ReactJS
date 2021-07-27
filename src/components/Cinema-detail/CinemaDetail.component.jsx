@@ -1,7 +1,11 @@
 import React from "react";
+import "./scss/cinemaDetailComponent.css";
+// date format
+import * as dayjs from "dayjs";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./scss/cinemaDetailComponent.css";
 import {
   Accordion,
   AccordionDetails,
@@ -21,10 +25,6 @@ import {
   getListPhimCinema,
 } from "../../store/actions/cinemaDetail.action";
 import { listCinema, backgroundS } from "./dataCinema";
-import { useState } from "react";
-// date format
-import * as dayjs from "dayjs";
-import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 // function tabpanel
@@ -78,6 +78,7 @@ const CinemaDetailComponent = (props) => {
   useEffect(() => {
     dispatch(getDetailCinema(codeMaCumRap));
     dispatch(getInfoPhimCinema(null));
+    dispatch(getListPhimCinema([]));
   }, [codeMaCumRap, dispatch]);
 
   const groupCinema = useSelector((state) => {
@@ -207,35 +208,19 @@ const CinemaDetailComponent = (props) => {
       let httpS = item.hinhAnh.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
       return (
-        <Grid
-          container
-          key={index}
-          className="shedulePhim"
-          direction="row"
-          alignItems="center"
-        >
-          <Grid item xs={3} sm={3} md={3} lg={2} style={{ cursor: "pointer" }}>
-            <img
-              src={urlImg}
-              alt={urlImg}
-              className="imgPhim"
-              onClick={() => {
-                handleInfoPhim(item);
-              }}
-            />
-          </Grid>
-
+        <Grid container key={index} className="shedulePhim" >
           <Grid
             item
-            xs={9}
-            sm={4}
-            md={4}
-            lg={5}
-            className="phim"
+            xs={12}
+            sm={7}
+            md={7}
+            lg={7}
+            className="imfoPhim"
             onClick={() => {
               handleInfoPhim(item);
             }}
           >
+            <img src={urlImg} alt={urlImg} />
             <span>
               <label className="maPhim">{item.maPhim} </label> -
               {item.tenPhim.slice(0, 30)}

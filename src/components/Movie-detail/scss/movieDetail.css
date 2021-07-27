@@ -15,10 +15,10 @@
 .movieDetail .movieDetail_Intro {
   position: absolute;
   width: 100%;
-  top: 28%;
+  top: 22%;
   left: 6%;
-  -webkit-transform: translateY(-35%);
-          transform: translateY(-35%);
+  -webkit-transform: translateY(-22%);
+          transform: translateY(-22%);
 }
 
 .movieDetail .movieDetail_Intro .images {
@@ -106,7 +106,7 @@
 
 @media (max-width: 600px) {
   .movieDetail_Intro {
-    top: 23% !important;
+    left: 0% !important;
     text-align: center !important;
   }
 }

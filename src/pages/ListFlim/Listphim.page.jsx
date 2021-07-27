@@ -89,7 +89,6 @@ const ListPhim = () => {
   };
   // popup video youtube
 
-  // arrow function render to row.113
   const renderListPhim = () => {
     return movieList?.map((item, index) => {
       let setLink = item.hinhAnh.split(":");

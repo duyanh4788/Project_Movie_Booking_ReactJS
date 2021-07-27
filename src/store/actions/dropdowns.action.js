@@ -6,12 +6,12 @@ import {
   GET_DATE_DROPDOWNS,
 } from "../constants/dropdown.constant";
 
-export const getListMovieDropDowns = () => {
+export const getListMovieDropDowns = (maNhom) => {
   return async (dispatch) => {
     try {
       const res = await Axios({
         method: "GET",
-        url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=GP10`,
+        url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`,
       });
       dispatch({
         type: GET_LIST_MOVIE_DROPDOWNS,

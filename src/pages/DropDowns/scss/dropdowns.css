@@ -16,6 +16,17 @@
   left: 18%;
 }
 
+.dropDownsRelavite .dropDownsMain .dropDownMaNhom {
+  position: relative;
+  display: inline-block;
+}
+
+.dropDownsRelavite .dropDownsMain .dropDownMaNhom select {
+  border: none;
+  outline: none;
+  background-color: white;
+}
+
 .dropDownsRelavite .dropDownsMain .dropdownPhim {
   position: relative;
   display: inline-block;
@@ -28,6 +39,7 @@
   font-size: 14px;
   border: none;
   text-align: left;
+  cursor: pointer;
   width: 140px;
 }
 
@@ -71,6 +83,7 @@
   font-size: 14px;
   border: none;
   text-align: left;
+  cursor: pointer;
   width: 260px;
 }
 
@@ -114,7 +127,8 @@
   font-size: 14px;
   border: none;
   text-align: left;
-  width: 140px;
+  cursor: pointer;
+  width: 110px;
 }
 
 .dropDownsRelavite .dropDownsMain .dropdownTitle svg {

@@ -11,7 +11,6 @@ export const dropDownsReducer = (state = initialState, { type, payload }) => {
         case GET_LIST_MOVIE_DROPDOWNS:
             state.listPhim = payload
             return { ...state, ...payload }
-
         case GET_CINEMA_DROPDOWNS:
             state.listCinema = payload
             return { ...state, ...payload }

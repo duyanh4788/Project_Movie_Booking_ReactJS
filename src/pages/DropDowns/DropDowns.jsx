@@ -17,12 +17,17 @@ import * as dayjs from "dayjs";
 const DropDowns = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  // get maNhom
+  const [stateMaNhom, setMaNhom] = useState({
+    maNhom: "GP01",
+  });
   // call api
   useEffect(() => {
-    dispatch(getListMovieDropDowns());
+    dispatch(getListMovieDropDowns(stateMaNhom.maNhom));
     dispatch(setDataDropDownsWithCode({}));
     dispatch(getDateDropDowns(""));
-  }, [dispatch]);
+  }, [dispatch, stateMaNhom.maNhom]);
 
   // get data reducer
   const listMovie = useSelector((state) => {
@@ -38,13 +43,29 @@ const DropDowns = (props) => {
     return state.dropDownsReducer.listLichChieu;
   });
   // show phim
-  const [stateTenPhim] = useState({
+  const [stateTenPhim, setStateTenPhim] = useState({
     tenPhim: "",
   });
   // get maPhim
   const [stateMaPhim, setStateMaPhim] = useState({
     maPhim: "",
   });
+  // set maNhom call api
+  const handleMaNhom = (e) => {
+    setMaNhom({ ...stateMaNhom, maNhom: e.target.value });
+    setStateTenPhim({
+      tenPhim: "",
+    });
+    setTenRap({
+      tenRap: "",
+    });
+    setDate({
+      date: "",
+    });
+    setTimer({
+      timer: "",
+    });
+  };
   // show phim
   const getCinemaDropDowns_ = (maPhim, tenPhim) => {
     stateTenPhim.tenPhim = tenPhim;
@@ -172,12 +193,48 @@ const DropDowns = (props) => {
       history.push("/signIn");
     }
   };
+
+  // render maNhom
+  const renderMaNhom = () => {
+    let arrMaNhom = [
+      "GP01",
+      "GP02 ",
+      "GP03",
+      "GP04 ",
+      "GP05",
+      "GP06 ",
+      "GP07",
+      "GP08 ",
+      "GP09",
+      "GP10 ",
+    ];
+    return arrMaNhom.map((item, index) => {
+      return (
+        <option key={index} value={item}>
+          {item}
+        </option>
+      );
+    });
+  };
+
   return (
     <div className="container dropDownsRelavite">
       <div className="dropDownsMain">
+        <div className="dropDownMaNhom">
+          <span>Nhóm : </span>
+          <select
+            name="maNhom"
+            value={stateMaNhom.maNhom}
+            onChange={handleMaNhom}
+          >
+            {renderMaNhom()}
+          </select>
+        </div>
         <div className="dropdownPhim">
           <button className="dropbtn">
-            {stateTenPhim.tenPhim === "" ? "Chọn Phim" : stateTenPhim.tenPhim}
+            {stateTenPhim.tenPhim === ""
+              ? "Chọn Phim"
+              : stateTenPhim.tenPhim.slice(0, 12)}
           </button>
           <ExpandMoreIcon />
           <div className="contentPhim">{renderListMovie()}</div>
@@ -197,7 +254,9 @@ const DropDowns = (props) => {
 
         <div className="dropdownTitle">
           <button className="dropbtn">
-            {stateDate.date === "" ? "Ngày Chiếu" : stateDate.date}
+            {stateDate.date === ""
+              ? "Ngày Chiếu"
+              : dayjs(stateDate.date).format("DD-MM-YYYY")}
           </button>
           <ExpandMoreIcon />
           <div

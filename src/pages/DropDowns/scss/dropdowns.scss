@@ -9,6 +9,7 @@
     font-size: 14px;
     border: none;
     text-align: left;
+    cursor: pointer;
 }
 @mixin svgIcon {
     font-size: 15px;
@@ -45,6 +46,14 @@
         position: absolute;
         bottom: -10px;
         left: 18%;
+        .dropDownMaNhom {
+            @include dropDownBox;
+            select {
+                border: none;
+                outline: none;
+                background-color: white;
+            }
+        }
         .dropdownPhim {
             @include dropDownBox;
             .dropbtn {
@@ -89,7 +98,7 @@
             @include dropDownBox;
             .dropbtn {
                 @include dropDownBtn;
-                width: 140px;
+                width: 110px;
             }
             svg {
                 @include svgIcon;

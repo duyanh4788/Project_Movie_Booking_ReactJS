@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE } from "../constants/tabNavigationPage.const"
+import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE } from "../constants/tabNavigationPage.const"
 
 
 export const getListShowTimePageAction = () => {// get data to Axios use NavigationTabsOne.page.jsx
@@ -42,5 +42,12 @@ export const getMovieSchedulePage = (lichChieuPhim) => {
     return {
         type: GET_MOVIE_SCHEDULE_PAGE,
         payload: lichChieuPhim
+    }
+}
+
+export const setDateSchedulePage = (date) => {
+    return {
+        type: SET_DATE_SCHEDULE_PAGE,
+        payload: date
     }
 }

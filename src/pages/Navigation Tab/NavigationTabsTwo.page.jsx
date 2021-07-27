@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // material ui
 import { Grid } from "@material-ui/core";
-import { getCodeGroupCinemaPage, getMovieSchedulePage, getNameGroupCinemaPage } from "../../store/actions/tabNavigationPage.action";
+import { getCodeGroupCinemaPage, getMovieSchedulePage, getNameGroupCinemaPage, setDateSchedulePage } from "../../store/actions/tabNavigationPage.action";
 import { listCinema } from "./dataCinema";
 
 function NavigationTabsTwoPage() {
@@ -22,6 +22,7 @@ function NavigationTabsTwoPage() {
     dispatch(getCodeGroupCinemaPage(codeGroupCinema));
     dispatch(getNameGroupCinemaPage(nameGroupCinema));
     dispatch(getMovieSchedulePage([]));
+    dispatch(setDateSchedulePage(""));
   };
   const renderImageCinema = () => {
     const item = listCinema.find((item) => item.name === codeCinema);
@@ -41,15 +42,15 @@ function NavigationTabsTwoPage() {
             key={index}
             className={
               item.maCumRap === codeGroupCinema
-                ? "rowTwoNavigation_ChildTab_Active"
-                : "rowTwoNavigation_ChildTab"
+                ? "rowTwo_ChildTab_Active"
+                : "rowTwo_ChildTab"
             }
           >
-            <Grid container className="rowTwoNavigation_ChildTab_Intro">
-              <Grid className="Child_Image" item xs={2}>
+            <Grid container className="childTab_Intro">
+              <Grid className="child_Image" item xs={2}>
                 {renderImageCinema()}
               </Grid>
-              <Grid className="Child_Intro" item xs={10}>
+              <Grid className="child_Intro" item xs={10}>
                 <p className={`${codeCinema}`}>{item.tenCumRap}</p>
                 <p className="address">{item.diaChi.slice(0, 50)}</p>
                 <span

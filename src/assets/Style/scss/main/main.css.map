@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "main.scss",
+        "../form/form.scss",
+        "../table/table.scss",
+        "../variable/variables.scss",
+        "../select/extend.scss",
+        "../extendTab/extendTab.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}

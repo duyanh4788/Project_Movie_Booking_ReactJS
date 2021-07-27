@@ -1,11 +1,4 @@
-@mixin hoverTranitionOn {
-    opacity: 1;
-    transition: 0.6s;
-}
-@mixin hoverTranitionOff {
-    opacity: 0;
-    transition: 0.6s;
-}
+@import "../../../assets/Style/scss/main/main.scss";
 
 .sliderListPhim {
     position: relative;
@@ -24,32 +17,34 @@
     }
     .slick-prev,
     .slick-next {
-        top: 43% !important;
+        top: 45% !important;
     }
     .slick-prev {
-        left: -20px !important;
+        left: -30px !important;
     }
     .slick-next {
-        right: -5px !important;
+        right: -10px !important;
     }
     .slick-prev:before,
     .slick-next:before {
-        color: rgba(231, 63, 63, 0.26) !important;
+        color: $color-red !important;
         font-size: 30px;
     }
     .slide {
         position: relative;
+        margin-bottom: 30px;
         .sliderAfter {
             position: relative;
-            margin: 0 10px;
+            margin-bottom: 30px;
+            margin-right: 10px;
             height: 300px;
             .imageSlider {
                 width: 100%;
                 height: 100%;
-                border-radius: 5px;
+                border-radius: $boderR5;
             }
             .buttonslide {
-                color: white;
+                color: $color-white;
                 width: 100%;
                 opacity: 0;
                 position: absolute;
@@ -57,25 +52,13 @@
                 left: 0%;
             }
             .intro {
-                height: 100px;
-                margin-top: 10px;
+                margin-top: $mg10;
                 .introOne {
-                    padding: 5px 10px;
-                    margin-right: 5px;
-                    border-radius: 5px;
-                    background-color: red;
-                    color: white;
-                    font-weight: bold;
+                    @include spanButton;
+                    background-color: $color-red;
                 }
                 .introTwo {
-                    font-size: 15px;
-                    color: gray;
-                    font-weight: bold;
-                }
-                .introThere {
-                    font-size: 15px;
-                    font-weight: 300;
-                    margin-top: 20px;
+                    @include textTitlte;
                 }
             }
         }
@@ -91,21 +74,7 @@
             opacity: 0;
         }
         .modalPlay {
-            opacity: 0;
-            background-color: rgba(0, 0, 0, 0.356);
-            border: 1px solid white;
-            cursor: pointer;
-            border-radius: 50%;
-            text-align: center;
-            padding: 10px;
-            position: absolute;
-            top: 42%;
-            left: 38%;
-            z-index: 9;
-            .iconPlay {
-                font-size: 30px;
-                color: white;
-            }
+            @include modalPlay;
         }
     }
     .slide:hover .sliderAfter::after,

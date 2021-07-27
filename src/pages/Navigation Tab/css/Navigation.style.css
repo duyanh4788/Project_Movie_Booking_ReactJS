@@ -3,10 +3,13 @@
 }
 
 .naViGaTionTab {
-  border-radius: 5px;
+  border-radius: 1px solid white;
   border: 1px solid white;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.25);
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+          box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
 }
 
 .naViGaTionTab .rowOneNavigationTab {
@@ -14,42 +17,24 @@
   border-right: 1px solid white;
 }
 
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab {
-  opacity: 0.7;
-  border-bottom: 1px solid white;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+.naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab {
+  opacity: 0.5;
 }
 
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: #fdfbfb;
-}
-
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab button .rowOneNavigation_ChildTab_Images {
+.naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab img {
   width: 40px;
   margin: 30px 0;
+  cursor: pointer;
 }
 
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active {
+.naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab_Active {
   opacity: 1.5;
-  border-bottom: 1px solid white;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
 }
 
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: #fdfbfb;
-}
-
-.naViGaTionTab .rowOneNavigationTab .rowOneNavigation_ChildTab_Active button .rowOneNavigation_ChildTab_Images {
+.naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab_Active img {
   width: 40px;
   margin: 30px 0;
+  cursor: pointer;
 }
 
 .naViGaTionTab .rowTwoNavigationTab {
@@ -62,7 +47,7 @@
       align-content: flex-start;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab {
   opacity: 0.7;
   border-bottom: 1px solid white;
   padding-left: 10px;
@@ -71,57 +56,54 @@
   padding: 10px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro {
   font-weight: 600;
   font-size: 15px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .BHDStar {
-  color: #56bb52;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .BHDStar {
+  color: #56ab2f;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .CGV {
-  color: #ee2d24;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .CGV {
+  color: #e73827;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .CineStar {
-  color: #662d91;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .CineStar {
+  color: #734b6d;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .Galaxy {
-  color: #ff8121;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .Galaxy {
+  color: #f56217;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .LotteCinima {
-  color: #ed1b24;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .LotteCinima {
+  color: #fd746c;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .MegaGS {
-  color: #ebb427;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .MegaGS {
+  color: #f8b500;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .Child_Image img {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .child_Image img {
   width: 60px;
   height: 60px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .Child_Intro p {
-  margin-bottom: 0;
-}
-
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .Child_Intro .address {
-  color: gray;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .child_Intro .address {
+  color: #212321;
   font-size: 12px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab .rowTwoNavigation_ChildTab_Intro .Child_Intro span {
-  color: red;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .child_Intro span {
+  color: #FF0000;
   font-weight: 100;
   font-size: 12px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active {
   opacity: 1.5;
   border-bottom: 1px solid white;
   padding-left: 10px;
@@ -130,53 +112,50 @@
   padding: 10px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro {
   font-weight: 600;
   font-size: 15px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .BHDStar {
-  color: #56bb52;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .BHDStar {
+  color: #56ab2f;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .CGV {
-  color: #ee2d24;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .CGV {
+  color: #e73827;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .CineStar {
-  color: #662d91;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .CineStar {
+  color: #734b6d;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .Galaxy {
-  color: #ff8121;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .Galaxy {
+  color: #f56217;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .LotteCinima {
-  color: #ed1b24;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .LotteCinima {
+  color: #fd746c;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .MegaGS {
-  color: #ebb427;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .MegaGS {
+  color: #f8b500;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .Child_Image img {
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .child_Image img {
   width: 60px;
   height: 60px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .Child_Intro p {
-  margin-bottom: 0;
-}
-
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .Child_Intro .address {
-  color: gray;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .child_Intro .address {
+  color: #212321;
   font-size: 12px;
 }
 
-.naViGaTionTab .rowTwoNavigationTab .rowTwoNavigation_ChildTab_Active .rowTwoNavigation_ChildTab_Intro .Child_Intro span {
-  color: red;
+.naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .child_Intro span {
+  color: #FF0000;
   font-weight: 100;
   font-size: 12px;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -186,12 +165,17 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab .paperBar {
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #212321;
+}
+
+.naViGaTionTab .rowThereNavigationTab .paperBar span {
+  color: #212321 !important;
 }
 
 .naViGaTionTab .rowThereNavigationTab .titleDate {
   text-align: center;
-  color: gray;
+  color: #212321;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab {
@@ -208,82 +192,82 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img {
-  text-align: center;
   height: 100px;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid white;
   border-radius: 5px;
+  text-align: center;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img img {
-  width: 60px;
+  width: 70px;
   height: 90px;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro {
-  font-size: 13px;
   height: 100px;
-  color: gray;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 13px;
+  color: #212321;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .BHDStar {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #56bb52;
+  background-color: #56ab2f;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .CGV {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #ee2d24;
+  background-color: #e73827;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .CineStar {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #662d91;
+  background-color: #734b6d;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .Galaxy {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #ff8121;
+  background-color: #f56217;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .LotteCinima {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #ed1b24;
+  background-color: #fd746c;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .MegaGS {
   padding: 3px 6px;
   border-radius: 5px;
-  color: #f5f5f5;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #ebb427;
+  background-color: #f8b500;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro span {
@@ -294,52 +278,52 @@
   height: 100px;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid white;
   border-radius: 5px;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer p {
   font-size: 13px;
-  color: gray;
+  color: #212321;
   line-height: 20px;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .BHDStar {
-  color: #56bb52;
+  color: #56ab2f;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CGV {
-  color: #ee2d24;
+  color: #e73827;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CineStar {
-  color: #662d91;
+  color: #734b6d;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .Galaxy {
-  color: #ff8121;
+  color: #f56217;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .LotteCinima {
-  color: #ed1b24;
+  color: #fd746c;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .MegaGS {
-  color: #ebb427;
+  color: #f8b500;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .timeCode {
   font-size: 15px;
-  cursor: pointer;
+  padding: 2px;
   border: 1px solid;
   border-radius: 5px;
-  padding: 2px;
+  cursor: pointer;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro:hover,
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer:hover,
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img:hover {
-  background-color: white;
+  background-color: #fff;
 }
 
 .rowTwoNavigationTab::-webkit-scrollbar,

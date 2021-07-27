@@ -4,7 +4,7 @@ const initialState = {
     loGoCinema: [],
     groupCinema: [],
     listPhimCinema: [],
-    infoPhim: null,
+    infoCinema: null,
 }
 
 export const CinemaDetailReducer = (state = initialState, { type, payload }) => {
@@ -24,7 +24,7 @@ export const CinemaDetailReducer = (state = initialState, { type, payload }) => 
             return { ...state, ...payload }
 
         case GET_INFOPHIM_DETAIL_CINEMA:
-            state.infoPhim = payload
+            state.infoCinema = payload
             return { ...state, ...payload }
 
         default:

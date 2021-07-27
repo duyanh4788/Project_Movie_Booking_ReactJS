@@ -90,7 +90,7 @@ const CinemaDetailComponent = (props) => {
   });
 
   const infoPhimCinema = useSelector((state) => {
-    return state.CinemaDetailReducer?.infoPhim;
+    return state.CinemaDetailReducer?.infoCinema;
   });
 
   const renderImageCinema = () => {
@@ -153,6 +153,7 @@ const CinemaDetailComponent = (props) => {
       tenCumRap: tenCumRap,
     });
     dispatch(getListPhimCinema(arrayListPhim.danhSachPhim));
+    dispatch(getInfoPhimCinema(null));
   };
   const handleInfoPhim = (infoPhim) => {
     dispatch(getInfoPhimCinema(infoPhim));
@@ -208,7 +209,7 @@ const CinemaDetailComponent = (props) => {
       let httpS = item.hinhAnh.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
       return (
-        <Grid container key={index} className="shedulePhim" >
+        <Grid container key={index} className="shedulePhim">
           <Grid
             item
             xs={12}

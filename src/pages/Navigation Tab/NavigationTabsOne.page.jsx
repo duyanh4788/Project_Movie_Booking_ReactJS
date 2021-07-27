@@ -44,20 +44,17 @@ function NavigationTabsOnePage() {
           key={index}
           className={
             item.maHeThongRap === codeCinema
-              ? "rowOneNavigation_ChildTab_Active"
-              : "rowOneNavigation_ChildTab"
+              ? "rowOne_ChildTab_Active"
+              : "rowOne_ChildTab"
           }
         >
-          <button>
-            <img
-              src={urlImg}
-              alt=""
-              className="rowOneNavigation_ChildTab_Images"
-              onClick={() => {
-                handleCodeCinema(item.maHeThongRap);
-              }}
-            />
-          </button>
+          <img
+            src={urlImg}
+            alt=""
+            onClick={() => {
+              handleCodeCinema(item.maHeThongRap);
+            }}
+          />
         </Grid>
       );
     });

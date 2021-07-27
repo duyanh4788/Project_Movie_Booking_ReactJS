@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { AppBar, Grid, Paper, Tab, Tabs } from "@material-ui/core";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
-import { getMovieSchedulePage } from "../../store/actions/tabNavigationPage.action";
+import { getMovieSchedulePage, setDateSchedulePage } from "../../store/actions/tabNavigationPage.action";
 // date format
 import * as dayjs from "dayjs";
 
@@ -53,8 +53,6 @@ function NavigationTabsTherePage() {
   };
   // tabpanel date
 
-  const [date, setDate] = useState("");
-
   const lstCumRap = useSelector((state) => {
     return state.TabNavigationPageReducer.lstCumRap; // get lstCumRap to  TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
@@ -69,6 +67,9 @@ function NavigationTabsTherePage() {
   });
   const nameGroupCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.nameGroupCinema; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
+  });
+  const dateSchedule = useSelector((state) => {
+    return state.TabNavigationPageReducer.dateSchedule; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
   //Return Time-end with Time-start
   const getTimeEnd = (timeStart) => {
@@ -111,7 +112,7 @@ function NavigationTabsTherePage() {
       return (
         <Tab
           onClick={() => {
-            setDate(item.ngayChieuGioChieu);
+            dispatch(setDateSchedulePage(item.ngayChieuGioChieu));
           }}
           label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
@@ -156,32 +157,32 @@ function NavigationTabsTherePage() {
             </Grid>
             <Grid item xs={5} className="ChildTab_Timer">
               {item.lstLichChieuTheoPhim
-                .filter((itemF) => itemF.ngayChieuGioChieu === date)
-                .map((item, index) => {
+                .filter((itemF) => itemF.ngayChieuGioChieu === dateSchedule)
+                .map((itemS, index) => {
                   return (
                     <div key={index} className="dateTimer">
-                      <p>Mã Rạp : {item.maRap}</p>
-                      <p>Mã Lc : {item.maLichChieu}</p>
-                      <p>Giá Vé : {item.giaVe.toLocaleString()}</p>
+                      <p>Mã Rạp : {itemS.maRap}</p>
+                      <p>Mã Lc : {itemS.maLichChieu}</p>
+                      <p>Giá Vé : {itemS.giaVe.toLocaleString()}</p>
                       <p>
                         Đặt Vé :{" "}
                         <span
                           onClick={() =>
                             bookingMovie(
-                              item.maLichChieu,
-                              item.ngayChieuGioChieu
+                              itemS.maLichChieu,
+                              itemS.ngayChieuGioChieu
                             )
                           }
                           className={`timeCode ${codeCinema}`}
                         >
-                          {item.ngayChieuGioChieu.slice(11, 16)}
+                          {itemS.ngayChieuGioChieu.slice(11, 16)}
                           <label
                             style={{
                               color: "gray",
                               marginLeft: "5px",
                             }}
                           >{`~ ${getTimeEnd(
-                            item.ngayChieuGioChieu.slice(11, 16)
+                            itemS.ngayChieuGioChieu.slice(11, 16)
                           )}`}</label>
                         </span>
                       </p>
@@ -195,9 +196,9 @@ function NavigationTabsTherePage() {
     }
   };
   return (
-    <Grid container item xs={6} className="rowThereNavigationTab" spacing={2}>
+    <Grid container item xs={6} className="rowThereNavigationTab">
       <Grid item xs={12} lg={12}>
-        <AppBar position="static" color="default" >
+        <AppBar position="static" color="default">
           <Paper className="paperBar">
             <Tabs
               value={values}

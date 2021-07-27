@@ -48,7 +48,7 @@ const ListPhim = () => {
   // setting carousel
   const settings = {
     // dots: false,
-    // arrows: false,
+    
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -65,9 +65,19 @@ const ListPhim = () => {
       {
         breakpoint: 576,
         settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          rows: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 280,
+        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           rows: 1,
+          arrows: false,
         },
       },
     ],
@@ -100,7 +110,6 @@ const ListPhim = () => {
             <div className="intro">
               <span className="introOne">{item.maPhim}</span>
               <span className="introTwo"> {item.tenPhim.slice(0, 18)} </span>
-              <p className="introThere">100 phút</p>
             </div>
             <Button
               variant="contained"

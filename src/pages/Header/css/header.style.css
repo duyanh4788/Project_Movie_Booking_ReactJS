@@ -1,64 +1,55 @@
 .header {
-  background-color: #fafafa;
+  background-color: #fff;
   overflow: hidden;
   position: fixed !important;
   top: 0;
   width: 100%;
 }
 
-.header .headerGridOne {
-  text-align: left;
-}
-
-.header .headerGridTwo {
-  text-align: right;
-  margin-right: 50px;
-}
-
-.header .headerGridTwo label {
-  opacity: 0.7;
-  font-size: 15px;
-  font-weight: bolder;
-  color: black;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.header .headerGridTwo :hover {
-  color: red;
-}
-
-.header .headerGridThere {
-  text-align: right;
-}
-
 .header .headerloGo {
+  text-align: left;
   width: 50px;
   height: 50px;
   opacity: 0.7;
 }
 
-.header .headerTitleLinkThere .headerTitleThere {
-  opacity: 0.7;
+.header .headerTitle {
+  text-align: center;
+}
+
+.header .headerTitle label {
   font-size: 15px;
-  font-weight: bolder;
-  color: black;
-  margin: 0 10px;
+  font-weight: 400;
+  color: #212321;
+  margin-right: 20px;
   cursor: pointer;
 }
 
-.header .headerTitleLinkThere a {
+.header .headerTitle :hover {
+  color: #FF0000;
+}
+
+.header .headerUser {
+  text-align: right;
+}
+
+.header .headerUser .title {
+  font-size: 15px;
+  font-weight: 400;
+  color: #212321;
+  margin-right: 20px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.header .headerUser a {
   text-decoration: none;
 }
 
-.header .headerTitleLinkThere :hover {
-  color: gray;
-}
-
-.header .headerIconLogIn {
-  color: #b0bec5;
-  opacity: 0.7;
+.header .headerUser .icon {
+  color: #afafaf;
   vertical-align: middle;
+  margin-right: 2px;
 }
 
 @media (max-width: 1000px) {

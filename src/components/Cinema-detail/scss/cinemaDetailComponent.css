@@ -15,11 +15,11 @@
 .rowOneinfoPhim .rowOneintroPhim {
   position: absolute;
   width: 100%;
-  top: 45%;
-  left: 0%;
-  -webkit-transform: translateY(-45%);
-          transform: translateY(-45%);
-  font-size: 15px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .rowOneinfoPhim .rowOneintroPhim img {
@@ -29,47 +29,29 @@
 
 .rowOneinfoPhim .rowOneintroPhim span {
   border-radius: 5px;
-  background-color: red;
+  background-color: #FF0000;
   padding: 5px;
 }
 
 .rowOneinfoPhim .rowOneintroPhim p {
-  color: white;
+  color: #f5f5f5;
   font-weight: 600;
   margin-top: 10px;
-}
-
-.MuiGrid-container {
-  -webkit-box-align: start !important;
-      -ms-flex-align: start !important;
-          align-items: flex-start !important;
 }
 
 .infoPhimCinemaDetail {
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #f1f1f1;
-  background-color: #f1f1f1;
+  border: 1px solid white;
+  background-color: #f5f5f5;
   margin: 50px 0;
-}
-
-.infoPhimCinemaDetail .rowDate {
-  z-index: 1;
-}
-
-.infoPhimCinemaDetail .rowDate .titleDate {
-  text-align: center;
-  color: gray;
-  font-size: 15px;
-  font-weight: bold;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail {
   overflow-y: scroll;
-  max-height: 350px;
   width: 100%;
   font-size: 13px;
-  color: gray;
+  max-height: 419px;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .titleLogo {
@@ -82,7 +64,6 @@
   border-bottom: 2px solid #f5f5f5;
   height: 90px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .imageCinema {
@@ -91,27 +72,27 @@
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .BHDStar {
-  color: #56bb52;
+  color: #56ab2f;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .CGV {
-  color: #e71a0e;
+  color: #e73827;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .CineStar {
-  color: #662d91;
+  color: #734b6d;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .Galaxy {
-  color: #ff8121;
+  color: #f56217;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .LotteCinima {
-  color: #ed1c24;
+  color: #fd746c;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema .MegaGS {
-  color: #ebb427;
+  color: #f8b500;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active {
@@ -120,7 +101,6 @@
   border-bottom: 2px solid #f5f5f5;
   height: 90px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .imageCinema {
@@ -129,44 +109,59 @@
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .BHDStar {
-  color: #56bb52;
+  color: #56ab2f;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .CGV {
-  color: #e71a0e;
+  color: #e73827;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .CineStar {
-  color: #662d91;
+  color: #734b6d;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .Galaxy {
-  color: #ff8121;
+  color: #f56217;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .LotteCinima {
-  color: #ed1c24;
+  color: #fd746c;
 }
 
 .infoPhimCinemaDetail .rowCinemaDetail .addresCinema_Active .MegaGS {
-  color: #ebb427;
+  color: #f8b500;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowDate {
+  z-index: 1;
+}
+
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowDate .MuiTabs-indicator {
+  background-color: #212321 !important;
+}
+
+.infoPhimCinemaDetail .rowMovieCinemaDetail .titleDate {
+  font-size: 15px;
+  color: #222;
+  font-weight: bold;
+  text-align: center;
+}
+
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim {
   overflow-y: scroll;
-  max-height: 350px;
   width: 100%;
   font-size: 13px;
-  font-weight: bold;
+  max-height: 350px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim {
   padding: 10px;
-  border-bottom: 2px solid #f5f5f5;
-  color: gray;
+  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+          box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
+  color: #212321;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim {
   height: 120px;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.25);
@@ -188,62 +183,62 @@
   cursor: pointer;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim img {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim img {
   width: 80px;
   height: 80px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span {
   margin-left: 5px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span .maPhim {
-  background-color: #e71a0e;
-  color: white;
-  border-radius: 5px;
-  padding: 5px;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim span .maPhim {
+  background-color: #FF0000;
+  padding: 5px 10px;
   margin-right: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer {
   height: 120px;
   padding: 5px;
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 5px;
-  font-weight: bold;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer p {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer p {
   line-height: 25px;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .BHDStar {
-  color: #56bb52;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .BHDStar {
+  color: #56ab2f;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CGV {
-  color: #e71a0e;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CGV {
+  color: #e73827;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CineStar {
-  color: #662d91;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .CineStar {
+  color: #734b6d;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .Galaxy {
-  color: #ff8121;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .Galaxy {
+  color: #f56217;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .LotteCinima {
-  color: #ed1c24;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .LotteCinima {
+  color: #fd746c;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .MegaGS {
-  color: #ebb427;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .MegaGS {
+  color: #f8b500;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .timer {
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer .timer {
   border: 2px solid;
   border-radius: 5px;
   padding: 2px;
@@ -251,9 +246,9 @@
   cursor: pointer;
 }
 
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim:hover,
-.infoPhimCinemaDetail .rowInfoPhim .shedulePhim .tabTimer:hover {
-  background-color: white;
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .imfoPhim:hover,
+.infoPhimCinemaDetail .rowMovieCinemaDetail .rowInfoPhim .shedulePhim .tabTimer:hover {
+  background-color: #fff;
 }
 
 .rowCinemaDetail::-webkit-scrollbar,

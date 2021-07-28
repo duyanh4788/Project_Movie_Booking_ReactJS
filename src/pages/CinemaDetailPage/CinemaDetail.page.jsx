@@ -33,12 +33,12 @@ export default function CinemaDetailPage() {
       return (
         <Grid item xs={4} lg={2} key={index}>
           <button
-            className="btnimgCinemaS"
+            className="btnimgCinemaDetail"
             onClick={() => {
               handleLogo(item.maHeThongRap);
             }}
           >
-            <img src={urlImg} alt="" className="imgCinemaS" />
+            <img src={urlImg} alt="" className="imgCinemaDetail" />
           </button>
         </Grid>
       );
@@ -46,9 +46,9 @@ export default function CinemaDetailPage() {
   };
 
   return (
-    <Accordion>
+    <Accordion className="cinemaDetailPage">
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <p className="titleSimple">Chọn Rạp</p>
+        <p>Hệ Thống Rạp Chiếu Phim</p>
       </AccordionSummary>
       <AccordionDetails>
         <Grid container>{renderLoGo()}</Grid>

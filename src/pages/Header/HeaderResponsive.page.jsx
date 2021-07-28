@@ -14,7 +14,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import "./css/headerResponsive.css";
 // function component InfoUser
 import InfoUser from "../Info-User/Info-User.page";
@@ -163,48 +162,40 @@ const HeaderResponsivePage = () => {
         </div>
         <Divider />
         <List>
-          {["Lịch Chiếu", "Cụm Rạp", "Tin Tức", "Ứng Dụng"].map(
-            (text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
-        </List>
-        <Divider />
-        <List>
           <ListItem>
             <CinemaDetailPage />
           </ListItem>
-          <ListItem>
+          <Divider />
+          <>
             {signIn.hoTen !== "" ? (
-              <>
+              <ListItem>
                 <InfoUser />
                 {/* acces to pages/Sign-Out/signout.page-rfc */}
-              </>
+              </ListItem>
             ) : (
-              <div className="headerTitleLinkThere">
-                <p>
-                  <AccountCircleIcon className="headerIconLogIn" />
-                  <Link to="/signUp" className="headerTitleThere">
+              <>
+                <ListItem>
+                  <AccountCircleIcon className="icon" />
+                  <Link to="/signUp" className="title">
                     Đăng Kí {/* acces to pages/Sign-Up/Sign-Up.page-rcc*/}
                   </Link>
-                </p>
-                <p>
-                  <LocationOnIcon className="headerIconLogIn" />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                  <LocationOnIcon className="icon" />
                   <Link
                     to="/signIn"
-                    className="headerTitleThere"
+                    className="title"
                     onClick={() => {
                       dispatch(setDataErrorToZero(0));
                     }}
                   >
                     Đăng Nhập {/* acces to pages/Sign-In/Sign-In.page-rfc */}
                   </Link>
-                </p>
-              </div>
+                </ListItem>
+              </>
             )}
-          </ListItem>
+          </>
         </List>
       </Drawer>
     </div>

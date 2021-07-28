@@ -280,19 +280,19 @@ const CinemaDetailComponent = (props) => {
         <div className="rowOneinfoPhim">
           <div className="backgroundPhim">{getUrlHttpS()}</div>
 
-          <div className="rowOneintroPhim">
+          <Container className="rowOneintroPhim" maxWidth="sm">
             <Grid container>
-              <Grid item xs={8} sm={3} md={3} lg={2}>
+              <Grid item xs={12} sm={6} md={6} lg={6}>
                 {getUrlHttpS()}
               </Grid>
-              <Grid item xs={8} sm={3} md={3} lg={2}>
+              <Grid item xs={12} sm={6} md={6} lg={6}>
                 <p>
                   <span>{infoPhimCinema.maPhim}</span> Phim :{" "}
                   {infoPhimCinema.tenPhim}
                 </p>
               </Grid>
             </Grid>
-          </div>
+          </Container>
         </div>
       )}
 
@@ -300,22 +300,7 @@ const CinemaDetailComponent = (props) => {
 
       <Container maxWidth="lg">
         <Grid container className="infoPhimCinemaDetail">
-          <Grid container item xs={12} sm={12} md={12} lg={12}>
-            <AppBar position="static" color="default" className="rowDate">
-              <span className="titleDate">Chọn Giờ Chiếu</span>
-              <Paper>
-                <Tabs
-                  value={values}
-                  onChange={handleChanges}
-                  variant="scrollable"
-                  scrollButtons="auto"
-                >
-                  {renderDateTime()}
-                </Tabs>
-              </Paper>
-            </AppBar>
-          </Grid>
-          <Grid container item xs={12} sm={12} md={4} lg={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Accordion className="rowCinemaDetail">
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p className="titleLogo">Chọn Cụm Rạp : {codeMaCumRap}</p>
@@ -327,8 +312,25 @@ const CinemaDetailComponent = (props) => {
               </AccordionDetails>
             </Accordion>
           </Grid>
-          <Grid item xs={12} sm={12} md={8} lg={8} className="rowInfoPhim">
-            {renderListPhim()}
+          <Grid container item xs={12} sm={12} md={8} lg={8} className="rowMovieCinemaDetail">
+            <Grid item xs={12} lg={12}>
+              <AppBar position="static" color="default" className="rowDate">
+                <Paper>
+                  <Tabs
+                    value={values}
+                    onChange={handleChanges}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                  >
+                    {renderDateTime()}
+                  </Tabs>
+                </Paper>
+              </AppBar>
+              <h5 className="titleDate">Chọn Giờ Chiếu</h5>
+            </Grid>
+            <Grid container className="rowInfoPhim">
+              {renderListPhim()}
+            </Grid>
           </Grid>
         </Grid>
       </Container>

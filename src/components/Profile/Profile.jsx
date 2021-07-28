@@ -197,8 +197,8 @@ export default function ProfileUser() {
                   <td>
                     :
                     {maLoaiNguoiDung === "QuanTri"
-                      ? "Quản trị viên"
-                      : "Khách hàng"}
+                      ? " Quản trị viên"
+                      : " Khách hàng"}
                   </td>
                 </tr>
               </thead>

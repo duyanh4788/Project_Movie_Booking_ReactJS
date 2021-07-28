@@ -76,9 +76,10 @@ function InfoUser(props) {
   };
   return (
     <>
-      <p className="textignOut">
+      <p className="textSignOut">
         Hi {userLogin && userLogin.hoTen} !
         <ExpandMoreIcon
+          className="iconSignOut"
           onClick={handleClick}
           style={{ verticalAlign: "middle", cursor: "pointer" }}
         />
@@ -92,19 +93,19 @@ function InfoUser(props) {
       >
         {maLoaiNguoiDung === "QuanTri" ? (
           <StyledMenuItem onClick={pageAdmin}>
-            <SupervisorAccountIcon className="textignOut"/>
-            <p className="textignOut"> Admin</p>
+            <SupervisorAccountIcon className="iconSignOut" />
+            <p className="textSignOut"> Admin</p>
           </StyledMenuItem>
         ) : (
           ""
         )}
         <StyledMenuItem onClick={showProfile}>
-          <AccountCircleIcon className="textignOut" />
-          <p className="textignOut"> Profile</p>
+          <AccountCircleIcon className="iconSignOut" />
+          <p className="textSignOut"> Profile</p>
         </StyledMenuItem>
         <StyledMenuItem onClick={logOut}>
-          <ExitToAppIcon className="textignOut" />
-          <p className="textignOut"> Log Out</p>
+          <ExitToAppIcon className="iconSignOut" />
+          <p className="textSignOut"> Log Out</p>
         </StyledMenuItem>
       </StyledMenu>
     </>

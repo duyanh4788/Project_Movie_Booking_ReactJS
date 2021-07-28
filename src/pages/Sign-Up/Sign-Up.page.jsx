@@ -136,7 +136,7 @@ class SignUpPage extends Component {
   }
 
   renderShowMessage() {
-    const { taiKhoan, matKhau, hoTen, email, maNhom, soDt, maLoaiNguoiDung } =
+    const { taiKhoan, matKhau, hoTen, email, maNhom, soDt } =
       this.props.inforSignIn;
     if (this.props.mesageSuccess === 200) {
       return (
@@ -166,11 +166,7 @@ class SignUpPage extends Component {
               </tr>
               <tr>
                 <td>Vai trò</td>
-                <td>: 
-                  {maLoaiNguoiDung === "QuanTri"
-                    ? "Quản trị viên"
-                    : "Khách hàng"}
-                </td>
+                <td>: Khách hàng</td>
               </tr>
               <tr>
                 <td>Nhóm</td>
@@ -184,7 +180,7 @@ class SignUpPage extends Component {
                 this.goSignIn();
               }}
             >
-              Go To Sign In
+              Sign In Now
             </button>
           </div>
         </div>
@@ -226,7 +222,7 @@ class SignUpPage extends Component {
         <div className="backgroundSignUp">
           <div className="wrapSignUp">
             <Container maxWidth="md">
-              <h4>Form Đăng Ký</h4>
+              <h5>Sign Up</h5>
               <form onSubmit={this.handleSubmit}>
                 <input
                   onChange={this.handleChange}

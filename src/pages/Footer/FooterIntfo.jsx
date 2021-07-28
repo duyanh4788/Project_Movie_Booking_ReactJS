@@ -6,11 +6,10 @@ import { Container, Grid } from "@material-ui/core";
 import "./css/Footer.style.css";
 
 const FooterIntfo = () => {
- 
   const renderLogoSupply = () => {
     return supply.map((item, index) => {
       return (
-        <a href="#" key={index}>
+        <a key={index}>
           <img src={item.img} className="imgLogoSupply" />
         </a>
       );
@@ -50,10 +49,10 @@ const FooterIntfo = () => {
           <Grid item lg={1}></Grid>
           <Grid item md={2} lg={2}>
             <h5>MOBILE APP</h5>
-            <a href="#">
+            <a>
               <img src={imagesLogo.androi} className="imgLogo" />
             </a>
-            <a href="#">
+            <a>
               <img src={imagesLogo.apple} className="imgLogo" />
             </a>
           </Grid>

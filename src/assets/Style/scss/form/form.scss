@@ -1,0 +1,64 @@
+@mixin backgroundForm {
+    width: 100%;
+    min-height: 500px;
+    background: url(../../../assets/images/background.jpg);
+    background-size: cover;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@mixin warpForm {
+    padding: 50px 0;
+    background-color: $background-3;
+    border-radius: $boderR5;
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+    border: $border;
+    box-shadow: $box-shadow;
+}
+
+@mixin buttonForm {
+    font-size: $fs15;
+    padding: 10px 15px;
+    color: $color-black-2;
+    background-color: $color-white;
+    border: $border;
+    border-radius: $boderR5;
+    outline: none;
+    cursor: pointer;
+}
+
+@mixin inputForm {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 5px;
+    border-radius: $boderR5;
+    background-color: $color-white-2;
+    outline: none;
+    border: none;
+}
+
+@mixin placeHoderForm {
+    color: $color-gray-2;
+    opacity: 0.5;
+    text-align: right;
+}
+
+@mixin selectForm {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: $color-gray-2;
+    background-color: $color-white;
+}
+
+@mixin spanValid {
+    color: $color-red;
+    font-size: 10px;
+    font-weight: $fw-bold;
+}

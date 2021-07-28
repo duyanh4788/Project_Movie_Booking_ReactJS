@@ -7,7 +7,11 @@
         "../table/table.scss",
         "../variable/variables.scss",
         "../select/extend.scss",
-        "../extendTab/extendTab.scss"
+        "../extendTab/extendTab.scss",
+        "../dropdown/dropdown.scss",
+        "../form/form.scss",
+        "../modalMessage/modalMessage.scss",
+        "../profileExtend/profileExtend.scss"
     ],
     "names": [],
     "file": "main.css"

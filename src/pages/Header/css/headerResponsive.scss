@@ -1,35 +1,22 @@
-@mixin headerTitleLink {
-    opacity: 0.7;
-    font-size: 13px;
-    font-weight: bolder;
-    color: black;
-    margin: 0 10px;
-    cursor: pointer;
-}
-.headerTitleLinkThere {
-    .headerTitleThere {
-        @include headerTitleLink;
-    }
-    :hover {
-        color: gray;
-    }
-
-    .headerIconLogIn {
-        color: #b0bec5;
-        opacity: 0.7;
-        vertical-align: middle;
-    }
-}
+@import "../../../assets/Style/scss/main/main.scss";
 
 .heaerResponsive {
     display: none !important;
     .headerResponsive {
-        background-color: #fafafa;
+        background-color: $color-white;
         .headerloGo {
             width: 50px;
             height: 50px;
             opacity: 0.7;
         }
+    }
+    .title {
+        text-decoration: none;
+        @include headerTitleLink;
+    }
+    .icon {
+        color: $color-gray-1;
+        margin-right: 5px;
     }
 }
 

@@ -5,14 +5,17 @@ import DetailTabComponent from "./DetailTab.component";
 // router
 import { withRouter } from "react-router";
 // material ui
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 // reduer action
 // action axios
-import { getLogoDetailTabAction, getMovieDetail_Action } from "../../store/actions/detailTabComponent.action";
+import {
+  getLogoDetailTabAction,
+  getMovieDetail_Action,
+} from "../../store/actions/detailTabComponent.action";
 // progressbar
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -68,49 +71,57 @@ function MovieDetail(props) {
         <Loader />
       ) : (
         <div className="movieDetail">
-          <div className="movieDetail_bg">{getUrlHttpS()}</div>
+          <div className="movieIntro">
+            <div className="movieDetail_bg">{getUrlHttpS()}</div>
 
-          <div className="movieDetail_Intro">
-            <Grid container>
-              <Grid item xs={8} sm={3} md={3} lg={2} className="images">
-                {getUrlHttpS()}
-                <PlayArrowIcon
-                  className="iconPlay"
-                  onClick={() => handleOpen(detailMovie.trailer)}
-                />
+            <Container className="movieDetail_Intro" maxWidth="md">
+              <Grid container>
+                <Grid item xs={12} sm={4} md={4} lg={4} className="images">
+                  {getUrlHttpS()}
+                  <label className="modalPlay">
+                    <PlayArrowIcon
+                      className="iconPlay"
+                      onClick={() => handleOpen(detailMovie.trailer)}
+                    />
+                  </label>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4} lg={4} className="intro">
+                  <label>
+                    Ngày Chiếu :{" "}
+                    {dayjs(detailMovie.ngayChieuGioChieu).format("DD-MM-YYYY")}
+                  </label>
+                  <p>
+                    <span>{detailMovie.maPhim}</span> Phim :{" "}
+                    {detailMovie.tenPhim}
+                  </p>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4} lg={4} className="rating">
+                  <CircularProgressbar
+                    background={true}
+                    value={detailMovie.danhGia}
+                    text={detailMovie.danhGia}
+                    maxValue={10}
+                    strokeWidth={6}
+                    styles={buildStyles({
+                      strokeLinecap: "butt",
+                      textColor: "white",
+                      pathColor: "#7ed321",
+                      trailColor: "#3a3a3a",
+                      textSize: "40px",
+                      backgroundColor: "rgba(0,0,0,.4)",
+                    })}
+                  />
+                  <p>
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </p>
+                  <span>{detailMovie.danhGia} Người Đánh Giá</span>
+                </Grid>
               </Grid>
-              <Grid item xs={8} sm={3} md={3} lg={2} className="intro">
-                <label>Ngày Chiếu : {dayjs(detailMovie.ngayChieuGioChieu).format("DD-MM-YYYY")}</label>
-                <p>
-                  <span>{detailMovie.maPhim}</span> Phim : {detailMovie.tenPhim}
-                </p>
-              </Grid>
-              <Grid item xs={8} sm={3} md={3} lg={2} className="rating">
-                <CircularProgressbar
-                  background={true}
-                  value={detailMovie.danhGia}
-                  text={detailMovie.danhGia}
-                  maxValue={10}
-                  strokeWidth={6}
-                  styles={buildStyles({
-                    strokeLinecap: "butt",
-                    textColor: "white",
-                    pathColor: "#7ed321",
-                    trailColor: "#3a3a3a",
-                    textSize: "40px",
-                    backgroundColor: "rgba(0,0,0,.4)",
-                  })}
-                />
-                <p>
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                </p>
-                <span>{detailMovie.danhGia} Người Đánh Giá</span>
-              </Grid>
-            </Grid>
+            </Container>
           </div>
           <ModalVideo
             channel="youtube"

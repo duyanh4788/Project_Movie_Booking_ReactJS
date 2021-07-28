@@ -38,17 +38,10 @@ const CarouselSlick = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1
+          rows: 1,
+          dots: false,
         }
       },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          rows: 1
-        }
-      }
     ]
   };
 
@@ -66,7 +59,9 @@ const CarouselSlick = () => {
       return (
         <div className="carouSelSlider" key={index}>
           <img src={item.img} alt="" className="imageSlider" />
-          <PlayArrowIcon className="iconPlay" onClick={() => handleOpen(item.subtitle)} />
+          <label className="modalPlay">
+            <PlayArrowIcon className="iconPlay" onClick={() => handleOpen(item.subtitle)} />
+          </label>
           <ArrowBackIosIcon className='left-arrow' onClick={previous} />
           <ArrowForwardIosIcon className='right-arrow' onClick={next} />
         </div>

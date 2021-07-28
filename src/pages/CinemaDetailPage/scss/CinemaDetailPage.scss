@@ -1,29 +1,34 @@
-.titleSimple {
-    opacity: 0.7;
-    font-size: 15px;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.9);
-}
+@import "../../../assets/Style/scss/main/main.scss";
 
-.btnimgCinemaS {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: white;
-    .imgCinemaS {
-        width: 50px;
-        height: 50px;
-        margin-right: 2px;
+.cinemaDetailPage {
+    p {
+        font-size: $fs15;
+        font-weight: $fw-bolder;
+        color: $color-black-2;
+    }
+
+    .btnimgCinemaDetail {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: white;
+        .imgCinemaDetail {
+            width: 50px;
+            height: 50px;
+            margin-right: 2px;
+        }
     }
 }
 
 @media (max-width: 1000px) {
-    .imgCinemaS {
-        width: 30px !important;
-        height: 30px !important;
-        margin: 5px 0 !important;
-    }
-    .title {
-        font-size: 14px !important;
+    .cinemaDetailPage {
+        .imgCinemaDetail {
+            width: 30px !important;
+            height: 30px !important;
+            margin: 5px 0 !important;
+        }
+        .p {
+            font-size: $fs13 !important;
+        }
     }
 }

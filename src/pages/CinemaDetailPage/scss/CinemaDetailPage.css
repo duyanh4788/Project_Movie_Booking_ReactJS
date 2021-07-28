@@ -1,31 +1,30 @@
-.titleSimple {
-  opacity: 0.7;
+.cinemaDetailPage p {
   font-size: 15px;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.9);
+  font-weight: bolder;
+  color: #212321;
 }
 
-.btnimgCinemaS {
+.cinemaDetailPage .btnimgCinemaDetail {
   border: none;
   outline: none;
   cursor: pointer;
   background-color: white;
 }
 
-.btnimgCinemaS .imgCinemaS {
+.cinemaDetailPage .btnimgCinemaDetail .imgCinemaDetail {
   width: 50px;
   height: 50px;
   margin-right: 2px;
 }
 
 @media (max-width: 1000px) {
-  .imgCinemaS {
+  .cinemaDetailPage .imgCinemaDetail {
     width: 30px !important;
     height: 30px !important;
     margin: 5px 0 !important;
   }
-  .title {
-    font-size: 14px !important;
+  .cinemaDetailPage .p {
+    font-size: 13px !important;
   }
 }
 /*# sourceMappingURL=CinemaDetailPage.css.map */

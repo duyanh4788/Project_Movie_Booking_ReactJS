@@ -1,57 +1,36 @@
-@mixin dropDownBox {
-    position: relative;
-    display: inline-block;
-}
-@mixin dropDownBtn {
-    background-color: white;
-    color: black;
-    padding: 16px;
-    font-size: 14px;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-}
-@mixin svgIcon {
-    font-size: 15px;
-}
-@mixin content {
-    overflow-y: scroll;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-@mixin contentA {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-}
+@import "../../../assets/Style/scss/main/main.scss";
 
 .dropDownsRelavite {
     position: relative;
     cursor: pointer;
     .dropDownsMain {
-        background-color: white;
-        border: 1px solid rgba(248, 243, 243, 0.671);
-        box-shadow: 15px 15px 50px #68656538;
-        padding: 5px;
-        border-radius: 5px;
-        max-width: 940px;
+        background-color: $color-white;
+        border: $border;
+        box-shadow: $box-shadow;
+        padding: $pd-5;
+        border-radius: $boderR5;
+        width: 960px;
         position: absolute;
         bottom: -20px;
-        left: 26.5%;
+        left: 50%;
+        transform: translate(-50%);
+        z-index: 2;
         .dropDownMaNhom {
             @include dropDownBox;
-            select {
-                border: none;
-                outline: none;
-                background-color: white;
+            .dropbtn {
+                @include dropDownBtn;
+                width: 140px;
+            }
+            svg {
+                @include svgIcon;
+            }
+            .contentMaNhom {
+                width: 140px;
+                height: 300px;
+                @include content;
+            }
+            .contentMaNhom a {
+                @include contentA;
             }
         }
         .dropdownPhim {
@@ -63,7 +42,6 @@
             svg {
                 @include svgIcon;
             }
-
             .contentPhim {
                 width: 300px;
                 height: 300px;
@@ -123,8 +101,8 @@
             }
         }
         .btnMuaVe {
-            background-color: gray;
-            color: white;
+            background-color: $color-gray-2;
+            color: $color-white;
             padding: 10px;
             outline: none;
             border: none;
@@ -135,12 +113,14 @@
         }
 
         // hover
+        .contentMaNhom a:hover,
         .contentPhim a:hover,
         .contentRap a:hover,
         .contentTitle a:hover,
         .contentTitleLength a:hover {
-            background-color: #f1f1f1;
+            background-color: $color-gray-1;
         }
+        .dropDownMaNhom:hover .contentMaNhom,
         .dropdownPhim:hover .contentPhim,
         .dropdownRap:hover .contentRap,
         .dropdownTitle:hover .contentTitle,
@@ -150,14 +130,16 @@
             opacity: 1;
         }
     }
+    .contentMaNhom::-webkit-scrollbar,
+    .contentPhim::-webkit-scrollbar,
+    .contentRap::-webkit-scrollbar,
+    .contentTitle::-webkit-scrollbar,
+    .contentTitleLength::-webkit-scrollbar {
+        width: 6px;
+        background-color: $color-white-2;
+    }
 }
-.contentPhim::-webkit-scrollbar,
-.contentRap::-webkit-scrollbar,
-.contentTitle::-webkit-scrollbar,
-.contentTitleLength::-webkit-scrollbar {
-    width: 6px;
-    background-color: #f5f5f5;
-}
+
 @media (max-width: 1200px) {
     .dropDownsRelavite {
         display: none !important;

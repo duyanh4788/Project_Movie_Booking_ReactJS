@@ -1,3 +1,5 @@
+@import "../../../assets/Style/scss/main/main.scss";
+
 .countDownTimerMain {
     text-align: center;
     color: gray;
@@ -154,11 +156,11 @@
         font-weight: bolder;
     }
     .MuiStepIcon-root.MuiStepIcon-active {
-        color: red;
+        color: $color-red;
         font-weight: bolder;
     }
     .MuiStepIcon-root.MuiStepIcon-completed {
-        color: red;
+        color: $color-red;
         font-weight: bolder;
     }
 }
@@ -166,14 +168,11 @@
 // scroll css
 .tableS::-webkit-scrollbar,
 .movie_tabCheckout::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background-color: #f5f5f5;
+    @include scrollbar;
 }
 .tableS::-webkit-scrollbar-thumb,
 .movie_tabCheckout::-webkit-scrollbar-thumb {
-    background: #e2dfdf;
-    border-radius: 6px;
+    @include scrollbarThumb;
 }
 @media (max-width: 730px) {
     .modalMesage {

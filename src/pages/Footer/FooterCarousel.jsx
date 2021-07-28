@@ -9,7 +9,7 @@ import "./css/Footer.style.css";
 const FooterCarousel = () => {
   const settings = {
     dots: false,
-    autoplay: true,
+    autoplay: false,
     arrows: false,
     autoplaySpeed: 2000,
     speed: 500,

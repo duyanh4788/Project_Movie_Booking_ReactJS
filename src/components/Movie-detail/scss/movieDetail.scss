@@ -1,94 +1,89 @@
+@import "../../../assets/Style/scss/main/main.scss";
+
 .movieDetail {
-    position: relative;
     overflow: hidden;
     background: linear-gradient(#09181f, #133241);
-    .movieDetail_bg img {
-        width: 100%;
-        height: 700px;
-        filter: blur(15px);
-    }
-    .movieDetail_Intro {
-        position: absolute;
-        width: 100%;
-        top: 22%;
-        left: 6%;
-        transform: translateY(-22%);
-        .images {
-            position: relative;
-            img {
-                width: 160px;
-                height: 200px;
-                border-radius: 10px;
-            }
-            .iconPlay {
-                opacity: 0;
-                font-size: 30px;
-                color: white;
-                background-color: rgba(0, 0, 0, 0.255);
-                text-align: center;
-                padding: 5px;
-                border: 1px solid white;
-                cursor: pointer;
-                border-radius: 50%;
-                position: absolute;
-                top: 50%;
-                left: 25%;
-                transform: translate(-25%, -50%);
-            }
+    .movieIntro {
+        position: relative;
+        .movieDetail_bg img {
+            width: 100%;
+            height: 700px;
+            filter: blur(15px);
         }
-        .images:hover .iconPlay {
-            opacity: 1;
-            transition: 0.5s;
-        }
+        .movieDetail_Intro {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            .images {
+                position: relative;
+                img {
+                    width: 160px;
+                    height: 200px;
+                    border-radius: 10px;
+                }
+                .modalPlay {
+                    width: 30px;
+                    height: 30px;
+                    @include modalPlay;
+                    left: 23%;
+                    transform: translate(-23%, -50%);
+                }
+            }
+            .images:hover .modalPlay {
+                opacity: 1;
+                transition: 0.5s;
+            }
 
-        .intro {
-            margin: 10px 50px;
-            p {
-                color: white;
-                font-weight: 600;
-                line-height: 30px;
+            .intro {
+                p {
+                    color: $color-white-2;
+                    font-weight: $fw-500;
+                    line-height: $lgH30;
+                }
+                label {
+                    color: $color-white-2;
+                    font-size: $fs15;
+                }
+                span {
+                    background-color: $color-red;
+                    @include spanButton;
+                }
             }
-            label {
-                color: white;
-                font-size: 15px;
-            }
-            span {
-                border-radius: 5px;
-                background-color: red;
-                font-size: 15px;
-                padding: 5px;
-            }
-        }
-        .rating {
-            .CircularProgressbar {
-                width: 100px;
-                margin-bottom: 10px;
-            }
-            p {
-                color: yellow;
-            }
-            span {
-                color: white;
-                font-size: 15px;
+            .rating {
+                .CircularProgressbar {
+                    width: 100px;
+                    margin-bottom: 10px;
+                }
+                p {
+                    color: yellow;
+                }
+                span {
+                    color: $color-white;
+                    font-size: $fs15;
+                }
             }
         }
     }
 }
 
-.MuiGrid-container {
-    justify-content: center;
-}
-@media (max-width: 1050px) {
+@media (max-width: 920px) {
     .images {
-        .iconPlay {
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
+        .modalPlay {
+            left: 30% !important;
+            transform: translate(-30%, -50%) !important;
         }
     }
 }
 @media (max-width: 600px) {
     .movieDetail_Intro {
-        left: 0% !important;
         text-align: center !important;
+        .images {
+            .modalPlay {
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+            }
+        }
     }
 }

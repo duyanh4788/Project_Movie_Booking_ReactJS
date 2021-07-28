@@ -12,9 +12,10 @@
 @mixin spanButton {
     padding: 5px 10px;
     margin-right: 5px;
-    border-radius: 5px;
+    border-radius: $boderR5;
     color: $color-white;
     font-weight: bold;
+    cursor: pointer;
 }
 @mixin textTitlte {
     font-size: 15px;
@@ -25,7 +26,7 @@
     text-align: center;
     font-size: 20px;
     color: $color-black;
-    font-weight: 500;
+    font-weight: $fw-bold;
 }
 // carousel
 @mixin arrowSlick {
@@ -36,22 +37,25 @@
     z-index: 10;
     cursor: pointer;
 }
-@mixin iconPlay {
+@mixin modalPlay {
     opacity: 0;
-    width: 70px;
-    height: 70px;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.255);
-    text-align: center;
-    padding: 25px;
-    border: 1px solid white;
-    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.356);
+    border: $border;
     border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
-    transform: translate(-45%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    .iconPlay {
+        color: $color-white;
+    }
 }
+
 // listPhim
 @mixin hoverTranitionOn {
     opacity: 1;
@@ -61,20 +65,12 @@
     opacity: 0;
     transition: 0.6s;
 }
-@mixin modalPlay {
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.356);
-    border: 1px solid white;
+
+
+@mixin headerTitleLink {
+    font-size: $fs15;
+    font-weight: $fw-500;
+    color: $color-black-2;
+    margin-right: 20px;
     cursor: pointer;
-    border-radius: 50%;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    top: 42%;
-    left: 38%;
-    z-index: 9;
-    .iconPlay {
-        font-size: 30px;
-        color: white;
-    }
 }

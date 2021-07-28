@@ -7,7 +7,7 @@ import { getMovieList_Action } from "../../store/actions/movie.action";
 import { useHistory } from "react-router";
 // material
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Container, Grid } from "@material-ui/core";
 //slick
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -55,7 +55,7 @@ const ListPhim = () => {
     rows: 2,
     responsive: [
       {
-        breakpoint: 1198,
+        breakpoint: 1000,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -72,7 +72,7 @@ const ListPhim = () => {
         },
       },
       {
-        breakpoint: 280,
+        breakpoint: 300,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -157,7 +157,7 @@ const ListPhim = () => {
   return loading ? (
     <Loader />
   ) : (
-    <section className="sliderListPhim">
+    <Container maxWidth="md" className="sliderListPhim">
       <Grid container>
         <Grid item lg={12} style={{ textAlign: "center" }}>
           <FormControl className="maNhom">
@@ -183,7 +183,7 @@ const ListPhim = () => {
         videoId={stateTrailer.trailers}
         onClose={() => setOpen(false)}
       />
-    </section>
+    </Container>
   );
 };
 

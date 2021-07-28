@@ -173,12 +173,12 @@
 }
 
 .stePper .MuiStepIcon-root.MuiStepIcon-active {
-  color: red;
+  color: #FF0000;
   font-weight: bolder;
 }
 
 .stePper .MuiStepIcon-root.MuiStepIcon-completed {
-  color: red;
+  color: #FF0000;
   font-weight: bolder;
 }
 

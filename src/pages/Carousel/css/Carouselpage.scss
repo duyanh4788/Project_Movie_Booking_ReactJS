@@ -1,7 +1,6 @@
 @import "../../../assets/Style/scss/main/main.scss";
 
 .slider {
-    height: 100%;
     .carouSelSlider {
         position: relative;
         justify-content: center;
@@ -9,8 +8,10 @@
         .imageSlider {
             width: 100%;
         }
-        .iconPlay {
-            @include iconPlay
+        .modalPlay {
+            width: 60px;
+            height: 60px;
+            @include modalPlay;
         }
     }
     .right-arrow {
@@ -21,41 +22,47 @@
         @include arrowSlick;
         left: 32px;
     }
-}
-.carouSelSlider:hover .iconPlay {
-    opacity: 1;
-    transition: 0.5s;
-}
-// dots carousel
-.slick-dots {
-    bottom: 10%;
-}
-.slick-dots li {
-    width: 30px;
-}
-.slick-dots li.slick-active button:before,
-.slick-dots li button:before {
-    color: $color-red;
-    font-size: $fs20;
-}
-
-@media (max-width: 720px) {
+    // dots carousel
+    .slick-dots {
+        bottom: 10%;
+    }
+    .slick-dots li {
+        width: 30px;
+    }
     .slick-dots li.slick-active button:before,
     .slick-dots li button:before {
-        display: none;
+        color: $color-red;
+        font-size: $fs20;
+    }
+    .carouSelSlider:hover .modalPlay {
+        opacity: 1;
+        transition: 0.5s;
     }
 }
+
 @media (max-width: 580px) {
-    .iconPlay {
-        width: 50px !important;
-        height: 50px !important;
-        padding: $pd-10 !important;
+    .slider {
+        .carouSelSlider {
+            .modalPlay {
+                width: 50px !important;
+                height: 50px !important;
+                padding: $pd-10 !important;
+            }
+            .right-arrow,
+            .left-arrow {
+                display: none !important;
+            }
+        }
     }
 }
 @media (max-width: 320px) {
-    .iconPlay {
-        width: 30px !important;
-        height: 30px !important;
-        padding: $pd-5 !important;
+    .slider {
+        .carouSelSlider {
+            .modalPlay {
+                width: 30px !important;
+                height: 30px !important;
+                padding: $pd-5 !important;
+            }
+        }
     }
 }

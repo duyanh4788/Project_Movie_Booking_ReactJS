@@ -2,12 +2,11 @@
 
 .sliderListPhim {
     position: relative;
-    margin: 0 auto;
-    max-width: 940px;
     cursor: pointer;
     .maNhom {
         width: 120px !important;
-        margin: 20px 0;
+        margin-top: 40px;
+        margin-bottom: 20px;
         .MuiInput-underline:before {
             border-bottom: none !important;
         }
@@ -74,6 +73,8 @@
             opacity: 0;
         }
         .modalPlay {
+            width: 40px;
+            height: 40px;
             @include modalPlay;
         }
     }
@@ -85,14 +86,13 @@
     .slide:hover .intro {
         @include hoverTranitionOff;
     }
-}
-
-.MuiInput-underline:after {
-    border-bottom: none !important;
-}
-.MuiInput-input,
-.MuiMenuItem-root,
-.MuiFormLabel-root.Mui-focused {
-    font-size: 13px !important;
-    color: gray !important;
+    .MuiInput-underline:after {
+        border-bottom: none !important;
+    }
+    .MuiInput-input,
+    .MuiMenuItem-root,
+    .MuiFormLabel-root.Mui-focused {
+        font-size: 13px !important;
+        color: $color-black-2 !important;
+    }
 }

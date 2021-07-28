@@ -51,8 +51,8 @@ const DropDowns = (props) => {
     maPhim: "",
   });
   // set maNhom call api
-  const handleMaNhom = (e) => {
-    setMaNhom({ ...stateMaNhom, maNhom: e.target.value });
+  const getMaNhom = (maNhom) => {
+    setMaNhom({ ...stateMaNhom, maNhom: maNhom });
     setStateTenPhim({
       tenPhim: "",
     });
@@ -66,7 +66,7 @@ const DropDowns = (props) => {
       timer: "",
     });
   };
-  // show phim
+  // set data phim
   const getCinemaDropDowns_ = (maPhim, tenPhim) => {
     stateTenPhim.tenPhim = tenPhim;
     dispatch(getCinemaDropDownsWithCode(maPhim));
@@ -83,6 +83,30 @@ const DropDowns = (props) => {
       timer: "",
     });
   };
+
+  // render maNhom
+  const renderMaNhom = () => {
+    let arrMaNhom = [
+      "GP01",
+      "GP02 ",
+      "GP03",
+      "GP04 ",
+      "GP05",
+      "GP06 ",
+      "GP07",
+      "GP08 ",
+      "GP09",
+      "GP10 ",
+    ];
+    return arrMaNhom.map((item, index) => {
+      return (
+        <a key={index} onClick={() => getMaNhom(item)}>
+          Nhóm : {item}
+        </a>
+      );
+    });
+  };
+
   // show phim
   const renderListMovie = () => {
     return listMovie.map((item, index) => {
@@ -194,41 +218,13 @@ const DropDowns = (props) => {
     }
   };
 
-  // render maNhom
-  const renderMaNhom = () => {
-    let arrMaNhom = [
-      "GP01",
-      "GP02 ",
-      "GP03",
-      "GP04 ",
-      "GP05",
-      "GP06 ",
-      "GP07",
-      "GP08 ",
-      "GP09",
-      "GP10 ",
-    ];
-    return arrMaNhom.map((item, index) => {
-      return (
-        <option key={index} value={item}>
-          {item}
-        </option>
-      );
-    });
-  };
-
   return (
     <div className="container dropDownsRelavite">
       <div className="dropDownsMain">
         <div className="dropDownMaNhom">
-          <span>Nhóm : </span>
-          <select
-            name="maNhom"
-            value={stateMaNhom.maNhom}
-            onChange={handleMaNhom}
-          >
-            {renderMaNhom()}
-          </select>
+          <button className="dropbtn">Mã Nhóm : {stateMaNhom.maNhom}</button>
+          <ExpandMoreIcon />
+          <div className="contentMaNhom">{renderMaNhom()}</div>
         </div>
         <div className="dropdownPhim">
           <button className="dropbtn">

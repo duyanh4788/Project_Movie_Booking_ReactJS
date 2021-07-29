@@ -16,7 +16,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const FormAddMovie = () => {
+const FormAddMovie = (props) => {
   // snackbar
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
@@ -39,15 +39,16 @@ const FormAddMovie = () => {
   );
   // show status
   useEffect(() => {
-    if (statusCode === 500 || statusCode === 200) {
+    if (statusCode === 200 || statusCode === 500) {
       handleClick();
     }
   }, [statusCode]);
+
   const [addMove, setAddMove] = useState({
     biDanh: "",
     danhGia: "",
     hinhAnh: {},
-    maNhom: "",
+    maNhom: props.maNhom,
     maPhim: "",
     moTa: "",
     ngayKhoiChieu: "",
@@ -117,28 +118,6 @@ const FormAddMovie = () => {
     dispatch(setDataErrorToZero(0));
   };
 
-  const renderMaNhom = () => {
-    let arrMaNhom = [
-      "GP01",
-      "GP02 ",
-      "GP03",
-      "GP04 ",
-      "GP05",
-      "GP06 ",
-      "GP07",
-      "GP08 ",
-      "GP09",
-      "GP10 ",
-    ];
-    return arrMaNhom.map((item, index) => {
-      return (
-        <option key={index} value={item}>
-          {item}
-        </option>
-      );
-    });
-  };
-
   return (
     <div className="backgroundFormAdd">
       <div className="wrapFromAdd">
@@ -176,14 +155,7 @@ const FormAddMovie = () => {
             />
             <span>{validMovie.ngayKhoiChieu}</span>
 
-            <select
-              onChange={handleChange}
-              value={addMove.maNhom}
-              name="maNhom"
-            >
-              <option value="">Mã Nhóm</option>
-              {renderMaNhom()}
-            </select>
+            <input disabled value={`Mã Nhóm : ${props.maNhom}`} type="text" />
             <span>{validMovie.maNhom}</span>
 
             <input
@@ -251,17 +223,21 @@ const FormAddMovie = () => {
           </form>
         </Container>
       </div>
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        {statusCode === 200 ? (
+      {statusCode === 200 ? (
+        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
             Thêm Phim Thành Công
           </Alert>
-        ) : (
+        </Snackbar>
+      ) : statusCode === 500 ? (
+        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="error">
             {errorMessage}
           </Alert>
-        )}
-      </Snackbar>
+        </Snackbar>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

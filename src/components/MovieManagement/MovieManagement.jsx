@@ -18,6 +18,7 @@ import {
   getListLengthMovieManagement,
   getListMovieDateManagement,
   getListMovieManagement,
+  getListMovieSearchManagement,
   getMaPhimMovieManagement,
   showFormMovie,
 } from "../../store/actions/movieManagement.action";
@@ -76,6 +77,10 @@ export default function MovieManagement() {
   const [stateSearch, setSearch] = useState({
     search: "",
   });
+  //search Quick
+  const [stateSearchQuick, setSearchQuicl] = useState({
+    search: "",
+  });
   // get maNhom
   const [stateMaNhom, setMaNhom] = useState({
     maNhom: "GP01",
@@ -101,7 +106,7 @@ export default function MovieManagement() {
   // get lenght movielist
   useEffect(() => {
     dispatch(getListLengthMovieManagement(stateMaNhom.maNhom));
-  }, [dispatch, stateMaNhom.maNhom]);
+  }, [dispatch, stateMaNhom.maNhom, pageFormAdd]);
   // call api get list movie pagination
   useEffect(() => {
     if (stateSearch.search === "") {
@@ -111,6 +116,7 @@ export default function MovieManagement() {
     }
   }, [
     dispatch,
+    pageFormAdd,
     updateSuccess,
     stateMaNhom.maNhom,
     page,
@@ -118,24 +124,24 @@ export default function MovieManagement() {
     stateSearch.search,
   ]);
   // call api search movie
-  // useEffect(() => {
-  //   if (stateSearch.search !== "") {
-  //     dispatch(
-  //       getListMovieSearchManagement(
-  //         stateMaNhom.maNhom,
-  //         stateSearch.search,
-  //         page,
-  //         stateRowsPage.page
-  //       )
-  //     );
-  //   }
-  // }, [
-  //   dispatch,
-  //   stateMaNhom.maNhom,
-  //   stateSearch.search,
-  //   page,
-  //   stateRowsPage.page,
-  // ]);
+  useEffect(() => {
+    if (stateSearchQuick.search !== "") {
+      dispatch(
+        getListMovieSearchManagement(
+          stateMaNhom.maNhom,
+          stateSearchQuick.search,
+          page,
+          stateRowsPage.page
+        )
+      );
+    }
+  }, [
+    dispatch,
+    stateMaNhom.maNhom,
+    stateSearchQuick.search,
+    page,
+    stateRowsPage.page,
+  ]);
   // show loading
   const loading = useSelector((state) => state.CommonReducer.loading);
   // get data reducer
@@ -151,11 +157,15 @@ export default function MovieManagement() {
     setToThatDay({ ...stateToThatDay, dateDay: "" });
     dispatch(setDataErrorToZero(0));
     movieListDate.length = 0;
-    setPage(0);
+    setPage(1);
   };
   // set search
   const handleSearch = (e) => {
     setSearch({ ...stateSearch, search: e.target.value });
+    movieListDate.length = 0;
+  };
+  const handleSearchQuick = (e) => {
+    setSearchQuicl({ ...stateSearchQuick, search: e.target.value });
     movieListDate.length = 0;
   };
   // set date
@@ -172,6 +182,7 @@ export default function MovieManagement() {
   };
   const handleRowPage = (e) => {
     setRowsPage({ ...stateRowsPage, page: e.target.value });
+    setPage(1);
   };
   //  btn tim phim
   const movieListDate = useSelector((state) => {
@@ -198,7 +209,6 @@ export default function MovieManagement() {
   const movieList = useSelector((state) => {
     return state.MovieManagementReducer.movieList;
   });
-
   // delete
   const deletePhim = (maPhim) => {
     dispatch(deleteListMovieManagement(maPhim));
@@ -252,7 +262,7 @@ export default function MovieManagement() {
       {pageFormAdd === "editMovie" ? (
         <FormEditMovie />
       ) : pageFormAdd === "addMovie" ? (
-        <FormAddMovie />
+        <FormAddMovie maNhom={stateMaNhom.maNhom} />
       ) : pageFormAdd === "creatSchedule" ? (
         <FormCreatSchedule />
       ) : (
@@ -275,7 +285,17 @@ export default function MovieManagement() {
                     <input
                       className="inputSearch"
                       type="text"
-                      placeholder="Tìm Phim API"
+                      placeholder="Tìm Phim Nhanh API"
+                      name="search"
+                      value={stateSearchQuick.search}
+                      onChange={handleSearchQuick}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <input
+                      className="inputSearch"
+                      type="text"
+                      placeholder="Tìm Phim Theo Ngày API"
                       name="search"
                       value={stateSearch.search}
                       onChange={handleSearch}

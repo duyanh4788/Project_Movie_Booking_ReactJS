@@ -25,9 +25,9 @@ export const MovieManagementReducer = (state = initialState, { type, payload }) 
             return { ...state, ...payload }
         }
         case GET_MOVIE_DATE_MANAGEMENT: {
+            state.movieListDate = payload
             movieListUpdate = payload
             state.movieList = movieListUpdate
-            state.movieListDate = payload
             return { ...state, ...payload }
         }
         case GET_CODE_CINEMA_MOVIE_MANAGEMENT: {
@@ -39,7 +39,7 @@ export const MovieManagementReducer = (state = initialState, { type, payload }) 
             return { ...state }
         }
         case DELETE_LIST_MOVIE_MANAGEMENT: {
-            let index = movieListUpdate.find(item => item.maPhim === payload)
+            let index = movieListUpdate.findIndex(item => item.maPhim === payload)
             if (index !== -1) {
                 movieListUpdate.splice(index, 1)
             }

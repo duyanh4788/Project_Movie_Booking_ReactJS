@@ -165,6 +165,7 @@ const ClientMaragement = () => {
     return listClientPagination.map((item, index) => {
       return (
         <TableRow key={index}>
+          <TableCell>{index + 1}</TableCell>
           <TableCell>{item.taiKhoan}</TableCell>
           <TableCell>{item.matKhau}</TableCell>
           <TableCell>{item.hoTen}</TableCell>
@@ -249,6 +250,7 @@ const ClientMaragement = () => {
             <Table className="tableClient" aria-label="simple table">
               <TableHead>
                 <TableRow>
+                <TableCell style={{ fontWeight: "bold" }}>STT</TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Tài Khoản
                   </TableCell>

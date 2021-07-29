@@ -57,7 +57,7 @@ export const getListMovieSearchManagement = (maNhom, tuKhoa, soTrang, soPhanTuTr
         }
     }
 }
-
+// search phim theo ngày
 export const getListMovieDateManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang, tuNgay, denNgay) => {
     return async (dispatch) => {
         try {
@@ -93,6 +93,7 @@ export const deleteListMovieManagement = (maPhim) => {
                     Authorization: `Bearer ${toKen}`
                 }
             })
+            console.log(res);
             dispatch({
                 type: DELETE_LIST_MOVIE_MANAGEMENT,// render html
                 payload: maPhim
@@ -102,6 +103,7 @@ export const deleteListMovieManagement = (maPhim) => {
                 payload: res.status
             })
         } catch (error) {
+            console.log(error.response);
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message error
                 payload: error.response.status

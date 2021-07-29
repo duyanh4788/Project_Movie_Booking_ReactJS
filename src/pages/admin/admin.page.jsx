@@ -14,6 +14,7 @@ import {
   getLengthClientAdminPage,
   getLengthMovieAdminPage,
 } from "../../store/actions/adminPage.action";
+import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -59,11 +60,13 @@ export default function Admin() {
 
   useEffect(() => {
     dispatch(getLengthMovieAdminPage(stateMaNhom.maNhom));
-  }, [dispatch, stateMaNhom.maNhom]);
+    dispatch(setDataErrorToZero(0));
+  }, [dispatch, stateMaNhom.maNhom, open]);
 
   useEffect(() => {
     dispatch(getLengthClientAdminPage(stateMaNhom.maNhom));
-  }, [dispatch, stateMaNhom.maNhom]);
+    dispatch(setDataErrorToZero(0));
+  }, [dispatch, stateMaNhom.maNhom, open]);
 
   const getMaNhom = (e) => {
     const { name, value } = e.target;

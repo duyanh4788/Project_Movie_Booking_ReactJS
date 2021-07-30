@@ -4,7 +4,7 @@
     position: relative;
     cursor: pointer;
     .dropDownsMain {
-        background-color: $color-white;
+        background-color: $background-3;
         border: $border;
         box-shadow: $box-shadow;
         padding: $pd-5;
@@ -107,7 +107,7 @@
             outline: none;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: $boderR5;
             font-size: 15px;
             font-weight: bold;
         }
@@ -118,7 +118,7 @@
         .contentRap a:hover,
         .contentTitle a:hover,
         .contentTitleLength a:hover {
-            background-color: $color-gray-1;
+            background-color: $color-white-2;
         }
         .dropDownMaNhom:hover .contentMaNhom,
         .dropdownPhim:hover .contentPhim,
@@ -135,8 +135,14 @@
     .contentRap::-webkit-scrollbar,
     .contentTitle::-webkit-scrollbar,
     .contentTitleLength::-webkit-scrollbar {
-        width: 6px;
-        background-color: $color-white-2;
+        @include scrollbar;
+    }
+    .contentMaNhom::-webkit-scrollbar-thumb,
+    .contentPhim::-webkit-scrollbar-thumb,
+    .contentRap::-webkit-scrollbar-thumb,
+    .contentTitle::-webkit-scrollbar-thumb,
+    .contentTitleLength::-webkit-scrollbar-thumb {
+        @include scrollbarThumb;
     }
 }
 

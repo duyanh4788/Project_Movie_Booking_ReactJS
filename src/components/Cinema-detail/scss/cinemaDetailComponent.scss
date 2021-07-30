@@ -61,86 +61,90 @@
     }
 }
 
-.infoPhimCinemaDetail {
-    width: 100%;
-    border-radius: 5px;
-    border: $border;
-    background-color: $color-white-2;
-    margin: 50px 0;
-    .rowCinemaDetail {
-        @include scrollCinemaTab;
-        max-height: 419px;
-        .titleLogo {
-            font-weight: bold;
-        }
-        .addresCinema {
-            opacity: 0.5;
-            @include addresCinemaTab;
-        }
-        .addresCinema_Active {
-            opacity: 1.5;
-            @include addresCinemaTab;
-        }
-    }
-    .rowMovieCinemaDetail {
-        .rowDate {
-            z-index: 1;
-            .MuiTabs-indicator {
-                background-color: $color-black-2 !important;
+.cinemaDetail {
+    background: linear-gradient(#09181f, #133241);
+    padding: 50px 0;
+    .infoPhimCinemaDetail {
+        width: 100%;
+        border-radius: $boderR5;
+        border: $border;
+        background-color: $color-white-2;
+        .rowCinemaDetail {
+            @include scrollCinemaTab;
+            max-height: 419px;
+            .titleLogo {
+                font-weight: bold;
+            }
+            .addresCinema {
+                opacity: 0.5;
+                @include addresCinemaTab;
+            }
+            .addresCinema_Active {
+                opacity: 1.5;
+                @include addresCinemaTab;
             }
         }
-        .titleDate {
-            @include textTitlte;
-            text-align: center;
-        }
-        .rowInfoPhim {
-            @include scrollCinemaTab;
-            max-height: 350px;
-            .shedulePhim {
-                padding: 10px;
-                box-shadow: $box-shadow;
-                color: $color-black-2;
-                .imfoPhim {
-                    @include rowHoverPhim;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    align-items: center;
-                    cursor: pointer;
-                    img {
-                        width: 80px;
-                        height: 80px;
-                    }
-                    span {
-                        margin-left: 5px;
-                        .maPhim {
-                            background-color: $color-red;
-                            @include spanButton;
+        .rowMovieCinemaDetail {
+            .rowDate {
+                z-index: 1;
+                .MuiTabs-indicator {
+                    background-color: $color-black-2 !important;
+                }
+            }
+            .titleDate {
+                @include textTitlte;
+                text-align: center;
+            }
+            .rowInfoPhim {
+                @include scrollCinemaTab;
+                max-height: 350px;
+                .shedulePhim {
+                    padding: 10px;
+                    box-shadow: $box-shadow;
+                    color: $color-black-2;
+                    .imfoPhim {
+                        @include rowHoverPhim;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        cursor: pointer;
+                        img {
+                            width: 80px;
+                            height: 80px;
+                        }
+                        span {
+                            margin-left: 5px;
+                            .maPhim {
+                                background-color: $color-red;
+                                @include spanButton;
+                            }
                         }
                     }
-                }
-                .tabTimer {
-                    @include rowHoverPhim;
-                    p {
-                        line-height: 25px;
+                    .tabTimer {
+                        @include rowHoverPhim;
+                        p {
+                            line-height: 25px;
+                        }
+                        @include colorCinema;
+                        .timer {
+                            border: 2px solid;
+                            border-radius: 5px;
+                            padding: 2px;
+                            font-size: 13px;
+                            cursor: pointer;
+                        }
                     }
-                    @include colorCinema;
-                    .timer {
-                        border: 2px solid;
-                        border-radius: 5px;
-                        padding: 2px;
-                        font-size: 13px;
-                        cursor: pointer;
+                    .imfoPhim:hover,
+                    .tabTimer:hover {
+                        background-color: $color-white;
                     }
-                }
-                .imfoPhim:hover,
-                .tabTimer:hover {
-                    background-color: $color-white;
                 }
             }
         }
     }
 }
+
 // scroll css
 .rowCinemaDetail::-webkit-scrollbar,
 .rowInfoPhim::-webkit-scrollbar {

@@ -1,5 +1,5 @@
 .header {
-  background-color: #fff;
+  background-color: #FFFFFF;
   overflow: hidden;
   position: fixed !important;
   top: 0;
@@ -26,7 +26,7 @@
 }
 
 .header .headerTitle :hover {
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .header .headerUser {

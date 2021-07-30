@@ -311,7 +311,7 @@ const DetailTabComponent = () => {
               >
                 <Grid item xs={12} lg={12}>
                   <AppBar position="static" color="default">
-                    <Paper>
+                    <Paper className="paperBar">
                       <Tabs
                         value={values}
                         onChange={handleChanges}

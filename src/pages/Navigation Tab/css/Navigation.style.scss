@@ -6,7 +6,7 @@
 }
 
 .naViGaTionTab {
-    border-radius: $border;
+    border-radius: $boderR5;
     border: $border;
     background-color: $background-3;
     box-shadow: $box-shadow;
@@ -15,12 +15,15 @@
     .rowOneNavigationTab {
         text-align: center;
         border-right: $border;
+
         .rowOne_ChildTab {
             opacity: 0.5;
+            border-bottom: $border;
             @include btnImages;
         }
         .rowOne_ChildTab_Active {
             opacity: 1.5;
+            border-bottom: $border;
             @include btnImages;
         }
     }
@@ -46,9 +49,11 @@
         overflow: hidden;
         .paperBar {
             background-color: $background-3;
-            color: $color-black-2;
             span {
                 color: $color-black-2 !important;
+            }
+            .MuiTabs-indicator {
+                background-color: $color-black-2 !important;
             }
         }
         .titleDate {
@@ -102,7 +107,7 @@
                 .ChildTab_Intro:hover,
                 .ChildTab_Timer:hover,
                 .ChildTab_Img:hover {
-                    background-color: $color-white;
+                    background-color: $color-white-2;
                 }
             }
         }

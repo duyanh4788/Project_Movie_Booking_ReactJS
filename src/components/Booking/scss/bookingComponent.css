@@ -1,8 +1,8 @@
 .countDownTimerMain {
   text-align: center;
-  color: gray;
+  color: #afafaf;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .countDownTimerMain .expiredCheckout {
@@ -21,10 +21,10 @@
   text-align: center;
   border-radius: 4px;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   padding: 10px 20px;
   font-size: 15px;
   background-color: white;
@@ -132,7 +132,6 @@
   float: left;
   overflow-y: scroll;
   max-height: 340px;
-  margin-top: 10px;
 }
 
 .tableCheckout th,
@@ -173,12 +172,12 @@
 }
 
 .stePper .MuiStepIcon-root.MuiStepIcon-active {
-  color: #FF0000;
+  color: #212321;
   font-weight: bolder;
 }
 
 .stePper .MuiStepIcon-root.MuiStepIcon-completed {
-  color: #FF0000;
+  color: #212321;
   font-weight: bolder;
 }
 

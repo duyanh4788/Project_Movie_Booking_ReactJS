@@ -24,7 +24,7 @@
 }
 @mixin h5title {
     text-align: center;
-    font-size: 20px;
+    font-size: 17px;
     color: $color-black;
     font-weight: $fw-bold;
 }
@@ -43,6 +43,7 @@
     border: $border;
     border-radius: 50%;
     text-align: center;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

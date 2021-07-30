@@ -4,43 +4,47 @@
     background: url(../../../assets/images/background.jpg);
     background-size: cover;
     padding: 100px 0;
-    .rowOneIntro {
-        color: $color-white;
-        line-height: 45px;
-        label {
-            font-size: 30px;
-            font-weight: bold;
-        }
-        a {
-            text-decoration: none;
+    .rowOne {
+        display: flex;
+        justify-content: center;
+        .rowOneIntro {
             color: $color-white;
+            line-height: 45px;
+            label {
+                font-size: 30px;
+                font-weight: bold;
+            }
+            a {
+                text-decoration: none;
+                color: $color-white;
+            }
+            button {
+                background-color: $color-red;
+                color: $color-white;
+                padding: 15px;
+                font-size: 15px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
         }
-        button {
-            background-color: $color-red;
-            color: $color-white;
-            padding: 15px;
-            font-size: 15px;
-            border: none;
-            outline: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    }
-    .rowOneCarousel {
-        position: relative;
-        .imgPhone {
-            width: 270px;
-        }
-        .carouSelSlider {
-            width: 255px;
-            position: absolute;
-            top: 0%;
-            left: 1.2%;
-            transform: translate(1.2%, 1.1%);
-            overflow: hidden;
-            border-radius: 30px;
-            .imageSlider {
-                width: 254px;
+        .rowOneCarousel {
+            position: relative;
+            .imgPhone {
+                width: 270px;
+            }
+            .carouSelSlider {
+                width: 255px;
+                position: absolute;
+                top: 0%;
+                left: 1.2%;
+                transform: translate(1.2%, 1.1%);
+                overflow: hidden;
+                border-radius: 30px;
+                .imageSlider {
+                    width: 254px;
+                }
             }
         }
     }

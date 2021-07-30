@@ -29,8 +29,8 @@
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid white;
-  background-color: #fff;
+  border: 1px solid #ebebec;
+  background-color: #FFFFFF;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -49,6 +49,7 @@
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo {
   opacity: 0.7;
+  color: #afafaf;
 }
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo button {
@@ -63,13 +64,13 @@
 }
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo p {
-  color: gray;
   font-weight: bold;
   font-size: 13px;
 }
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo_Active {
   opacity: 1.5;
+  color: #424242;
 }
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo_Active button {
@@ -84,7 +85,6 @@
 }
 
 .detailTab .detailTabCinema .accordionLogo .logoCinema .loGo_Active p {
-  color: gray;
   font-weight: bold;
   font-size: 13px;
 }
@@ -94,6 +94,14 @@
   -ms-flex-line-pack: start;
       align-content: flex-start;
   font-size: 13px;
+}
+
+.detailTab .detailTabCinema .scheduleMovie .paperBar .MuiTab-wrapper {
+  color: #212321 !important;
+}
+
+.detailTab .detailTabCinema .scheduleMovie .paperBar .MuiTabs-indicator {
+  background-color: #212321 !important;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .titleDate {
@@ -128,23 +136,23 @@
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema .CGV {
-  color: #e73827;
+  color: #ff3a22;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema .CineStar {
-  color: #734b6d;
+  color: #bf4aa8;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema .Galaxy {
-  color: #f56217;
+  color: #f7882f;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema .LotteCinima {
-  color: #fd746c;
+  color: #800000;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema .MegaGS {
-  color: #f8b500;
+  color: #ffde22;
 }
 
 .detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .pageScheduleMovie .inforCinema a {
@@ -156,14 +164,6 @@
   border-radius: 5px;
   padding: 2px 4px;
   margin-left: 5px;
-}
-
-.detailTab .detailTabCinema .scheduleMovie .MuiTab-wrapper {
-  color: #212321 !important;
-}
-
-.detailTab .detailTabCinema .scheduleMovie .MuiTabs-indicator {
-  display: none !important;
 }
 
 .rowScheduleMovie::-webkit-scrollbar {

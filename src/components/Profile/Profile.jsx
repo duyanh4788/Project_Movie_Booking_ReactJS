@@ -236,7 +236,10 @@ export default function ProfileUser() {
         </Grid>
       ) : (
         <Container>
-          <Grid container>
+          <Grid
+            container
+            style={{ display: "flex", justifyContent: "space-around" }}
+          >
             <Grid item lg={12} className="updateUser">
               <h5>Cập Nhật Tài Khoản</h5>
               <form onSubmit={handleSubmit}>

@@ -17,9 +17,10 @@
   height: 60px;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.356);
-  border: 1px solid white;
+  border: 1px solid #ebebec;
   border-radius: 50%;
   text-align: center;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,7 +72,7 @@
 
 .slider .slick-dots li.slick-active button:before,
 .slider .slick-dots li button:before {
-  color: #FF0000;
+  color: #ff0000;
   font-size: 20px;
 }
 

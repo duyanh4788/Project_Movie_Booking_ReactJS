@@ -3,9 +3,9 @@
 }
 
 .naViGaTionTab {
-  border-radius: 1px solid white;
-  border: 1px solid white;
-  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  border: 1px solid #ebebec;
+  background-color: #FFFFFF;
   -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
           box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
   -webkit-backdrop-filter: blur(6px);
@@ -14,11 +14,12 @@
 
 .naViGaTionTab .rowOneNavigationTab {
   text-align: center;
-  border-right: 1px solid white;
+  border-right: 1px solid #ebebec;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab {
   opacity: 0.5;
+  border-bottom: 1px solid #ebebec;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab img {
@@ -29,6 +30,7 @@
 
 .naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab_Active {
   opacity: 1.5;
+  border-bottom: 1px solid #ebebec;
 }
 
 .naViGaTionTab .rowOneNavigationTab .rowOne_ChildTab_Active img {
@@ -42,14 +44,14 @@
   height: 636px;
   width: 100%;
   overflow-y: scroll;
-  border-right: 1px solid white;
+  border-right: 1px solid #ebebec;
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab {
   opacity: 0.7;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #ebebec;
   padding-left: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -66,23 +68,23 @@
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .CGV {
-  color: #e73827;
+  color: #ff3a22;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .CineStar {
-  color: #734b6d;
+  color: #bf4aa8;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .Galaxy {
-  color: #f56217;
+  color: #f7882f;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .LotteCinima {
-  color: #fd746c;
+  color: #800000;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .MegaGS {
-  color: #f8b500;
+  color: #ffde22;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .child_Image img {
@@ -96,7 +98,7 @@
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab .childTab_Intro .child_Intro span {
-  color: #FF0000;
+  color: #ff0000;
   font-weight: 100;
   font-size: 12px;
   font-weight: bold;
@@ -105,7 +107,7 @@
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active {
   opacity: 1.5;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #ebebec;
   padding-left: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -122,23 +124,23 @@
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .CGV {
-  color: #e73827;
+  color: #ff3a22;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .CineStar {
-  color: #734b6d;
+  color: #bf4aa8;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .Galaxy {
-  color: #f56217;
+  color: #f7882f;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .LotteCinima {
-  color: #fd746c;
+  color: #800000;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .MegaGS {
-  color: #f8b500;
+  color: #ffde22;
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .child_Image img {
@@ -152,7 +154,7 @@
 }
 
 .naViGaTionTab .rowTwoNavigationTab .rowTwo_ChildTab_Active .childTab_Intro .child_Intro span {
-  color: #FF0000;
+  color: #ff0000;
   font-weight: 100;
   font-size: 12px;
   font-weight: bold;
@@ -165,12 +167,15 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab .paperBar {
-  background-color: rgba(255, 255, 255, 0.25);
-  color: #212321;
+  background-color: #FFFFFF;
 }
 
 .naViGaTionTab .rowThereNavigationTab .paperBar span {
   color: #212321 !important;
+}
+
+.naViGaTionTab .rowThereNavigationTab .paperBar .MuiTabs-indicator {
+  background-color: #212321 !important;
 }
 
 .naViGaTionTab .rowThereNavigationTab .titleDate {
@@ -188,14 +193,14 @@
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab {
   padding: 10px;
   font-weight: 600;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #ebebec;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img {
   height: 100px;
   padding: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid white;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
   border-radius: 5px;
   text-align: center;
 }
@@ -208,8 +213,8 @@
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro {
   height: 100px;
   padding: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid white;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
@@ -231,7 +236,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #e73827;
+  background-color: #ff3a22;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .CineStar {
@@ -240,7 +245,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #734b6d;
+  background-color: #bf4aa8;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .Galaxy {
@@ -249,7 +254,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #f56217;
+  background-color: #f7882f;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .LotteCinima {
@@ -258,7 +263,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #fd746c;
+  background-color: #800000;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro .MegaGS {
@@ -267,7 +272,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
-  background-color: #f8b500;
+  background-color: #ffde22;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro span {
@@ -277,8 +282,8 @@
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer {
   height: 100px;
   padding: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
-  border: 1px solid white;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
   border-radius: 5px;
 }
 
@@ -293,23 +298,23 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CGV {
-  color: #e73827;
+  color: #ff3a22;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .CineStar {
-  color: #734b6d;
+  color: #bf4aa8;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .Galaxy {
-  color: #f56217;
+  color: #f7882f;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .LotteCinima {
-  color: #fd746c;
+  color: #800000;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .MegaGS {
-  color: #f8b500;
+  color: #ffde22;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer .dateTimer .timeCode {
@@ -323,7 +328,7 @@
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro:hover,
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer:hover,
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img:hover {
-  background-color: #fff;
+  background-color: #f5f5f5;
 }
 
 .rowTwoNavigationTab::-webkit-scrollbar,

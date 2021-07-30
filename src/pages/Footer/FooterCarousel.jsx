@@ -44,7 +44,7 @@ const FooterCarousel = () => {
   return (
     <div className="footerRowOne">
       <Container>
-        <Grid container>
+        <Grid container className="rowOne">
           <Grid item lg={2}></Grid>
           <Grid item lg={4}>
             <div className="rowOneIntro">

@@ -30,7 +30,6 @@
     }
     .inputSearch {
       @include inputForm;
-      background-color: $color-white;
     }
     .tableBooking {
       @include table;
@@ -48,16 +47,14 @@
     }
   }
   .updateUser {
+    max-width: 400px;
     @include warpForm;
-    padding: 30px;
+    padding: 20px;
     h5 {
       @include h5title;
     }
     span {
-      font-size: $fs15;
-      color: $color-black-2;
-      font-weight: $fw-bold;
-      margin-left: 10px;
+      @include labelForm;
     }
     p {
       @include spanValid;

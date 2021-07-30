@@ -224,6 +224,7 @@ class SignUpPage extends Component {
             <Container maxWidth="md">
               <h5>Sign Up</h5>
               <form onSubmit={this.handleSubmit}>
+                <label>Tài Khoản</label>
                 <input
                   onChange={this.handleChange}
                   value={User.taiKhoan}
@@ -231,7 +232,9 @@ class SignUpPage extends Component {
                   name="taiKhoan"
                   type="text"
                 />
-                <span>{error.taiKhoan}</span>
+                <p>{error.taiKhoan}</p>
+
+                <label>Mật Khẩu</label>
                 <input
                   onChange={this.handleChange}
                   value={User.matKhau}
@@ -239,7 +242,9 @@ class SignUpPage extends Component {
                   name="matKhau"
                   type="password"
                 />
-                <span>{error.matKhau}</span>
+                <p>{error.matKhau}</p>
+
+                <label>Xác Nhận Mật Khẩu</label>
                 <input
                   onChange={this.handleChange}
                   value={User.confirmMatKhau}
@@ -247,8 +252,9 @@ class SignUpPage extends Component {
                   name="confirmMatKhau"
                   type="password"
                 />
-                <span>{error.confirmMatKhau}</span>
+                <p>{error.confirmMatKhau}</p>
 
+                <label>Họ Tên</label>
                 <input
                   onChange={this.handleChange}
                   value={User.hoTen}
@@ -257,8 +263,9 @@ class SignUpPage extends Component {
                   type="text"
                   pattern="^[A-Za-z]+$"
                 />
-                <span>{error.hoTen}</span>
+                <p>{error.hoTen}</p>
 
+                <label>Email</label>
                 <input
                   onChange={this.handleChange}
                   value={User.email}
@@ -267,18 +274,21 @@ class SignUpPage extends Component {
                   type="email"
                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 />
-                <span>{error.email}</span>
+                <p>{error.email}</p>
 
+                <label>Phone</label>
                 <input
                   onChange={this.handleChange}
                   value={User.soDt}
                   placeholder="Số Điện Thoại"
                   name="soDt"
                 />
-                <span>{error.soDt}</span>
+                <p>{error.soDt}</p>
 
+                <label>Vai Trò</label>
                 <input placeholder="Khách Hàng" disabled />
 
+                <label>Chọn Nhóm</label>
                 <select
                   name="maNhom"
                   value={User.maNhom}
@@ -288,10 +298,7 @@ class SignUpPage extends Component {
                   {this.renderMaNhom()}
                 </select>
                 <br />
-                <span>{error.maNhom}</span>
-
-                <br />
-                <br />
+                <p>{error.maNhom}</p>
 
                 <div style={{ textAlign: "center" }}>
                   {this.state.valid ? (

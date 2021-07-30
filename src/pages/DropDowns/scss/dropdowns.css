@@ -4,8 +4,8 @@
 }
 
 .dropDownsRelavite .dropDownsMain {
-  background-color: #fff;
-  border: 1px solid white;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
   -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
           box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
   padding: 5px;
@@ -236,7 +236,7 @@
 .dropDownsRelavite .dropDownsMain .contentRap a:hover,
 .dropDownsRelavite .dropDownsMain .contentTitle a:hover,
 .dropDownsRelavite .dropDownsMain .contentTitleLength a:hover {
-  background-color: #afafaf;
+  background-color: #f5f5f5;
 }
 
 .dropDownsRelavite .dropDownsMain .dropDownMaNhom:hover .contentMaNhom,
@@ -256,7 +256,17 @@
 .dropDownsRelavite .contentTitle::-webkit-scrollbar,
 .dropDownsRelavite .contentTitleLength::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
   background-color: #f5f5f5;
+}
+
+.dropDownsRelavite .contentMaNhom::-webkit-scrollbar-thumb,
+.dropDownsRelavite .contentPhim::-webkit-scrollbar-thumb,
+.dropDownsRelavite .contentRap::-webkit-scrollbar-thumb,
+.dropDownsRelavite .contentTitle::-webkit-scrollbar-thumb,
+.dropDownsRelavite .contentTitleLength::-webkit-scrollbar-thumb {
+  background: #e2dfdf;
+  border-radius: 6px;
 }
 
 @media (max-width: 1200px) {

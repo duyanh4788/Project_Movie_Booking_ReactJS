@@ -23,7 +23,7 @@
     font-size: $fs15;
     padding: 10px 15px;
     color: $color-black-2;
-    background-color: $color-white;
+    background-color: $color-white-2;
     border: $border;
     border-radius: $boderR5;
     outline: none;
@@ -54,11 +54,18 @@
     outline: none;
     border: none;
     color: $color-gray-2;
-    background-color: $color-white;
+    background-color: $color-white-2;
 }
 
 @mixin spanValid {
     color: $color-red;
     font-size: 10px;
     font-weight: $fw-bold;
+}
+
+@mixin labelForm {
+    font-size: 12px;
+    color: $color-black;
+    font-weight: $fw-bold;
+    margin-left: 5px;
 }

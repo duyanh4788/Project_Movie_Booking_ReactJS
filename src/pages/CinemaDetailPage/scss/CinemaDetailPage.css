@@ -1,6 +1,6 @@
 .cinemaDetailPage p {
   font-size: 15px;
-  font-weight: bolder;
+  font-weight: bold;
   color: #212321;
 }
 
@@ -8,7 +8,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: white;
+  background-color: #FFFFFF;
 }
 
 .cinemaDetailPage .btnimgCinemaDetail .imgCinemaDetail {

@@ -12,9 +12,8 @@
         }
     }
     p {
-        color: gray;
         font-weight: bold;
-        font-size: 13px;
+        font-size: $fs13;
     }
 }
 
@@ -44,7 +43,7 @@
         padding: 10px;
         border-radius: $boderR5;
         border: $border;
-        background-color: $color-white;
+        background-color: $background-3;
         align-items: flex-start;
         .accordionLogo {
             width: 100%;
@@ -57,10 +56,12 @@
             .logoCinema {
                 .loGo {
                     opacity: 0.7;
+                    color: $color-gray-1;
                     @include btnLogo;
                 }
                 .loGo_Active {
                     opacity: 1.5;
+                    color: $color-gray-2;
                     @include btnLogo;
                 }
             }
@@ -70,6 +71,14 @@
             width: 100%;
             align-content: flex-start;
             font-size: 13px;
+            .paperBar {
+                .MuiTab-wrapper {
+                    color: $color-black-2 !important;
+                }
+                .MuiTabs-indicator {
+                    background-color: $color-black-2 !important;
+                }
+            }
             .titleDate {
                 color: $color-black-2;
                 text-align: center;
@@ -101,12 +110,6 @@
                     }
                 }
             }
-            .MuiTab-wrapper {
-                color: $color-black-2 !important;
-            }
-            .MuiTabs-indicator {
-                display: none !important;
-            }
         }
     }
 }
@@ -118,7 +121,6 @@
 .rowScheduleMovie::-webkit-scrollbar-thumb {
     @include scrollbarThumb;
 }
-
 
 @media (max-width: 420px) {
     .inforCinema {

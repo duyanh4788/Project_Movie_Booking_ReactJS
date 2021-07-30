@@ -4,6 +4,7 @@
     @include backgroundForm;
     padding: 50px 0;
     .wrapSignUp {
+        max-width: 400px;
         @include warpForm;
         h5 {
             @include h5title;
@@ -14,7 +15,11 @@
         input::placeholder {
             @include placeHoderForm;
         }
-        span {
+        label {
+            @include labelForm;
+        }
+        p {
+            text-align: center;
             @include spanValid;
         }
         select {

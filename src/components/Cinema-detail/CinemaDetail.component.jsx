@@ -268,7 +268,7 @@ const CinemaDetailComponent = (props) => {
   };
 
   return (
-    <section className="cinemaDetail">
+    <>
       {/* image phim */}
       {infoPhimCinema == null ? (
         <div className="rowOneinfoPhim">
@@ -296,45 +296,53 @@ const CinemaDetailComponent = (props) => {
         </div>
       )}
 
-      {/* image phim */}
-
-      <Container maxWidth="lg">
-        <Grid container className="infoPhimCinemaDetail">
-          <Grid item xs={12} sm={12} md={4} lg={4}>
-            <Accordion className="rowCinemaDetail">
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <p className="titleLogo">Chọn Cụm Rạp : {codeMaCumRap}</p>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Grid container item lg={12}>
-                  {renderGroupCinema()}
-                </Grid>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
-          <Grid container item xs={12} sm={12} md={8} lg={8} className="rowMovieCinemaDetail">
-            <Grid item xs={12} lg={12}>
-              <AppBar position="static" color="default" className="rowDate">
-                <Paper>
-                  <Tabs
-                    value={values}
-                    onChange={handleChanges}
-                    variant="scrollable"
-                    scrollButtons="auto"
-                  >
-                    {renderDateTime()}
-                  </Tabs>
-                </Paper>
-              </AppBar>
-              <h5 className="titleDate">Chọn Giờ Chiếu</h5>
+      <div className="cinemaDetail">
+        <Container maxWidth="lg">
+          <Grid container className="infoPhimCinemaDetail">
+            <Grid item xs={12} sm={12} md={4} lg={4}>
+              <Accordion className="rowCinemaDetail">
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <p className="titleLogo">Chọn Cụm Rạp : {codeMaCumRap}</p>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Grid container item lg={12}>
+                    {renderGroupCinema()}
+                  </Grid>
+                </AccordionDetails>
+              </Accordion>
             </Grid>
-            <Grid container className="rowInfoPhim">
-              {renderListPhim()}
+            <Grid
+              container
+              item
+              xs={12}
+              sm={12}
+              md={8}
+              lg={8}
+              className="rowMovieCinemaDetail"
+            >
+              <Grid item xs={12} lg={12}>
+                <AppBar position="static" color="default" className="rowDate">
+                  <Paper>
+                    <Tabs
+                      value={values}
+                      onChange={handleChanges}
+                      variant="scrollable"
+                      scrollButtons="auto"
+                    >
+                      {renderDateTime()}
+                    </Tabs>
+                  </Paper>
+                </AppBar>
+                <h5 className="titleDate">Chọn Giờ Chiếu</h5>
+              </Grid>
+              <Grid container className="rowInfoPhim">
+                {renderListPhim()}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </section>
+        </Container>
+      </div>
+    </>
   );
 };
 

@@ -1,74 +1,52 @@
+@import "../../../assets/Style/scss/main/main.scss";
 .formMovie {
-    background-color: rgba(226, 46, 46, 0.18);
-    min-width: 1200px;
+    background-color: $background-3;
+    min-width: 1300px;
     .inputSearch {
-        width: 100%;
-        padding: 10px;
-        outline: none;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 5px;
+        @include inputForm;
     }
     input::placeholder {
-        text-align: right;
+        @include placeHoderForm;
     }
-
     button {
-        border: none;
-        outline: none;
-        color: white;
-        background-color: rgba(105, 102, 102, 0.562);
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bolder;
+        @include buttonForm;
     }
     span {
         font-size: 13px;
-        color: gray;
+        color: $color-black-2;
         font-weight: bold;
     }
+    .dateTimer {
+        @include dateTimer;
+    }
     select {
-        max-width: 200px;
-        padding: 10px 5px;
-        border-radius: 5px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.808);
-        color: gray;
+        @include selectForm;
+        width: 100px;
     }
 }
 .titleMovieManagement {
-    margin: 20px 0;
+    margin: 10px 0;
     h5 {
-        text-align: center;
-        font-size: 17px;
-        color: gray;
+        @include h5title;
+        color: $color-white;
     }
     .btnThemPhim {
-        border: none;
-        outline: none;
-        color: white;
-        background-color: rgba(46, 245, 7, 0.658);
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bolder;
+        @include buttonForm;
     }
 }
 
 .tableMove {
     min-width: 1300px;
     .iconDelete {
-        color: #ee2d24;
+        color: $color-red;
         cursor: pointer;
     }
     .iconEdit {
-        color: #662d91;
+        color: $colorCinestar;
         cursor: pointer;
     }
     .iconCreat {
-        color: #2d4491;
+        color: $colorBhd;
         cursor: pointer;
     }
 }

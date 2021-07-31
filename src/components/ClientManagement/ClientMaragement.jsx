@@ -226,6 +226,7 @@ const ClientMaragement = () => {
       ) : (
         <>
           <div className="formClient">
+            <h5>Danh Sách Khách Hàng</h5>
             <span>Mã Nhóm : </span>
             <select
               name="maNhom"
@@ -282,7 +283,7 @@ const ClientMaragement = () => {
                   <Pagination
                     count={parseInt(
                       listClientLength.length / stateRowsPage.page
-                    )}
+                    ) + 1}
                     showFirstButton
                     showLastButton
                     page={page}

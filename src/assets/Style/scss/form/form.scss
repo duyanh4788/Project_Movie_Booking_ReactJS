@@ -9,6 +9,15 @@
     justify-content: space-around;
 }
 
+@mixin backgroundFormEdit {
+    width: 100%;
+    min-height: 500px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 @mixin warpForm {
     padding: 50px 0;
     background-color: $background-3;
@@ -68,4 +77,22 @@
     color: $color-black;
     font-weight: $fw-bold;
     margin-left: 5px;
+}
+@mixin tagP {
+    font-size: 12px;
+    color: $color-black;
+    font-weight: $fw-bold;
+}
+
+@mixin dateTimer {
+    input {
+        font-size: 13px !important;
+        color: $color-black-2 !important;
+    }
+    .MuiInput-underline:before {
+        display: none !important;
+    }
+    .MuiInput-underline:after {
+        border-bottom: 2px solid black !important;
+    }
 }

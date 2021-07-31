@@ -1,79 +1,105 @@
 .formMovie {
-  background-color: rgba(226, 46, 46, 0.18);
-  min-width: 1200px;
+  background-color: #FFFFFF;
+  min-width: 1300px;
 }
 
 .formMovie .inputSearch {
   width: 100%;
-  padding: 10px;
-  outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 10px 0;
+  padding: 10px 5px;
   border-radius: 5px;
+  background-color: #f5f5f5;
+  outline: none;
+  border: none;
 }
 
 .formMovie input::-webkit-input-placeholder {
+  color: #424242;
+  opacity: 0.5;
   text-align: right;
 }
 
 .formMovie input:-ms-input-placeholder {
+  color: #424242;
+  opacity: 0.5;
   text-align: right;
 }
 
 .formMovie input::-ms-input-placeholder {
+  color: #424242;
+  opacity: 0.5;
   text-align: right;
 }
 
 .formMovie input::placeholder {
+  color: #424242;
+  opacity: 0.5;
   text-align: right;
 }
 
 .formMovie button {
-  border: none;
-  outline: none;
-  color: white;
-  background-color: rgba(105, 102, 102, 0.562);
-  padding: 5px;
-  cursor: pointer;
+  font-size: 15px;
+  padding: 10px 15px;
+  color: #212321;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebec;
   border-radius: 5px;
-  font-weight: bolder;
+  outline: none;
+  cursor: pointer;
 }
 
 .formMovie span {
   font-size: 13px;
-  color: gray;
+  color: #212321;
   font-weight: bold;
 }
 
+.formMovie .dateTimer input {
+  font-size: 13px !important;
+  color: #212321 !important;
+}
+
+.formMovie .dateTimer .MuiInput-underline:before {
+  display: none !important;
+}
+
+.formMovie .dateTimer .MuiInput-underline:after {
+  border-bottom: 2px solid black !important;
+}
+
 .formMovie select {
-  max-width: 200px;
+  width: 100%;
+  margin: 10px 0;
   padding: 10px 5px;
   border-radius: 5px;
   outline: none;
   border: none;
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.808);
-  color: gray;
+  color: #424242;
+  background-color: #f5f5f5;
+  width: 100px;
 }
 
 .titleMovieManagement {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .titleMovieManagement h5 {
   text-align: center;
   font-size: 17px;
-  color: gray;
+  color: #222;
+  font-weight: bold;
+  color: #fff;
 }
 
 .titleMovieManagement .btnThemPhim {
-  border: none;
-  outline: none;
-  color: white;
-  background-color: rgba(46, 245, 7, 0.658);
-  padding: 5px;
-  cursor: pointer;
+  font-size: 15px;
+  padding: 10px 15px;
+  color: #212321;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebec;
   border-radius: 5px;
-  font-weight: bolder;
+  outline: none;
+  cursor: pointer;
 }
 
 .tableMove {
@@ -81,17 +107,17 @@
 }
 
 .tableMove .iconDelete {
-  color: #ee2d24;
+  color: #ff0000;
   cursor: pointer;
 }
 
 .tableMove .iconEdit {
-  color: #662d91;
+  color: #bf4aa8;
   cursor: pointer;
 }
 
 .tableMove .iconCreat {
-  color: #2d4491;
+  color: #56ab2f;
   cursor: pointer;
 }
 /*# sourceMappingURL=MovieManagement.css.map */

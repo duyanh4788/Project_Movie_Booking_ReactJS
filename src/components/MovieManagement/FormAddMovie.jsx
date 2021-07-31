@@ -119,11 +119,12 @@ const FormAddMovie = (props) => {
   };
 
   return (
-    <div className="backgroundFormAdd">
+    <>
       <div className="wrapFromAdd">
         <Container maxWidth="md">
-          <h4>Thêm Movie</h4>
+          <h5>Thêm Movie</h5>
           <form onSubmit={handleSubmit}>
+            <label>Mã Phim</label>
             <input
               onChange={handleChange}
               value={addMove.maPhim}
@@ -132,7 +133,7 @@ const FormAddMovie = (props) => {
               type="text"
             />
             <span>{validMovie.maPhim}</span>
-
+            <label>Tên Phim</label>
             <input
               onChange={handleChange}
               value={addMove.tenPhim}
@@ -141,9 +142,9 @@ const FormAddMovie = (props) => {
               type="text"
             />
             <span>{validMovie.tenPhim}</span>
-            <br />
-
+            <p>Ngày Công Chiếu</p>
             <TextField
+              className="dateTimer"
               id="datetime-local"
               type="datetime-local"
               InputLabelProps={{
@@ -154,10 +155,10 @@ const FormAddMovie = (props) => {
               name="ngayKhoiChieu"
             />
             <span>{validMovie.ngayKhoiChieu}</span>
-
+            <p>Mã Nhóm</p>
             <input disabled value={`Mã Nhóm : ${props.maNhom}`} type="text" />
             <span>{validMovie.maNhom}</span>
-
+            <label>Đánh Giá</label>
             <input
               onChange={handleChange}
               value={addMove.danhGia}
@@ -166,7 +167,7 @@ const FormAddMovie = (props) => {
               type="text"
             />
             <span>{validMovie.danhGia}</span>
-
+            <label>Bí Danh</label>
             <input
               onChange={handleChange}
               value={addMove.biDanh}
@@ -175,11 +176,11 @@ const FormAddMovie = (props) => {
               type="text"
             />
             <span>{validMovie.biDanh}</span>
-            <br />
 
+            <label>Hình Ảnh</label>
             <input type="file" name="hinhAnh" onChange={handleChangeImage} />
             <span>{validMovie.hinhAnh}</span>
-
+            <label>Trailer</label>
             <input
               onChange={handleChange}
               value={addMove.trailer}
@@ -188,7 +189,7 @@ const FormAddMovie = (props) => {
               type="text"
             />
             <span>{validMovie.trailer}</span>
-
+            <label>Mô Tả</label>
             <textarea
               onChange={handleChange}
               value={addMove.moTa}
@@ -238,7 +239,7 @@ const FormAddMovie = (props) => {
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 

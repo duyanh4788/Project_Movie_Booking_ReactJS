@@ -260,11 +260,17 @@ export default function MovieManagement() {
   ) : (
     <>
       {pageFormAdd === "editMovie" ? (
-        <FormEditMovie />
+        <div className="editMovie">
+          <FormEditMovie />
+        </div>
       ) : pageFormAdd === "addMovie" ? (
-        <FormAddMovie maNhom={stateMaNhom.maNhom} />
+        <div className="addMovie">
+          <FormAddMovie maNhom={stateMaNhom.maNhom} />
+        </div>
       ) : pageFormAdd === "creatSchedule" ? (
-        <FormCreatSchedule />
+        <div className="creatSchedule">
+          <FormCreatSchedule />
+        </div>
       ) : (
         <>
           <TableContainer component={Paper}>
@@ -446,9 +452,10 @@ export default function MovieManagement() {
                   </Grid>
                   <Grid item lg={8}>
                     <Pagination
-                      count={parseInt(
-                        movieListLength.length / stateRowsPage.page
-                      )}
+                      count={
+                        parseInt(movieListLength.length / stateRowsPage.page) +
+                        1
+                      }
                       showFirstButton
                       showLastButton
                       page={page}

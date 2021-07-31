@@ -3,9 +3,11 @@
 .adminPage {
     h5 {
         @include h5title;
+        color: $color-white;
     }
     span {
         @include textTitlte;
+        color: $color-white;
     }
     select {
         @include select;

@@ -32,7 +32,7 @@
 
 .sliderListPhim .slick-prev:before,
 .sliderListPhim .slick-next:before {
-  color: #FF0000 !important;
+  color: #ff0000 !important;
   font-size: 30px;
 }
 
@@ -74,7 +74,7 @@
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  background-color: #FF0000;
+  background-color: #ff0000;
 }
 
 .sliderListPhim .slide .sliderAfter .intro .introTwo {
@@ -101,9 +101,10 @@
   height: 40px;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.356);
-  border: 1px solid #8e8e90;
+  border: 1px solid #ebebec;
   border-radius: 50%;
   text-align: center;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -1,43 +1,25 @@
+@import "../../../assets/Style/scss/main/main.scss";
+
 .formClient {
     .inputSearch {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        outline: none;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 5px;
+        @include inputForm;
     }
     h5 {
-        text-align: center;
-        font-size: 17px;
-        color: gray;
+         @include h5title;
+         color: $color-white-2;
     }
     button {
-        border: none;
-        outline: none;
-        color: white;
-        background-color: rgb(112, 228, 89);
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-weight: bolder;
+        @include buttonForm;
         margin-left: 10px;
     }
     span {
         font-size: 13px;
-        color: gray;
+        color: $color-white-2;
         font-weight: bold;
     }
     select {
-        max-width: 200px;
-        margin: 10px 0;
-        padding: 10px 5px;
-        border-radius: 5px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.808);
-        color: gray;
+        @include selectForm;
+        max-width: 100px;
     }
 }
 .tableClient {

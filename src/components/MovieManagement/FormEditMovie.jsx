@@ -6,7 +6,8 @@ import {
   updateListMovieManagement,
 } from "../../store/actions/movieManagement.action";
 import "./scss/FormEditMovie.css";
-import TextField from "@material-ui/core/TextField";
+// date format
+import * as dayjs from "dayjs";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
@@ -124,11 +125,12 @@ const FormEditMovie = (props) => {
   };
 
   return (
-    <div className="backgroundFormEdit">
+    <>
       <div className="wrapFromEdit">
         <Container maxWidth="md">
-          <h4>Edit Movie</h4>
+          <h5>Edit Movie</h5>
           <form onSubmit={handleSubmit}>
+            <label>Mã Phim</label>
             <input
               onChange={handleChange}
               value={editMovie.maPhim}
@@ -137,6 +139,7 @@ const FormEditMovie = (props) => {
             />
             <span>{validMovie.maPhim}</span>
 
+            <label>Tên Phim</label>
             <input
               onChange={handleChange}
               value={editMovie.tenPhim}
@@ -145,21 +148,18 @@ const FormEditMovie = (props) => {
               type="text"
             />
             <span>{validMovie.tenPhim}</span>
-            <br />
-
-            <TextField
-              id="datetime-local"
-              type="datetime-local"
-              defaultValue={infoMovie.ngayKhoiChieu}
+            <label>Ngày Công Chiếu</label>
+            <input
+              type="text"
               disabled
-              InputLabelProps={{
-                shrink: true,
-              }}
+              value={`Ngày Chiếu : ${dayjs(infoMovie.ngayKhoiChieu).format(
+                "DD-MM-YYYY"
+              )}`}
             />
             <span>{validMovie.ngayKhoiChieu}</span>
-
+            <label>Mã Nhóm</label>
             <input value={editMovie.maNhom} disabled type="text" />
-
+            <label>Đánh Giá</label>
             <input
               value={editMovie.danhGia}
               placeholder="Đánh Giá"
@@ -167,7 +167,7 @@ const FormEditMovie = (props) => {
               type="danhGia"
             />
             <span>{validMovie.danhGia}</span>
-
+            <label>Bí Danh</label>
             <input
               onChange={handleChange}
               value={editMovie.biDanh}
@@ -175,8 +175,8 @@ const FormEditMovie = (props) => {
               name="biDanh"
             />
             <span>{validMovie.biDanh}</span>
-            <br />
 
+            <p>Hình Ảnh</p>
             <img
               src={infoMovie.hinhAnh}
               alt={infoMovie.hinhAnh}
@@ -185,6 +185,7 @@ const FormEditMovie = (props) => {
             <input type="file" name="hinhAnh" onChange={handleChangeImage} />
             <span>{validMovie.hinhAnh}</span>
 
+            <label>Trailer</label>
             <input
               onChange={handleChange}
               value={editMovie.trailer}
@@ -192,7 +193,7 @@ const FormEditMovie = (props) => {
               name="trailer"
             />
             <span>{validMovie.trailer}</span>
-
+            <label>Mô Tả</label>
             <textarea
               onChange={handleChange}
               value={editMovie.moTa}
@@ -227,7 +228,7 @@ const FormEditMovie = (props) => {
           {errorMessage}
         </Alert>
       </Snackbar>
-    </div>
+    </>
   );
 };
 

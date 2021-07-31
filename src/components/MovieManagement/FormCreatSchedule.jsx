@@ -198,131 +198,122 @@ function FormCreatSchedule() {
   };
 
   return (
-    <div className="backgroundCreatSchedule">
+    <>
       <div className="wrapCreatSchedule">
         <Container maxWidth="md">
-          <h4>Tạo Lịch Chiếu</h4>
+          <h5>Tạo Lịch Chiếu</h5>
           <form onSubmit={handleSubmit}>
-            <div className="formCreat">
-              <label>Mã Phim</label>
-              <input
-                onChange={handleChange}
-                value={creatMovie.maPhim}
-                disabled
-                type="text"
-              />
-              <span className="spanValid">{validMovie.maPhim}</span>
-            </div>
+            <label>Mã Phim</label>
+            <input
+              onChange={handleChange}
+              value={creatMovie.maPhim}
+              disabled
+              type="text"
+            />
+            <span className="spanValid">{validMovie.maPhim}</span>
 
-            <div className="formCreat">
-              <label>Ngày Khởi Chiếu</label>
-              <br />
-              <TextField
-                id="datetime-local"
-                type="datetime-local"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleChangeDateTime}
-                defaultValue={creatMovie.ngayChieuGioChieu}
-                name="ngayChieuGioChieu"
-                className="dateTimer"
-              />
-              <span className="spanValid">{validMovie.ngayChieuGioChieu}</span>
-            </div>
+            <p>Ngày Khởi Chiếu</p>
+            <TextField
+              id="datetime-local"
+              type="datetime-local"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={handleChangeDateTime}
+              defaultValue={creatMovie.ngayChieuGioChieu}
+              name="ngayChieuGioChieu"
+              className="dateTimer"
+            />
+            <span className="spanValid">{validMovie.ngayChieuGioChieu}</span>
 
-            <div className="formCreat">
-              <label>Mã Rạp Phim</label>
-              <input
-                value={creatMovie.maRap}
-                onChange={handleChange}
-                disabled
-                type="number"
-              />
-              <Grid container>
-                <Grid item lg={4} className={classes.select}>
-                  <InputLabel style={{ fontSize: "10px" }}>Rạp</InputLabel>
-                  <Select
-                    open={openCinema}
-                    onClose={handleCloseCinema}
-                    onOpen={handleOpenCinema}
-                    onChange={handleChangeCodeCineMa}
-                    value={cinema.codeCinema}
-                    name="codeCinema"
-                    className="selectCodeCinema"
-                  >
-                    {renderCodeCinema()}
-                  </Select>
-                </Grid>
-                <Grid item lg={4} className={classes.select}>
-                  <InputLabel style={{ fontSize: "10px" }}>Cụm Rạp</InputLabel>
-                  <Select
-                    open={openCumRap}
-                    onClose={handleCloseCumRap}
-                    onOpen={handleOpenCumRap}
-                    onChange={(e) => {
-                      setCinema({ ...cinema, codeCumRap: e.target.value });
-                    }}
-                    value={cinema.codeCumRap}
-                    className="selectCodeCinema"
-                  >
-                    {renderCodeCumRap()}
-                  </Select>
-                </Grid>
-                <Grid item lg={4} className={classes.select}>
-                  <InputLabel style={{ fontSize: "10px" }}>Mã Rạp</InputLabel>
-                  <Select
-                    open={openMaRap}
-                    onClose={handleCloseMaRap}
-                    onOpen={handleOpenMaRap}
-                    onChange={handleChange}
-                    value={creatMovie.maRap}
-                    name="maRap"
-                    className="selectCodeCinema"
-                  >
-                    {renderMaRap()}
-                  </Select>
-                </Grid>
+            <label>Mã Rạp Phim</label>
+            <input
+              value={creatMovie.maRap}
+              onChange={handleChange}
+              disabled
+              type="number"
+            />
+            <Grid container>
+              <Grid item lg={4} className={classes.select}>
+                <InputLabel style={{ fontSize: "10px" }}>Rạp</InputLabel>
+                <Select
+                  open={openCinema}
+                  onClose={handleCloseCinema}
+                  onOpen={handleOpenCinema}
+                  onChange={handleChangeCodeCineMa}
+                  value={cinema.codeCinema}
+                  name="codeCinema"
+                  className="selectCodeCinema"
+                >
+                  {renderCodeCinema()}
+                </Select>
               </Grid>
-              <span className="spanValid">{validMovie.maRap}</span>
-            </div>
+              <Grid item lg={4} className={classes.select}>
+                <InputLabel style={{ fontSize: "10px" }}>Cụm Rạp</InputLabel>
+                <Select
+                  open={openCumRap}
+                  onClose={handleCloseCumRap}
+                  onOpen={handleOpenCumRap}
+                  onChange={(e) => {
+                    setCinema({ ...cinema, codeCumRap: e.target.value });
+                  }}
+                  value={cinema.codeCumRap}
+                  className="selectCodeCinema"
+                >
+                  {renderCodeCumRap()}
+                </Select>
+              </Grid>
+              <Grid item lg={4} className={classes.select}>
+                <InputLabel style={{ fontSize: "10px" }}>Mã Rạp</InputLabel>
+                <Select
+                  open={openMaRap}
+                  onClose={handleCloseMaRap}
+                  onOpen={handleOpenMaRap}
+                  onChange={handleChange}
+                  value={creatMovie.maRap}
+                  name="maRap"
+                  className="selectCodeCinema"
+                >
+                  {renderMaRap()}
+                </Select>
+              </Grid>
+            </Grid>
+            <span className="spanValid">{validMovie.maRap}</span>
 
-            <div className="formCreat">
-              <label>Giá Vé</label>
-              <input value={creatMovie.giaVe} disabled type="number" />
+            <label>Giá Vé</label>
+            <input value={creatMovie.giaVe} disabled type="number" />
 
-              <FormLabel>Chọn Giá Vé : </FormLabel>
-              <RadioGroup
-                name="giaVe"
-                value={creatMovie.giaVe}
-                onChange={handleChange}
-                row
-                aria-label="position"
-                defaultValue="top"
-              >
-                <FormControlLabel
-                  value="75000"
-                  control={<Radio color="default" />}
-                  label="75.000"
-                />
-                <FormControlLabel
-                  value="120000"
-                  control={<Radio color="default" />}
-                  label="120.000"
-                />
-                <FormControlLabel
-                  value="150000"
-                  control={<Radio color="default" />}
-                  label="150.000"
-                />
-                <FormControlLabel
-                  value="180000"
-                  control={<Radio color="default" />}
-                  label="180.000"
-                />
-              </RadioGroup>
-              <span className="spanValid">{validMovie.giaVe}</span>
-            </div>
+            <FormLabel>Chọn Giá Vé : </FormLabel>
+            <RadioGroup
+              name="giaVe"
+              value={creatMovie.giaVe}
+              onChange={handleChange}
+              row
+              aria-label="position"
+              defaultValue="top"
+            >
+              <FormControlLabel
+                value="75000"
+                control={<Radio color="default" />}
+                label="75.000"
+              />
+              <FormControlLabel
+                value="120000"
+                control={<Radio color="default" />}
+                label="120.000"
+              />
+              <FormControlLabel
+                value="150000"
+                control={<Radio color="default" />}
+                label="150.000"
+              />
+              <FormControlLabel
+                value="180000"
+                control={<Radio color="default" />}
+                label="180.000"
+              />
+            </RadioGroup>
+            <span className="spanValid">{validMovie.giaVe}</span>
 
             <div style={{ textAlign: "center" }}>
               <button
@@ -360,7 +351,7 @@ function FormCreatSchedule() {
           </Alert>
         )}
       </Snackbar>
-    </div>
+    </>
   );
 }
 

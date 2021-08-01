@@ -60,7 +60,7 @@ function BookingComponent(props) {
 
   let countdownTimer = 0;
   const countdownTimerS = () => {
-    let seconds = 1500;
+    let seconds = 15;
     function secondPassed() {
       let stateMinutes = Math.round((seconds - 30) / 60);
       let stateSecond = seconds % 60;

@@ -10,17 +10,15 @@
 }
 
 @mixin modalMessage {
-    text-align: center;
-    border-radius: $boderR5;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 30px 20px;
     // class css
-    background-color: $color-white;
+    background-color: $background-3;
     border-radius: $boderR5;
     color: $color-black-2;
-    font-weight: bolder;
-    text-align: left;
+    font-size: $fs15;
+    font-weight: $fw-bold;
 }

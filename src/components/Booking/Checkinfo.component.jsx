@@ -2,7 +2,15 @@ import React from "react";
 import "./scss/bookingComponent.css";
 import { withStyles } from "@material-ui/styles";
 import { styled } from "./booking.styles";
-import { Container, Grid } from "@material-ui/core";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Container,
+  Grid,
+} from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // date format
@@ -32,7 +40,7 @@ const CheckInfoMaTion = (props) => {
 
   const numberCheckout = () => {
     const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
-    return <span>Tổng Số Vé : {listChairChoice.length}</span>;
+    return <p>Tổng Số Vé : {listChairChoice.length}</p>;
   };
 
   // recive to componet/Showtimecomponent
@@ -42,46 +50,49 @@ const CheckInfoMaTion = (props) => {
   let tenCumRap = arrShowTimeCode[3];
   let dateTime = `${arrShowTimeCode[4]}-${arrShowTimeCode[5]}-${arrShowTimeCode[6]}`;
 
+  // https images
+  const getUrlHttpS = () => {
+    let httpS = listPhimBooking.hinhAnh.split(":");
+    let urlImg = httpS[0] + "s:" + httpS[1];
+    return (
+      <CardMedia image={urlImg} title="imageMovie" className={classes.media} />
+    );
+  };
   return (
-    <Container>
-      <Grid container className={classes.gridBooking}>
-        <Grid item xs={12} md={2} lg={2}>
-          <img src={listPhimBooking.hinhAnh} alt="" className="movie_bg" />
-        </Grid>
-        <Grid item xs={12} md={4} lg={4} className="movie_intro">
-          <span>
-            <p>
-              Tên Cụm Rạp : {maCumRap}-{tenCumRap}
-            </p>
-            <p>Tên Phim : {listPhimBooking.tenPhim}</p>
-            <p>Ngày Chiếu : {dayjs(dateTime).format("DD-MM-YYYY")}</p>
-            <p>Giờ Chiếu : {dayjs(dateTime).format("HH:MM")}</p>
-          </span>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          md={4}
-          lg={4}
-          className="movie_tabCheckout"
-        >
-          <Grid item xs={12}>
-            {numberCheckout()}
-            {renderCheckout()}
-            <span>
-              Tổng Tiền :{" "}
-              {infoListChair
-                .filter((chair) => chair.dangChon)
-                .reduce((tong, itemF) => {
-                  return (tong += itemF.giaVe);
-                }, 0)
-                .toLocaleString()}
-              ;
-            </span>
+    <Container maxWidth="sm" className="checkInfo">
+      <Card>
+        <CardHeader
+          avatar={
+            <Avatar className={`${maCumRap.slice(0, 3)}`} aria-label="recipe">
+              {maCumRap.slice(0, 3)}
+            </Avatar>
+          }
+          title={`${maCumRap} - ${tenCumRap}`}
+        />
+        {getUrlHttpS()}
+        <CardContent>
+          <Grid container className={classes.carContent}>
+            <Grid item xs={12} sm={6} lg={6}>
+              <span>Tên Phim : {listPhimBooking.tenPhim}</span>
+              <p>Ngày Chiếu : {dayjs(dateTime).format(" DD-MM-YYYY ")}</p>
+              <p>Giờ Chiếu : {dayjs(dateTime).format("HH:MM")}</p>
+            </Grid>
+            <Grid item xs={12} sm={6} lg={6} className="ticket">
+              <span>
+                Thanh Toán :{" "}
+                {infoListChair
+                  .filter((chair) => chair.dangChon)
+                  .reduce((tong, itemF) => {
+                    return (tong += itemF.giaVe);
+                  }, 0)
+                  .toLocaleString()}
+              </span>
+              {numberCheckout()}
+              {renderCheckout()}
+            </Grid>
           </Grid>
-        </Grid>
-      </Grid>
+        </CardContent>
+      </Card>
     </Container>
   );
 };

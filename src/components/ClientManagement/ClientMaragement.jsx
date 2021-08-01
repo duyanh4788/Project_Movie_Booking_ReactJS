@@ -220,9 +220,13 @@ const ClientMaragement = () => {
   ) : (
     <>
       {pageFormClient === "updateList" ? (
-        <FromEditClient maNhom={stateMaNhom.maNhom} />
+        <div className="updateList">
+          <FromEditClient maNhom={stateMaNhom.maNhom} />
+        </div>
       ) : pageFormClient === "addClient" ? (
-        <FromAddClient />
+        <div className="addClient">
+          <FromAddClient />
+        </div>
       ) : (
         <>
           <div className="formClient">
@@ -251,7 +255,7 @@ const ClientMaragement = () => {
             <Table className="tableClient" aria-label="simple table">
               <TableHead>
                 <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>STT</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>STT</TableCell>
                   <TableCell style={{ fontWeight: "bold" }}>
                     Tài Khoản
                   </TableCell>
@@ -281,9 +285,9 @@ const ClientMaragement = () => {
                 </Grid>
                 <Grid item lg={8}>
                   <Pagination
-                    count={parseInt(
-                      listClientLength.length / stateRowsPage.page
-                    ) + 1}
+                    count={
+                      parseInt(listClientLength.length / stateRowsPage.page) + 1
+                    }
                     showFirstButton
                     showLastButton
                     page={page}

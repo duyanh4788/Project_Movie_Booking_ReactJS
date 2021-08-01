@@ -1,87 +1,53 @@
-.backgroundFormAdd {
-    width: 100%;
-    min-height: 500px;
-    padding: 50px 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+@import "../../../assets/Style/scss/main/main.scss";
+
+.addClient {
+    @include backgroundFormEdit;
     .wrapFromAdd {
-        padding: 20px 50px;
-        background-color: rgba(255, 255, 255, 0.25);
-        border-radius: 10px;
-        overflow: hidden;
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        h4 {
-            text-align: center;
-            font-size: 20px;
-            color: black;
-            font-weight: bolder;
+        @include warpForm;
+        h5 {
+            @include h5title;
         }
         input {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px 5px;
-            border-radius: 5px;
-            outline: none;
-            border: none;
-            background-color: rgba(255, 255, 255, 0.808);
+            @include inputForm;
         }
         input::placeholder {
-            color: gray;
-            opacity: 0.5;
-            text-align: right;
+            @include placeHoderForm;
         }
-        span {
-            color: red;
-            font-size: 10px;
-            font-weight: bold;
+        label {
+            @include labelForm;
+        }
+        p {
+            text-align: center;
+            @include spanValid;
         }
         select {
-            width: 100%;
-            margin: 10px 5px 10px 0;
-            padding: 10px 5px;
-            border-radius: 5px;
-            outline: none;
-            border: none;
-            background-color: rgba(255, 255, 255, 0.808);
-            color: gray;
+            @include selectForm;
         }
 
         button {
-            font-size: 15px;
+            @include buttonForm;
             margin: 0 5px;
-            padding: 10px 15px;
-            color: gray;
-            background-color: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 5px;
-            outline: none;
         }
     }
 }
 .modalAddClient {
-    font-size: 13px;
-    font-weight: bolder;
-    color: gray;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: white !important;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
+    font-size: $fs13;
+    font-weight: $fw-bold;
+    color: $color-black-2;
+    padding: 20px;
+    background-color: $background-3;
+    border: $border;
+    box-shadow: $box-shadow;
+    border-radius: $boderR5;
     td {
-        border-bottom: 1px solid rgba(128, 128, 128, 0.534);
-        line-height: 30px;
-        padding-right: 10px;
+        border-bottom: $borderTable;
+        line-height: $lgH30;
     }
-    span {
-        text-align: center;
-        font-size: 10px;
-        color: red;
+    button {
+        border: none;
+        outline: none;
+        background-color: white;
         cursor: pointer;
+        color: $color-red;
     }
 }

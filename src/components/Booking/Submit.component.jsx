@@ -1,4 +1,14 @@
-import { Backdrop, Fade, Modal, Paper } from "@material-ui/core";
+import {
+  Backdrop,
+  Fade,
+  Modal,
+  Container,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import { styled } from "./booking.styles";
 import React from "react";
@@ -6,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { bookingTicketAction } from "../../store/actions/booking.action";
 import Loader from "../Loader/Loader";
+import visa from "../../assets/images/movie-3.jpg";
 
 function SubmitComponent(props) {
   const { classes } = props;
@@ -45,21 +56,24 @@ function SubmitComponent(props) {
       {loading ? (
         <Loader />
       ) : (
-        <div className="subMit">
-          <div className={classes.paper}>
-            <Paper elevation={3} className="paper">
-              <span>
-                Tổng Tiền :{" "}
+        <Container maxWidth="md" className="subMit">
+          <Card>
+            <CardMedia image={visa} title="visa" className={classes.media} />
+            <CardContent>
+              <Typography>
+                Thanh Toán :{" "}
                 {infoListChair
                   .filter((chair) => chair.dangChon)
                   .reduce((tong, itemF) => {
                     return (tong += itemF.giaVe);
                   }, 0)
                   .toLocaleString()}
-              </span>
-            </Paper>
-          </div>
-          <button onClick={hanldeBooking}>Booking</button>
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <button onClick={hanldeBooking}>Đặt Vé</button>
+            </CardActions>
+          </Card>
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -79,7 +93,7 @@ function SubmitComponent(props) {
               </div>
             </Fade>
           </Modal>
-        </div>
+        </Container>
       )}
     </>
   );

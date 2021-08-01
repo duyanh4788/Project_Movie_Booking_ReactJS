@@ -1,7 +1,4 @@
 export const styled = (theme) => ({
-    gridBooking: {
-        padding: "15px",
-    },
     choiceChair: {
         backgroundColor: "rgb(109, 238, 109)",
         color: "white",
@@ -10,7 +7,7 @@ export const styled = (theme) => ({
         height: "25px",
         border: "none",
         outline: "none",
-        marginLeft: "2%",
+        marginLeft: "1%",
         marginBottom: "1%",
         borderRadius: "5px",
         fontWeight: "500",
@@ -23,7 +20,7 @@ export const styled = (theme) => ({
         height: "25px",
         border: "none",
         outline: "none",
-        marginLeft: "2%",
+        marginLeft: "1%",
         marginBottom: "1%",
         borderRadius: "5px",
         fontWeight: "500",
@@ -36,13 +33,13 @@ export const styled = (theme) => ({
         height: "25px",
         border: "none",
         outline: "none",
-        marginLeft: "2%",
+        marginLeft: "1%",
         marginBottom: "1%",
         borderRadius: "5px",
         fontWeight: "500",
     },
     pading: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
     },
     modal: {
         display: "flex",
@@ -59,5 +56,11 @@ export const styled = (theme) => ({
             height: theme.spacing(10),
         },
     },
+    media: {
+        height: 200,
+    },
+    carContent: {
+        lineHeight: "30px",
+    }
 })
 

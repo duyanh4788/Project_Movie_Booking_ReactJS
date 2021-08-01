@@ -73,6 +73,27 @@
         background-color: $colorMegas;
     }
 }
+
+@mixin avatarCinema {
+    .BHD {
+        background-color: $colorBhd !important;
+    }
+    .CGV {
+        background-color: $colorCgv !important;
+    }
+    .CNS {
+        background-color: $colorCinestar !important;
+    }
+    .GLX {
+        background-color: $colorGlaxy !important;
+    }
+    .Lot {
+        background-color: $colorLotte !important;
+    }
+    .Meg {
+        background-color: $colorMegas !important;
+    }
+}
 // maRap_`maHeThongRap`
 @mixin maRap {
     padding: 3px 6px;

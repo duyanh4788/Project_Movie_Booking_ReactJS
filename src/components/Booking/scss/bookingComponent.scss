@@ -1,86 +1,122 @@
 @import "../../../assets/Style/scss/main/main.scss";
 
-.countDownTimerMain {
-    text-align: center;
-    color: $color-gray-1;
-    font-size: $fs15;
-    font-weight: $fw-500;
-    .expiredCheckout {
-        display: none;
-        z-index: 2;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+// stePper
+.stePper {
+    span {
+        border-radius: 50px;
+        font-weight: $fw-bold;
+    }
+    .MuiStepIcon-root.MuiStepIcon-active {
+        color: $color-black-2;
+        font-weight: $fw-bold;
+    }
+    .MuiStepIcon-root.MuiStepIcon-completed {
+        color: $color-black-2;
+        font-weight: $fw-bold;
+    }
+}
+// stePper
+
+// booking
+.booking {
+    .countDownTimerMain {
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.85);
-        .modalMesage {
-            text-align: center;
-            border-radius: 4px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px 20px;
-            font-size: 15px;
-            // class css
-            background-color: white;
-            border-radius: 5px;
-            color: gray;
-            font-weight: bolder;
-            p {
-                color: red;
-                font-weight: bolder;
-                cursor: pointer;
-                margin-top: 10px;
+        color: $color-gray-1;
+        font-size: $fs15;
+        font-weight: $fw-500;
+        .expiredCheckout {
+            display: none;
+            @include modalBg;
+            .modalMesage {
+                @include modalMessage;
+                p {
+                    color: $color-red;
+                    font-weight: bolder;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
             }
         }
     }
+    .screen {
+        img {
+            width: 100%;
+        }
+    }
+    .MuiCardHeader-avatar {
+        .MuiAvatar-colorDefault {
+            font-size: $fs10;
+            font-weight: $fw-bold;
+        }
+        @include avatarCinema;
+    }
+    .tableBooking {
+        overflow-y: scroll;
+        max-height: 380px;
+        min-width: 430px;
+    }
+    .tableCheckout th {
+        font-weight: $fw-bolder;
+    }
+    .tableCheckout th,
+    .tableCheckout td {
+        font-size: $fs13;
+        color: $color-gray-2;
+    }
 }
+// booking
+
+// checkInfo
+.checkInfo {
+    .MuiAvatar-colorDefault {
+        font-size: $fs10;
+        font-weight: $fw-bold;
+    }
+    @include avatarCinema;
+    p {
+        color: $color-black-2;
+        font-weight: $fw-500;
+        font-size: $fs13;
+    }
+    span {
+        font-weight: $fw-bolder;
+    }
+    .ticket {
+        overflow-y: scroll;
+        max-height: 100px;
+    }
+}
+// checkInfo
 
 .subMit {
     text-align: center;
-    .paper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        span {
-            font-weight: bold;
-            color: gray;
-        }
+    p {
+        font-size: $fs13;
+        font-weight: bold;
+        color: $color-black-2;
     }
-
     button {
-        padding: 10px;
-        background-color: rgba(0, 0, 0, 0.85);
-        color: white;
-        font-weight: 500;
-        border: none;
-        outline: none;
-        border-radius: 5px;
-        cursor: pointer;
+        @include buttonForm;
     }
 }
 
 .mesageBooking {
-    border-radius: 5px;
     padding: 50px;
-    background-color: white;
+    background-color: $background-3;
+    border: $border;
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    border-radius: 5px;
+    box-shadow: $box-shadow;
+    border-radius: $boderR5;
     text-align: center;
     p {
-        color: gray;
-        font-size: 15px;
-        font-weight: bold;
-        line-height: 30px;
+        color: $color-gray-2;
+        font-size: $fs15;
+        font-weight: $fw-bold;
+        line-height: $lgH30;
     }
     button {
-        color: red;
-        background-color: white;
+        color: $color-red;
+        background-color: $background-3;
         font-size: 13px;
         font-weight: bold;
         border: none;
@@ -89,87 +125,15 @@
     }
 }
 
-.screen {
-    img {
-        width: 100%;
-    }
-    margin-bottom: 5px;
-}
-.movie_bg {
-    width: 120px;
-    height: 150px;
-    border-radius: 5px;
-}
-.movie_intro {
-    font-size: 13px;
-    height: 150px;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bolder;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    border-radius: 5px;
-    color: gray;
-}
-
-.tableS {
-    float: left;
-    overflow-y: scroll;
-    max-height: 340px;
-}
-.tableCheckout th,
-.tableCheckout td {
-    font-size: 13px;
-    color: gray;
-    font-weight: 300;
-}
-
-.movie_tabCheckout {
-    float: left;
-    overflow-y: scroll;
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    height: 150px;
-    font-weight: bolder;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-    border-radius: 5px;
-    color: gray;
-    span {
-        font-size: 13px;
-        font-weight: bolder;
-        line-height: 30px;
-    }
-    p {
-        font-size: 13px;
-    }
-}
-
-.stePper {
-    span {
-        border-radius: 50px;
-        font-weight: bolder;
-    }
-    .MuiStepIcon-root.MuiStepIcon-active {
-        color: $color-black-2;
-        font-weight: bolder;
-    }
-    .MuiStepIcon-root.MuiStepIcon-completed {
-        color: $color-black-2;
-        font-weight: bolder;
-    }
-}
-
 // scroll css
-.tableS::-webkit-scrollbar,
-.movie_tabCheckout::-webkit-scrollbar {
+.tableBooking::-webkit-scrollbar,
+.movie_tabCheckout::-webkit-scrollbar,
+.ticket::-webkit-scrollbar {
     @include scrollbar;
 }
-.tableS::-webkit-scrollbar-thumb,
-.movie_tabCheckout::-webkit-scrollbar-thumb {
+.tableBooking::-webkit-scrollbar-thumb,
+.movie_tabCheckout::-webkit-scrollbar-thumb,
+.ticket::-webkit-scrollbar-thumb {
     @include scrollbarThumb;
 }
 @media (max-width: 730px) {
@@ -178,5 +142,14 @@
         p {
             font-size: 13px !important;
         }
+    }
+}
+@media (max-width: 460px) {
+    .tableBooking {
+        min-width: 100px !important;
+    }
+    .tableCheckout th,
+    .tableCheckout td {
+        font-size: 10px !important;
     }
 }

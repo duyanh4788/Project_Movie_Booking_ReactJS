@@ -24,4 +24,19 @@
   background-color: #FFFFFF;
   color: #424242;
 }
+
+.pagination {
+  margin: 20px 0;
+  min-width: 1300px;
+}
+
+.pagination select {
+  padding: 10px 5px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.808);
+  color: gray;
+}
 /*# sourceMappingURL=admin.css.map */

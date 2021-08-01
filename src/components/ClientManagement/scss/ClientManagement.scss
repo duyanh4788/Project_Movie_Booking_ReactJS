@@ -5,8 +5,8 @@
         @include inputForm;
     }
     h5 {
-         @include h5title;
-         color: $color-white-2;
+        @include h5title;
+        color: $color-white-2;
     }
     button {
         @include buttonForm;
@@ -25,25 +25,12 @@
 .tableClient {
     min-width: 1300px;
     .iconDelete {
-        color: #ee2d24;
-        margin-right: 20px;
+        color: $color-red;
         cursor: pointer;
     }
     .iconEdit {
-        color: #662d91;
+        color: $colorCinestar;
         cursor: pointer;
     }
 }
-.pagination {
-    margin: 20px 0;
-    min-width: 1300px;
-    select {
-        padding: 10px 5px;
-        border-radius: 5px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.808);
-        color: gray;
-    }
-}
+

@@ -15,6 +15,11 @@ import { useParams, withRouter } from "react-router-dom";
 import Loader from "../Loader/Loader";
 // material ui
 import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
   Grid,
   Table,
   TableBody,
@@ -55,7 +60,7 @@ function BookingComponent(props) {
 
   let countdownTimer = 0;
   const countdownTimerS = () => {
-    let seconds = 15;
+    let seconds = 1500;
     function secondPassed() {
       let stateMinutes = Math.round((seconds - 30) / 60);
       let stateSecond = seconds % 60;
@@ -155,7 +160,9 @@ function BookingComponent(props) {
               <TableCell>{item.stt}</TableCell>
               <TableCell>{item.maRap}</TableCell>
               <TableCell>{item.maGhe}</TableCell>
-              <TableCell>{item.loaiGhe}</TableCell>
+              <TableCell>
+                {item.loaiGhe === "Thuong" ? "Standard" : "Vip"}
+              </TableCell>
               <TableCell>{item.giaVe.toLocaleString()}</TableCell>
             </TableRow>
           ) : null}
@@ -167,7 +174,9 @@ function BookingComponent(props) {
   const getUrlHttpS = () => {
     let httpS = listPhimBooking.hinhAnh.split(":");
     let urlImg = httpS[0] + "s:" + httpS[1];
-    return <img src={urlImg} alt={urlImg} className="movie_bg" />;
+    return (
+      <CardMedia image={urlImg} title="imageMovie" className={classes.media} />
+    );
   };
 
   return (
@@ -175,8 +184,8 @@ function BookingComponent(props) {
       {loading === null ? (
         <Loader />
       ) : (
-        <Grid container className={classes.gridBooking}>
-          <Grid item xs={12} lg={6} className="countDownTimerMain">
+        <Grid container className={`${classes.gridBooking} booking`}>
+          <Grid item xs={12} lg={12} className="countDownTimerMain">
             <p>Thời Gian Đặt Ghế</p>
             <span id="countdown-timer">00:00</span>
             <div id="expiredCheckout" className="expiredCheckout">
@@ -186,43 +195,54 @@ function BookingComponent(props) {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} lg={6}></Grid>
-          <Grid item xs={12} md={4} lg={6} className={classes.pading}>
+
+          <Grid item xs={12} md={12} lg={6} className={classes.pading}>
             <div className="screen">
               <img src={screenS} alt="" />
             </div>
             {renderListChari()}
           </Grid>
-          <Grid item xs={12} md={4} lg={6} container>
-            <Grid item xs={12} md={12} lg={12} container>
-              <Grid item xs={12} md={5} lg={3} style={{ textAlign: "center" }}>
+
+          <Grid
+            item
+            xs={12}
+            md={12}
+            lg={6}
+            container
+            className={classes.pading}
+          >
+            <Grid item xs={12} sm={4} md={4} lg={4} className={classes.pading}>
+              <Card>
+                <CardHeader
+                  avatar={
+                    <Avatar
+                      aria-label="recipe"
+                      className={`${maCumRap.slice(0, 3)}`}
+                    >
+                      {maCumRap.slice(0, 3)}
+                    </Avatar>
+                  }
+                  title={`${maCumRap} - ${tenCumRap}`}
+                />
                 {getUrlHttpS()}
-              </Grid>
-              <Grid item xs={12} md={7} lg={9} className="movie_intro">
-                <span>
-                  <p>
-                    Tên Cụm Rạp : {maCumRap}-{tenCumRap}
-                  </p>
-                  <p>Tên Phim : {listPhimBooking.tenPhim}</p>
-                  <p>
-                    Ngày Chiếu :
-                    {dayjs(dateTime).format("DD-MM-YYYY")}
-                  </p>
-                  <p>
-                    Giờ Chiếu :{" "}
-                    {dayjs(dateTime).format("HH:MM")}
-                  </p>
-                </span>
-              </Grid>
+                <CardContent>
+                  <span>
+                    <p>Tên Phim : {listPhimBooking.tenPhim}</p>
+                    <p>Ngày Chiếu : {dayjs(dateTime).format(" DD-MM-YYYY ")}</p>
+                    <p>Giờ Chiếu : {dayjs(dateTime).format("HH:MM")}</p>
+                  </span>
+                </CardContent>
+              </Card>
             </Grid>
-            <Grid item xs={12} md={12} lg={12}>
-              <TableContainer className="tableS">
+
+            <Grid item xs={12} sm={8} md={8} lg={8} className={classes.pading}>
+              <TableContainer className="tableBooking">
                 <Table>
                   <TableHead>
                     <TableRow className="tableCheckout">
-                      <TableCell>Số Thứ Tự</TableCell>
+                      <TableCell>STT</TableCell>
                       <TableCell>Mã Rạp</TableCell>
-                      <TableCell>Mã Ghế Ngồi</TableCell>
+                      <TableCell>Mã Ghế</TableCell>
                       <TableCell>Loại Ghế</TableCell>
                       <TableCell>Giá Vé</TableCell>
                     </TableRow>

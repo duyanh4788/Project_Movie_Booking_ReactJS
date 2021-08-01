@@ -111,19 +111,21 @@ function FromEditClient(props) {
   };
 
   return (
-    <div className="backgroundFormEdit">
+    <>
       <div className="wrapFromEdit">
         <Container maxWidth="md">
-          <h4>Edit Client</h4>
+          <h5>Edit Client</h5>
           <form onSubmit={handleSubmit}>
+            <label>Tài Khoản</label>
             <input
               onChange={handleChange}
               value={editClient.taiKhoan}
               disabled
               type="text"
             />
-            <span>{validClient.taiKhoan}</span>
+            <p>{validClient.taiKhoan}</p>
 
+            <label>Mật Khẩu</label>
             <input
               onChange={handleChange}
               value={editClient.matKhau}
@@ -131,8 +133,9 @@ function FromEditClient(props) {
               name="matKhau"
               type="password"
             />
-            <span>{validClient.matKhau}</span>
+            <p>{validClient.matKhau}</p>
 
+            <label>Họ Tên</label>
             <input
               onChange={handleChange}
               value={editClient.hoTen}
@@ -140,8 +143,9 @@ function FromEditClient(props) {
               name="hoTen"
               type="text"
             />
-            <span>{validClient.hoTen}</span>
+            <p>{validClient.hoTen}</p>
 
+            <label>Email</label>
             <input
               onChange={handleChange}
               value={editClient.email}
@@ -150,17 +154,18 @@ function FromEditClient(props) {
               type="email"
               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             />
-            <span>{validClient.email}</span>
+            <p>{validClient.email}</p>
 
+            <label>Phone</label>
             <input
               onChange={handleChange}
               value={editClient.soDt}
               placeholder="Số Điện Thoại"
               name="soDt"
             />
-            <span>{validClient.soDt}</span>
-            <br />
+            <p>{validClient.soDt}</p>
 
+            <label>Vai Trò</label>
             <select
               name="maLoaiNguoiDung"
               value={editClient.maLoaiNguoiDung}
@@ -169,13 +174,13 @@ function FromEditClient(props) {
               <option value="QuanTri">Quản Trị</option>
               <option value="KhachHang">Khách Hàng</option>
             </select>
-
+            <label>Mã Nhóm</label>
             <select>
               <option>Mã Nhóm : {editClient.maNhom}</option>
             </select>
-            <br />
-            <span>{validClient.maNhom}</span>
-            <span>{validClient.maLoaiNguoiDung}</span>
+
+            <p>{validClient.maNhom}</p>
+            <p>{validClient.maLoaiNguoiDung}</p>
 
             <div style={{ textAlign: "center" }}>
               <button
@@ -214,7 +219,7 @@ function FromEditClient(props) {
           </Snackbar>
         </Container>
       </div>
-    </div>
+    </>
   );
 }
 

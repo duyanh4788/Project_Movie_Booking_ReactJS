@@ -80,7 +80,6 @@
 }
 
 .addMovie .wrapFromAdd .dateTimer input {
-  cursor: pointer;
   font-size: 13px !important;
   color: #212321 !important;
 }

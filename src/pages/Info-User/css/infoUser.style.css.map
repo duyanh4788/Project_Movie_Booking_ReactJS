@@ -1,11 +1,10 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,YAAY,CAAC;EACT,SAAS,EIyBN,IAAI;EJxBP,WAAW,EI8BN,GAAG;EJ7BR,aAAa,EAAE,GAAG;EAClB,KAAK,EIUO,OAAO;EJTnB,UAAU,EAAE,GAAG;CAClB;;AACD,AAAA,YAAY,CAAC;EACT,KAAK,EIGM,OAAO;EJFlB,YAAY,EAAE,GAAG;CACpB",
+    "mappings": "AAEA,AAAA,YAAY,CAAC;EACT,SAAS,EGyBN,IAAI;EHxBP,WAAW,EG8BN,GAAG;EH7BR,aAAa,EAAE,GAAG;EAClB,KAAK,EGUO,OAAO;EHTnB,UAAU,EAAE,GAAG;CAClB;;AACD,AAAA,YAAY,CAAC;EACT,KAAK,EGGM,OAAO;EHFlB,YAAY,EAAE,GAAG;CACpB",
     "sources": [
         "infoUser.style.scss",
         "../../../assets/Style/scss/main/main.scss",
         "../../../assets/Style/scss/form/form.scss",
-        "../../../assets/Style/scss/table/table.scss",
         "../../../assets/Style/scss/variable/variables.scss",
         "../../../assets/Style/scss/select/extend.scss",
         "../../../assets/Style/scss/extendTab/extendTab.scss",

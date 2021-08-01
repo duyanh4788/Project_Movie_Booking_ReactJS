@@ -1,11 +1,26 @@
-.countDownTimerMain {
+.stePper span {
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.stePper .MuiStepIcon-root.MuiStepIcon-active {
+  color: #212321;
+  font-weight: bold;
+}
+
+.stePper .MuiStepIcon-root.MuiStepIcon-completed {
+  color: #212321;
+  font-weight: bold;
+}
+
+.booking .countDownTimerMain {
   text-align: center;
   color: #afafaf;
   font-size: 15px;
   font-weight: 400;
 }
 
-.countDownTimerMain .expiredCheckout {
+.booking .countDownTimerMain .expiredCheckout {
   display: none;
   z-index: 2;
   position: fixed;
@@ -17,67 +32,146 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-.countDownTimerMain .expiredCheckout .modalMesage {
-  text-align: center;
-  border-radius: 4px;
+.booking .countDownTimerMain .expiredCheckout .modalMesage {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  padding: 10px 20px;
-  font-size: 15px;
-  background-color: white;
+  padding: 30px 20px;
+  background-color: #FFFFFF;
   border-radius: 5px;
-  color: gray;
-  font-weight: bolder;
+  color: #212321;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.countDownTimerMain .expiredCheckout .modalMesage p {
-  color: red;
+.booking .countDownTimerMain .expiredCheckout .modalMesage p {
+  color: #ff0000;
   font-weight: bolder;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.booking .screen img {
+  width: 100%;
+}
+
+.booking .MuiCardHeader-avatar .MuiAvatar-colorDefault {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.booking .MuiCardHeader-avatar .BHD {
+  background-color: #56ab2f !important;
+}
+
+.booking .MuiCardHeader-avatar .CGV {
+  background-color: #ff3a22 !important;
+}
+
+.booking .MuiCardHeader-avatar .CNS {
+  background-color: #bf4aa8 !important;
+}
+
+.booking .MuiCardHeader-avatar .GLX {
+  background-color: #f7882f !important;
+}
+
+.booking .MuiCardHeader-avatar .Lot {
+  background-color: #800000 !important;
+}
+
+.booking .MuiCardHeader-avatar .Meg {
+  background-color: #ffde22 !important;
+}
+
+.booking .tableBooking {
+  overflow-y: scroll;
+  max-height: 380px;
+  min-width: 430px;
+}
+
+.booking .tableCheckout th {
+  font-weight: bolder;
+}
+
+.booking .tableCheckout th,
+.booking .tableCheckout td {
+  font-size: 13px;
+  color: #424242;
+}
+
+.checkInfo .MuiAvatar-colorDefault {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.checkInfo .BHD {
+  background-color: #56ab2f !important;
+}
+
+.checkInfo .CGV {
+  background-color: #ff3a22 !important;
+}
+
+.checkInfo .CNS {
+  background-color: #bf4aa8 !important;
+}
+
+.checkInfo .GLX {
+  background-color: #f7882f !important;
+}
+
+.checkInfo .Lot {
+  background-color: #800000 !important;
+}
+
+.checkInfo .Meg {
+  background-color: #ffde22 !important;
+}
+
+.checkInfo p {
+  color: #212321;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.checkInfo span {
+  font-weight: bolder;
+}
+
+.checkInfo .ticket {
+  overflow-y: scroll;
+  max-height: 100px;
 }
 
 .subMit {
   text-align: center;
 }
 
-.subMit .paper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.subMit .paper span {
+.subMit p {
+  font-size: 13px;
   font-weight: bold;
-  color: gray;
+  color: #212321;
 }
 
 .subMit button {
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: white;
-  font-weight: 500;
-  border: none;
-  outline: none;
+  font-size: 15px;
+  padding: 10px 15px;
+  color: #212321;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebec;
   border-radius: 5px;
+  outline: none;
   cursor: pointer;
 }
 
 .mesageBooking {
-  border-radius: 5px;
   padding: 50px;
-  background-color: white;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
   outline: none;
-  border: 1px solid rgba(255, 255, 255, 0.18);
   -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
           box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
   border-radius: 5px;
@@ -85,15 +179,15 @@
 }
 
 .mesageBooking p {
-  color: gray;
+  color: #424242;
   font-size: 15px;
   font-weight: bold;
   line-height: 30px;
 }
 
 .mesageBooking button {
-  color: red;
-  background-color: white;
+  color: #ff0000;
+  background-color: #FFFFFF;
   font-size: 13px;
   font-weight: bold;
   border: none;
@@ -101,95 +195,17 @@
   cursor: pointer;
 }
 
-.screen {
-  margin-bottom: 5px;
-}
-
-.screen img {
-  width: 100%;
-}
-
-.movie_bg {
-  width: 120px;
-  height: 150px;
-  border-radius: 5px;
-}
-
-.movie_intro {
-  font-size: 13px;
-  height: 150px;
-  padding: 10px;
-  margin: 10px;
-  font-weight: bolder;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  border-radius: 5px;
-  color: gray;
-}
-
-.tableS {
-  float: left;
-  overflow-y: scroll;
-  max-height: 340px;
-}
-
-.tableCheckout th,
-.tableCheckout td {
-  font-size: 13px;
-  color: gray;
-  font-weight: 300;
-}
-
-.movie_tabCheckout {
-  float: left;
-  overflow-y: scroll;
-  width: 100%;
-  padding: 10px;
-  margin: 10px;
-  height: 150px;
-  font-weight: bolder;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  -webkit-box-shadow: rgba(142, 142, 142, 0.19) 0px 6px 15px 0px;
-  border-radius: 5px;
-  color: gray;
-}
-
-.movie_tabCheckout span {
-  font-size: 13px;
-  font-weight: bolder;
-  line-height: 30px;
-}
-
-.movie_tabCheckout p {
-  font-size: 13px;
-}
-
-.stePper span {
-  border-radius: 50px;
-  font-weight: bolder;
-}
-
-.stePper .MuiStepIcon-root.MuiStepIcon-active {
-  color: #212321;
-  font-weight: bolder;
-}
-
-.stePper .MuiStepIcon-root.MuiStepIcon-completed {
-  color: #212321;
-  font-weight: bolder;
-}
-
-.tableS::-webkit-scrollbar,
-.movie_tabCheckout::-webkit-scrollbar {
+.tableBooking::-webkit-scrollbar,
+.movie_tabCheckout::-webkit-scrollbar,
+.ticket::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
-.tableS::-webkit-scrollbar-thumb,
-.movie_tabCheckout::-webkit-scrollbar-thumb {
+.tableBooking::-webkit-scrollbar-thumb,
+.movie_tabCheckout::-webkit-scrollbar-thumb,
+.ticket::-webkit-scrollbar-thumb {
   background: #e2dfdf;
   border-radius: 6px;
 }
@@ -200,6 +216,16 @@
   }
   .modalMesage p {
     font-size: 13px !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .tableBooking {
+    min-width: 100px !important;
+  }
+  .tableCheckout th,
+  .tableCheckout td {
+    font-size: 10px !important;
   }
 }
 /*# sourceMappingURL=bookingComponent.css.map */

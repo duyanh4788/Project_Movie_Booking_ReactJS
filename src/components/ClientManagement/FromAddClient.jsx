@@ -72,7 +72,6 @@ function FromAddClient() {
 
   const handleClose = () => {
     setOpen(false);
-    dispatch(setDataErrorToZero(0));
   };
   // modal
 
@@ -196,11 +195,12 @@ function FromAddClient() {
   };
 
   return (
-    <div className="backgroundFormAdd">
+    <>
       <div className="wrapFromAdd">
         <Container maxWidth="md">
-          <h4>Thêm Người Dùng</h4>
+          <h5>Thêm Người Dùng</h5>
           <form onSubmit={handleSubmit}>
+            <label>Tài Khoản</label>
             <input
               onChange={handleChange}
               value={addClient.taiKhoan}
@@ -208,8 +208,9 @@ function FromAddClient() {
               name="taiKhoan"
               type="text"
             />
-            <span>{validClient.taiKhoan}</span>
+            <p>{validClient.taiKhoan}</p>
 
+            <label>Mật Khẩu</label>
             <input
               onChange={handleChange}
               value={addClient.matKhau}
@@ -217,8 +218,9 @@ function FromAddClient() {
               name="matKhau"
               type="password"
             />
-            <span>{validClient.matKhau}</span>
+            <p>{validClient.matKhau}</p>
 
+            <label>Xác Nhận Mật Khẩu</label>
             <input
               onChange={handleChange}
               value={addClient.confirmMatKhau}
@@ -226,8 +228,8 @@ function FromAddClient() {
               name="confirmMatKhau"
               type="password"
             />
-            <span>{validClient.confirmMatKhau}</span>
-
+            <p>{validClient.confirmMatKhau}</p>
+            <label>Họ Tên</label>
             <input
               onChange={handleChange}
               value={addClient.hoTen}
@@ -235,8 +237,8 @@ function FromAddClient() {
               name="hoTen"
               type="text"
             />
-            <span>{validClient.hoTen}</span>
-
+            <p>{validClient.hoTen}</p>
+            <label>Email</label>
             <input
               onChange={handleChange}
               value={addClient.email}
@@ -245,10 +247,9 @@ function FromAddClient() {
               type="email"
               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             />
-            <span>{validClient.email}</span>
+            <p>{validClient.email}</p>
 
-            <br />
-
+            <label>Vai Trò</label>
             <select
               name="maLoaiNguoiDung"
               value={addClient.maLoaiNguoiDung}
@@ -258,7 +259,7 @@ function FromAddClient() {
               <option value="QuanTri">Quản Trị</option>
               <option value="KhachHang">Khách Hàng</option>
             </select>
-
+            <label>Mã Nhóm</label>
             <select
               name="maNhom"
               value={addClient.maNhom}
@@ -267,20 +268,18 @@ function FromAddClient() {
               <option value="">Mã Nhóm</option>
               {renderMaNhom()}
             </select>
-            <br />
-            <span style={{ marginRight: "20px" }}>
-              {validClient.maLoaiNguoiDung}
-            </span>
-            <span>{validClient.maNhom}</span>
-            <br />
 
+            <p style={{ marginRight: "20px" }}>{validClient.maLoaiNguoiDung}</p>
+            <p>{validClient.maNhom}</p>
+
+            <label>Phone</label>
             <input
               onChange={handleChange}
               value={addClient.soDt}
               placeholder="Số Điện Thoại"
               name="soDt"
             />
-            <span>{validClient.soDt}</span>
+            <p>{validClient.soDt}</p>
 
             <div style={{ textAlign: "center" }}>
               <button
@@ -365,14 +364,20 @@ function FromAddClient() {
                 </tr>
                 <tr>
                   <td>Chức Vụ </td>
-                  <td>: {dataAdd.maLoaiNguoiDung}</td>
+                  <td>
+                    :{" "}
+                    {dataAdd.maLoaiNguoiDung === "QuanTri"
+                      ? "Quản Trị"
+                      : "Khách Hàng"}
+                  </td>
                 </tr>
               </tbody>
             </table>
+            <button onClick={handleClose}>Close</button>
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }
 

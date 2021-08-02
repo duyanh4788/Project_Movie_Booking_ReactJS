@@ -306,21 +306,27 @@ function FromAddClient() {
           </form>
         </Container>
       </div>
-      <Snackbar
-        open={openSnackBar}
-        autoHideDuration={2000}
-        onClose={handleCloseSnackBar}
-      >
-        {statusCode === 200 ? (
+      {statusCode === 200 ? (
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={1000}
+          onClose={handleCloseSnackBar}
+        >
           <Alert onClose={handleCloseSnackBar} severity="success">
             Thêm Thành Công Thành Công
           </Alert>
-        ) : (
+        </Snackbar>
+      ) : (
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={1000}
+          onClose={handleCloseSnackBar}
+        >
           <Alert onClose={handleCloseSnackBar} severity="error">
             {errorMessage}
           </Alert>
-        )}
-      </Snackbar>
+        </Snackbar>
+      )}
 
       <Modal
         aria-labelledby="transition-modal-title"

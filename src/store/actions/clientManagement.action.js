@@ -2,7 +2,6 @@ import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
 import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_LENGTH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
 import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
-import { SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getListLengthClientManagement = (maNhom) => {
@@ -128,12 +127,7 @@ export const updateListClientManagement = (infoClient) => {
         }
     }
 }
-export const setUpdateSuccess = (data) => {
-    return {
-        type: SET_UPDATE_SUCCESS_MOVIE_MANAGEMENT,
-        payload: data
-    }
-}
+
 export const btnEditClient = (datas) => {
     return {
         type: UPDATE_LIST_CLIENT_MANAGEMENT,

@@ -320,17 +320,19 @@ export default function ProfileUser() {
               </form>
             </Grid>
           </Grid>
-          <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-            {statusCode === 200 ? (
+          {statusCode === 200 ? (
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
                 Update Thành Công
               </Alert>
-            ) : (
+            </Snackbar>
+          ) : statusCode === 500 ? (
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="error">
                 {errorMessage}
               </Alert>
-            )}
-          </Snackbar>
+            </Snackbar>
+          ) : null}
         </Container>
       )}
     </div>

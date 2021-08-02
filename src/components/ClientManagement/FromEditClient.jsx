@@ -201,22 +201,29 @@ function FromEditClient(props) {
               )}
             </div>
           </form>
-          <Snackbar
-            anchorOrigin={{ vertical, horizontal }}
-            open={open}
-            autoHideDuration={2000}
-            onClose={handleClose}
-          >
-            {statusCode === 200 ? (
+          {statusCode === 200 ? (
+            <Snackbar
+              anchorOrigin={{ vertical, horizontal }}
+              open={open}
+              autoHideDuration={1000}
+              onClose={handleClose}
+            >
               <Alert onClose={handleClose} severity="success">
                 Cập Nhật Thành Công
               </Alert>
-            ) : (
+            </Snackbar>
+          ) : (
+            <Snackbar
+              anchorOrigin={{ vertical, horizontal }}
+              open={open}
+              autoHideDuration={1000}
+              onClose={handleClose}
+            >
               <Alert onClose={handleClose} severity="error">
                 {errorMessage}
               </Alert>
-            )}
-          </Snackbar>
+            </Snackbar>
+          )}
         </Container>
       </div>
     </>

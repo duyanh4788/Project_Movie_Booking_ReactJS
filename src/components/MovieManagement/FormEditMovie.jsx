@@ -17,6 +17,7 @@ function Alert(props) {
 }
 
 const FormEditMovie = (props) => {
+  const dispatch = useDispatch();
   // snackbar
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
@@ -38,15 +39,12 @@ const FormEditMovie = (props) => {
     (state) => state.MessageSnackbarReducer.errorMessage
   );
   // show status
-
   // show status
   useEffect(() => {
-    if (statusCode === 500) {
+    if (statusCode === 500 || statusCode === 200) {
       handleClick();
     }
   }, [statusCode]);
-
-  const dispatch = useDispatch();
 
   const infoMovie = useSelector((state) => {
     return state.MovieManagementReducer.infoMovie;
@@ -223,11 +221,19 @@ const FormEditMovie = (props) => {
           </form>
         </Container>
       </div>
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error">
-          {errorMessage}
-        </Alert>
-      </Snackbar>
+      {statusCode === 200 ? (
+        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            Cập Nhật Thành Công
+          </Alert>
+        </Snackbar>
+      ) : statusCode === 500 ? (
+        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error">
+            {errorMessage}
+          </Alert>
+        </Snackbar>
+      ) : null}
     </>
   );
 };

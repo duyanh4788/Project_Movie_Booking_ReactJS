@@ -36,8 +36,7 @@ function App() {
               <AdminPage />
             </Guard>
           </Route>
-          <Route path="/profile" exact component={ProfileUser} >
-          </Route>
+          <Route path="/profile" exact component={ProfileUser} />
           <Route path="">
             <Redirect to="/" />
           </Route>

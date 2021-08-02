@@ -104,11 +104,15 @@ function SignInPage(props) {
           </div>
         </div>
       )}
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error">
-          {errorMessage}
-        </Alert>
-      </Snackbar>
+      {statusCode === 500 ? (
+        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error">
+            {errorMessage}
+          </Alert>
+        </Snackbar>
+      ) : (
+        ""
+      )}
     </>
   );
 }

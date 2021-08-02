@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
 import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
-import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_LENGTH_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT, UPDATE_LIST_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_LENGTH_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getListLengthMovieManagement = (maNhom) => {
@@ -40,7 +40,7 @@ export const getListMovieManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
         }
     }
 }
-// chưa sử dụng ( dùng cho search )
+//  search api 
 export const getListMovieSearchManagement = (maNhom, tuKhoa, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {
         try {
@@ -147,11 +147,6 @@ export const updateListMovieManagement = (formData) => {
                     Authorization: `Bearer ${toKen}`
                 }
             })
-            console.log(res);
-            dispatch({
-                type: UPDATE_LIST_MOVIE_MANAGEMENT, // render html sau khi update thành công
-                payload: res
-            })
             dispatch({
                 type: MESSAGE_STATUS_CODE,// show message success
                 payload: res.status
@@ -168,6 +163,7 @@ export const updateListMovieManagement = (formData) => {
         }
     }
 }
+
 // add 
 export const addListMovieManagement = (formData) => {
     const toKen = JSON.parse(localStorage.getItem("token"))

@@ -27,7 +27,6 @@ import FormAddMovie from "./FormAddMovie";
 // date format
 import * as dayjs from "dayjs";
 import FormCreatSchedule from "./FormCreatSchedule";
-import { setUpdateSuccess } from "../../store/actions/clientManagement.action";
 import Loader from "../Loader/Loader";
 import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 // snackbar
@@ -64,9 +63,6 @@ export default function MovieManagement() {
   const pageFormAdd = useSelector((state) => {
     return state.MovieManagementReducer.pageFormAdd;
   });
-  const updateSuccess = useSelector((state) => {
-    return state.MovieManagementReducer.updateSuccess;
-  });
   // page
   const [page, setPage] = React.useState(1);
   // row page
@@ -98,7 +94,7 @@ export default function MovieManagement() {
     if (statusCode === 200 || statusCode === 500) {
       handleClick();
     }
-  }, [dispatch, statusCode]);
+  }, [statusCode]);
   // cal api code cinema use FormCreatSchedule
   useEffect(() => {
     dispatch(getCodeCinemaMovieManagement());
@@ -117,7 +113,6 @@ export default function MovieManagement() {
   }, [
     dispatch,
     pageFormAdd,
-    updateSuccess,
     stateMaNhom.maNhom,
     page,
     stateRowsPage.page,
@@ -216,21 +211,20 @@ export default function MovieManagement() {
   };
   // edit
   const editPhim = (infoPhim) => {
-    dispatch(setUpdateSuccess(0));
     dispatch(getInfoMovie(infoPhim));
     dispatch(setDataErrorToZero(0));
     dispatch(showFormMovie("editMovie"));
   };
   // add
   const themPhim = () => {
-    dispatch(showFormMovie("addMovie"));
     dispatch(setDataErrorToZero(0));
+    dispatch(showFormMovie("addMovie"));
   };
   // tạo lịch chiếu
   const creatSchedule = (maPhim) => {
     dispatch(getMaPhimMovieManagement(maPhim));
-    dispatch(showFormMovie("creatSchedule"));
     dispatch(setDataErrorToZero(0));
+    dispatch(showFormMovie("creatSchedule"));
   };
   // maNhom
   const renderMaNhom = () => {
@@ -273,7 +267,7 @@ export default function MovieManagement() {
         </div>
       ) : (
         <>
-          <TableContainer component={Paper}>
+          <TableContainer>
             <Table aria-label="simple table" className="formMovie">
               <TableHead>
                 <TableRow>
@@ -377,9 +371,6 @@ export default function MovieManagement() {
                   <TableCell>Tên Phim</TableCell>
                   <TableCell>Ngày Chiếu</TableCell>
                   <TableCell>Giờ Chiếu</TableCell>
-                  <TableCell>Nhóm</TableCell>
-                  <TableCell>Đánh Giá</TableCell>
-                  <TableCell>Bí Danh</TableCell>
                   <TableCell>Hình Ảnh</TableCell>
                   <TableCell>Trailer</TableCell>
                   <TableCell>Mô Tả</TableCell>
@@ -397,9 +388,6 @@ export default function MovieManagement() {
                     <TableCell>
                       {dayjs(item.ngayKhoiChieu).format("HH:MM")}
                     </TableCell>
-                    <TableCell>{item.maNhom}</TableCell>
-                    <TableCell>{item.danhGia}</TableCell>
-                    <TableCell>{item.biDanh}</TableCell>
                     <TableCell>
                       <img
                         src={item.hinhAnh}
@@ -467,20 +455,18 @@ export default function MovieManagement() {
             )}
           </TableContainer>
           {statusCode === 200 ? (
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
                 Thành Công
               </Alert>
             </Snackbar>
           ) : statusCode === 500 ? (
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="error">
                 {errorMessage}
               </Alert>
             </Snackbar>
-          ) : (
-            ""
-          )}
+          ) : null}
         </>
       )}
     </>

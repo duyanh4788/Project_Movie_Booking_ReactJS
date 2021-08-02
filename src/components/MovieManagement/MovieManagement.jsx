@@ -378,47 +378,51 @@ export default function MovieManagement() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {movieList?.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{item.maPhim}</TableCell>
-                    <TableCell>{item.tenPhim}</TableCell>
-                    <TableCell>
-                      {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
-                    </TableCell>
-                    <TableCell>
-                      {dayjs(item.ngayKhoiChieu).format("HH:MM")}
-                    </TableCell>
-                    <TableCell>
-                      <img
-                        src={item.hinhAnh}
-                        alt={item.hinhAnh}
-                        style={{ width: "50px", height: "50px" }}
-                      />
-                    </TableCell>
-                    <TableCell>{item.trailer.slice(0, 20)}</TableCell>
-                    <TableCell>{item.moTa.slice(0, 20)}</TableCell>
-                    <TableCell>
-                      <DeleteOutlineRoundedIcon
-                        className="iconDelete"
-                        onClick={() => {
-                          deletePhim(item.maPhim);
-                        }}
-                      />
-                      <EditRoundedIcon
-                        className="iconEdit"
-                        onClick={() => {
-                          editPhim(item);
-                        }}
-                      />
-                      <TheatersIcon
-                        className="iconCreat"
-                        onClick={() => {
-                          creatSchedule(item.maPhim);
-                        }}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {movieList?.map((item, index) => {
+                  let setLink = item.hinhAnh.split(":");
+                  let urlImg = setLink[0] + "s:" + setLink[1];
+                  return (
+                    <TableRow key={index}>
+                      <TableCell>{item.maPhim}</TableCell>
+                      <TableCell>{item.tenPhim}</TableCell>
+                      <TableCell>
+                        {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
+                      </TableCell>
+                      <TableCell>
+                        {dayjs(item.ngayKhoiChieu).format("HH:MM")}
+                      </TableCell>
+                      <TableCell>
+                        <img
+                          src={urlImg}
+                          alt={urlImg}
+                          style={{ width: "50px", height: "50px" }}
+                        />
+                      </TableCell>
+                      <TableCell>{item.trailer.slice(0, 20)}</TableCell>
+                      <TableCell>{item.moTa.slice(0, 20)}</TableCell>
+                      <TableCell>
+                        <DeleteOutlineRoundedIcon
+                          className="iconDelete"
+                          onClick={() => {
+                            deletePhim(item.maPhim);
+                          }}
+                        />
+                        <EditRoundedIcon
+                          className="iconEdit"
+                          onClick={() => {
+                            editPhim(item);
+                          }}
+                        />
+                        <TheatersIcon
+                          className="iconCreat"
+                          onClick={() => {
+                            creatSchedule(item.maPhim);
+                          }}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
             {movieListDate.length > 0 ? (

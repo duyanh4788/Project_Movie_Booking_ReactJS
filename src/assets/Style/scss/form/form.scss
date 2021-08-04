@@ -86,13 +86,10 @@
 
 @mixin dateTimer {
     input {
-        font-size: 13px !important;
-        color: $color-black-2 !important;
-    }
-    .MuiInput-underline:before {
-        display: none !important;
+        font-size: 13px ;
+        color: $color-black-2 ;
     }
     .MuiInput-underline:after {
-        border-bottom: 2px solid black !important;
+        border-bottom: 1px solid black !important;
     }
 }

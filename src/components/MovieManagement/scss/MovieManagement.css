@@ -1,3 +1,7 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .formMovie {
   background-color: #FFFFFF;
   min-width: 1300px;
@@ -55,16 +59,12 @@
 }
 
 .formMovie .dateTimer input {
-  font-size: 13px !important;
-  color: #212321 !important;
-}
-
-.formMovie .dateTimer .MuiInput-underline:before {
-  display: none !important;
+  font-size: 13px;
+  color: #212321;
 }
 
 .formMovie .dateTimer .MuiInput-underline:after {
-  border-bottom: 2px solid black !important;
+  border-bottom: 1px solid black !important;
 }
 
 .formMovie select {

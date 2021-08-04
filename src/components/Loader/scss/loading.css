@@ -1,25 +1,26 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .loading {
+  z-index: 9;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: calc(100%);
-  z-index: 9;
-  opacity: 1;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  background-color: #ffffff;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #FFFFFF;
 }
 
 .loading svg {
-  color: #fc7a67;
+  color: #ff0000;
 }
 /*# sourceMappingURL=loading.css.map */

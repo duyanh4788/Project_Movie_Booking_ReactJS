@@ -234,7 +234,7 @@ function FormCreatSchedule() {
               type="number"
             />
             <Grid container>
-              <Grid item lg={4} className={classes.select}>
+              <Grid item xs={4} lg={4} className={classes.select}>
                 <InputLabel style={{ fontSize: "10px" }}>Rạp</InputLabel>
                 <Select
                   open={openCinema}
@@ -248,7 +248,7 @@ function FormCreatSchedule() {
                   {renderCodeCinema()}
                 </Select>
               </Grid>
-              <Grid item lg={4} className={classes.select}>
+              <Grid item xs={4} lg={4} className={classes.select}>
                 <InputLabel style={{ fontSize: "10px" }}>Cụm Rạp</InputLabel>
                 <Select
                   open={openCumRap}
@@ -263,7 +263,7 @@ function FormCreatSchedule() {
                   {renderCodeCumRap()}
                 </Select>
               </Grid>
-              <Grid item lg={4} className={classes.select}>
+              <Grid item xs={4} lg={4} className={classes.select}>
                 <InputLabel style={{ fontSize: "10px" }}>Mã Rạp</InputLabel>
                 <Select
                   open={openMaRap}
@@ -281,7 +281,11 @@ function FormCreatSchedule() {
             <span className="spanValid">{validMovie.maRap}</span>
 
             <label>Giá Vé</label>
-            <input value={creatMovie.giaVe} disabled type="number" />
+            <input
+              value={creatMovie.giaVe}
+              disabled
+              type="number"
+            />
 
             <FormLabel>Chọn Giá Vé : </FormLabel>
             <RadioGroup

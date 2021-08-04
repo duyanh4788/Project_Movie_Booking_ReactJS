@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAWA,AAAA,iBAAiB,CAAC;EACd,SAAS,EAAE,eAAe;CAC7B",
     "sources": [
         "main.scss",
         "../form/form.scss",

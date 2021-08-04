@@ -1,3 +1,7 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .stePper span {
   border-radius: 50px;
   font-weight: bold;

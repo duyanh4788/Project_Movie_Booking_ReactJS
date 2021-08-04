@@ -302,34 +302,30 @@ export default function MovieManagement() {
                     />
                   </TableCell>
                   <TableCell>
-                    <span>
-                      Từ{" "}
-                      <TextField
-                        id="date"
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        className="dateTimer"
-                        value={stateSince.dateSince}
-                        onChange={handleSince}
-                      />{" "}
-                    </span>
+                    <span>Từ : </span>
+                    <TextField
+                      id="date"
+                      type="date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      className="dateTimer"
+                      value={stateSince.dateSince}
+                      onChange={handleSince}
+                    />{" "}
                   </TableCell>
                   <TableCell>
-                    <span>
-                      Đến{" "}
-                      <TextField
-                        id="date"
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        className="dateTimer"
-                        value={stateToThatDay.dateDay}
-                        onChange={handleToDay}
-                      />
-                    </span>
+                    <span>Đến : </span>
+                    <TextField
+                      id="date"
+                      type="date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      className="dateTimer"
+                      value={stateToThatDay.dateDay}
+                      onChange={handleToDay}
+                    />
                   </TableCell>
                   <TableCell>
                     {stateSearch.search === "" ? (
@@ -369,8 +365,7 @@ export default function MovieManagement() {
                 <TableRow>
                   <TableCell>Mã Phim</TableCell>
                   <TableCell>Tên Phim</TableCell>
-                  <TableCell>Ngày Chiếu</TableCell>
-                  <TableCell>Giờ Chiếu</TableCell>
+                  <TableCell>Ngày Công Chiếu</TableCell>
                   <TableCell>Hình Ảnh</TableCell>
                   <TableCell>Trailer</TableCell>
                   <TableCell>Mô Tả</TableCell>
@@ -387,9 +382,6 @@ export default function MovieManagement() {
                       <TableCell>{item.tenPhim}</TableCell>
                       <TableCell>
                         {dayjs(item.ngayKhoiChieu).format("DD-MM-YYYY")}
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(item.ngayKhoiChieu).format("HH:MM")}
                       </TableCell>
                       <TableCell>
                         <img

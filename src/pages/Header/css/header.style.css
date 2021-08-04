@@ -1,3 +1,7 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .header {
   background-color: #FFFFFF;
   overflow: hidden;

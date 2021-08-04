@@ -33,10 +33,13 @@
         .selectCodeCinema {
             width: 100%;
             padding: 0 5px;
-            .MuiInput-underline:after {
-                border-bottom: 1px solid $color-black-2 !important;
-            }
+            font-size: 13px;
+            
         }
+        .MuiInput-underline:after {
+            border-bottom: 1px solid $color-black-2 !important;
+        }
+        
         button {
             @include buttonForm;
             margin-top: 10px;

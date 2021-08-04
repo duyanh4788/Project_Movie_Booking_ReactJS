@@ -1,18 +1,17 @@
+@import "../../../assets/Style/scss/main/main.scss";
+
 .loading {
+    z-index: 9;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: calc(100%);
-    z-index: 9;
-    opacity: 1;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-    background-color: #ffffff;
-    align-items: center;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    background-color: $background-3;
     svg {
-        color: #fc7a67;
+        color: $color-red;
     }
 }

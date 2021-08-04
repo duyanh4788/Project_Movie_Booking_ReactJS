@@ -39,7 +39,6 @@ const FormEditMovie = (props) => {
     (state) => state.MessageSnackbarReducer.errorMessage
   );
   // show status
-  // show status
   useEffect(() => {
     if (statusCode === 500 || statusCode === 200) {
       handleClick();
@@ -150,7 +149,7 @@ const FormEditMovie = (props) => {
             <input
               type="text"
               disabled
-              value={`Ngày Chiếu : ${dayjs(infoMovie.ngayKhoiChieu).format(
+              value={`Ngày Công Chiếu : ${dayjs(infoMovie.ngayKhoiChieu).format(
                 "DD-MM-YYYY"
               )}`}
             />
@@ -191,7 +190,7 @@ const FormEditMovie = (props) => {
               name="trailer"
             />
             <span>{validMovie.trailer}</span>
-            <label>Mô Tả</label>
+            <p>Mô Tả</p>
             <textarea
               onChange={handleChange}
               value={editMovie.moTa}

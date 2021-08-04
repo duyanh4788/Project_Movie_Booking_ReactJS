@@ -1,3 +1,7 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .footerRowOne {
   background: url(../../../assets/images/background.jpg);
   background-size: cover;

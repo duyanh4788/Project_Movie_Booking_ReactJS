@@ -4,6 +4,15 @@
   box-sizing: border-box;
   font-family: roboto;
 }
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+}
+body::-webkit-scrollbar-thumb {
+  background: #afafaf;
+  border-radius: 6px;
+}
 @font-face {
   font-family: "Roboto", sans-serif;
   src: url(./assets/font/Gotham\ Ultra.otf);

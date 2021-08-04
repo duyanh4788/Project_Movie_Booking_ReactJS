@@ -1,3 +1,7 @@
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+
 .creatSchedule {
   width: 100%;
   min-height: 500px;
@@ -94,24 +98,21 @@
 }
 
 .creatSchedule .wrapCreatSchedule .dateTimer input {
-  font-size: 13px !important;
-  color: #212321 !important;
-}
-
-.creatSchedule .wrapCreatSchedule .dateTimer .MuiInput-underline:before {
-  display: none !important;
+  font-size: 13px;
+  color: #212321;
 }
 
 .creatSchedule .wrapCreatSchedule .dateTimer .MuiInput-underline:after {
-  border-bottom: 2px solid black !important;
+  border-bottom: 1px solid black !important;
 }
 
 .creatSchedule .wrapCreatSchedule .selectCodeCinema {
   width: 100%;
   padding: 0 5px;
+  font-size: 13px;
 }
 
-.creatSchedule .wrapCreatSchedule .selectCodeCinema .MuiInput-underline:after {
+.creatSchedule .wrapCreatSchedule .MuiInput-underline:after {
   border-bottom: 1px solid #212321 !important;
 }
 

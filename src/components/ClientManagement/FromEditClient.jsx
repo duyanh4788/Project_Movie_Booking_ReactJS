@@ -104,6 +104,7 @@ function FromEditClient(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateListClientManagement(editClient));
+    dispatch(hidenFormClient("listUser"));
   };
   const hidenFormEdit = () => {
     dispatch(setDataErrorToZero(0));

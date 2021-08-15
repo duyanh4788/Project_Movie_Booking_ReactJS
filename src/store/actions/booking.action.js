@@ -31,6 +31,8 @@ export const bookingTicketAction = (showTimeCode, listChairChoice) => {
         // get data to localstorage have save form action/signIn_Action 
         const toKen = JSON.parse(localStorage.getItem('token'))
         const taiKhoan = JSON.parse(localStorage.getItem('taiKhoan'))
+        console.log(showTimeCode);
+        console.log(listChairChoice);
         try {
             // show loading
             dispatch(showLoader_Action())

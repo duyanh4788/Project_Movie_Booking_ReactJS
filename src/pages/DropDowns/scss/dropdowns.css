@@ -26,6 +26,8 @@
 .dropDownsRelavite .dropDownsMain .dropDownMaNhom {
   position: relative;
   display: inline-block;
+  border-right: 1px solid #ebebec;
+  padding-right: 2px;
 }
 
 .dropDownsRelavite .dropDownsMain .dropDownMaNhom .dropbtn {
@@ -70,6 +72,8 @@
 .dropDownsRelavite .dropDownsMain .dropdownPhim {
   position: relative;
   display: inline-block;
+  border-right: 1px solid #ebebec;
+  padding-right: 2px;
 }
 
 .dropDownsRelavite .dropDownsMain .dropdownPhim .dropbtn {
@@ -114,6 +118,8 @@
 .dropDownsRelavite .dropDownsMain .dropdownRap {
   position: relative;
   display: inline-block;
+  border-right: 1px solid #ebebec;
+  padding-right: 2px;
 }
 
 .dropDownsRelavite .dropDownsMain .dropdownRap .dropbtn {
@@ -158,6 +164,8 @@
 .dropDownsRelavite .dropDownsMain .dropdownTitle {
   position: relative;
   display: inline-block;
+  border-right: 1px solid #ebebec;
+  padding-right: 2px;
 }
 
 .dropDownsRelavite .dropDownsMain .dropdownTitle .dropbtn {
@@ -248,8 +256,8 @@
 .dropDownsRelavite .dropDownsMain .dropdownRap:hover .contentRap,
 .dropDownsRelavite .dropDownsMain .dropdownTitle:hover .contentTitle,
 .dropDownsRelavite .dropDownsMain .dropdownTitle:hover .contentTitleLength {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 1s;
+  transition: 1s;
   visibility: visible;
   opacity: 1;
 }

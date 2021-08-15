@@ -2,6 +2,7 @@ import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM
 
 const initialState = {
     movieList: [],// render table  moviemanagement
+    pagiNation: {},
     movieListLength: [], // get length array page
     movieListDate: [], // get list movie date 
     pageFormAdd: "listMovie",// link page moviemanagement
@@ -16,7 +17,9 @@ export const MovieManagementReducer = (state = initialState, { type, payload }) 
     let movieListUpdate = [...state.movieList]
     switch (type) {
         case GET_LIST_MOVIE_MANAGEMENT: {
-            state.movieList = payload.items
+            const { items, ..._payload } = payload;
+            state.movieList = items;
+            state.pagiNation = _payload;
             return { ...state, ...payload }
         }
         case GET_LIST_LENGTH_MOVIE_MANAGEMENT: {

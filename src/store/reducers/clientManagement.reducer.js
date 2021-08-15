@@ -2,6 +2,7 @@ import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET
 
 const initialState = {
     listClient: [],// render html
+    pagiNation: {},
     listClientLength: [],// render html
     pageFormClient: "listUser",// link page
     infoClient: {},// show info sau khi update
@@ -13,7 +14,9 @@ export const ClientManagementReducer = (state = initialState, { type, payload })
     let listClientUpdate = [...state.listClient]
     switch (type) {
         case GET_LIST_CLIENT_MANAGEMENT:
-            state.listClient = payload.items
+            const { items, ..._payload } = payload
+            state.pagiNation = _payload;
+            state.listClient = items;
             return { ...state, ...payload }
         case GET_LIST_LENGTH_CLIENT_MANAGEMENT:
             state.listClientLength = payload

@@ -64,9 +64,13 @@ const ClientMaragement = () => {
   const listClientPagination = useSelector(
     (state) => state.ClientManagementReducer.listClient
   );
-  const listClientLength = useSelector(
-    (state) => state.ClientManagementReducer.listClientLength
+  const pagiNation = useSelector(
+    (state) => state.ClientManagementReducer.pagiNation
   );
+  // console.log(pagiNation);
+  // const listClientLength = useSelector(
+  //   (state) => state.ClientManagementReducer.listClientLength
+  // );
   const updateSuccess = useSelector((state) => {
     return state.ClientManagementReducer?.updateSuccess;
   });
@@ -285,12 +289,14 @@ const ClientMaragement = () => {
                 </Grid>
                 <Grid item lg={8}>
                   <Pagination
-                    count={
-                      parseInt(listClientLength.length / stateRowsPage.page) + 1
-                    }
+                    // count={
+                    //   parseInt(listClientLength.length / stateRowsPage.page) + 1
+                    // }
+                    // page={page}
+                    count={pagiNation.totalPages}
+                    page={pagiNation.currentPage}
                     showFirstButton
                     showLastButton
-                    page={page}
                     onChange={handleChangePage}
                   />
                 </Grid>

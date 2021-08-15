@@ -17,6 +17,8 @@
         z-index: 2;
         .dropDownMaNhom {
             @include dropDownBox;
+            border-right: $border;
+            padding-right: 2px;
             .dropbtn {
                 @include dropDownBtn;
                 width: 140px;
@@ -35,6 +37,8 @@
         }
         .dropdownPhim {
             @include dropDownBox;
+            border-right: $border;
+            padding-right: 2px;
             .dropbtn {
                 @include dropDownBtn;
                 width: 140px;
@@ -54,6 +58,8 @@
 
         .dropdownRap {
             @include dropDownBox;
+            border-right: $border;
+            padding-right: 2px;
             .dropbtn {
                 @include dropDownBtn;
                 width: 260px;
@@ -74,6 +80,8 @@
 
         .dropdownTitle {
             @include dropDownBox;
+            border-right: $border;
+            padding-right: 2px;
             .dropbtn {
                 @include dropDownBtn;
                 width: 110px;
@@ -125,7 +133,7 @@
         .dropdownRap:hover .contentRap,
         .dropdownTitle:hover .contentTitle,
         .dropdownTitle:hover .contentTitleLength {
-            transition: 0.5s;
+            transition: 1s;
             visibility: visible;
             opacity: 1;
         }

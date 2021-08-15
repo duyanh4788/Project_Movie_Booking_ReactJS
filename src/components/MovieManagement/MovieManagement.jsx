@@ -139,10 +139,6 @@ export default function MovieManagement() {
   ]);
   // show loading
   const loading = useSelector((state) => state.CommonReducer.loading);
-  // get data reducer
-  const movieListLength = useSelector((state) => {
-    return state.MovieManagementReducer.movieListLength;
-  });
   // set maNhom
   const handleMaNhom = (e) => {
     const { value } = e.target;
@@ -203,6 +199,9 @@ export default function MovieManagement() {
   };
   const movieList = useSelector((state) => {
     return state.MovieManagementReducer.movieList;
+  });
+  const pagiNation = useSelector((state) => {
+    return state.MovieManagementReducer.pagiNation;
   });
   // delete
   const deletePhim = (maPhim) => {
@@ -436,13 +435,10 @@ export default function MovieManagement() {
                   </Grid>
                   <Grid item lg={8}>
                     <Pagination
-                      count={
-                        parseInt(movieListLength.length / stateRowsPage.page) +
-                        1
-                      }
+                      count={pagiNation.totalPages}
+                      page={pagiNation.currentPage}
                       showFirstButton
                       showLastButton
-                      page={page}
                       onChange={handleChangePage}
                     />
                   </Grid>

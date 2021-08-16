@@ -14,7 +14,8 @@
     }
     .headerTitle {
         text-align: center;
-        label {
+        a {
+            text-decoration: none;
             @include headerTitleLink;
         }
         :hover {

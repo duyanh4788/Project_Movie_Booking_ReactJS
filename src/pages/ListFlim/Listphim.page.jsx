@@ -157,7 +157,7 @@ const ListPhim = () => {
   return loading ? (
     <Loader />
   ) : (
-    <Container maxWidth="md" className="sliderListPhim">
+    <Container maxWidth="md" className="sliderListPhim" id="lichChieu">
       <Grid container>
         <Grid item lg={12} style={{ textAlign: "center" }}>
           <FormControl className="maNhom">

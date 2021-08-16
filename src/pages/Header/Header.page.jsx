@@ -44,9 +44,9 @@ function Header(props) {
           <CinemaDetailPage />
         </Grid>
         <Grid item xs={4} className="headerTitle">
-          <label>Lịch Chiếu</label>
-          <label>Cụm Rạp</label>
-          <label>Ứng Dụng</label>
+          <a href="#lichChieu">Lịch Chiếu</a>
+          <a href="#cumRap">Cụm Rạp</a>
+          <a href="#ungDung">Ứng Dụng</a>
         </Grid>
         <Grid item xs={4} className="headerUser">
           {signIn.hoTen !== "" ? (

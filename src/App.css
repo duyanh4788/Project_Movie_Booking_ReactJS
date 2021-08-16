@@ -4,6 +4,38 @@
   box-sizing: border-box;
   font-family: roboto;
 }
+html {
+  scroll-behavior: smooth;
+}
+#lichChieu {
+  height: 812px;
+}
+#cumRap {
+  height: 644px;
+}
+#ungDung {
+  height: 777px;
+}
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#myBtn:hover {
+  color: wheat;
+}
 body::-webkit-scrollbar {
   width: 6px;
   height: 6px;

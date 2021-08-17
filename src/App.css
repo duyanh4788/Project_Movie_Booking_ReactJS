@@ -60,3 +60,8 @@ body::-webkit-scrollbar-thumb {
     margin-top: 0px !important;
   }
 }
+@media (max-width: 1000px) {
+  #cumRap {
+    display: none !important;
+  }
+}

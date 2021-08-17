@@ -110,8 +110,8 @@
 }
 
 .footerRowTwo hr {
-  margin: 10px 0;
-  border: 1px solid #ebebec;
+  margin: 50px 0;
+  border: 0.5px solid #80808066;
 }
 
 .footerRowTwo .rowTwoLogoRespon {
@@ -158,10 +158,6 @@
   .footerRowTwo .rowTwoIntro h5 {
     font-size: 13px;
     color: #fff;
-  }
-  .footerRowTwo .rowTwoIntro p {
-    font-size: 5px;
-    line-height: 0;
   }
 }
 

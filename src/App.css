@@ -14,7 +14,7 @@ html {
   height: 644px;
 }
 #ungDung {
-  height: 777px;
+  min-height: 777px;
 }
 #myBtn {
   display: none;

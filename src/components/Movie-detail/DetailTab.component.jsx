@@ -187,11 +187,11 @@ const DetailTabComponent = () => {
                     className={`showTime ${stateMaRap.maRap}`}
                   >
                     {item.ngayChieuGioChieu.slice(11, 16)}
-                    <label
+                    <span
                       style={{ color: "gray", marginLeft: "5px" }}
                     >{`~ ${getTimeEnd(
                       item.ngayChieuGioChieu.slice(11, 16)
-                    )}`}</label>
+                    )}`}</span>
                   </span>
                 </p>
               </Grid>

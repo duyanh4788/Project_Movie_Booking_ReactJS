@@ -23,6 +23,7 @@ import {
   getDetailCinema,
   getInfoPhimCinema,
   getListPhimCinema,
+  showScheduleMovieAction,
 } from "../../store/actions/cinemaDetail.action";
 import { listCinema, backgroundS } from "./dataCinema";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -93,6 +94,9 @@ const CinemaDetailComponent = (props) => {
     return state.CinemaDetailReducer?.infoCinema;
   });
 
+  const showScheduleMovie = useSelector((state) => {
+    return state.CinemaDetailReducer?.showScheduleMovie;
+  });
   const renderImageCinema = () => {
     const items = listCinema.find((item) => item.name === codeMaCumRap);
     return <img src={items.img} alt={items.img} className="imageCinema" />;
@@ -145,6 +149,7 @@ const CinemaDetailComponent = (props) => {
     maPhim: "",
   });
   const handleMaCumRap = (maCumRap, tenCumRap, arrayListPhim) => {
+    dispatch(showScheduleMovieAction(undefined))
     setDate("");
     setStateMaCumRap({
       maCumRap: maCumRap,
@@ -155,21 +160,28 @@ const CinemaDetailComponent = (props) => {
     dispatch(getListPhimCinema(arrayListPhim.danhSachPhim));
     dispatch(getInfoPhimCinema(null));
   };
-  const handleInfoPhim = (infoPhim) => {
-    dispatch(getInfoPhimCinema(infoPhim));
+  const handleInfoPhim = (infoMovie) => {
+    dispatch(showScheduleMovieAction(undefined))
+    dispatch(getInfoPhimCinema(infoMovie));
     setStateMaPhim({
-      maPhim: infoPhim.maPhim,
+      maPhim: infoMovie.maPhim,
     });
     setValues(0);
   };
+  const handleScheduleMovie = (ngayChieuGioChieu, item) => {
+    setDate(ngayChieuGioChieu)
+    dispatch(showScheduleMovieAction(item))
+  }
 
   //Return Time-end with Time-start
   const getTimeEnd = (timeStart) => {
-    let dateFormat = new Date();
-    dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
-    dateFormat.setHours(dateFormat.getHours() + 2);
-    let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
-    return timeEnd;
+    if (timeStart) {
+      let dateFormat = new Date();
+      dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
+      dateFormat.setHours(dateFormat.getHours() + 2);
+      let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
+      return timeEnd;
+    }
   };
   // booking
   const bookingMovie = (maLichChieu) => {
@@ -193,9 +205,7 @@ const CinemaDetailComponent = (props) => {
     return infoPhimCinema?.lstLichChieuTheoPhim.map((item, index) => {
       return (
         <Tab
-          onClick={() => {
-            setDate(item.ngayChieuGioChieu);
-          }}
+          onClick={() => { handleScheduleMovie(item.ngayChieuGioChieu, item) }}
           label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
           key={index}
@@ -209,7 +219,7 @@ const CinemaDetailComponent = (props) => {
       let httpS = item.hinhAnh.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
       return (
-        <Grid container key={index} className="shedulePhim">
+        <Grid container key={index} className={item.maPhim === stateMaPhim.maPhim ? "showSheduleMovie" : "hidenSheduleMovie"}>
           <Grid
             item
             xs={12}
@@ -228,33 +238,28 @@ const CinemaDetailComponent = (props) => {
             </span>
           </Grid>
 
-          <Grid item xs={12} sm={5} md={5} lg={5}>
-            {item.lstLichChieuTheoPhim
-              .filter((itemF) => itemF.ngayChieuGioChieu === stateDate)
-              .map((item, index) => {
-                return (
-                  <div className="tabTimer" key={index}>
-                    <p>Mã Rạp : {item.maRap}</p>
-                    <p>Mã Lịch Chiếu : {item.maLichChieu}</p>
-                    <p>Giá Vé : {item.giaVe.toLocaleString()}</p>
-                    <p>
-                      Đặt Vé :{" "}
-                      <span
-                        onClick={() => bookingMovie(item.maLichChieu)}
-                        className={`timer ${codeMaCumRap}`}
-                      >
-                        {item.ngayChieuGioChieu.slice(11, 16)}
-                        <label
-                          style={{ color: "gray", marginLeft: "5px" }}
-                        >{`~ ${getTimeEnd(
-                          item.ngayChieuGioChieu.slice(11, 16)
-                        )}`}</label>
-                      </span>
-                    </p>
-                  </div>
-                );
-              })}
-          </Grid>
+          {item.maPhim === stateMaPhim.maPhim && showScheduleMovie ?
+            <Grid item xs={12} sm={5} md={5} lg={5} className="tabTimer">
+              <p>Mã Rạp : {showScheduleMovie.maRap}</p>
+              <p>Mã Lịch Chiếu : {showScheduleMovie.maLichChieu}</p>
+              <p>Giá Vé : {showScheduleMovie.giaVe?.toLocaleString()}</p>
+              <p>
+                Đặt Vé :{" "}
+                <span
+                  onClick={() => bookingMovie(showScheduleMovie.maLichChieu)}
+                  className={`timer ${codeMaCumRap}`}
+                >
+                  {showScheduleMovie.ngayChieuGioChieu?.slice(11, 16)}
+                  <span
+                    style={{ color: "gray", marginLeft: "5px" }}
+                  >{`~ ${getTimeEnd(
+                    showScheduleMovie.ngayChieuGioChieu?.slice(11, 16)
+                  )}`}</span>
+                </span>
+              </p>
+            </Grid> : <Grid item xs={12} sm={5} md={5} lg={5} className="tabTimer">
+              <p>Chọn Giờ Chiếu </p>
+            </Grid>}
         </Grid>
       );
     });

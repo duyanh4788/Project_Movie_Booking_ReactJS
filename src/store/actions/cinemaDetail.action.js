@@ -1,6 +1,6 @@
 import Axios from "axios"
 import { DOMAIN } from "../../services/domainUrl";
-import { GET_DETAIL_CINEMA, GET_INFOPHIM_DETAIL_CINEMA, GET_LISTPHIM_DETAIL_CINEMA, GET_LOGO_CINEMA } from "../constants/cinemaDetail.constant";
+import { GET_DETAIL_CINEMA, GET_INFO_MOVIE_DETAIL_CINEMA, GET_LIST_MOVIE_DETAIL_CINEMA, GET_LOGO_CINEMA, SHOW_SCHEDULE_MOVIE_CINEMADETAIL } from "../constants/cinemaDetail.constant";
 
 export const getLogoCinema = () => {
     return async (dispatch) => {
@@ -39,14 +39,21 @@ export const getDetailCinema = (maCumRap) => {
 
 export const getListPhimCinema = (danhSachPhim) => {
     return {
-        type: GET_LISTPHIM_DETAIL_CINEMA,
+        type: GET_LIST_MOVIE_DETAIL_CINEMA,
         payload: danhSachPhim
     }
 }
 
 export const getInfoPhimCinema = (infoPhim) => {
     return {
-        type: GET_INFOPHIM_DETAIL_CINEMA,
+        type: GET_INFO_MOVIE_DETAIL_CINEMA,
         payload: infoPhim
+    }
+}
+
+export const showScheduleMovieAction = (scheduleMovie) => {
+    return {
+        type: SHOW_SCHEDULE_MOVIE_CINEMADETAIL,
+        payload: scheduleMovie
     }
 }

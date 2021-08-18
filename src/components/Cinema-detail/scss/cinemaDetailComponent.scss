@@ -26,6 +26,49 @@
     border-radius: 5px;
 }
 
+@mixin cloneScheduleMovie {
+    padding: 10px;
+    box-shadow: $box-shadow;
+    color: $color-black-2;
+    .imfoPhim {
+        @include rowHoverPhim;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+        span {
+            margin-left: 5px;
+            .maPhim {
+                background-color: $color-red;
+                @include spanButton;
+            }
+        }
+    }
+    .tabTimer {
+        @include rowHoverPhim;
+        p {
+            line-height: 25px;
+        }
+        @include colorCinema;
+        .timer {
+            border: 2px solid;
+            border-radius: 5px;
+            padding: 2px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    }
+    .imfoPhim:hover,
+    .tabTimer:hover {
+        background-color: $color-white;
+    }
+}
+
 .rowOneinfoPhim {
     position: relative;
     overflow: hidden;
@@ -98,47 +141,13 @@
             .rowInfoPhim {
                 @include scrollCinemaTab;
                 max-height: 350px;
-                .shedulePhim {
-                    padding: 10px;
-                    box-shadow: $box-shadow;
-                    color: $color-black-2;
-                    .imfoPhim {
-                        @include rowHoverPhim;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-start;
-                        align-items: center;
-                        cursor: pointer;
-                        img {
-                            width: 80px;
-                            height: 80px;
-                        }
-                        span {
-                            margin-left: 5px;
-                            .maPhim {
-                                background-color: $color-red;
-                                @include spanButton;
-                            }
-                        }
-                    }
-                    .tabTimer {
-                        @include rowHoverPhim;
-                        p {
-                            line-height: 25px;
-                        }
-                        @include colorCinema;
-                        .timer {
-                            border: 2px solid;
-                            border-radius: 5px;
-                            padding: 2px;
-                            font-size: 13px;
-                            cursor: pointer;
-                        }
-                    }
-                    .imfoPhim:hover,
-                    .tabTimer:hover {
-                        background-color: $color-white;
-                    }
+                .showSheduleMovie {
+                    opacity: 1.5;
+                    @include cloneScheduleMovie;
+                }
+                .hidenSheduleMovie {
+                    opacity: 0.5;
+                    @include cloneScheduleMovie;
                 }
             }
         }

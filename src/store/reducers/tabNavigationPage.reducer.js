@@ -1,13 +1,13 @@
-import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE, SET_LST_CINEMA } from "../constants/tabNavigationPage.const"
+import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE,  SCHEDULE_TAB } from "../constants/tabNavigationPage.const"
 
 const initialState = {
     listShowTime: [],
     codeCinema: "",
     lstCumRap: [],
+    schedulerMovie: undefined,
     codeGroupCinema: {},
     nameGroupCinema: "",
     lichChieuPhim: [],
-    dateSchedule: "",
 }
 
 export const TabNavigationPageReducer = (state = initialState, action) => {
@@ -26,8 +26,8 @@ export const TabNavigationPageReducer = (state = initialState, action) => {
             state.lstCumRap = indexlistShowTimeUpdate.lstCumRap
             return { ...state }
         }
-        case SET_LST_CINEMA: {
-            state.lstCumRap = payload;
+        case SCHEDULE_TAB: {
+            state.schedulerMovie = payload;
             return { ...state }
         }
         case GET_CODE_GROUP_CINEMA_PAGE: {
@@ -43,10 +43,6 @@ export const TabNavigationPageReducer = (state = initialState, action) => {
         }
         case GET_MOVIE_SCHEDULE_PAGE: {
             state.lichChieuPhim = payload;
-            return { ...state }
-        }
-        case SET_DATE_SCHEDULE_PAGE: {
-            state.dateSchedule = payload;
             return { ...state }
         }
         default:

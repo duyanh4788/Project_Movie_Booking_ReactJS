@@ -1,10 +1,11 @@
-import { GET_DETAIL_CINEMA, GET_INFOPHIM_DETAIL_CINEMA, GET_LISTPHIM_DETAIL_CINEMA, GET_LOGO_CINEMA } from "../constants/cinemaDetail.constant"
+import { GET_DETAIL_CINEMA, GET_INFO_MOVIE_DETAIL_CINEMA, GET_LIST_MOVIE_DETAIL_CINEMA, GET_LOGO_CINEMA, SHOW_SCHEDULE_MOVIE_CINEMADETAIL } from "../constants/cinemaDetail.constant"
 
 const initialState = {
     loGoCinema: [],
     groupCinema: [],
     listPhimCinema: [],
     infoCinema: null,
+    showScheduleMovie: undefined,
 }
 
 export const CinemaDetailReducer = (state = initialState, { type, payload }) => {
@@ -19,15 +20,20 @@ export const CinemaDetailReducer = (state = initialState, { type, payload }) => 
             state.groupCinema = payload
             return { ...state, ...payload }
 
-        case GET_LISTPHIM_DETAIL_CINEMA:
+        case GET_LIST_MOVIE_DETAIL_CINEMA:
             state.listPhimCinema = payload
             return { ...state, ...payload }
 
-        case GET_INFOPHIM_DETAIL_CINEMA:
+        case GET_INFO_MOVIE_DETAIL_CINEMA: {
             state.infoCinema = payload
             return { ...state, ...payload }
-
+        }
+        case SHOW_SCHEDULE_MOVIE_CINEMADETAIL: {
+            state.showScheduleMovie = payload
+            return { ...state, ...payload }
+        }
         default:
             return state
     }
 }
+

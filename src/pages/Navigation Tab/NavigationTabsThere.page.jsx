@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { AppBar, Grid, Paper, Tab, Tabs } from "@material-ui/core";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
-import { getMovieSchedulePage, setDateSchedulePage } from "../../store/actions/tabNavigationPage.action";
+import { getMovieSchedulePage, schedulerMovieAction } from "../../store/actions/tabNavigationPage.action";
 // date format
 import * as dayjs from "dayjs";
 
@@ -68,17 +68,13 @@ function NavigationTabsTherePage() {
   const nameGroupCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.nameGroupCinema; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
-  const dateSchedule = useSelector((state) => {
-    return state.TabNavigationPageReducer.dateSchedule; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
+  // const dateSchedule = useSelector((state) => {
+  //   return state.TabNavigationPageReducer.dateSchedule; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
+  // });
+  const schedulerMovie = useSelector((state) => {
+    return state.TabNavigationPageReducer.schedulerMovie; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
-  //Return Time-end with Time-start
-  const getTimeEnd = (timeStart) => {
-    let dateFormat = new Date();
-    dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
-    dateFormat.setHours(dateFormat.getHours() + 2);
-    let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
-    return timeEnd;
-  };
+
   // get maPhim
   const [stateMaphim, setStateMaPhim] = useState({
     maPhim: "",
@@ -86,21 +82,17 @@ function NavigationTabsTherePage() {
   // const [statemaLichChieu, setStatemaLichChieu] = useState({
   //   maLichChieu: "",
   // });
-  const handleMaPhim = (maPhim) => {
-    console.log(maPhim);
+  const handleMaPhim = (maPhim, lstLichChieuTheoPhim) => {
     setStateMaPhim({
       maPhim: maPhim,
     });
-  };
-  const handleDateTime = (dateTime) => {
-    dispatch(setDateSchedulePage(dateTime));
-  }
-  // get lịch chiếu phim
-  const getlstLichChieu = (lstLichChieuTheoPhim) => {
-    console.log(lstLichChieuTheoPhim);
     dispatch(getMovieSchedulePage(lstLichChieuTheoPhim));
+    dispatch(schedulerMovieAction(undefined))
     setValues(0);
   };
+  const handleDateTime = (schedule) => {
+    dispatch(schedulerMovieAction(schedule))
+  }
   // booking
   const bookingMovie = (maLichChieu, ngayChieuGioChieu) => {
     if (maLichChieu && stateMaphim.maPhim && nameGroupCinema) {
@@ -120,7 +112,7 @@ function NavigationTabsTherePage() {
       return (
         <Tab
           onClick={() => {
-            handleDateTime(item.ngayChieuGioChieu);
+            handleDateTime(item);
           }}
           label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
@@ -145,7 +137,7 @@ function NavigationTabsTherePage() {
             className="ChildTab"
             key={index}
             onClick={() => {
-              handleMaPhim(item.maPhim);
+              handleMaPhim(item.maPhim, item.lstLichChieuTheoPhim);
             }}
           >
             <Grid item xs={2} className={stateMaphim.maPhim === item.maPhim ? "ChildTab_Img_Active" : "ChildTab_Img"}>
@@ -154,56 +146,56 @@ function NavigationTabsTherePage() {
             <Grid
               item
               xs={5}
-              className={stateMaphim.maPhim === item.maPhim ? "ChildTab_Intro_Active" : "ChildTab_Intro"}
-              onClick={() => {
-                getlstLichChieu(item.lstLichChieuTheoPhim);
-              }}
-            >
+              className={stateMaphim.maPhim === item.maPhim ? "ChildTab_Intro_Active" : "ChildTab_Intro"}>
               <label className={codeCinema}>{item.maPhim}</label>
               <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
             </Grid>
-            {item.maPhim === stateMaphim.maPhim ?
+            {item.maPhim === stateMaphim.maPhim && schedulerMovie ?
               <Grid item xs={5} className="ChildTab_Timer">
-                {item.lstLichChieuTheoPhim
-                  .filter((itemF) => itemF.ngayChieuGioChieu === dateSchedule)
-                  .map((itemS, index) => {
-                    return (
-                      <div key={index} className="dateTimer">
-                        <p>Mã Rạp : {itemS.maRap}</p>
-                        <p>Mã Lc : {itemS.maLichChieu}</p>
-                        <p>Giá Vé : {itemS.giaVe.toLocaleString()}</p>
-                        <p>
-                          Đặt Vé :{" "}
-                          <span
-                            onClick={() =>
-                              bookingMovie(
-                                itemS.maLichChieu,
-                                itemS.ngayChieuGioChieu
-                              )
-                            }
-                            className={`timeCode ${codeCinema}`}
-                          >
-                            {itemS.ngayChieuGioChieu.slice(11, 16)}
-                            <label
-                              style={{
-                                color: "gray",
-                                marginLeft: "5px",
-                              }}
-                            >{`~ ${getTimeEnd(
-                              itemS.ngayChieuGioChieu.slice(11, 16)
-                            )}`}</label>
-                          </span>
-                        </p>
-                      </div>
-                    );
-                  })}
+                <div className="dateTimer">
+                  <p>Mã Rạp : {schedulerMovie.maRap}</p>
+                  <p>Mã Lc : {schedulerMovie.maLichChieu}</p>
+                  <p>Giá Vé : {schedulerMovie.giaVe?.toLocaleString()}</p>
+                  <p>
+                    Đặt Vé :{" "}
+                    <span
+                      onClick={() =>
+                        bookingMovie(
+                          schedulerMovie.maLichChieu,
+                          schedulerMovie.ngayChieuGioChieu
+                        )
+                      }
+                      className={`timeCode ${codeCinema}`}
+                    >
+                      {schedulerMovie.ngayChieuGioChieu?.slice(11, 16)}
+                      <span
+                        style={{
+                          color: "gray",
+                          marginLeft: "5px",
+                        }}
+                      >{`~ ${getTimeEnd(
+                        schedulerMovie.ngayChieuGioChieu?.slice(11, 16)
+                      )}`}</span>
+                    </span>
+                  </p>
+                </div>
               </Grid> :
-              <Grid item xs={5} className="ChildTab_UnTimer">
-                Chọn Phim
+              <Grid item xs={5} className="ChildTab_Timer">
+                <p>Chọn Phim</p>
               </Grid>}
           </Grid>
         );
       });
+    }
+  };
+  //Return Time-end with Time-start
+  const getTimeEnd = (timeStart) => {
+    if (timeStart) {
+      let dateFormat = new Date();
+      dateFormat.setHours(timeStart.slice(0, 2), timeStart.slice(3), 0);
+      dateFormat.setHours(dateFormat.getHours() + 2);
+      let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
+      return timeEnd;
     }
   };
   return (

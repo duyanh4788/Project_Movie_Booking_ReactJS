@@ -17,6 +17,7 @@ export const getInfoUserAction = (taiKhoan) => {
       dispatch(hidenLoader_Action());
     } catch (error) {
       console.log("Lỗi call API thông tin user", error);
+      dispatch(hidenLoader_Action());
     }
   };
 };

@@ -10,8 +10,10 @@ import { Container, Grid } from "@material-ui/core";
 import "./css/Navigation.style.css";
 import {
   getCodeCinemaPage,
+  getCodeGroupCinemaPage,
   getListShowTimePageAction,
   getMovieSchedulePage,
+  schedulerMovieAction,
 } from "../../store/actions/tabNavigationPage.action";
 
 function NavigationTabsOnePage() {
@@ -31,6 +33,8 @@ function NavigationTabsOnePage() {
   const handleCodeCinema = (codeCinema) => {
     dispatch(getCodeCinemaPage(codeCinema));
     dispatch(getMovieSchedulePage([]));
+    dispatch(getCodeGroupCinemaPage([]))
+    dispatch(schedulerMovieAction(undefined))
   };
 
   const renderLoGo = () => {

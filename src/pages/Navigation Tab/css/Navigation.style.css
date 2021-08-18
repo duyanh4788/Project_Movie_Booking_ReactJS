@@ -201,6 +201,7 @@
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img {
+  opacity: 0.5;
   height: 100px;
   padding: 5px;
   background-color: #FFFFFF;
@@ -214,7 +215,23 @@
   height: 90px;
 }
 
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img_Active {
+  opacity: 1.5;
+  height: 100px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Img_Active img {
+  width: 70px;
+  height: 90px;
+}
+
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro {
+  opacity: 0.5;
   height: 100px;
   padding: 5px;
   background-color: #FFFFFF;
@@ -283,6 +300,76 @@
   margin-left: 5px;
 }
 
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active {
+  opacity: 1.5;
+  height: 100px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #212321;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .BHDStar {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #56ab2f;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .CGV {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ff3a22;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .CineStar {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #bf4aa8;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .Galaxy {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #f7882f;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .LotteCinima {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #800000;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active .MegaGS {
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ffde22;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro_Active span {
+  margin-left: 5px;
+}
+
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Timer {
   height: 100px;
   padding: 5px;
@@ -327,6 +414,16 @@
   border: 1px solid;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_UnTimer {
+  height: 100px;
+  padding: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid #ebebec;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
 }
 
 .naViGaTionTab .rowThereNavigationTab .rowThereNavigation_ChildTab .ChildTab .ChildTab_Intro:hover,

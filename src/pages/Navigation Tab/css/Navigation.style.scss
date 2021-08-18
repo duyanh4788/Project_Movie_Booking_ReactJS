@@ -69,6 +69,16 @@
                 font-weight: 600;
                 border-bottom: $border;
                 .ChildTab_Img {
+                    opacity: 0.5;
+                    @include childTab;
+                    text-align: center;
+                    img {
+                        width: 70px;
+                        height: 90px;
+                    }
+                }
+                .ChildTab_Img_Active {
+                    opacity: 1.5;
                     @include childTab;
                     text-align: center;
                     img {
@@ -77,6 +87,18 @@
                     }
                 }
                 .ChildTab_Intro {
+                    opacity: 0.5;
+                    @include childTab;
+                    cursor: pointer;
+                    font-size: $fs13;
+                    color: $color-black-2;
+                    @include bgColorCinema;
+                    span {
+                        margin-left: 5px;
+                    }
+                }
+                .ChildTab_Intro_Active {
+                    opacity: 1.5;
                     @include childTab;
                     cursor: pointer;
                     font-size: $fs13;
@@ -103,6 +125,11 @@
                             cursor: pointer;
                         }
                     }
+                }
+                .ChildTab_UnTimer {
+                    @include childTab;
+                    font-size: $fs13;
+                    text-align: center;
                 }
                 .ChildTab_Intro:hover,
                 .ChildTab_Timer:hover,

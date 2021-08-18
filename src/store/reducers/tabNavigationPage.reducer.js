@@ -1,4 +1,4 @@
-import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE } from "../constants/tabNavigationPage.const"
+import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE, SET_LST_CINEMA } from "../constants/tabNavigationPage.const"
 
 const initialState = {
     listShowTime: [],
@@ -24,6 +24,10 @@ export const TabNavigationPageReducer = (state = initialState, action) => {
             let listShowTimeUpdate = [...state.listShowTime]
             let indexlistShowTimeUpdate = listShowTimeUpdate.find(item => item.maHeThongRap === payload)
             state.lstCumRap = indexlistShowTimeUpdate.lstCumRap
+            return { ...state }
+        }
+        case SET_LST_CINEMA: {
+            state.lstCumRap = payload;
             return { ...state }
         }
         case GET_CODE_GROUP_CINEMA_PAGE: {

@@ -83,13 +83,21 @@ function NavigationTabsTherePage() {
   const [stateMaphim, setStateMaPhim] = useState({
     maPhim: "",
   });
+  // const [statemaLichChieu, setStatemaLichChieu] = useState({
+  //   maLichChieu: "",
+  // });
   const handleMaPhim = (maPhim) => {
+    console.log(maPhim);
     setStateMaPhim({
       maPhim: maPhim,
     });
   };
+  const handleDateTime = (dateTime) => {
+    dispatch(setDateSchedulePage(dateTime));
+  }
   // get lịch chiếu phim
   const getlstLichChieu = (lstLichChieuTheoPhim) => {
+    console.log(lstLichChieuTheoPhim);
     dispatch(getMovieSchedulePage(lstLichChieuTheoPhim));
     setValues(0);
   };
@@ -112,7 +120,7 @@ function NavigationTabsTherePage() {
       return (
         <Tab
           onClick={() => {
-            dispatch(setDateSchedulePage(item.ngayChieuGioChieu));
+            handleDateTime(item.ngayChieuGioChieu);
           }}
           label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
@@ -121,7 +129,6 @@ function NavigationTabsTherePage() {
       );
     });
   };
-
   const renderTenPhim = () => {
     const index = lstCumRap.findIndex(
       (item) => item.maCumRap === codeGroupCinema
@@ -141,13 +148,13 @@ function NavigationTabsTherePage() {
               handleMaPhim(item.maPhim);
             }}
           >
-            <Grid item xs={2} className="ChildTab_Img">
+            <Grid item xs={2} className={stateMaphim.maPhim === item.maPhim ? "ChildTab_Img_Active" : "ChildTab_Img"}>
               <img src={urlImg} alt={urlImg} />
             </Grid>
             <Grid
               item
               xs={5}
-              className="ChildTab_Intro"
+              className={stateMaphim.maPhim === item.maPhim ? "ChildTab_Intro_Active" : "ChildTab_Intro"}
               onClick={() => {
                 getlstLichChieu(item.lstLichChieuTheoPhim);
               }}
@@ -155,41 +162,45 @@ function NavigationTabsTherePage() {
               <label className={codeCinema}>{item.maPhim}</label>
               <span>Tên Phim : {item.tenPhim.slice(0, 30)}</span>
             </Grid>
-            <Grid item xs={5} className="ChildTab_Timer">
-              {item.lstLichChieuTheoPhim
-                .filter((itemF) => itemF.ngayChieuGioChieu === dateSchedule)
-                .map((itemS, index) => {
-                  return (
-                    <div key={index} className="dateTimer">
-                      <p>Mã Rạp : {itemS.maRap}</p>
-                      <p>Mã Lc : {itemS.maLichChieu}</p>
-                      <p>Giá Vé : {itemS.giaVe.toLocaleString()}</p>
-                      <p>
-                        Đặt Vé :{" "}
-                        <span
-                          onClick={() =>
-                            bookingMovie(
-                              itemS.maLichChieu,
-                              itemS.ngayChieuGioChieu
-                            )
-                          }
-                          className={`timeCode ${codeCinema}`}
-                        >
-                          {itemS.ngayChieuGioChieu.slice(11, 16)}
-                          <label
-                            style={{
-                              color: "gray",
-                              marginLeft: "5px",
-                            }}
-                          >{`~ ${getTimeEnd(
-                            itemS.ngayChieuGioChieu.slice(11, 16)
-                          )}`}</label>
-                        </span>
-                      </p>
-                    </div>
-                  );
-                })}
-            </Grid>
+            {item.maPhim === stateMaphim.maPhim ?
+              <Grid item xs={5} className="ChildTab_Timer">
+                {item.lstLichChieuTheoPhim
+                  .filter((itemF) => itemF.ngayChieuGioChieu === dateSchedule)
+                  .map((itemS, index) => {
+                    return (
+                      <div key={index} className="dateTimer">
+                        <p>Mã Rạp : {itemS.maRap}</p>
+                        <p>Mã Lc : {itemS.maLichChieu}</p>
+                        <p>Giá Vé : {itemS.giaVe.toLocaleString()}</p>
+                        <p>
+                          Đặt Vé :{" "}
+                          <span
+                            onClick={() =>
+                              bookingMovie(
+                                itemS.maLichChieu,
+                                itemS.ngayChieuGioChieu
+                              )
+                            }
+                            className={`timeCode ${codeCinema}`}
+                          >
+                            {itemS.ngayChieuGioChieu.slice(11, 16)}
+                            <label
+                              style={{
+                                color: "gray",
+                                marginLeft: "5px",
+                              }}
+                            >{`~ ${getTimeEnd(
+                              itemS.ngayChieuGioChieu.slice(11, 16)
+                            )}`}</label>
+                          </span>
+                        </p>
+                      </div>
+                    );
+                  })}
+              </Grid> :
+              <Grid item xs={5} className="ChildTab_UnTimer">
+                Chọn Phim
+              </Grid>}
           </Grid>
         );
       });

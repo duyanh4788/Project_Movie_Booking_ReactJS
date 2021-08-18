@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE } from "../constants/tabNavigationPage.const"
+import { GET_CODE_CINEMA_PAGE, GET_CODE_GROUP_CINEMA_PAGE, GET_LIST_SHOWTIME_PAGE, GET_MOVIE_SCHEDULE_PAGE, GET_NAME_GROUP_CINEMA_PAGE, SET_DATE_SCHEDULE_PAGE, SET_LST_CINEMA } from "../constants/tabNavigationPage.const"
 
 
 export const getListShowTimePageAction = () => {// get data to Axios use NavigationTabsOne.page.jsx
@@ -22,6 +22,13 @@ export const getCodeCinemaPage = (codeCinema) => {// post data form NavigationTa
     return {
         type: GET_CODE_CINEMA_PAGE,
         payload: codeCinema,
+    }
+}
+
+export const setLstCumRap = (dataNull) => {// post data form NavigationTabsOne.page.jsx to TabNavigationPageReducer
+    return {
+        type: SET_LST_CINEMA,
+        payload: dataNull,
     }
 }
 

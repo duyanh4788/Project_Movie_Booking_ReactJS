@@ -1,25 +1,8 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
 import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
-import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_LENGTH_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
-
-export const getListLengthMovieManagement = (maNhom) => {
-    return async (dispatch) => {
-        try {
-            const res = await Axios({
-                method: "GET",
-                url: `${DOMAIN}QuanLyPhim/LayDanhSachPhim?maNhom=${maNhom}`
-            })
-            dispatch({
-                type: GET_LIST_LENGTH_MOVIE_MANAGEMENT,
-                payload: res.data
-            })
-        } catch (error) {
-            console.log(error.response);
-        }
-    }
-}
 
 export const getListMovieManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {

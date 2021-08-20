@@ -15,7 +15,6 @@ import {
   deleteListMovieManagement,
   getCodeCinemaMovieManagement,
   getInfoMovie,
-  getListLengthMovieManagement,
   getListMovieDateManagement,
   getListMovieManagement,
   getListMovieSearchManagement,
@@ -63,6 +62,13 @@ export default function MovieManagement() {
   const pageFormAdd = useSelector((state) => {
     return state.MovieManagementReducer.pageFormAdd;
   });
+  const movieList = useSelector((state) => {
+    return state.MovieManagementReducer.movieList;
+  });
+  //  btn tim phim
+  const movieListDate = useSelector((state) => {
+    return state.MovieManagementReducer.movieListDate;
+  });
   // page
   const [page, setPage] = React.useState(1);
   // row page
@@ -74,7 +80,7 @@ export default function MovieManagement() {
     search: "",
   });
   //search Quick
-  const [stateSearchQuick, setSearchQuicl] = useState({
+  const [stateSearchQuick, setSearchQuick] = useState({
     search: "",
   });
   // get maNhom
@@ -93,16 +99,15 @@ export default function MovieManagement() {
   useEffect(() => {
     if (statusCode === 200 || statusCode === 500) {
       handleClick();
+      dispatch(
+        getListMovieManagement(stateMaNhom.maNhom, page, stateRowsPage.page)
+      );
     }
-  }, [statusCode]);
+  }, [statusCode, pageFormAdd, dispatch, stateMaNhom.maNhom, page, stateRowsPage.page]);
   // cal api code cinema use FormCreatSchedule
   useEffect(() => {
     dispatch(getCodeCinemaMovieManagement());
   }, [dispatch]);
-  // get lenght movielist
-  useEffect(() => {
-    dispatch(getListLengthMovieManagement(stateMaNhom.maNhom));
-  }, [dispatch, stateMaNhom.maNhom, pageFormAdd]);
   // call api get list movie pagination
   useEffect(() => {
     if (stateSearch.search === "") {
@@ -112,13 +117,30 @@ export default function MovieManagement() {
     }
   }, [
     dispatch,
-    pageFormAdd,
     stateMaNhom.maNhom,
     page,
     stateRowsPage.page,
     stateSearch.search,
   ]);
+  useEffect(() => {
+    if (stateSearchQuick.search === "") {
+      dispatch(
+        getListMovieManagement(stateMaNhom.maNhom, page, stateRowsPage.page)
+      );
+    }
+  }, [
+    dispatch,
+    stateMaNhom.maNhom,
+    page,
+    stateRowsPage.page,
+    stateSearchQuick.search,
+  ]);
   // call api search movie
+  useEffect(() => {
+    if (stateSearchQuick.search === "") {
+      dispatch(getListMovieManagement)
+    }
+  })
   useEffect(() => {
     if (stateSearchQuick.search !== "") {
       dispatch(
@@ -132,6 +154,7 @@ export default function MovieManagement() {
     }
   }, [
     dispatch,
+    pageFormAdd,
     stateMaNhom.maNhom,
     stateSearchQuick.search,
     page,
@@ -156,7 +179,8 @@ export default function MovieManagement() {
     movieListDate.length = 0;
   };
   const handleSearchQuick = (e) => {
-    setSearchQuicl({ ...stateSearchQuick, search: e.target.value });
+    console.log(movieList);
+    setSearchQuick({ ...stateSearchQuick, search: e.target.value });
     movieListDate.length = 0;
   };
   // set date
@@ -175,10 +199,7 @@ export default function MovieManagement() {
     setRowsPage({ ...stateRowsPage, page: e.target.value });
     setPage(1);
   };
-  //  btn tim phim
-  const movieListDate = useSelector((state) => {
-    return state.MovieManagementReducer.movieListDate;
-  });
+
   const timPhimTheoNgay = () => {
     let dateSince = dayjs(stateSince.dateSince).format("DD/MM/YYYY");
     let dateDay = dayjs(stateToThatDay.dateDay).format("DD/MM/YYYY");
@@ -197,9 +218,8 @@ export default function MovieManagement() {
       dispatch(setDataErrorToZero(0));
     }
   };
-  const movieList = useSelector((state) => {
-    return state.MovieManagementReducer.movieList;
-  });
+
+
   const pagiNation = useSelector((state) => {
     return state.MovieManagementReducer.pagiNation;
   });

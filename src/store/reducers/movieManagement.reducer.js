@@ -1,9 +1,8 @@
-import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_LENGTH_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant"
+import { DELETE_LIST_MOVIE_MANAGEMENT, GET_CODE_CINEMA_MOVIE_MANAGEMENT, GET_CUM_RAP_MOVIE_MANAGEMENT, GET_LIST_MOVIE_MANAGEMENT, GET_MAPHIM_MOVIE_MANAGEMENT, GET_MOVIE_DATE_MANAGEMENT, INFO_MOVIE_MANAGEMENT, PAGE_FORM_MOVIE_MANAGEMENT } from "../constants/movieManagement.constant"
 
 const initialState = {
     movieList: [],// render table  moviemanagement
     pagiNation: {},
-    movieListLength: [], // get length array page
     movieListDate: [], // get list movie date 
     pageFormAdd: "listMovie",// link page moviemanagement
     infoMovie: {},// form edit
@@ -20,10 +19,6 @@ export const MovieManagementReducer = (state = initialState, { type, payload }) 
             const { items, ..._payload } = payload;
             state.movieList = items;
             state.pagiNation = _payload;
-            return { ...state, ...payload }
-        }
-        case GET_LIST_LENGTH_MOVIE_MANAGEMENT: {
-            state.movieListLength = payload
             return { ...state, ...payload }
         }
         case GET_MOVIE_DATE_MANAGEMENT: {

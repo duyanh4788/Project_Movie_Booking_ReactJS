@@ -4,15 +4,16 @@
     position: relative;
     cursor: pointer;
     .maNhom {
-        width: 120px !important;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        .MuiInput-underline:before {
-            border-bottom: none !important;
-        }
-        label {
-            font-size: 15px;
-        }
+        margin-right: 5px;
+        background-color: $background-3;
+        color: $color-black;
+    }
+    .maNhom:hover {
+        background-color: $color-white-2;
+    }
+    .mainMenuGroup {
+        background-color: $background-3;
+        display: none;
     }
     .slick-prev,
     .slick-next {
@@ -94,5 +95,34 @@
     .MuiFormLabel-root.Mui-focused {
         font-size: 13px !important;
         color: $color-black-2 !important;
+    }
+}
+
+.MuiMenu-paper {
+    .groupMenu {
+        background-color: $background-3;
+        color: $color-black;
+    }
+    .groupMenu:hover {
+        background-color: $color-white-2;
+    }
+}
+
+.MuiPaper-root::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+}
+.MuiPaper-root::-webkit-scrollbar-thumb {
+    background: #afafaf;
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    .maNhom {
+        display: none !important;
+    }
+    .mainMenuGroup {
+        display: inline-block !important;
     }
 }

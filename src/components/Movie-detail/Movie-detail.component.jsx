@@ -20,13 +20,26 @@ import {
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 // modal
-import "../../../node_modules/react-modal-video/scss/modal-video.scss";
-import ModalVideo from "react-modal-video";
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
 // date format
 import * as dayjs from "dayjs";
 
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+}));
+
 function MovieDetail(props) {
+
   const dispatch = useDispatch();
+  const classes = useStyles();
+
   const [loading, setLoading] = useState(null);
 
   const codeMaPhim = props.match.params.maPhim; // recive data to listFlim/Listphim.page
@@ -49,11 +62,17 @@ function MovieDetail(props) {
     trailers: "",
   });
   const handleOpen = (subtitle) => {
-    subtitle = subtitle.split("/");
-    if (subtitle.length === 5) {
-      stateTrailer.trailers = subtitle[4];
-    } else if (subtitle.length === 4) {
-      stateTrailer.trailers = subtitle[3];
+    let httpTrailer = "https://www.youtube.com/embed/";
+    let autoPlay = "?autoplay=1"
+    let subtitleOne = subtitle.split("/");
+    let subtitleTwo = subtitle.split("=");
+    if (subtitleOne.length === 4) {
+      stateTrailer.trailers = httpTrailer + subtitleOne[3] + autoPlay;
+    } else if (subtitleOne.length === 5) {
+      stateTrailer.trailers = httpTrailer + subtitleOne[4] + autoPlay;
+    }
+    if (subtitleTwo.length === 2) {
+      stateTrailer.trailers = httpTrailer + subtitleTwo[1] + autoPlay;
     }
     setOpen(true);
   };
@@ -123,13 +142,22 @@ function MovieDetail(props) {
               </Grid>
             </Container>
           </div>
-          <ModalVideo
-            channel="youtube"
-            youtube={{ mute: 1, autoplay: 1 }}
-            isOpen={isOpen}
-            videoId={stateTrailer.trailers}
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={isOpen}
             onClose={() => setOpen(false)}
-          />
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={isOpen}>
+              <iframe src={stateTrailer.trailers} title="YouTube video player" width="640" height="450" allow="accelerometer; autoplay" style={{ border: "none" }}></iframe>
+            </Fade>
+          </Modal>
           <DetailTabComponent />
         </div>
       )}

@@ -240,11 +240,11 @@ const DetailTabComponent = () => {
   const bookingMovie = (maLichChieu, tenCumRap) => {
     if (maLichChieu && maPhim && tenCumRap) {
       history.push(
-        `/bookingComponent/${maLichChieu}-${maPhim}-${tenCumRap}-${stateDate}`
+        `/bookingComponent/${maLichChieu}-${maPhim}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
-    if (maLichChieu && maPhim && tenCumRap && !toKen) {
+    if (!toKen) {
       history.push("/signIn");
     }
   };

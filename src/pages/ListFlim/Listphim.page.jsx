@@ -7,7 +7,7 @@ import { getMovieList_Action } from "../../store/actions/movie.action";
 import { useHistory } from "react-router";
 // material
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Container, Fab, Grid, Menu, MenuItem } from "@material-ui/core";
 //slick
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,23 +15,45 @@ import "slick-carousel/slick/slick-theme.css";
 // css
 import "./css/listPhim.css";
 // modal
-import "../../../node_modules/react-modal-video/scss/modal-video.scss";
-import ModalVideo from "react-modal-video";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import Loader from "../../components/Loader/Loader";
+import AddIcon from '@material-ui/icons/Add';
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
  *  8-05-02021 Vũ Duy Anh
  * Carousel List => not Done
  *  pages/ListPhim access to Movie-detail/Movie-detail.page
  */
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+}));
+
 
 const ListPhim = () => {
   const ref = useRef({});
   const hisTory = useHistory();
   const dispatch = useDispatch();
+  const classes = useStyles();
+  // menu 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMaNhom = (maNhom) => {
+    setMaNhom(maNhom)
+    setAnchorEl(null);
+  };
+  // menu
+
   // show loading
   const loading = useSelector((state) => state.CommonReducer.loading);
   // get data reducer
@@ -48,7 +70,7 @@ const ListPhim = () => {
   // setting carousel
   const settings = {
     // dots: false,
-    
+
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -67,7 +89,7 @@ const ListPhim = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 2,
           arrows: false,
         },
       },
@@ -76,7 +98,7 @@ const ListPhim = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 2,
           arrows: false,
         },
       },
@@ -89,13 +111,22 @@ const ListPhim = () => {
     trailers: "",
   });
   const handleOpen = (subtitle) => {
-    subtitle = subtitle.split("/");
-    if (subtitle.length === 5) {
-      stateTrailer.trailers = subtitle[4];
-    } else if (subtitle.length === 4) {
-      stateTrailer.trailers = subtitle[3];
+    let httpTrailer = "https://www.youtube.com/embed/";
+    let autoPlay = "?autoplay=1"
+    let subtitleOne = subtitle.split("/");
+    let subtitleTwo = subtitle.split("=");
+    if (subtitleOne.length === 4) {
+      stateTrailer.trailers = httpTrailer + subtitleOne[3] + autoPlay;
+    } else if (subtitleOne.length === 5) {
+      stateTrailer.trailers = httpTrailer + subtitleOne[4] + autoPlay;
+    } 
+    if (subtitleTwo.length === 2) {
+      stateTrailer.trailers = httpTrailer + subtitleTwo[1] + autoPlay;
     }
     setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   // popup video youtube
 
@@ -147,42 +178,82 @@ const ListPhim = () => {
     ];
     return arrMaNhom.map((item, index) => {
       return (
-        <MenuItem key={index} value={item}>
-          Nhóm : {item}
+        <Fab className="maNhom" size="small" color="secondary" key={index} onClick={() => getListGroup(item)}>
+          {item}
+        </Fab>
+      );
+    });
+  };
+
+  const renderMaNhomMenu = () => {
+    let arrMaNhom = [
+      "GP01",
+      "GP02 ",
+      "GP03",
+      "GP04 ",
+      "GP05",
+      "GP06 ",
+      "GP07",
+      "GP08 ",
+      "GP09",
+      "GP10 ",
+    ];
+    return arrMaNhom.map((item, index) => {
+      return (
+        <MenuItem onClick={() => { handleMaNhom(item) }} key={index}>
+          <Fab className="groupMenu" size="small" color="secondary">
+            {item}
+          </Fab>
         </MenuItem>
       );
     });
   };
+
+  const getListGroup = (maNhom) => {
+    setMaNhom(maNhom)
+  }
 
   return loading ? (
     <Loader />
   ) : (
     <Container maxWidth="md" className="sliderListPhim" id="lichChieu">
       <Grid container>
-        <Grid item lg={12} style={{ textAlign: "center" }}>
-          <FormControl className="maNhom">
-            <Select
-              value={maNhom}
-              onChange={(e) => {
-                setMaNhom(e.target.value);
-              }}
-            >
-              {renderMaNhom()}
-            </Select>
-          </FormControl>
+        <Grid item xs={12} lg={12} style={{ textAlign: "center", marginTop: "30px", marginBottom: "20px" }}>
+          {renderMaNhom()}
+          <Fab className="mainMenuGroup" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <AddIcon />
+          </Fab>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleMaNhom}
+          >
+            {renderMaNhomMenu()}
+          </Menu>
         </Grid>
       </Grid>
 
       <Slider ref={ref} {...settings}>
         {renderListPhim()}
       </Slider>
-      <ModalVideo
-        channel="youtube"
-        youtube={{ mute: 1, autoplay: 1 }}
-        isOpen={isOpen}
-        videoId={stateTrailer.trailers}
-        onClose={() => setOpen(false)}
-      />
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={isOpen}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isOpen}>
+          <iframe src={stateTrailer.trailers} title="YouTube video player" width="640" height="450" allow="accelerometer; autoplay" style={{ border: "none" }}></iframe>
+        </Fade>
+      </Modal>
     </Container>
   );
 };

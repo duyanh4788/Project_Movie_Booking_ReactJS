@@ -1,10 +1,13 @@
 import Axios from "axios";
+import { DOMAIN } from "../../services/domainUrl";
 import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant";
+import { GET_CODE_INFO_CINEMA, GET_CODE_PHIM_BOOKING } from "../constants/bookingCodePhim.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getTicketListAction = (maLichChieu) => {
     return async (dispatch) => {
         try {
+            dispatch(showLoader_Action())
             const res = await Axios({
                 method: 'GET',
                 url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
@@ -13,11 +16,48 @@ export const getTicketListAction = (maLichChieu) => {
                 type: GET_TICKET_LIST,
                 payload: res.data.danhSachGhe
             })
+            dispatch(hidenLoader_Action())
+        } catch (error) {
+            console.log(error);
+            dispatch(hidenLoader_Action())
+        }
+    }
+}
+
+export const getMaPhimBooking = (maPhim) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "GET",
+                url: `${DOMAIN}QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
+            })
+            dispatch({
+                type: GET_CODE_PHIM_BOOKING,
+                payload: res.data,
+            })
         } catch (error) {
             console.log(error);
         }
     }
 }
+
+export const getMaPhimCinema = (maLichChieu) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios({
+                method: "GET",
+                url: `${DOMAIN}QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
+            })
+            dispatch({
+                type: GET_CODE_INFO_CINEMA,
+                payload: res.data,
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export const choiceChairAction = (payload) => {
     return {
         type: CHOICE_CHAIR,// great value dangChon => BookingReducer
@@ -48,7 +88,7 @@ export const bookingTicketAction = (showTimeCode, listChairChoice) => {
             })
             dispatch({
                 type: BOOKING_CHAIR, // none save BookingReducer
-                payload: res.data,
+                payload: res,
             })
             // hidden loading
             dispatch(hidenLoader_Action())

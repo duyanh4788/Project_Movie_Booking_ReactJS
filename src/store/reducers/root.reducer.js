@@ -8,7 +8,6 @@ import infoUserReducer from "./infoUser.reducer";
 import { dropDownsReducer } from "./dropdowns.reducer"
 import { DetailTabReducer } from "./detailTab.reducer"
 import { CinemaDetailReducer } from "./cinemaDetail.reducer"
-import BookingCodePhimReducer from "./bookingCodePhim.reducer"
 import { SignUpReducer } from "./signup.reducer"
 import { ClientManagementReducer } from "./clientManagement.reducer"
 import { AdminPageReducer } from "./adminPage.reducer"
@@ -26,7 +25,6 @@ export const rootReducers = combineReducers({
   dropDownsReducer,
   DetailTabReducer,
   CinemaDetailReducer,
-  BookingCodePhimReducer,
   ClientManagementReducer,
   AdminPageReducer,
   MovieManagementReducer,

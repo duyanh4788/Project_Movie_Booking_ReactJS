@@ -7,17 +7,28 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import Slider from "react-slick";
+import Modal from '@material-ui/core/Modal';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // css
 import "./css/Carouselpage.css";
 // modal
-import "../../../node_modules/react-modal-video/scss/modal-video.scss";
-import ModalVideo from "react-modal-video";
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+}));
 
 const CarouselSlick = () => {
   // carousel
   const ref = useRef({});
+  const classes = useStyles();
   const next = () => {
     ref.current.slickNext();
   };
@@ -49,7 +60,9 @@ const CarouselSlick = () => {
   const [isOpen, setOpen] = React.useState(false);
   let [stateTrailer] = useState({ trailers: "" });
   const handleOpen = (subtitle) => {
-    stateTrailer.trailers = subtitle
+    let httpTrailer = "https://www.youtube.com/embed/";
+    let autoPlay = "?autoplay=1"
+    stateTrailer.trailers = httpTrailer + subtitle + autoPlay;
     setOpen(true);
   };
 
@@ -73,13 +86,22 @@ const CarouselSlick = () => {
       <Slider ref={ref} {...settings} >
         {renderImageCarousel()}
       </Slider>
-      <ModalVideo
-        channel="youtube"
-        youtube={{ mute: 1, autoplay: 1 }}
-        isOpen={isOpen}
-        videoId={stateTrailer.trailers}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={isOpen}
         onClose={() => setOpen(false)}
-      />
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={isOpen}>
+          <iframe src={stateTrailer.trailers} title="YouTube video player" width="640" height="450" allow="accelerometer; autoplay" style={{ border: "none" }}></iframe>
+        </Fade>
+      </Modal>
     </section>
   );
 };

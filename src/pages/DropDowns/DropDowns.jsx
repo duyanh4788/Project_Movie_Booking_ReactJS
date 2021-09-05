@@ -160,7 +160,6 @@ const DropDowns = (props) => {
       timer: "",
     });
   };
-  const [dateTime, setDateTime] = useState("");
   // show date
   const [stateDate, setDate] = useState({
     date: "",
@@ -198,22 +197,16 @@ const DropDowns = (props) => {
     setTimer({
       timer: formatTimer,
     });
-    setDateTime(ngayChieuGioChieu);
   };
 
   const bookingMovie = () => {
-    if (stateTimeCode.timeCode && stateMaPhim.maPhim && stateTenRap.tenRap) {
+    if (stateTimeCode.timeCode && stateMaPhim.maPhim) {
       history.push(
-        `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}-${stateTenRap.tenRap}-${dateTime}`
+        `/bookingComponent/${stateTimeCode.timeCode}-${stateMaPhim.maPhim}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
-    if (
-      stateTimeCode.timeCode &&
-      stateMaPhim.maPhim &&
-      stateTenRap.tenRap &&
-      !toKen
-    ) {
+    if (!toKen) {
       history.push("/signIn");
     }
   };
@@ -258,7 +251,7 @@ const DropDowns = (props) => {
           <div
             className={
               listLichChieu.lichChieuPhim &&
-              listLichChieu.lichChieuPhim.length > 6
+                listLichChieu.lichChieuPhim.length > 6
                 ? "contentTitleLength"
                 : "contentTitle"
             }

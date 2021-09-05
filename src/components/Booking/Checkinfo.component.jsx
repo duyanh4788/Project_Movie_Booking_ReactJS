@@ -12,21 +12,20 @@ import {
   Grid,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-// date format
-import * as dayjs from "dayjs";
 
 const CheckInfoMaTion = (props) => {
   const { classes } = props;
 
   const listPhimBooking = useSelector((state) => {
-    return state.BookingCodePhimReducer.listPhimBooking;
+    return state.BookingReducer.listPhimBooking;
   });
 
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
-
+  const infoCinema = useSelector((state) => {
+    return state.BookingReducer.infoCinema; // get data BookingReducer
+  });
   const renderCheckout = () => {
     const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
     return listChairChoice.map((item, index) => {
@@ -43,13 +42,6 @@ const CheckInfoMaTion = (props) => {
     return <p>Tổng Số Vé : {listChairChoice.length}</p>;
   };
 
-  // recive to componet/Showtimecomponent
-  const { showTimeCode } = useParams();
-  let arrShowTimeCode = showTimeCode.split("-");
-  let maCumRap = arrShowTimeCode[2];
-  let tenCumRap = arrShowTimeCode[3];
-  let dateTime = `${arrShowTimeCode[4]}-${arrShowTimeCode[5]}-${arrShowTimeCode[6]}`;
-
   // https images
   const getUrlHttpS = () => {
     let httpS = listPhimBooking.hinhAnh.split(":");
@@ -63,19 +55,20 @@ const CheckInfoMaTion = (props) => {
       <Card>
         <CardHeader
           avatar={
-            <Avatar className={`${maCumRap.slice(0, 3)}`} aria-label="recipe">
-              {maCumRap.slice(0, 3)}
+            <Avatar className={`${infoCinema.thongTinPhim.tenCumRap.slice(0, 3)}`} aria-label="recipe">
+              {infoCinema.thongTinPhim.tenCumRap.slice(0, 3)}
             </Avatar>
           }
-          title={`${maCumRap} - ${tenCumRap}`}
+          title={`${infoCinema.thongTinPhim.tenRap} - ${infoCinema.thongTinPhim.tenCumRap}`}
+          subheader={infoCinema.thongTinPhim.diaChi}
         />
         {getUrlHttpS()}
         <CardContent>
           <Grid container className={classes.carContent}>
             <Grid item xs={12} sm={6} lg={6}>
               <span>Tên Phim : {listPhimBooking.tenPhim}</span>
-              <p>Ngày Chiếu : {dayjs(dateTime).format(" DD-MM-YYYY ")}</p>
-              <p>Giờ Chiếu : {dayjs(dateTime).format("HH:MM")}</p>
+              <p>Ngày Chiếu : {infoCinema.thongTinPhim.ngayChieu}</p>
+              <p>Giờ Chiếu : {infoCinema.thongTinPhim.gioChieu}</p>
             </Grid>
             <Grid item xs={12} sm={6} lg={6} className="ticket">
               <span>

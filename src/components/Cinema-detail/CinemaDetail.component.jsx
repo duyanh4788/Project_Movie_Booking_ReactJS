@@ -74,7 +74,6 @@ const CinemaDetailComponent = (props) => {
 
   const codeMaCumRap = props.match.params.maCumRap; // recive data to CinemaDetailPage
   // set date
-  const [stateDate, setDate] = useState("");
 
   useEffect(() => {
     dispatch(getDetailCinema(codeMaCumRap));
@@ -150,7 +149,6 @@ const CinemaDetailComponent = (props) => {
   });
   const handleMaCumRap = (maCumRap, tenCumRap, arrayListPhim) => {
     dispatch(showScheduleMovieAction(undefined))
-    setDate("");
     setStateMaCumRap({
       maCumRap: maCumRap,
     });
@@ -168,8 +166,7 @@ const CinemaDetailComponent = (props) => {
     });
     setValues(0);
   };
-  const handleScheduleMovie = (ngayChieuGioChieu, item) => {
-    setDate(ngayChieuGioChieu)
+  const handleScheduleMovie = (item) => {
     dispatch(showScheduleMovieAction(item))
   }
 
@@ -187,16 +184,11 @@ const CinemaDetailComponent = (props) => {
   const bookingMovie = (maLichChieu) => {
     if (maLichChieu && stateMaPhim.maPhim && stateTenCumRap.tenCumRap) {
       history.push(
-        `/bookingComponent/${maLichChieu}-${stateMaPhim.maPhim}-${stateTenCumRap.tenCumRap}-${stateDate}`
+        `/bookingComponent/${maLichChieu}-${stateMaPhim.maPhim}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
-    if (
-      maLichChieu &&
-      stateMaPhim.maPhim &&
-      stateTenCumRap.tenCumRap &&
-      !toKen
-    ) {
+    if (!toKen) {
       history.push("/signIn");
     }
   };
@@ -205,7 +197,7 @@ const CinemaDetailComponent = (props) => {
     return infoPhimCinema?.lstLichChieuTheoPhim.map((item, index) => {
       return (
         <Tab
-          onClick={() => { handleScheduleMovie(item.ngayChieuGioChieu, item) }}
+          onClick={() => { handleScheduleMovie(item) }}
           label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
           {...a11yPropsScroll(index)}
           key={index}

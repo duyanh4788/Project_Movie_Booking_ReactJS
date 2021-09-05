@@ -65,12 +65,6 @@ function NavigationTabsTherePage() {
   const codeCinema = useSelector((state) => {
     return state.TabNavigationPageReducer.codeCinema; // get codeCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
-  const nameGroupCinema = useSelector((state) => {
-    return state.TabNavigationPageReducer.nameGroupCinema; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
-  });
-  // const dateSchedule = useSelector((state) => {
-  //   return state.TabNavigationPageReducer.dateSchedule; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
-  // });
   const schedulerMovie = useSelector((state) => {
     return state.TabNavigationPageReducer.schedulerMovie; // get nameGroupCinema form NavigationTabsOne.page => TabNavigationPageReducer => type : GET_CODE_CINEMA_PAGE
   });
@@ -94,14 +88,14 @@ function NavigationTabsTherePage() {
     dispatch(schedulerMovieAction(schedule))
   }
   // booking
-  const bookingMovie = (maLichChieu, ngayChieuGioChieu) => {
-    if (maLichChieu && stateMaphim.maPhim && nameGroupCinema) {
+  const bookingMovie = (maLichChieu) => {
+    if (maLichChieu && stateMaphim.maPhim) {
       history.push(
-        `/bookingComponent/${maLichChieu}-${stateMaphim.maPhim}-${nameGroupCinema}-${ngayChieuGioChieu}`
+        `/bookingComponent/${maLichChieu}-${stateMaphim.maPhim}`
       );
     }
     const toKen = JSON.parse(localStorage.getItem("token"));
-    if (maLichChieu && stateMaphim.maPhim && nameGroupCinema && !toKen) {
+    if (!toKen) {
       history.push("/signIn");
     }
   };

@@ -1,21 +1,21 @@
-import sliderOne from "./images/1.png";
-import sliderTwo from "./images/2.png";
+import sliderOne from "./images/1.jpg";
+import sliderTwo from "./images/2.jpg";
 import sliderThere from "./images/3.jpg";
 
 export const images = [
   {
     title: "sliderOne",
-    subtitle: "uqJ9u7GSaYM",
+    subtitle: "ti0H-bvMi3I",
     img: sliderOne,
   },
   {
     title: "sliderTwo",
-    subtitle: "kBY2k3G6LsM",
+    subtitle: "UUkn-enk2RU",
     img: sliderTwo,
   },
   {
     title: "sliderThere",
-    subtitle: "UeyaR8jWl2c",
+    subtitle: "uC9qU3X1JgM",
     img: sliderThere,
   },
 ];

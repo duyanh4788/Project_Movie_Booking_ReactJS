@@ -119,7 +119,7 @@ const ListPhim = () => {
       stateTrailer.trailers = httpTrailer + subtitleOne[3] + autoPlay;
     } else if (subtitleOne.length === 5) {
       stateTrailer.trailers = httpTrailer + subtitleOne[4] + autoPlay;
-    } 
+    }
     if (subtitleTwo.length === 2) {
       stateTrailer.trailers = httpTrailer + subtitleTwo[1] + autoPlay;
     }
@@ -131,7 +131,7 @@ const ListPhim = () => {
   // popup video youtube
 
   const renderListPhim = () => {
-    return movieList?.map((item, index) => {
+    return movieList?.slice(8)?.map((item, index) => {
       let setLink = item.hinhAnh.split(":");
       let urlImg = setLink[0] + "s:" + setLink[1];
       return (

@@ -91,6 +91,7 @@ const DetailTabComponent = () => {
 
   // render logo
   const renderLoGo = () => {
+
     return listLogo?.map((item, index) => {
       let httpS = item?.logo.split(":");
       let urlImg = httpS[0] + "s:" + httpS[1];
@@ -121,15 +122,21 @@ const DetailTabComponent = () => {
   const [stateMaRap, setStateMarap] = useState({
     maRap: "",
   });
+  const [sateSchedule] = useState({
+    index: "",
+  });
+
   // get maRap
   const handleCodeCinema = (codeCinema) => {
+    sateSchedule.index = lichChieuMovie.find(
+      (item) => item.thongTinRap.maHeThongRap === codeCinema
+    )
     setStateMarap({
       maRap: codeCinema,
     });
     setValues(0);
   };
   // render logo
-
   // render image rạp
   const renderImageCinema = () => {
     const item = listCinema.find((item) => item.name === stateMaRap.maRap);
@@ -147,6 +154,7 @@ const DetailTabComponent = () => {
     let timeEnd = dateFormat.toLocaleTimeString("en-GB").slice(0, 5);
     return timeEnd;
   };
+
   const renderLichChieu = () => {
     let index = lichChieuMovie.findIndex(
       (item) => item.thongTinRap.maHeThongRap === stateMaRap.maRap
@@ -198,10 +206,16 @@ const DetailTabComponent = () => {
             </Grid>
           );
         });
+    } else {
+      return (
+        <Grid className="messageCinema">
+          {!sateSchedule.index && sateSchedule.index !== "" ? <p>Không Có Xuất Chiếu</p> : <p>Vui Lòng Chọn Hệ Thống Rạp</p>}
+
+        </Grid>
+      )
     }
   };
   // render lichChieu
-
   // render date
   const renderDate = () => {
     // const arrayFilter = new Set();
@@ -212,22 +226,19 @@ const DetailTabComponent = () => {
     //   arrayFilter.add(dayjs(obj.ngayChieuGioChieu).format("mm-dd-yyyy"));
     //   return !checkFilter;
     // });
-    return lichChieuMovie
-      .filter((itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap)
-      .map((item, index) => {
-        return (
-          <Tab
-            onClick={() => {
-              setDate(item.ngayChieuGioChieu);
-            }}
-            label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
-            {...a11yPropsScroll(index)}
-            key={index}
-          />
-        );
-      });
+    return lichChieuMovie.filter((itemF) => itemF.thongTinRap.maHeThongRap === stateMaRap.maRap).map((item, index) => {
+      return (
+        <Tab
+          onClick={() => {
+            setDate(item.ngayChieuGioChieu);
+          }}
+          label={dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
+          {...a11yPropsScroll(index)}
+          key={index}
+        />
+      );
+    });
   };
-
   // booking
   const bookingMovie = (maLichChieu, tenCumRap) => {
     if (maLichChieu && maPhim && tenCumRap) {
@@ -240,7 +251,6 @@ const DetailTabComponent = () => {
       history.push("/signIn");
     }
   };
-
   return (
     <div className="detailTab">
       <Container maxWidth="md">
@@ -314,7 +324,7 @@ const DetailTabComponent = () => {
                       </Tabs>
                     </Paper>
                   </AppBar>
-                  <h5 className="titleDate">Chọn Ngày Chiếu</h5>
+                  {!sateSchedule.index && sateSchedule.index !== "" ? "" : <h5 className="titleDate">Chọn Ngày Chiếu</h5>}
                 </Grid>
                 <Grid item xs={12} lg={12} className="rowScheduleMovie">
                   {renderLichChieu()}

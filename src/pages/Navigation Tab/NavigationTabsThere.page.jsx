@@ -99,7 +99,6 @@ function NavigationTabsTherePage() {
       history.push("/signIn");
     }
   };
-
   // render date
   const renderDateTime = () => {
     return lichChieuPhim.map((item, index) => {
@@ -180,6 +179,12 @@ function NavigationTabsTherePage() {
           </Grid>
         );
       });
+    } else {
+      return (
+        <Grid item xs={12} style={{ textAlign: "center" }}>
+          <p>Vui Lòng Rạp</p>
+        </Grid>
+      )
     }
   };
   //Return Time-end with Time-start
@@ -192,6 +197,10 @@ function NavigationTabsTherePage() {
       return timeEnd;
     }
   };
+
+  console.log(lstCumRap.findIndex(
+    (item) => item.maCumRap === codeGroupCinema));
+
   return (
     <Grid container item xs={6} className="rowThereNavigationTab">
       <Grid item xs={12} lg={12}>
@@ -207,7 +216,7 @@ function NavigationTabsTherePage() {
             </Tabs>
           </Paper>
         </AppBar>
-        <h5 className="titleDate">Chọn Ngày Chiếu</h5>
+        {lichChieuPhim.length > 0 ? <h5 className="titleDate">Chọn Ngày Chiếu</h5> : lstCumRap.findIndex((item) => item.maCumRap === codeGroupCinema) !== -1 ? <h5 className="titleDate">Vui Lòng Chọn Phim</h5> : ""}
       </Grid>
       <Grid item xs={12} lg={12} className="rowThereNavigation_ChildTab">
         {renderTenPhim()}

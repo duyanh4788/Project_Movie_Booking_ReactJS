@@ -175,6 +175,19 @@
   margin-left: 5px;
 }
 
+.detailTab .detailTabCinema .scheduleMovie .rowScheduleMovie .messageCinema {
+  height: 100px;
+  color: #212321;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 .rowScheduleMovie::-webkit-scrollbar {
   width: 6px;
   height: 6px;

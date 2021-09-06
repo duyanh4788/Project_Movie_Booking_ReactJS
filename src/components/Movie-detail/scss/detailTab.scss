@@ -109,6 +109,13 @@
                         }
                     }
                 }
+                .messageCinema {
+                    height: 100px;
+                    color: $color-black-2;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: flex-end;
+                }
             }
         }
     }

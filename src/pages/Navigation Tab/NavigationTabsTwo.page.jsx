@@ -64,6 +64,12 @@ function NavigationTabsTwoPage() {
           </Grid>
         );
       });
+    } else if (index === -1) {
+      return (
+        <Grid item xs={12} style={{textAlign : "center"}}>
+          <p>Vui Lòng Hệ Thống Rạp</p>
+        </Grid>
+      )
     }
   };
 

@@ -1,5 +1,8 @@
 @import "../../../assets/Style/scss/main/main.scss";
 
+.mainAdmin {
+    background: url(../../../assets/images/background.jpg);
+}
 .adminPage {
     h5 {
         @include h5title;

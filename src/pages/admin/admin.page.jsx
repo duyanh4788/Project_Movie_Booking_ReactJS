@@ -16,10 +16,6 @@ import {
 } from "../../store/actions/adminPage.action";
 import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
-const mystyle = {
-  background: "linear-gradient(#09181f, #133241)",
-};
-
 const useStyles = makeStyles((theme) => ({
   content: {
     width: "100%",
@@ -159,11 +155,11 @@ export default function Admin() {
         <PersonOutlineRoundedIcon />
       </Button>
       {open === "admin" ? (
-        <main className={classes.contentPage} style={mystyle}>
+        <main className={`${classes.contentPage} mainAdmin`}>
           {renderAdminPage()}
         </main>
       ) : (
-        <main className={classes.content} style={mystyle}>
+        <main className={`${classes.content} mainAdmin`}>
           {showPageAdmin()}
         </main>
       )}

@@ -1,17 +1,17 @@
-import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant"
-import { GET_CODE_INFO_CINEMA, GET_CODE_PHIM_BOOKING } from "../constants/bookingCodePhim.constant"
+import { BOOKING_CHAIR, CHOICE_CHAIR, GET_CODE_PHIM_BOOKING, GET_TICKET_LIST } from "../constants/booking.constant"
 
 const initalState = {
     listChair: [],
     mesageBooking: {},
     listPhimBooking: {},
-    infoCinema: {}
+    infoCinema: undefined,
 }
 
 export const BookingReducer = (state = initalState, action) => {
     switch (action.type) {
         case GET_TICKET_LIST: {
-            state.listChair = action.payload
+            state.listChair = action.payload.danhSachGhe
+            state.infoCinema = action.payload.thongTinPhim
             return { ...state }
         }
         case CHOICE_CHAIR: {
@@ -31,10 +31,6 @@ export const BookingReducer = (state = initalState, action) => {
         }
         case GET_CODE_PHIM_BOOKING: {
             state.listPhimBooking = action.payload;
-            return { ...state, ...action.payload }
-        }
-        case GET_CODE_INFO_CINEMA: {
-            state.infoCinema = action.payload;
             return { ...state, ...action.payload }
         }
         default: return { ...state }

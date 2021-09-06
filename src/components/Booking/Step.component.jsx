@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from "antd";
 import { useParams } from "react-router";
 import { red } from '@material-ui/core/colors';
-import { getMaPhimCinema } from "../../store/actions/booking.action";
+import { getMaPhimBooking, getTicketListAction } from "../../store/actions/booking.action";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,11 +61,16 @@ export default function StepComponent() {
   const { showTimeCode } = useParams();
   let arrShowTimeCode = showTimeCode.split("-");
   let maLichChieu = arrShowTimeCode[0];
+  let maPhim = arrShowTimeCode[1];
   // show loading
 
   useEffect(() => {
-    dispatch(getMaPhimCinema(maLichChieu))
-  }, [dispatch, maLichChieu])
+    dispatch(getMaPhimBooking(maPhim));
+  }, [dispatch, maPhim]);
+
+  useEffect(() => {
+    dispatch(getTicketListAction(maLichChieu));
+  }, [dispatch, maLichChieu]);
 
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
@@ -74,7 +79,7 @@ export default function StepComponent() {
   const infoCinema = useSelector((state) => {
     return state.BookingReducer.infoCinema; // get data BookingReducer
   });
-
+  
   const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
 
   const handleNext = () => {
@@ -83,26 +88,28 @@ export default function StepComponent() {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    dispatch(getTicketListAction(maLichChieu));
   };
+
   return (<div className={classes.root}>
     <Container className="checkInfo">
       <Card className={classes.card}>
-        {infoCinema.thongTinPhim ? <Grid container>
+        {infoCinema ? <Grid container>
           <Grid item xs={12} sm={6} lg={6}>
             <CardHeader
               avatar={
-                <Avatar aria-label="recipe" className={`${infoCinema.thongTinPhim.tenCumRap.slice(0, 3)}`} >
-                  {infoCinema.thongTinPhim.tenCumRap.slice(0, 3)}
+                <Avatar aria-label="recipe" className={`${infoCinema?.tenCumRap.slice(0, 3)}`} >
+                  {infoCinema?.tenCumRap.slice(0, 3)}
                 </Avatar>
               }
-              title={infoCinema.thongTinPhim.tenCumRap}
-              subheader={infoCinema.thongTinPhim.diaChi}
+              title={infoCinema?.tenCumRap}
+              subheader={infoCinema?.diaChi}
             />
           </Grid>
           <Grid item xs={12} sm={6} lg={6}>
             <CardHeader avatar={<Avatar aria-label="recipe"></Avatar>}
-              title={`${infoCinema.thongTinPhim.tenRap} - ${infoCinema.thongTinPhim.tenPhim}`}
-              subheader={`${infoCinema.thongTinPhim.ngayChieu} - ${infoCinema.thongTinPhim.gioChieu}`}
+              title={`${infoCinema?.tenRap} - ${infoCinema?.tenPhim}`}
+              subheader={`${infoCinema?.ngayChieu} - ${infoCinema?.gioChieu}`}
             />
           </Grid>
         </Grid> : ""}

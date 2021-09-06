@@ -90,7 +90,39 @@
     }
     .ticket {
         overflow-y: scroll;
-        max-height: 100px;
+        max-height: 200px;
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td,
+        table th {
+            border: $border;
+            padding: 5px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: $background-3;
+        }
+
+        table tr:hover {
+            background-color: $color-white-2;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: $color-white-2;
+            color: $color-black;
+        }
+        tbody tr td {
+            font-size: 14px;
+        }
+        .result {
+            font-weight: 500;
+        }
     }
 }
 // checkInfo
@@ -103,14 +135,14 @@
         cursor: pointer;
     }
     #cog {
-        -webkit-animation: cog 10s infinite;			
+        -webkit-animation: cog 10s infinite;
         -moz-animation: cog 10s infinite;
-        -ms-animation: cog 10s infinite; 			
+        -ms-animation: cog 10s infinite;
         animation: cog 10s infinite;
         -webkit-animation-timing-function: linear;
-        -moz-animation-timing-function: linear;		
+        -moz-animation-timing-function: linear;
         -ms-animation-timing-function: linear;
-        animation-timing-function: linear	
+        animation-timing-function: linear;
     }
     @keyframes cog {
         100% {

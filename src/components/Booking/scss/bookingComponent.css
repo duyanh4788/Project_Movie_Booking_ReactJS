@@ -2,6 +2,11 @@
   font-size: 13px !important;
 }
 
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+  display: none !important;
+}
+
 .ant-avatar {
   padding: 15px 8px 15px 8px;
   border-radius: 50%;
@@ -154,7 +159,42 @@
 
 .checkInfo .ticket {
   overflow-y: scroll;
-  max-height: 100px;
+  max-height: 200px;
+}
+
+.checkInfo .ticket table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.checkInfo .ticket table td,
+.checkInfo .ticket table th {
+  border: 1px solid #ebebec;
+  padding: 5px;
+}
+
+.checkInfo .ticket table tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+.checkInfo .ticket table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.checkInfo .ticket table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+.checkInfo .ticket tbody tr td {
+  font-size: 14px;
+}
+
+.checkInfo .ticket .result {
+  font-weight: 500;
 }
 
 .subMit {

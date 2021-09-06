@@ -1,7 +1,6 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
-import { BOOKING_CHAIR, CHOICE_CHAIR, GET_TICKET_LIST } from "../constants/booking.constant";
-import { GET_CODE_INFO_CINEMA, GET_CODE_PHIM_BOOKING } from "../constants/bookingCodePhim.constant";
+import { BOOKING_CHAIR, CHOICE_CHAIR, GET_CODE_PHIM_BOOKING, GET_TICKET_LIST } from "../constants/booking.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
 export const getTicketListAction = (maLichChieu) => {
@@ -14,7 +13,7 @@ export const getTicketListAction = (maLichChieu) => {
             })
             dispatch({
                 type: GET_TICKET_LIST,
-                payload: res.data.danhSachGhe
+                payload: res.data
             })
             dispatch(hidenLoader_Action())
         } catch (error) {
@@ -40,24 +39,6 @@ export const getMaPhimBooking = (maPhim) => {
         }
     }
 }
-
-export const getMaPhimCinema = (maLichChieu) => {
-    return async (dispatch) => {
-        try {
-            const res = await Axios({
-                method: "GET",
-                url: `${DOMAIN}QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
-            })
-            dispatch({
-                type: GET_CODE_INFO_CINEMA,
-                payload: res.data,
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
 export const choiceChairAction = (payload) => {
     return {
         type: CHOICE_CHAIR,// great value dangChon => BookingReducer

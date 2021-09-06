@@ -26,7 +26,7 @@ function SubmitComponent(props) {
   let maLichChieu = arrShowTimeCode[0];
 
   const infoCinema = useSelector((state) => {
-    return state.BookingReducer?.infoCinema || {}; // get data BookingReducer
+    return state.BookingReducer.infoCinema; // get data BookingReducer
   });
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
@@ -60,7 +60,7 @@ function SubmitComponent(props) {
         <Loader />
       ) : (
         <Container maxWidth="md" className="subMit">
-          <img src={infoCinema?.thongTinPhim?.hinhAnh} alt="" onClick={hanldeBooking} className="imgBooking" id="cog" />
+          <img src={infoCinema?.hinhAnh} alt="" onClick={hanldeBooking} className="imgBooking" id="cog" />
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"

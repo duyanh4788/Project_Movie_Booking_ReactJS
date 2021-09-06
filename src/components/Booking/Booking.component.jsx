@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 // action redux thunk
 import {
   choiceChairAction,
-  getMaPhimBooking,
   getTicketListAction,
 } from "../../store/actions/booking.action";
 // react router dom
@@ -32,12 +31,18 @@ function BookingComponent(props) {
   const { showTimeCode } = useParams();
   let arrShowTimeCode = showTimeCode.split("-");
   let maLichChieu = arrShowTimeCode[0];
-  let maPhim = arrShowTimeCode[1];
 
-  // call api
+  const infoListChair = useSelector((state) => {
+    return state.BookingReducer.listChair; // get data BookingReducer
+  });
+
   useEffect(() => {
-    dispatch(getMaPhimBooking(maPhim));
-  }, [dispatch, maPhim]);
+    countdownTimerS();
+    return () => {
+      clearInterval(countdownTimer);
+    };
+  }, [infoListChair.length > 0]);
+  //set coundown timer
 
   let countdownTimer = 0;
   const countdownTimerS = () => {
@@ -80,22 +85,6 @@ function BookingComponent(props) {
       dispatch(getTicketListAction(maLichChieu));
     }
   };
-
-  useEffect(() => {
-    countdownTimerS();
-    return () => {
-      clearInterval(countdownTimer);
-    };
-  }, []);
-  //set coundown timer
-
-  const infoListChair = useSelector((state) => {
-    return state.BookingReducer.listChair; // get data BookingReducer
-  });
-
-  useEffect(() => {
-    dispatch(getTicketListAction(maLichChieu));
-  }, [maLichChieu, dispatch]);
 
   const hanldeChoice = (chair) => {
     dispatch(choiceChairAction(chair)); // dispatch action to BookingReducer great value dangChon

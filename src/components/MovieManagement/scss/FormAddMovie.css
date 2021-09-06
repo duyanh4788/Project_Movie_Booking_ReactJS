@@ -2,6 +2,11 @@
   font-size: 13px !important;
 }
 
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+  display: none !important;
+}
+
 .addMovie {
   width: 100%;
   min-height: 500px;

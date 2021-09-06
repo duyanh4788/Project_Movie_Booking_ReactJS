@@ -178,7 +178,7 @@ const DetailTabComponent = () => {
                   {dayjs(item.ngayChieuGioChieu).format("DD-MM-YYYY")}
                 </p>
                 <p>
-                  Giờ Chiếu :
+                  Đặt Vé :
                   <span
                     style={{ cursor: "pointer" }}
                     onClick={() =>
@@ -198,14 +198,6 @@ const DetailTabComponent = () => {
             </Grid>
           );
         });
-    } else {
-      return (
-        <Grid item xs={12} className="inforCinema">
-          <p style={{ color: "gray", textAlign: "center" }}>
-            Không Có Xuất Chiếu
-          </p>
-        </Grid>
-      );
     }
   };
   // render lichChieu

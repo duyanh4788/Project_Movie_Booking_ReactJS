@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postSignUp_Action } from "../../store/actions/signUp.action";
 // material
-import { Container } from "@material-ui/core";
+import { Container, Input } from "@material-ui/core";
 import "./scss/signup.css";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 class SignUpPage extends Component {
   state = {
@@ -29,6 +30,8 @@ class SignUpPage extends Component {
     },
     valid: false,
     showInforUser: false,
+    showPassword: false,
+    showConfrimPassword: false,
   };
 
   handleChange = (event) => {
@@ -83,6 +86,21 @@ class SignUpPage extends Component {
       }
     }
     // check email
+  };
+  handleClickShowPassword = () => {
+    this.setState({ ...this.state, showPassword: !this.state.showPassword });
+  };
+
+  handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  handleClickShowConfrimPassword = () => {
+    this.setState({ ...this.state, showConfrimPassword: !this.state.showConfrimPassword });
+  };
+
+  handleMouseDownConfrimPassword = (event) => {
+    event.preventDefault();
   };
 
   handleSubmit = (event) => {
@@ -235,22 +253,52 @@ class SignUpPage extends Component {
                 <p>{error.taiKhoan}</p>
 
                 <label>Mật Khẩu</label>
-                <input
-                  onChange={this.handleChange}
-                  value={User.matKhau}
-                  placeholder="Mật Khẩu"
+                <Input
+                  id="standard-adornment-password"
+                  className="inputShow"
                   name="matKhau"
-                  type="password"
+                  type={this.state.showPassword ? "text" : "password"}
+                  value={User.matKhau}
+                  onChange={this.handleChange}
+                  endAdornment={
+                    <span
+                      className="showPassWord"
+                      aria-label="toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                      onMouseDown={this.handleMouseDownPassword}
+                    >
+                      {User.showPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </span>
+                  }
                 />
                 <p>{error.matKhau}</p>
 
                 <label>Xác Nhận Mật Khẩu</label>
-                <input
+                <Input
+                  id="standard-adornment-password"
+                  className="inputShow"
+                  name="confirmMatKhau"
+                  type={this.state.showConfrimPassword ? "text" : "password"}
                   onChange={this.handleChange}
                   value={User.confirmMatKhau}
-                  placeholder="Xác Nhận Mật Khẩu Mật Khẩu"
-                  name="confirmMatKhau"
-                  type="password"
+                  endAdornment={
+                    <span
+                      className="showPassWord"
+                      aria-label="toggle password visibility"
+                      onClick={this.handleClickShowConfrimPassword}
+                      onMouseDown={this.handleMouseDownConfrimPassword}
+                    >
+                      {User.showConfrimPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </span>
+                  }
                 />
                 <p>{error.confirmMatKhau}</p>
 
@@ -261,7 +309,7 @@ class SignUpPage extends Component {
                   placeholder="User Name"
                   name="hoTen"
                   type="text"
-                  pattern="^[A-Za-z]+$"
+                  pattern="^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ + ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ + ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$"
                 />
                 <p>{error.hoTen}</p>
 

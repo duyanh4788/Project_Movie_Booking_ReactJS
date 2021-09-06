@@ -150,7 +150,7 @@ const ListPhim = () => {
                 hisTory.push(`/phimDetail/${item.maPhim}`); // transmission to Movie-detail/Movie-detail.compnent
               }}
             >
-              Mua Vé
+              Xem Thông Tin
             </Button>
           </div>
           <label className="modalPlay">

@@ -2,6 +2,11 @@
   font-size: 13px !important;
 }
 
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+  display: none !important;
+}
+
 .backgroundSignIn {
   width: 100%;
   min-height: 500px;
@@ -69,6 +74,21 @@
   color: #424242;
   opacity: 0.5;
   text-align: right;
+}
+
+.backgroundSignIn .wrapLogin .inputShow {
+  width: 100%;
+}
+
+.backgroundSignIn .wrapLogin .inputShow .showPassWord {
+  position: absolute;
+  right: 2%;
+  cursor: pointer;
+}
+
+.backgroundSignIn .wrapLogin .inputShow .showPassWord .MuiSvgIcon-root {
+  width: 20px;
+  height: 20px;
 }
 
 .backgroundSignIn .wrapLogin button {

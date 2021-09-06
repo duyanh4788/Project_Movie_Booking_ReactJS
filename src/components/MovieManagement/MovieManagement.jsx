@@ -213,6 +213,7 @@ export default function MovieManagement() {
         dateDay
       )
     );
+    dispatch(setDataErrorToZero(0));
     handleClick();
     if (movieListDate.length > 0) {
       dispatch(setDataErrorToZero(0));

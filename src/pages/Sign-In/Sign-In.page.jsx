@@ -7,12 +7,13 @@ import { signIn_Action } from "../../store/actions/signIn.action";
 // react router dom
 import { useHistory } from "react-router-dom";
 // material
-import { Container } from "@material-ui/core";
+import { Container, Input } from "@material-ui/core";
 // styled materiall
 // modal
 import Loader from "../../components/Loader/Loader";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -27,7 +28,21 @@ function SignInPage(props) {
   const [user, setUser] = useState({
     taiKhoan: "",
     matKhau: "",
+    showPassword: false,
   });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value }); // es6 object literal
+  };
+
+  const handleClickShowPassword = () => {
+    setUser({ ...user, showPassword: !user.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   // snackbar
   const [open, setOpen] = React.useState(false);
@@ -61,11 +76,6 @@ function SignInPage(props) {
     handleClick();
   };
 
-  const handlChange = (event) => {
-    const { name, value } = event.target;
-    setUser({ ...user, [name]: value }); // es6 object literal
-  };
-
   // loading
   const loading = useSelector((state) => {
     return state.CommonReducer.loading;
@@ -86,16 +96,30 @@ function SignInPage(props) {
                   placeholder="Tài Khoản"
                   name="taiKhoan"
                   value={user.taiKhoan}
-                  onChange={handlChange}
+                  onChange={handleChange}
                 />
-                <input
-                  type="password"
-                  placeholder="Mật Khẩu"
+                <Input
+                  id="standard-adornment-password"
+                  className="inputShow"
                   name="matKhau"
+                  type={user.showPassword ? "text" : "password"}
                   value={user.matKhau}
-                  onChange={handlChange}
+                  onChange={handleChange}
+                  endAdornment={
+                    <span
+                      className="showPassWord"
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {user.showPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
+                    </span>
+                  }
                 />
-
                 <div style={{ textAlign: "center" }}>
                   <button type="submit">Đăng Nhập</button>
                 </div>

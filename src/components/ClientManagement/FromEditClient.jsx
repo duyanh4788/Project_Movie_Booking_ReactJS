@@ -6,44 +6,12 @@ import {
   updateListClientManagement,
 } from "../../store/actions/clientManagement.action";
 import "./scss/FromEditClient.css";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
 import { setDataErrorToZero } from "../../store/actions/messageSnackbar.action";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 function FromEditClient(props) {
+  
   const dispatch = useDispatch();
-  // snackbar
-  const [stateSnackbar, setOpen] = React.useState({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-
-  const { vertical, horizontal, open } = stateSnackbar;
-  const handleClick = (newState) => {
-    setOpen({ open: true, ...newState });
-  };
-  const handleClose = () => {
-    setOpen({ ...stateSnackbar, open: false });
-  };
-  // show status
-  const statusCode = useSelector(
-    (state) => state.MessageSnackbarReducer.statusCode
-  );
-  const errorMessage = useSelector(
-    (state) => state.MessageSnackbarReducer.errorMessage
-  );
-  // show status
-  useEffect(() => {
-    if (statusCode === 500 || statusCode === 200) {
-      handleClick({ vertical: "top", horizontal: "right" });
-    }
-  }, [statusCode]);
-  // snackbar
 
   const infoClient = useSelector((state) => {
     return state.ClientManagementReducer.infoClient;
@@ -202,29 +170,6 @@ function FromEditClient(props) {
               )}
             </div>
           </form>
-          {statusCode === 200 ? (
-            <Snackbar
-              anchorOrigin={{ vertical, horizontal }}
-              open={open}
-              autoHideDuration={1000}
-              onClose={handleClose}
-            >
-              <Alert onClose={handleClose} severity="success">
-                Cập Nhật Thành Công
-              </Alert>
-            </Snackbar>
-          ) : (
-            <Snackbar
-              anchorOrigin={{ vertical, horizontal }}
-              open={open}
-              autoHideDuration={1000}
-              onClose={handleClose}
-            >
-              <Alert onClose={handleClose} severity="error">
-                {errorMessage}
-              </Alert>
-            </Snackbar>
-          )}
         </Container>
       </div>
     </>

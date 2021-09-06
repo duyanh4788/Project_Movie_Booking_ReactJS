@@ -182,7 +182,7 @@ function NavigationTabsTherePage() {
     } else {
       return (
         <Grid item xs={12} style={{ textAlign: "center" }}>
-          <p>Vui Lòng Rạp</p>
+          <p>Vui Lòng Chọn Rạp</p>
         </Grid>
       )
     }
@@ -197,9 +197,6 @@ function NavigationTabsTherePage() {
       return timeEnd;
     }
   };
-
-  console.log(lstCumRap.findIndex(
-    (item) => item.maCumRap === codeGroupCinema));
 
   return (
     <Grid container item xs={6} className="rowThereNavigationTab">

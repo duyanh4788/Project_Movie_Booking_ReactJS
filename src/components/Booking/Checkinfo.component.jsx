@@ -30,6 +30,7 @@ const CheckInfoMaTion = (props) => {
     return listChairChoice.map((item, index) => {
       return (
         <tr key={index}>
+          <td>{index + 1}</td>
           <td>{item.tenGhe}</td>
           <td>{item.maGhe} </td>
         </tr>
@@ -39,7 +40,7 @@ const CheckInfoMaTion = (props) => {
 
   const numberCheckout = () => {
     const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
-    return <td colSpan="2" className="result">Tổng Số Vé : {listChairChoice.length} Vé</td>;
+    return <td colSpan="3" className="result">Tổng Số Vé : {listChairChoice.length} Vé</td>;
   };
 
   // https images
@@ -68,6 +69,7 @@ const CheckInfoMaTion = (props) => {
             <table>
               <thead>
                 <tr>
+                  <th>Stt</th>
                   <th>Tên Ghế </th>
                   <th>Mã Ghế </th>
                 </tr>
@@ -78,7 +80,7 @@ const CheckInfoMaTion = (props) => {
                   {numberCheckout()}
                 </tr>
                 <tr>
-                  <td colSpan="2" className="result">
+                  <td colSpan="3" className="result">
                     Thanh Toán :{" "}
                     {infoListChair
                       .filter((chair) => chair.dangChon)

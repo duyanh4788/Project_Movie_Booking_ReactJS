@@ -1,25 +1,9 @@
 import Axios from "axios";
 import { DOMAIN } from "../../services/domainUrl";
-import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, GET_LIST_LENGTH_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
+import { ADD_CLIENT_MANAGEMENT, GET_INFO_CLIENT, GET_LIST_CLIENT_MANAGEMENT, PAGE_EDIT_CLIENT, TAIKHOAN_CLIENT_MANAGEMENT, UPDATE_LIST_CLIENT_MANAGEMENT } from "../constants/clientManagement.constant";
 import { MESSAGE_DATA_ERROR, MESSAGE_STATUS_CODE } from "../constants/messageSnackbar.constant";
 import { hidenLoader_Action, showLoader_Action } from "./common.action";
 
-export const getListLengthClientManagement = (maNhom) => {
-    return async (dispatch) => {
-        try {
-            const res = await Axios({
-                method: "GET",
-                url: `${DOMAIN}QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${maNhom}`
-            })
-            dispatch({
-                type: GET_LIST_LENGTH_CLIENT_MANAGEMENT,
-                payload: res.data
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
 
 export const getListClientManagement = (maNhom, soTrang, soPhanTuTrenTrang) => {
     return async (dispatch) => {

@@ -72,14 +72,69 @@ export default function StepComponent() {
     dispatch(getTicketListAction(maLichChieu));
   }, [dispatch, maLichChieu]);
 
+
+
+  let countdownTimer = 0;
+  const countdownTimerS = () => {
+    let seconds = 120;
+    function secondPassed() {
+      let stateMinutes = Math.round((seconds - 30) / 60);
+      let stateSecond = seconds % 60;
+      if (stateSecond < 10) {
+        stateSecond = "0" + stateSecond;
+      }
+      if (stateMinutes < 10) {
+        stateMinutes = "0" + stateMinutes;
+      }
+      if (document.getElementById("countdown-timer") !== null) {
+        document.getElementById("countdown-timer").innerHTML =
+          stateMinutes + ":" + stateSecond;
+      }
+
+      if (
+        seconds === 0 &&
+        document.getElementById("expiredCheckout") !== null &&
+        document.getElementById("countdown-timer") !== null
+      ) {
+        clearInterval(countdownTimer);
+        document.getElementById("expiredCheckout").style.display = "block";
+        document.getElementById("countdown-timer").style.display = "none";
+      } else seconds--;
+    }
+    countdownTimer = setInterval(secondPassed, 1000);
+  };
+
+
+
+  const comeBack = () => {
+    if (
+      document.getElementById("expiredCheckout") !== null &&
+      document.getElementById("countdown-timer") !== null
+    ) {
+      document.getElementById("expiredCheckout").style.display = "none";
+      document.getElementById("countdown-timer").style.display = "block";
+      countdownTimerS();
+      setActiveStep(0)
+      dispatch(getTicketListAction(maLichChieu));
+    }
+  };
+  //set coundown timer
+
   const infoListChair = useSelector((state) => {
     return state.BookingReducer.listChair; // get data BookingReducer
   });
 
+  useEffect(() => {
+    countdownTimerS();
+    return () => {
+      clearInterval(countdownTimer);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const infoCinema = useSelector((state) => {
     return state.BookingReducer.infoCinema; // get data BookingReducer
   });
-  
+
   const listChairChoice = infoListChair.filter((chair) => chair.dangChon);
 
   const handleNext = () => {
@@ -88,7 +143,9 @@ export default function StepComponent() {
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    dispatch(getTicketListAction(maLichChieu));
+    if (activeStep === 1) {
+      dispatch(getTicketListAction(maLichChieu));
+    }
   };
 
   return (<div className={classes.root}>
@@ -114,6 +171,18 @@ export default function StepComponent() {
           </Grid>
         </Grid> : ""}
       </Card>
+      <Grid item xs={12} className="stepTime">
+        <div className="countDownTimerMain">
+          <p>Thời Gian Đặt Ghế</p>
+          <span id="countdown-timer">00:00</span>
+          <div id="expiredCheckout" className="expiredCheckout">
+            <div className="modalMesage">
+              <span>Thời Gian Đặt Ghế Là 2 phút , Bạn Hãy Đặt Ghế Lại</span>
+              <p onClick={comeBack}>Booking Again !</p>
+            </div>
+          </div>
+        </div>
+      </Grid>
     </Container>
 
     <Stepper activeStep={activeStep} alternativeLabel className="stePper">

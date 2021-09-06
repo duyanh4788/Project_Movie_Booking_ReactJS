@@ -13,29 +13,20 @@
   color: white;
 }
 
-.stePper span {
-  border-radius: 50px;
-  font-weight: bold;
-}
-
-.stePper .MuiStepIcon-root.MuiStepIcon-active {
-  color: #212321;
-  font-weight: bold;
-}
-
-.stePper .MuiStepIcon-root.MuiStepIcon-completed {
-  color: #212321;
-  font-weight: bold;
-}
-
-.booking .countDownTimerMain {
+.checkInfo .countDownTimerMain {
   text-align: center;
   color: #afafaf;
   font-size: 15px;
   font-weight: 400;
 }
 
-.booking .countDownTimerMain .expiredCheckout {
+.checkInfo .countDownTimerMain p {
+  color: #424242;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.checkInfo .countDownTimerMain .expiredCheckout {
   display: none;
   z-index: 2;
   position: fixed;
@@ -47,7 +38,7 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-.booking .countDownTimerMain .expiredCheckout .modalMesage {
+.checkInfo .countDownTimerMain .expiredCheckout .modalMesage {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,11 +52,26 @@
   font-weight: bold;
 }
 
-.booking .countDownTimerMain .expiredCheckout .modalMesage p {
+.checkInfo .countDownTimerMain .expiredCheckout .modalMesage p {
   color: #ff0000;
   font-weight: bolder;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.stePper span {
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.stePper .MuiStepIcon-root.MuiStepIcon-active {
+  color: #212321;
+  font-weight: bold;
+}
+
+.stePper .MuiStepIcon-root.MuiStepIcon-completed {
+  color: #212321;
+  font-weight: bold;
 }
 
 .booking .screen img {

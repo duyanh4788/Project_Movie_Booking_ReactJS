@@ -249,9 +249,7 @@ const CinemaDetailComponent = (props) => {
                   )}`}</span>
                 </span>
               </p>
-            </Grid> : <Grid item xs={12} sm={5} md={5} lg={5} className="tabTimer">
-              <p>Chọn Giờ Chiếu </p>
-            </Grid>}
+            </Grid> : ""}
         </Grid>
       );
     });
@@ -330,7 +328,8 @@ const CinemaDetailComponent = (props) => {
                     </Tabs>
                   </Paper>
                 </AppBar>
-                <h5 className="titleDate">Chọn Giờ Chiếu</h5>
+
+                {listPhimCinema.length > 0 ? <h5 className="titleDate">Chọn Giờ Chiếu</h5> : <h5 className="titleDate">Chọn Rạp Phim</h5>}
               </Grid>
               <Grid container className="rowInfoPhim">
                 {renderListPhim()}

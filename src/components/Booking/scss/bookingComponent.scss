@@ -6,6 +6,32 @@
     border-radius: 50%;
     color: white;
 }
+.checkInfo {
+    .countDownTimerMain {
+        text-align: center;
+        color: $color-gray-1;
+        font-size: $fs15;
+        font-weight: $fw-500;
+        p {
+            color: $color-gray-2;
+            font-size: $fs15;
+            font-weight: $fw-500;
+        }
+        .expiredCheckout {
+            display: none;
+            @include modalBg;
+            .modalMesage {
+                @include modalMessage;
+                p {
+                    color: $color-red;
+                    font-weight: bolder;
+                    cursor: pointer;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
 
 .stePper {
     span {
@@ -25,25 +51,6 @@
 
 // booking
 .booking {
-    .countDownTimerMain {
-        text-align: center;
-        color: $color-gray-1;
-        font-size: $fs15;
-        font-weight: $fw-500;
-        .expiredCheckout {
-            display: none;
-            @include modalBg;
-            .modalMesage {
-                @include modalMessage;
-                p {
-                    color: $color-red;
-                    font-weight: bolder;
-                    cursor: pointer;
-                    margin-top: 10px;
-                }
-            }
-        }
-    }
     .screen {
         img {
             width: 100%;

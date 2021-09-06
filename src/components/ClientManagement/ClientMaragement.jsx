@@ -21,7 +21,6 @@ import {
   deleteListClientManagement,
   getInfoClient,
   getListClientManagement,
-  getListLengthClientManagement,
   getListSearchClientManagement,
   showFormClient,
 } from "../../store/actions/clientManagement.action";
@@ -67,10 +66,6 @@ const ClientMaragement = () => {
   const pagiNation = useSelector(
     (state) => state.ClientManagementReducer.pagiNation
   );
-  // console.log(pagiNation);
-  // const listClientLength = useSelector(
-  //   (state) => state.ClientManagementReducer.listClientLength
-  // );
   const updateSuccess = useSelector((state) => {
     return state.ClientManagementReducer?.updateSuccess;
   });
@@ -91,10 +86,6 @@ const ClientMaragement = () => {
   const [stateMaNhom, setMaNhom] = useState({
     maNhom: "GP01",
   });
-  // call api
-  useEffect(() => {
-    dispatch(getListLengthClientManagement(stateMaNhom.maNhom));
-  }, [dispatch, stateMaNhom.maNhom]);
   // call api
   useEffect(() => {
     if (stateSearch.search === "") {
@@ -129,6 +120,19 @@ const ClientMaragement = () => {
     stateSearch.search,
     stateRowsPage.page,
   ]);
+  useEffect(() => {
+    if (stateSearch.search !== "" && updateSuccess === 200) {
+      dispatch(
+        getListSearchClientManagement(
+          stateMaNhom.maNhom,
+          stateSearch.search,
+          page,
+          stateRowsPage.page
+        )
+      );
+      handleClick({ vertical: "top", horizontal: "right" });
+    }
+  }, [dispatch, stateMaNhom.maNhom, page, stateSearch.search, stateRowsPage.page, updateSuccess]);
   // setpage
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -289,10 +293,6 @@ const ClientMaragement = () => {
                 </Grid>
                 <Grid item lg={8}>
                   <Pagination
-                    // count={
-                    //   parseInt(listClientLength.length / stateRowsPage.page) + 1
-                    // }
-                    // page={page}
                     count={pagiNation.totalPages}
                     page={pagiNation.currentPage}
                     showFirstButton
@@ -310,7 +310,7 @@ const ClientMaragement = () => {
                 onClose={handleClose}
               >
                 <Alert onClose={handleClose} severity="success">
-                  Xoá Thành Công
+                  Thành Công
                 </Alert>
               </Snackbar>
             ) : (

@@ -136,11 +136,10 @@ const ClientMaragement = () => {
   }, [dispatch, stateMaNhom.maNhom, page, stateSearch.search, stateRowsPage.page, updateSuccess]);
 
   useEffect(() => {
-    if (updateSuccess === 200) {
+    if (statusCode === 200) {
       handleClick({ vertical: "top", horizontal: "right" });
     }
-  }, [updateSuccess]);
-
+  }, [statusCode]);
   // setpage
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -160,6 +159,7 @@ const ClientMaragement = () => {
   };
   // delete
   const deleteClient = (taiKhoan) => {
+    dispatch(btnEditClient(0));
     dispatch(deleteListClientManagement(taiKhoan));
     handleClick({ vertical: "top", horizontal: "right" });
   };
@@ -172,6 +172,7 @@ const ClientMaragement = () => {
   };
   // add
   const themNguoiDung = () => {
+    dispatch(btnEditClient(0));
     dispatch(btnThemNguoiDung(null));
     dispatch(setDataErrorToZero(0));
     dispatch(showFormClient("addClient"));
@@ -310,7 +311,7 @@ const ClientMaragement = () => {
                 </Grid>
               </Grid>
             </Container>
-            {statusCode === 200 || updateSuccess === 200 ? (
+            {statusCode === 200 ? (
               <Snackbar
                 anchorOrigin={{ vertical, horizontal }}
                 open={open}

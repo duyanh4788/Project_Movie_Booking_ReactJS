@@ -134,14 +134,14 @@ export default function Admin() {
     <>
       <Button
         onClick={() => {
-          setOpen("admin");
+          dispatch(setDataErrorToZero(0), setOpen("admin"));
         }}
       >
         <SupervisorAccountRoundedIcon />
       </Button>
       <Button
         onClick={() => {
-          setOpen("movie");
+          dispatch(setDataErrorToZero(0), setOpen("movie"));
         }}
         label="Item One"
       >
@@ -149,7 +149,7 @@ export default function Admin() {
       </Button>
       <Button
         onClick={() => {
-          setOpen("client");
+          dispatch(setDataErrorToZero(0), setOpen("client"));
         }}
       >
         <PersonOutlineRoundedIcon />

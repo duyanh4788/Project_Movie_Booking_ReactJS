@@ -112,6 +112,7 @@ const ClientMaragement = () => {
           stateRowsPage.page
         )
       );
+      dispatch(setDataErrorToZero(0));
     }
   }, [
     dispatch,
@@ -130,9 +131,16 @@ const ClientMaragement = () => {
           stateRowsPage.page
         )
       );
-      handleClick({ vertical: "top", horizontal: "right" });
+      dispatch(setDataErrorToZero(0));
     }
   }, [dispatch, stateMaNhom.maNhom, page, stateSearch.search, stateRowsPage.page, updateSuccess]);
+
+  useEffect(() => {
+    if (updateSuccess === 200) {
+      handleClick({ vertical: "top", horizontal: "right" });
+    }
+  }, [updateSuccess]);
+
   // setpage
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -302,7 +310,7 @@ const ClientMaragement = () => {
                 </Grid>
               </Grid>
             </Container>
-            {statusCode === 200 ? (
+            {statusCode === 200 || updateSuccess === 200 ? (
               <Snackbar
                 anchorOrigin={{ vertical, horizontal }}
                 open={open}

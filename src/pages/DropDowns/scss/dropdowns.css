@@ -10,6 +10,7 @@
 .dropDownsRelavite {
   position: relative;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .dropDownsRelavite .dropDownsMain {
@@ -21,10 +22,10 @@
   border-radius: 5px;
   width: 960px;
   position: absolute;
-  bottom: -20px;
+  top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   z-index: 2;
 }
 

@@ -61,7 +61,7 @@ const ListPhim = () => {
     return state.movieReducer?.movieList || {};
   });
   // maNhom
-  const [maNhom, setMaNhom] = React.useState("GP01");
+  const [maNhom, setMaNhom] = React.useState("GP02");
   // call api
   useEffect(() => {
     dispatch(getMovieList_Action(maNhom));
@@ -165,21 +165,21 @@ const ListPhim = () => {
   };
   const renderMaNhom = () => {
     let arrMaNhom = [
-      "GP01",
-      "GP02 ",
-      "GP03",
-      "GP04 ",
-      "GP05",
-      "GP06 ",
-      "GP07",
-      "GP08 ",
-      "GP09",
-      "GP10 ",
+      {label : 'P01' , code : 'GP01'},
+      {label : 'P02' , code : 'GP02'},
+      {label : 'P03' , code : 'GP03'},
+      {label : 'P04' , code : 'GP04'},
+      {label : 'P05' , code : 'GP05'},
+      {label : 'P06' , code : 'GP06'},
+      {label : 'P07' , code : 'GP07'},
+      {label : 'P08' , code : 'GP08'},
+      {label : 'P09' , code : 'GP09'},
+      {label : 'P010' , code : 'GP10'},
     ];
-    return arrMaNhom.map((item, index) => {
+    return arrMaNhom.map(({label , code}) => {
       return (
-        <Fab className="maNhom" size="small" color="secondary" key={index} onClick={() => getListGroup(item)}>
-          {item}
+        <Fab className="maNhom" size="small" color="secondary" key={code} onClick={() => getListGroup(code)}>
+          {label}
         </Fab>
       );
     });
@@ -187,22 +187,22 @@ const ListPhim = () => {
 
   const renderMaNhomMenu = () => {
     let arrMaNhom = [
-      "GP01",
-      "GP02 ",
-      "GP03",
-      "GP04 ",
-      "GP05",
-      "GP06 ",
-      "GP07",
-      "GP08 ",
-      "GP09",
-      "GP10 ",
+      {label : 'P01' , code : 'GP01'},
+      {label : 'P02' , code : 'GP02'},
+      {label : 'P03' , code : 'GP03'},
+      {label : 'P04' , code : 'GP04'},
+      {label : 'P05' , code : 'GP05'},
+      {label : 'P06' , code : 'GP06'},
+      {label : 'P07' , code : 'GP07'},
+      {label : 'P08' , code : 'GP08'},
+      {label : 'P09' , code : 'GP09'},
+      {label : 'P010' , code : 'GP10'},
     ];
-    return arrMaNhom.map((item, index) => {
+    return arrMaNhom.map(({label , code}) => {
       return (
-        <MenuItem onClick={() => { handleMaNhom(item) }} key={index}>
+        <MenuItem onClick={() => { handleMaNhom(code) }} key={code}>
           <Fab className="groupMenu" size="small" color="secondary">
-            {item}
+            {label}
           </Fab>
         </MenuItem>
       );

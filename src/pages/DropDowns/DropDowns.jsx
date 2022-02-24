@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import "./scss/dropdowns.css";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useDispatch, useSelector } from "react-redux";
+import { Container} from "@material-ui/core";
 import {
   getListMovieDropDowns,
   getCinemaDropDownsWithCode,
@@ -212,69 +213,73 @@ const DropDowns = (props) => {
   };
 
   return (
-    <div className="container dropDownsRelavite">
-      <div className="dropDownsMain">
-        <div className="dropDownMaNhom">
-          <button className="dropbtn">Mã Nhóm : {stateMaNhom.maNhom}</button>
-          <ExpandMoreIcon />
-          <div className="contentMaNhom">{renderMaNhom()}</div>
-        </div>
-        <div className="dropdownPhim">
-          <button className="dropbtn">
-            {stateTenPhim.tenPhim === ""
-              ? "Chọn Phim"
-              : stateTenPhim.tenPhim.slice(0, 12)}
-          </button>
-          <ExpandMoreIcon />
-          <div className="contentPhim">{renderListMovie()}</div>
-        </div>
-
-        <div className="dropdownRap">
-          <button className="dropbtn">
-            {stateTenRap.tenRap === ""
-              ? "Chọn Rạp"
-              : stateTenRap.tenRap.slice(0, 33)}
-          </button>
-          <ExpandMoreIcon />
-          <div className="contentRap">
-            {listCinema.heThongRapChieu ? renderListCinema() : <a>Chọn Rạp</a>}
+    <Container  className="dropDownsRelavite">
+        <div className="dropDownsMain">
+          <div className="dropDownMaNhom">
+            <button className="dropbtn">Mã Nhóm : {stateMaNhom.maNhom}</button>
+            <ExpandMoreIcon />
+            <div className="contentMaNhom">{renderMaNhom()}</div>
           </div>
-        </div>
+          <div className="dropdownPhim">
+            <button className="dropbtn">
+              {stateTenPhim.tenPhim === ""
+                ? "Chọn Phim"
+                : stateTenPhim.tenPhim.slice(0, 12)}
+            </button>
+            <ExpandMoreIcon />
+            <div className="contentPhim">{renderListMovie()}</div>
+          </div>
 
-        <div className="dropdownTitle">
-          <button className="dropbtn">
-            {stateDate.date === ""
-              ? "Ngày Chiếu"
-              : dayjs(stateDate.date).format("DD-MM-YYYY")}
-          </button>
-          <ExpandMoreIcon />
-          <div
-            className={
-              listLichChieu.lichChieuPhim &&
+          <div className="dropdownRap">
+            <button className="dropbtn">
+              {stateTenRap.tenRap === ""
+                ? "Chọn Rạp"
+                : stateTenRap.tenRap.slice(0, 33)}
+            </button>
+            <ExpandMoreIcon />
+            <div className="contentRap">
+              {listCinema.heThongRapChieu ? (
+                renderListCinema()
+              ) : (
+                <a>Chọn Rạp</a>
+              )}
+            </div>
+          </div>
+
+          <div className="dropdownTitle">
+            <button className="dropbtn">
+              {stateDate.date === ""
+                ? "Ngày Chiếu"
+                : dayjs(stateDate.date).format("DD-MM-YYYY")}
+            </button>
+            <ExpandMoreIcon />
+            <div
+              className={
+                listLichChieu.lichChieuPhim &&
                 listLichChieu.lichChieuPhim.length > 6
-                ? "contentTitleLength"
-                : "contentTitle"
-            }
-          >
-            {listLichChieu.lichChieuPhim ? (
-              renderDateCinema()
-            ) : (
-              <a>Chọn Ngày Chiếu</a>
-            )}
+                  ? "contentTitleLength"
+                  : "contentTitle"
+              }
+            >
+              {listLichChieu.lichChieuPhim ? (
+                renderDateCinema()
+              ) : (
+                <a>Chọn Ngày Chiếu</a>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div className="dropdownTitle">
-          <button className="dropbtn">
-            {stateTimer.timer === "" ? "Ngày Chiếu" : stateTimer.timer}
+          <div className="dropdownTitle">
+            <button className="dropbtn">
+              {stateTimer.timer === "" ? "Ngày Chiếu" : stateTimer.timer}
+            </button>
+          </div>
+
+          <button className="btnMuaVe" onClick={bookingMovie}>
+            Mua Vé Ngay
           </button>
         </div>
-
-        <button className="btnMuaVe" onClick={bookingMovie}>
-          Mua Vé Ngay
-        </button>
-      </div>
-    </div>
+    </Container>
   );
 };
 export default DropDowns;
